@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "studio-one",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["http-server", "/Users/justinbabcock/Projects/studio-one-staging", "-p", "8080", "-c-1"],
+      "port": 8080
+    }
+  ]
+}

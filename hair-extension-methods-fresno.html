@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hair Extension Methods Fresno | Studio One</title>
+  <meta name="description" content="Compare Studio One's Fresno hair extension methods to find the best fit for fullness, length, comfort, and maintenance.">
+
+  <!-- Preload LCP image -->
+  <link rel="preload" as="image" href="images/optimized/extensions-page/hero.webp" type="image/webp" fetchpriority="high">
+
+  <!-- Preconnect to font origins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://use.typekit.net" crossorigin>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://use.typekit.net/iqt4hfw.css" rel="stylesheet">
+
+  <style>
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --olive:#4c5223;
+      --olive-light:#6b7332;
+      --black:#000;
+      --dark:#0a0a0a;
+      --white:#fff;
+      --off-white:#f5f5f5;
+      --light-gray:#d9d9d9;
+      --body-font:'Inter',Arial,sans-serif;
+      --heading-font:'freight-big-pro',Georgia,serif;
+    }
+    html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;scroll-behavior:smooth}
+    body{font-family:var(--body-font);background:var(--black);color:var(--light-gray);font-size:16px;line-height:1.6;overflow-x:hidden}
+    img{max-width:100%;height:auto;display:block}
+    a{color:inherit;text-decoration:none}
+    button{cursor:pointer;background:none;border:none;color:inherit;font-family:inherit}
+
+    /* ===== HEADER ===== */
+    .header{position:fixed;top:0;left:0;right:0;z-index:90;padding:24px 40px;transition:background .3s ease}
+    .header.scrolled{background:rgba(0,0,0,0.85);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+    .header-inner{display:flex;justify-content:space-between;align-items:center;max-width:1400px;margin:0 auto}
+    .logo{height:28px;width:auto}
+    .menu-toggle{font-size:14px;font-weight:500;letter-spacing:2px;color:var(--off-white);text-transform:uppercase}
+    .menu-toggle:hover{opacity:.7}
+
+    /* ===== NAV OVERLAY ===== */
+    .nav-overlay{position:fixed;inset:0;z-index:200;background:var(--black);display:flex;align-items:center;opacity:0;pointer-events:none;transition:opacity .4s ease;overflow-y:auto}
+    .nav-overlay.is-open{opacity:1;pointer-events:all}
+    .nav-close{position:absolute;top:28px;right:40px;z-index:10;padding:8px;opacity:.7;transition:opacity .3s}
+    .nav-close:hover{opacity:1}
+    .nav-inner{padding:100px 60px 60px;width:100%;max-width:700px}
+    .nav-label{font-family:var(--body-font);font-size:11px;font-weight:500;letter-spacing:3px;color:var(--off-white);margin-bottom:8px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.15)}
+    .nav-links{display:flex;flex-direction:column;gap:4px;padding-top:12px}
+    .nav-links a{font-family:var(--heading-font);font-size:38px;font-weight:400;color:var(--off-white);transition:color .3s,padding-left .3s;line-height:1.4;padding:2px 0}
+    .nav-links a:hover{color:var(--olive-light);padding-left:8px}
+
+    /* ===== HERO ===== */
+    .hero{position:relative;min-height:85vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;background:var(--black)}
+    .hero-bg{position:absolute;inset:0;z-index:0;opacity:.3}
+    .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center top}
+    .hero-overlay{position:absolute;inset:0;background:rgba(0,0,0,.35);z-index:1}
+    .hero-content{position:relative;z-index:2;max-width:900px;padding:0 40px}
+    .hero-content h1{font-family:var(--heading-font);font-size:52px;font-weight:400;line-height:1.15;color:var(--white);margin-bottom:24px}
+    .hero-body{font-size:17px;color:var(--light-gray);margin-bottom:36px;font-weight:300;line-height:1.7;max-width:700px;margin-left:auto;margin-right:auto}
+
+    /* ===== BUTTONS ===== */
+    .primary-button{display:inline-block;padding:16px 32px;border:1px solid var(--olive);color:var(--light-gray);font-size:12px;font-weight:500;letter-spacing:3px;text-transform:uppercase;font-family:var(--body-font);transition:background .3s ease,color .3s ease}
+    .primary-button:hover{background:var(--olive);color:var(--white)}
+    .olive-button{display:inline-block;padding:18px 40px;background:var(--olive);color:var(--white);font-size:12px;font-weight:600;letter-spacing:3px;text-transform:uppercase;font-family:var(--body-font);transition:background .3s ease;border:none}
+    .olive-button:hover{background:var(--olive-light)}
+
+    /* ===== SECTION BASE ===== */
+    .section{padding:100px 40px}
+    .section--dark{background:var(--dark)}
+    .section--black{background:var(--black)}
+    .section-inner{max-width:1200px;margin:0 auto}
+    .section-label{font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--olive-light);margin-bottom:16px}
+    .section-heading{font-family:var(--heading-font);font-size:42px;font-weight:400;color:var(--white);line-height:1.2;margin-bottom:24px}
+    .section-subhead{font-size:16px;color:var(--light-gray);line-height:1.7;max-width:700px;font-weight:300}
+    .section-divider{height:1px;background:rgba(255,255,255,.1);margin:0 auto;max-width:200px}
+    .text-center{text-align:center}
+    .mx-auto{margin-left:auto;margin-right:auto}
+
+    /* ===== INTRO SECTION ===== */
+    .intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-top:60px}
+    .intro-image{border-radius:4px;overflow:hidden}
+    .intro-image img{width:100%;height:100%;object-fit:cover}
+    .intro-text p{margin-bottom:20px;font-size:15px;line-height:1.8;color:var(--light-gray);font-weight:300}
+
+    /* ===== CHOOSING SECTION ===== */
+    .choosing-list{display:flex;flex-wrap:wrap;gap:12px 32px;margin:24px 0 40px;list-style:none}
+    .choosing-list li{font-size:15px;color:var(--off-white);font-weight:400;position:relative;padding-left:20px}
+    .choosing-list li::before{content:'';position:absolute;left:0;top:8px;width:8px;height:8px;border:1px solid var(--olive);border-radius:50%}
+
+    /* ===== METHOD CARDS ===== */
+    .method-section{display:grid;grid-template-columns:1fr 1fr;gap:0;margin:80px 0}
+    .method-section--reverse{direction:rtl}
+    .method-section--reverse > *{direction:ltr}
+    .method-image{position:relative;min-height:600px;overflow:hidden}
+    .method-image img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+    .method-content{padding:60px;display:flex;flex-direction:column;justify-content:center;background:var(--dark)}
+    .method-tag{font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--olive-light);margin-bottom:12px}
+    .method-title{font-family:var(--heading-font);font-size:36px;font-weight:400;color:var(--white);line-height:1.2;margin-bottom:8px}
+    .method-subtitle{font-size:14px;color:var(--light-gray);font-style:italic;margin-bottom:24px;font-weight:300}
+    .method-body{font-size:15px;color:var(--light-gray);line-height:1.8;margin-bottom:28px;font-weight:300}
+    .method-best-for h4{font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--off-white);margin-bottom:12px}
+    .method-best-for ul{list-style:none;margin-bottom:28px}
+    .method-best-for li{font-size:14px;color:var(--light-gray);padding:4px 0 4px 20px;position:relative;font-weight:300}
+    .method-best-for li::before{content:'';position:absolute;left:0;top:12px;width:6px;height:1px;background:var(--olive)}
+
+    /* ===== WHY / MAINTENANCE BLOCKS ===== */
+    .detail-blocks{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:48px}
+    .detail-block h4{font-size:13px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--off-white);margin-bottom:12px}
+    .detail-block p{font-size:14px;color:var(--light-gray);line-height:1.8;font-weight:300}
+
+    /* ===== PHOTO STRIP ===== */
+    .photo-strip{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;margin:80px 0}
+    .photo-strip img{width:100%;aspect-ratio:1;object-fit:cover}
+
+    /* ===== COMPARISON ===== */
+    .comparison{display:grid;grid-template-columns:1fr 1fr;gap:60px;margin-top:48px}
+    .comparison-card{padding:40px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.02)}
+    .comparison-card h3{font-family:var(--heading-font);font-size:28px;font-weight:400;color:var(--white);margin-bottom:8px}
+    .comparison-card .card-subtitle{font-size:13px;color:var(--olive-light);font-weight:500;letter-spacing:1px;margin-bottom:20px}
+    .comparison-card ul{list-style:none}
+    .comparison-card li{font-size:14px;color:var(--light-gray);padding:6px 0 6px 24px;position:relative;font-weight:300}
+    .comparison-card li::before{content:'\2713';position:absolute;left:0;color:var(--olive);font-size:14px}
+    .comparison-note{margin-top:40px;font-size:15px;color:var(--light-gray);line-height:1.8;max-width:900px;font-weight:300}
+
+    /* ===== WHY STUDIO ONE ===== */
+    .why-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-top:48px}
+    .why-image{border-radius:4px;overflow:hidden;max-height:550px}
+    .why-image img{width:100%;height:100%;object-fit:cover}
+    .why-text p{font-size:15px;color:var(--light-gray);line-height:1.8;margin-bottom:20px;font-weight:300}
+
+    /* ===== CONSULTATION ===== */
+    .consult-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-top:48px}
+    .consult-image{border-radius:4px;overflow:hidden;max-height:550px}
+    .consult-image img{width:100%;height:100%;object-fit:cover}
+    .consult-list{list-style:none;margin:24px 0 32px}
+    .consult-list li{font-size:14px;color:var(--light-gray);padding:6px 0 6px 20px;position:relative;font-weight:300}
+    .consult-list li::before{content:'';position:absolute;left:0;top:12px;width:6px;height:1px;background:var(--olive)}
+
+    /* ===== FAQ ===== */
+    .faq-list{max-width:800px;margin:48px auto 0}
+    .faq-item{border-bottom:1px solid rgba(255,255,255,.08);padding:24px 0}
+    .faq-question{display:flex;justify-content:space-between;align-items:center;width:100%;text-align:left;font-size:16px;font-weight:500;color:var(--off-white);padding:0;gap:16px}
+    .faq-question span{font-size:20px;transition:transform .3s;color:var(--olive)}
+    .faq-question.is-open span{transform:rotate(45deg)}
+    .faq-answer{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s ease}
+    .faq-answer.is-open{max-height:400px;padding-top:16px}
+    .faq-answer p{font-size:14px;color:var(--light-gray);line-height:1.8;font-weight:300}
+
+    /* ===== CTA BANNER ===== */
+    .cta-banner{position:relative;min-height:50vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+    .cta-banner-bg{position:absolute;inset:0;z-index:0}
+    .cta-banner-bg img{width:100%;height:100%;object-fit:cover;opacity:.25}
+    .cta-banner-overlay{position:absolute;inset:0;background:rgba(0,0,0,.4);z-index:1}
+    .cta-banner-content{position:relative;z-index:2;max-width:800px;padding:0 40px}
+    .cta-banner-content h2{font-family:var(--heading-font);font-size:44px;font-weight:400;color:var(--white);line-height:1.2;margin-bottom:20px}
+    .cta-banner-content p{font-size:16px;color:var(--light-gray);margin-bottom:32px;font-weight:300;line-height:1.7}
+
+    /* ===== FOOTER ===== */
+    .footer-minimal{padding:40px;background:var(--dark);border-top:1px solid rgba(255,255,255,.08);text-align:center}
+    .footer-minimal p{font-size:11px;color:rgba(255,255,255,.4);letter-spacing:1px}
+    .footer-minimal a{color:rgba(255,255,255,.4);transition:color .3s}
+    .footer-minimal a:hover{color:var(--off-white)}
+
+    /* ===== FLOATING PHONE ===== */
+    .floating-phone-widget{position:fixed;bottom:32px;left:32px;z-index:100;display:flex;flex-direction:column;align-items:flex-start;gap:12px}
+    .floating-phone{width:56px;height:56px;background:var(--olive);border-radius:50%;display:flex;align-items:center;justify-content:center;transition:transform .3s ease,background .3s ease;position:relative;z-index:2}
+    .floating-phone:hover{transform:scale(1.1);background:var(--olive-light)}
+    .phone-actions{display:flex;flex-direction:column;gap:8px;opacity:0;transform:translateY(20px);pointer-events:none;transition:opacity .3s ease,transform .3s ease}
+    .phone-actions.is-open{opacity:1;transform:translateY(0);pointer-events:all}
+    .phone-action-btn{display:flex;align-items:center;gap:10px;background:rgba(76,82,35,.95);color:var(--off-white);padding:10px 18px 10px 14px;border-radius:28px;font-size:12px;font-weight:500;letter-spacing:1px;white-space:nowrap;transition:background .3s ease;backdrop-filter:blur(10px)}
+    .phone-action-btn:hover{background:var(--olive-light)}
+    .phone-action-btn svg{flex-shrink:0}
+
+    /* ===== ANIMATIONS ===== */
+    [data-animate]{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+    [data-animate="fade-right"]{transform:translateX(-40px)}
+    [data-animate="fade-left"]{transform:translateX(40px)}
+    [data-animate].is-visible{opacity:1;transform:translate(0,0)}
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width:1024px){
+      .hero-content h1{font-size:40px}
+      .method-section,.method-section--reverse{grid-template-columns:1fr;direction:ltr}
+      .method-section--reverse > *{direction:ltr}
+      .method-image{min-height:400px}
+      .method-content{padding:48px 40px}
+      .photo-strip{grid-template-columns:repeat(3,1fr)}
+      .comparison{gap:32px}
+      .nav-inner{padding:80px 40px 40px}
+      .nav-links a{font-size:30px}
+    }
+    @media (max-width:768px){
+      .section{padding:64px 24px}
+      .hero-content h1{font-size:32px}
+      .hero-bg img{object-position:right top}
+      .section-heading{font-size:32px}
+      .intro-grid,.why-grid,.consult-grid{grid-template-columns:1fr;gap:32px}
+      .comparison{grid-template-columns:1fr}
+      .detail-blocks{grid-template-columns:1fr;gap:32px}
+      .method-content{padding:40px 24px}
+      .method-title{font-size:28px}
+      .photo-strip{grid-template-columns:repeat(3,1fr)}
+      .cta-banner-content h2{font-size:30px}
+      .header{padding:16px 20px}
+      .choosing-list{flex-direction:column;gap:8px}
+      .nav-inner{padding:70px 24px 40px}
+      .nav-links a{font-size:26px}
+      .nav-close{top:16px;right:20px}
+    }
+    @media (max-width:480px){
+      .hero-content h1{font-size:26px}
+      .photo-strip{grid-template-columns:repeat(2,1fr)}
+      .nav-links a{font-size:22px}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Floating Phone Widget -->
+  <div class="floating-phone-widget" id="phoneWidget">
+    <div class="phone-actions" id="phoneActions">
+      <a href="https://www.google.com/maps/dir//2950+E+Nees+Ave+%23103,+Fresno,+CA+93720" target="_blank" rel="noopener" class="phone-action-btn" aria-label="Get Directions">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" stroke="#f5f5f5" stroke-width="2"/><circle cx="12" cy="10" r="3" stroke="#f5f5f5" stroke-width="2"/></svg>
+        <span>Directions</span>
+      </a>
+      <a href="sms:5597959724" class="phone-action-btn" aria-label="Text Studio One">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke="#f5f5f5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Text</span>
+      </a>
+      <a href="tel:5597959724" class="phone-action-btn" aria-label="Call Studio One">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" stroke="#f5f5f5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Call</span>
+      </a>
+    </div>
+    <button class="floating-phone" id="phoneToggle" aria-label="Contact Studio One">
+      <svg class="phone-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" stroke="#f5f5f5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <svg class="close-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" style="display:none"><path d="M18 6L6 18M6 6l12 12" stroke="#f5f5f5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="/" class="logo-link">
+        <img src="images/optimized/logo.avif" alt="Studio One" class="logo">
+      </a>
+      <button class="menu-toggle" id="menuToggle">MENU</button>
+    </div>
+  </header>
+
+  <!-- Nav Overlay -->
+  <nav class="nav-overlay" id="navOverlay">
+    <button class="nav-close" id="navClose">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="#f5f5f5" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+    <div class="nav-inner">
+      <div class="nav-label">NAVIGATE:</div>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/meet-the-team">Meet the Team</a>
+        <a href="/services">Classic Services</a>
+        <a href="/nbr-extensions">NBR Extensions</a>
+        <a href="/wigs">Wigs</a>
+        <a href="/shop">Shop</a>
+        <a href="/hair-gallery">Hair Gallery</a>
+        <a href="/blog">Blog</a>
+        <a href="/testimonials">Success Stories</a>
+        <a href="/booking">Book Appointment</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero">
+    <div class="hero-bg">
+      <img src="images/optimized/extensions-page/hero.webp" alt="Hair extensions at Studio One Fresno" width="1440" height="1440" fetchpriority="high" decoding="async">
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content" data-animate="fade-up">
+      <h1>Hair Extension Methods in Fresno</h1>
+      <p class="hero-body">At Studio One, we know there is no one-size-fits-all approach to hair extensions. That is why we offer two luxury methods, each designed for different hair goals, lifestyles, and comfort levels.</p>
+      <a href="/booking" class="primary-button">book your consultation</a>
+    </div>
+  </section>
+
+  <!-- ===================== INTRO ===================== -->
+  <section class="section section--dark">
+    <div class="section-inner">
+      <div class="intro-grid">
+        <div class="intro-text" data-animate="fade-right">
+          <p>Some women want maximum fullness, more dramatic length, and the most customized result possible. Others want something lighter, faster, and easier to maintain.</p>
+          <p>That is why we offer two luxury hair extension methods in Fresno, each designed for different hair goals, lifestyles, and comfort levels. Our signature method features Active Genius&trade; Wefts installed with a beaded row foundation for guests who want the fullest and most customized transformation. We also offer No Sew Luxe&trade; Extensions, installed with our exclusive 15-Minute Method&trade;, for guests who want a lighter, faster option with more flexibility.</p>
+          <p>Both methods use premium <a href="/nically-hair" style="color:var(--olive-light);text-decoration:underline;text-underline-offset:3px">Nically Hair</a>, are color matched for a seamless blend, and are tailored to your goals.</p>
+        </div>
+        <div class="intro-image" data-animate="fade-left">
+          <img src="images/optimized/extensions-page/nically-1.webp" alt="Luxury hair extensions at Studio One" loading="lazy" decoding="async">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CHOOSING ===================== -->
+  <section class="section section--black">
+    <div class="section-inner text-center">
+      <p class="section-label" data-animate="fade-up">Find Your Fit</p>
+      <h2 class="section-heading mx-auto" data-animate="fade-up" style="max-width:800px">Two Luxury Hair Extension Options at Studio One</h2>
+      <p class="section-subhead mx-auto" data-animate="fade-up">Choosing the right hair extensions starts with understanding what matters most to you. Are you looking for:</p>
+      <ul class="choosing-list" style="justify-content:center;margin-top:32px" data-animate="fade-up">
+        <li>more fullness</li>
+        <li>more length</li>
+        <li>a lighter feel</li>
+        <li>a faster install</li>
+        <li>less commitment</li>
+        <li>more customization</li>
+      </ul>
+      <p class="section-subhead mx-auto" data-animate="fade-up">At Studio One, we help women in Fresno choose the extension method that fits their natural hair, daily routine, and desired result.</p>
+    </div>
+  </section>
+
+  <!-- ===================== ACTIVE GENIUS METHOD ===================== -->
+  <section class="section section--dark" style="padding:0">
+    <div class="method-section" data-animate="fade-up">
+      <div class="method-image">
+        <img src="images/optimized/extensions-page/active-genius-1.webp" alt="Active Genius Wefts beaded row hair extensions" loading="lazy" decoding="async">
+      </div>
+      <div class="method-content">
+        <p class="method-tag">Signature Method</p>
+        <h2 class="method-title">Active Genius&trade; Wefts</h2>
+        <p class="method-subtitle">Our signature beaded row method for maximum fullness, length, and customization</p>
+        <p class="method-body">Active Genius&trade; Wefts are installed using our signature beaded row method and are the best choice for guests who want the most customized result possible. This method gives us more control over placement, density, and overall blend, which makes it ideal for fuller transformations.</p>
+        <p class="method-body">Because the install is built around your specific hair goals, this method works especially well for women who want a bigger change in the way their hair looks and feels.</p>
+        <div class="method-best-for">
+          <h4>Best for:</h4>
+          <ul>
+            <li>women who want maximum fullness</li>
+            <li>women who want more dramatic length</li>
+            <li>guests who want a fully customized install</li>
+            <li>long-term extension wearers</li>
+            <li>thicker hair or more complex blends</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="section-inner" style="padding:60px 40px">
+      <div class="detail-blocks" data-animate="fade-up">
+        <div class="detail-block">
+          <h4>Why guests choose this method</h4>
+          <p>The beaded row foundation allows us to customize your result more precisely. That means more flexibility in placement, more control over density, and a fuller finished look.</p>
+        </div>
+        <div class="detail-block">
+          <h4>Maintenance</h4>
+          <p>Move-up appointments are typically every 6 to 8 weeks, depending on your natural hair growth, density, and lifestyle.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Photo Strip -->
+  <div class="photo-strip">
+    <img src="images/optimized/extensions-page/gallery-a.webp" alt="Hair extension transformation" loading="lazy" decoding="async">
+    <img src="images/optimized/extensions-page/gallery-b.webp" alt="Hair extension transformation" loading="lazy" decoding="async">
+    <img src="images/optimized/extensions-page/gallery-c.webp" alt="Hair extension transformation" loading="lazy" decoding="async">
+    <img src="images/optimized/extensions-page/nically-2.webp" alt="Nically Hair extensions" loading="lazy" decoding="async">
+    <img src="images/optimized/extensions-page/gallery-d.webp" alt="Hair extension transformation" loading="lazy" decoding="async">
+    <img src="images/optimized/extensions-page/gallery-e.webp" alt="Hair extension transformation" loading="lazy" decoding="async">
+  </div>
+
+  <!-- ===================== NO SEW LUXE METHOD ===================== -->
+  <section class="section section--dark" style="padding:0">
+    <div class="method-section method-section--reverse" data-animate="fade-up">
+      <div class="method-image">
+        <img src="images/optimized/extensions-page/nosew-1.webp" alt="No Sew Luxe hair extensions" loading="lazy" decoding="async">
+      </div>
+      <div class="method-content">
+        <p class="method-tag">Fast &amp; Flexible</p>
+        <h2 class="method-title">No Sew Luxe&trade; Extensions</h2>
+        <p class="method-subtitle">A lighter, faster option installed with our exclusive 15-Minute Method&trade;</p>
+        <p class="method-body">No Sew Luxe&trade; Extensions are designed for guests who want beautiful hair with less time and less commitment. This method is lightweight, discreet, and ideal for women who want soft fullness or moderate length without choosing a more customized sewn install.</p>
+        <p class="method-body">It is a great option for first-time extension guests and for women who want a seamless result with a lighter feel.</p>
+        <div class="method-best-for">
+          <h4>Best for:</h4>
+          <ul>
+            <li>first-time extension guests</li>
+            <li>women who want a faster install</li>
+            <li>guests with finer hair</li>
+            <li>guests with more sensitive scalps</li>
+            <li>women wanting soft fullness or moderate length</li>
+            <li>guests looking for a lighter, lower-commitment option</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="section-inner" style="padding:60px 40px">
+      <div class="detail-blocks" data-animate="fade-up">
+        <div class="detail-block">
+          <h4>Why guests choose this method</h4>
+          <p>No Sew Luxe&trade; offers speed, comfort, and simplicity. It is a beautiful option for women who want premium hair and a natural-looking blend, but do not need the maximum density or customization of a beaded row install.</p>
+        </div>
+        <div class="detail-block">
+          <h4>Maintenance</h4>
+          <p>A mini move-up can be done around 4 weeks. A full move-up is typically done every 6 to 8 weeks, depending on your hair texture, density, and scalp health. Only one mini move-up is allowed between full move-ups to help protect scalp health.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== COMPARISON ===================== -->
+  <section class="section section--black">
+    <div class="section-inner">
+      <div class="text-center" data-animate="fade-up">
+        <p class="section-label">Side by Side</p>
+        <h2 class="section-heading">Which Hair Extension Method Is Right for You?</h2>
+        <p class="section-subhead mx-auto">Both methods create beautiful, seamless results. The right choice depends on how much fullness you want, how customized you want the install to be, and how often you want to maintain it.</p>
+      </div>
+
+      <div class="comparison" data-animate="fade-up">
+        <div class="comparison-card">
+          <h3>Active Genius&trade; Wefts</h3>
+          <p class="card-subtitle">Choose this method if you want:</p>
+          <ul>
+            <li>more fullness</li>
+            <li>more length</li>
+            <li>more customization</li>
+            <li>a fuller transformation</li>
+            <li>a beaded row foundation with more control over placement and density</li>
+          </ul>
+        </div>
+        <div class="comparison-card">
+          <h3>No Sew Luxe&trade;</h3>
+          <p class="card-subtitle">Choose this method if you want:</p>
+          <ul>
+            <li>a faster install</li>
+            <li>a lighter feel</li>
+            <li>a more flexible option</li>
+            <li>soft fullness or moderate length</li>
+            <li>a quick, seamless way to wear extensions</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="comparison-note mx-auto text-center" data-animate="fade-up">The biggest difference comes down to customization. With our beaded row method, we can create more fullness and more dramatic length because the install is built around your specific goals. With No Sew Luxe&trade;, the density is already selected, so it is a beautiful option for speed and simplicity, but it is not the best fit for guests wanting the fullest result possible.</p>
+    </div>
+  </section>
+
+  <!-- ===================== WHY STUDIO ONE ===================== -->
+  <section class="section section--dark">
+    <div class="section-inner">
+      <div class="why-grid">
+        <div class="why-image" data-animate="fade-right">
+          <img src="images/optimized/extensions-page/why.webp" alt="Studio One hair salon Fresno" loading="lazy" decoding="async">
+        </div>
+        <div data-animate="fade-left">
+          <p class="section-label">The Studio One Difference</p>
+          <h2 class="section-heading">Why Fresno Women Choose Studio One for Hair Extensions</h2>
+          <div class="why-text">
+            <p>Hair extensions should never feel generic. At Studio One, every extension appointment is built around your hair, your goals, and your lifestyle.</p>
+            <p>We are known for creating luxurious, natural-looking results that feel just as good as they look. Whether you choose our signature beaded row method or No Sew Luxe&trade;, your extensions are color matched, blended, and customized for a polished finish that feels like you.</p>
+            <p>We also use premium <a href="/nically-hair" style="color:var(--olive-light);text-decoration:underline;text-underline-offset:3px">Nically Hair</a>, giving our guests a high-end experience from consultation to install to maintenance.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Photo Strip 2 -->
+  <div class="photo-strip">
+    <img src="images/optimized/extensions-page/nically-3.webp" alt="Nically Hair styling" loading="lazy" decoding="async">
+    <img src="images/optimized/extensions-page/active-genius-2.webp" alt="Hair extension result" loading="lazy" decoding="async">
+    <img src="images/optimized/extensions-page/nically-5.webp" alt="Studio One extensions" loading="lazy" decoding="async">
+    <img src="images/optimized/extensions-page/nosew-2.webp" alt="Hair extension transformation" loading="lazy" decoding="async">
+    <img src="images/optimized/extensions-page/nically-6.webp" alt="Nically Hair result" loading="lazy" decoding="async">
+    <img src="images/optimized/extensions-page/gallery-f.webp" alt="Hair extension before and after" loading="lazy" decoding="async">
+  </div>
+
+  <!-- ===================== CONSULTATION ===================== -->
+  <section class="section section--black">
+    <div class="section-inner">
+      <div class="consult-grid">
+        <div data-animate="fade-right">
+          <p class="section-label">Your Next Step</p>
+          <h2 class="section-heading">Not Sure Which Method Fits You Best?</h2>
+          <p class="section-subhead">That is exactly what the consultation is for.</p>
+          <p style="font-size:15px;color:var(--light-gray);line-height:1.8;font-weight:300;margin-top:20px">During your consultation, we will talk through:</p>
+          <ul class="consult-list">
+            <li>your current hair</li>
+            <li>your hair history</li>
+            <li>your desired fullness and length</li>
+            <li>your lifestyle and maintenance preferences</li>
+            <li>which extension method is the best fit for your goals</li>
+          </ul>
+          <p style="font-size:15px;color:var(--light-gray);line-height:1.8;font-weight:300;margin-bottom:32px">Some guests know right away that they want the fullest possible transformation. Others want something lighter and easier to maintain. Either way, we will help you choose the right path with confidence.</p>
+          <a href="/booking" class="olive-button">book your consultation</a>
+        </div>
+        <div class="consult-image" data-animate="fade-left">
+          <img src="images/optimized/extensions-page/consult.webp" alt="Hair extension consultation at Studio One" loading="lazy" decoding="async">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FAQ ===================== -->
+  <section class="section section--dark">
+    <div class="section-inner">
+      <div class="text-center" data-animate="fade-up">
+        <p class="section-label">Common Questions</p>
+        <h2 class="section-heading">Frequently Asked Questions</h2>
+      </div>
+
+      <div class="faq-list" data-animate="fade-up">
+        <div class="faq-item">
+          <button class="faq-question">What is the difference between Active Genius&trade; Wefts and No Sew Luxe&trade;? <span>+</span></button>
+          <div class="faq-answer">
+            <p>Active Genius&trade; Wefts are installed with a beaded row method and offer more customization for fullness, length, and placement. No Sew Luxe&trade; is a lighter, faster option with pre-selected density, making it ideal for softer fullness and more flexible wear.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Which method is better for more fullness? <span>+</span></button>
+          <div class="faq-answer">
+            <p>If you want even fuller hair, Active Genius&trade; Wefts with the beaded row method are the better choice because they allow for more control over density and customization.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Is No Sew Luxe&trade; good for first-time extension guests? <span>+</span></button>
+          <div class="faq-answer">
+            <p>Yes. No Sew Luxe&trade; is a great option for first-time extension guests who want a lightweight, seamless result with a faster install and a lower level of commitment.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">How long does No Sew Luxe&trade; take to install? <span>+</span></button>
+          <div class="faq-answer">
+            <p>No Sew Luxe&trade; is installed using our 15-Minute Method&trade;, with each row taking about 15 minutes.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">How often do I need maintenance appointments? <span>+</span></button>
+          <div class="faq-answer">
+            <p>Active Genius&trade; Wefts usually need a move-up every 6 to 8 weeks. No Sew Luxe&trade; can have a mini move-up around 4 weeks, with a full move-up every 6 to 8 weeks. Only one mini move-up is recommended between full move-ups.</p>
+          </div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question">Is No Sew Luxe&trade; replacing your beaded row method? <span>+</span></button>
+          <div class="faq-answer">
+            <p>No. Our beaded row method with Active Genius&trade; Wefts remains our signature luxury extension service. No Sew Luxe&trade; is simply an additional option for guests who want something lighter and faster.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== CTA BANNER ===================== -->
+  <section class="cta-banner">
+    <div class="cta-banner-bg">
+      <img src="images/optimized/extensions-page/cta-photo.webp" alt="" loading="lazy" decoding="async">
+    </div>
+    <div class="cta-banner-overlay"></div>
+    <div class="cta-banner-content" data-animate="fade-up">
+      <h2>Ready to Find the Right Hair Extension Method for You?</h2>
+      <p>Whether you want maximum fullness and customization or a lighter, faster option, we will help you choose the best fit for your hair goals.</p>
+      <a href="/booking" class="olive-button">book your consultation</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer-minimal">
+    <p>&copy; 2024-2025 by Studio One &nbsp;|&nbsp; <a href="/">Home</a> &nbsp;|&nbsp; <a href="/hair-gallery">Hair Gallery</a> &nbsp;|&nbsp; <a href="/booking">Book Appointment</a></p>
+  </footer>
+
+  <script>
+    // Header scroll effect
+    const header = document.querySelector('.header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('scrolled', window.scrollY > 80);
+    });
+
+    // Nav toggle
+    const menuToggle = document.getElementById('menuToggle');
+    const navOverlay = document.getElementById('navOverlay');
+    const navClose = document.getElementById('navClose');
+    menuToggle.addEventListener('click', () => navOverlay.classList.add('is-open'));
+    navClose.addEventListener('click', () => navOverlay.classList.remove('is-open'));
+
+    // Phone widget
+    (function(){
+      const toggle=document.getElementById('phoneToggle'),actions=document.getElementById('phoneActions'),widget=document.getElementById('phoneWidget');
+      const phoneIcon=toggle.querySelector('.phone-icon'),closeIcon=toggle.querySelector('.close-icon');
+      let isOpen=false;
+      toggle.addEventListener('click',()=>{isOpen=!isOpen;actions.classList.toggle('is-open',isOpen);phoneIcon.style.display=isOpen?'none':'block';closeIcon.style.display=isOpen?'block':'none'});
+      document.addEventListener('click',e=>{if(isOpen&&!widget.contains(e.target)){isOpen=false;actions.classList.remove('is-open');phoneIcon.style.display='block';closeIcon.style.display='none'}});
+    })();
+
+    // Scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const delay = entry.target.dataset.delay || 0;
+          setTimeout(() => entry.target.classList.add('is-visible'), delay * 150);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const answer = btn.nextElementSibling;
+        const isOpen = btn.classList.contains('is-open');
+        // Close all
+        document.querySelectorAll('.faq-question').forEach(b => { b.classList.remove('is-open'); b.nextElementSibling.classList.remove('is-open'); });
+        if (!isOpen) { btn.classList.add('is-open'); answer.classList.add('is-open'); }
+      });
+    });
+  </script>
+</body>
+</html>

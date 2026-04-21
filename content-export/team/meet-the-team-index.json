@@ -1,0 +1,48 @@
+{
+  "url_original": "https://www.studioonefresno.com/meet-the-team",
+  "layout_description": "Card-based grid layout. Each card features a circular headshot image with an expandable 'learn more' button, the member's name, job title, and a brief personal bio snippet.",
+  "card_fields": [
+    "headshot_image (circular)",
+    "name",
+    "title",
+    "bio_snippet",
+    "learn_more_link"
+  ],
+  "team_members": [
+    {
+      "name": "Carina Lopez",
+      "title": "Hair Designer",
+      "bio_snippet": "You can often find me at the gym, spending time with my family, or enjoying the beach.",
+      "link_url": "https://www.studioonefresno.com/team-members/carina-lopez",
+      "image_url": "https://cdn.prod.website-files.com/66c254c9a3d76f7428d258ec/66c4dfe1734c15fde8fbfc69_carina_headshot.avif"
+    },
+    {
+      "name": "Makayla Davila",
+      "title": "Hair Designer",
+      "bio_snippet": "When I'm not behind the chair, you'll usually find me staying active—whether it's playing pickleball.",
+      "link_url": "https://www.studioonefresno.com/team-members/makayla-davila",
+      "image_url": "https://cdn.prod.website-files.com/66c254c9a3d76f7428d258ec/68fb9062830a1ee115d9854f_makayla-headshot.webp"
+    },
+    {
+      "name": "Hope Sanchez",
+      "title": "Hair Designer",
+      "bio_snippet": "You can find me lost in a good book or binge-watching my favorite shows. All while sipping coffee.",
+      "link_url": "https://www.studioonefresno.com/team-members/hope-sanchez",
+      "image_url": "https://cdn.prod.website-files.com/66c254c9a3d76f7428d258ec/66c4dfe8c11df131c430a5b5_hope_headshot.avif"
+    },
+    {
+      "name": "Amber Kehoe",
+      "title": "Hair Designer",
+      "bio_snippet": "Outside of the salon, I'm a proud mom and I love staying active with workouts.",
+      "link_url": "https://www.studioonefresno.com/team-members/amber",
+      "image_url": "https://cdn.prod.website-files.com/66c254c9a3d76f7428d258ec/695c249d375b0ae4aa5ece1a_Screenshot%202026-01-05%20at%203.52.36%E2%80%AFPM.png"
+    },
+    {
+      "name": "Cat Barco",
+      "title": "Owner & Hair Designer",
+      "bio_snippet": "You can usually find me sipping a creamy protein coffee or green tea lemonade with matcha.",
+      "link_url": "https://www.studioonefresno.com/team-members/cat-barco",
+      "image_url": "https://cdn.prod.website-files.com/66c254c9a3d76f7428d258ec/66c4dfd795d6f059c1f44950_cat_headshot.avif"
+    }
+  ]
+}

@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Studio One Hair Salon | Fresno CA Hair Extensions</title>
+  <meta name="description" content="Hair Salon in Fresno, helping women achieve their dream hair through luxury hair extensions and color.">
+
+  <!-- Preload LCP image -->
+  <link rel="preload" as="image" href="images/optimized/hero-bg.webp" type="image/webp" fetchpriority="high">
+
+  <!-- Preconnect to font origins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://use.typekit.net" crossorigin>
+
+  <!-- Inline critical CSS for above-the-fold -->
+  <style>
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    :root{--olive:#4c5223;--black:#000;--dark:#0a0a0a;--white:#fff;--off-white:#f5f5f5;--light-gray:#d9d9d9;--body-font:'Inter',Arial,sans-serif;--heading-font:'freight-big-pro',Georgia,serif}
+    html{-webkit-font-smoothing:antialiased}
+    body{font-family:var(--body-font);background:var(--black);color:var(--light-gray);font-size:16px;line-height:1.6;overflow-x:hidden}
+    img{max-width:100%;height:auto;display:block}
+    a{color:inherit;text-decoration:none}
+    button{cursor:pointer;background:none;border:none;color:inherit;font-family:inherit}
+    .header{position:fixed;top:0;left:0;right:0;z-index:90;padding:24px 40px}
+    .header-inner{display:flex;justify-content:space-between;align-items:center;max-width:1400px;margin:0 auto}
+    .logo{height:28px;width:auto}
+    .menu-toggle{font-size:14px;font-weight:500;letter-spacing:2px;color:var(--off-white);text-transform:uppercase}
+    .section-hero{position:relative;min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;background:var(--black)}
+    .hero-bg-image{position:absolute;inset:0;z-index:0;opacity:0.35}
+    .hero-bg-image img{width:100%;height:100%;object-fit:cover}
+    .hero-overlay{position:absolute;inset:0;background:rgba(0,0,0,0.25);z-index:1}
+    .hero-content{position:relative;z-index:2;max-width:900px;padding:0 40px}
+    .hero-content h1{font-family:var(--heading-font);font-size:48px;font-weight:400;line-height:1.2;color:var(--white);margin-bottom:16px}
+    .hero-body{font-size:16px;color:var(--light-gray);margin-bottom:32px;font-weight:300}
+    .primary-button{display:inline-block;padding:16px 32px;border:1px solid var(--olive);color:var(--light-gray);font-size:12px;font-weight:500;letter-spacing:3px;text-transform:uppercase}
+    .floating-phone-widget{position:fixed;bottom:32px;left:32px;z-index:100}
+    .floating-phone{width:56px;height:56px;background:var(--olive);border-radius:50%;display:flex;align-items:center;justify-content:center}
+    .nav-overlay{position:fixed;inset:0;z-index:200;background:var(--black);opacity:0;pointer-events:none}
+    [data-animate]{opacity:0;transform:translateY(60px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+    [data-animate="fade-right"]{transform:translateX(-60px)}[data-animate="fade-left"]{transform:translateX(60px)}
+    [data-animate].is-visible{opacity:1;transform:translate(0,0)}
+  </style>
+
+  <!-- Defer full stylesheet -->
+  <link rel="stylesheet" href="styles.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="styles.css"></noscript>
+
+  <!-- Defer fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <link href="https://use.typekit.net/iqt4hfw.css" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://use.typekit.net/iqt4hfw.css" rel="stylesheet">
+  </noscript>
+</head>
+<body>
+
+  <!-- Floating Phone Widget -->
+  <div class="floating-phone-widget" id="phoneWidget">
+    <div class="phone-actions" id="phoneActions">
+      <a href="https://www.google.com/maps/dir//2950+E+Nees+Ave+%23103,+Fresno,+CA+93720" target="_blank" rel="noopener" class="phone-action-btn" aria-label="Get Directions">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" stroke="#f5f5f5" stroke-width="2"/><circle cx="12" cy="10" r="3" stroke="#f5f5f5" stroke-width="2"/></svg>
+        <span>Directions</span>
+      </a>
+      <a href="sms:5597959724" class="phone-action-btn" aria-label="Text Studio One">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke="#f5f5f5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Text</span>
+      </a>
+      <a href="tel:5597959724" class="phone-action-btn" aria-label="Call Studio One">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" stroke="#f5f5f5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Call</span>
+      </a>
+    </div>
+    <button class="floating-phone" id="phoneToggle" aria-label="Contact Studio One">
+      <svg class="phone-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" stroke="#f5f5f5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <svg class="close-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="display:none">
+        <path d="M18 6L6 18M6 6l12 12" stroke="#f5f5f5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header-inner">
+      <a href="/" class="logo-link">
+        <img src="images/optimized/logo.avif" alt="Studio One" class="logo">
+      </a>
+      <button class="menu-toggle" id="menuToggle">
+        <span class="menu-text">MENU</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Full-screen Nav Overlay -->
+  <nav class="nav-overlay" id="navOverlay">
+    <button class="nav-close" id="navClose">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="#f5f5f5" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </button>
+    <div class="nav-inner">
+      <div class="nav-label">NAVIGATE:</div>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/meet-the-team">Meet the Team</a>
+        <a href="/services">Classic Services</a>
+        <a href="/nbr-extensions">NBR Extensions</a>
+        <a href="/wigs">Wigs</a>
+        <a href="/shop">Shop</a>
+        <a href="/hair-gallery">Hair Gallery</a>
+        <a href="/blog">Blog</a>
+        <a href="/testimonials">Success Stories</a>
+        <a href="/booking">Book Appointment</a>
+        <a href="/shadowing-program">Shadowing Program</a>
+        <a href="/careers">Careers</a>
+        <a href="/nically-hair">Nically Hair</a>
+        <a href="/shop-nically-hair">Shop Nically Hair</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="section-hero">
+    <div class="hero-bg-image">
+      <img src="images/optimized/hero-bg.webp" alt="" width="1440" height="849" fetchpriority="high" decoding="async">
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content" data-animate="fade-up">
+      <h1>Hair Salon in Fresno, helping women achieve their dream hair through luxury hair extensions and color.</h1>
+
+      <p class="hero-body">Your experience will leave you feeling uplifted, relaxed and more confident than ever.</p>
+      <a href="/booking" class="primary-button">book now</a>
+    </div>
+  </section>
+
+  <!-- NBR Process Section -->
+  <section class="section-process">
+    <div class="process-inner">
+      <h2 class="process-heading" data-animate="fade-up">NBR EXTENSIONS:</h2>
+      <p class="process-subhead" data-animate="fade-up">Hair extensions in Fresno can be simple and luxurious.</p>
+
+      <div class="process-steps">
+        <div class="step" data-animate="fade-up" data-delay="0">
+          <div class="step-circle">1</div>
+          <p class="step-text">Share your hair history with us<br>via our online questionnaire.</p>
+        </div>
+        <div class="step" data-animate="fade-up" data-delay="1">
+          <div class="step-circle">2</div>
+          <p class="step-text">Upload photos of your current<br>hair and an inspo photo.</p>
+        </div>
+        <div class="step" data-animate="fade-up" data-delay="2">
+          <div class="step-circle">3</div>
+          <p class="step-text">Schedule your phone consult<br>and book your appointment.</p>
+        </div>
+      </div>
+
+      <a href="/booking" class="primary-button" data-animate="fade-up">get started</a>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section class="section-services">
+    <div class="services-inner">
+      <div class="services-left" data-animate="fade-right">
+        <h2 class="services-heading">All Studio One Hair Services:</h2>
+
+        <div class="service-item">
+          <h3 class="service-name">NBR EXTENSIONS</h3>
+          <p class="service-desc">Experience the most natural, lightweight, and comfortable hair extensions available. Our certified NBR artists create seamless, undetectable results.</p>
+        </div>
+
+        <div class="service-divider"></div>
+
+        <div class="service-item">
+          <h3 class="service-name">LUXURY COLOR</h3>
+          <p class="service-desc">No matter what hair color you're currently living in or the color you've been dreaming of, we believe in low-maintenance color transformations that look and feel the most natural.</p>
+        </div>
+
+        <div class="service-divider"></div>
+
+        <div class="service-item">
+          <h3 class="service-name">KERATIN TREATMENT</h3>
+          <p class="service-desc">For all types of hair. It gently softens curls and conditions dry, over processed, damaged hair: leaving you with fizz-free, beautiful, healthy hair that s manageable and full of shine.</p>
+        </div>
+
+        <div class="service-divider"></div>
+
+        <div class="services-buttons">
+          <a href="/nbr-extensions" class="primary-button">extension services</a>
+          <a href="/services" class="primary-button">all other services</a>
+        </div>
+      </div>
+
+      <div class="services-right">
+        <div class="services-bg-image" data-animate="fade-left">
+          <img src="images/optimized/services-bg.webp" alt="Studio One stylist" width="1440" height="2159" loading="lazy" decoding="async">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section class="section-gallery">
+    <div class="gallery-inner">
+      <h2 class="gallery-heading" data-animate="fade-up">Recent Hair Extension Transformations:</h2>
+      <div class="gallery-divider"></div>
+
+      <div class="gallery-filters" data-animate="fade-up">
+        <span class="filter-label">SORT BY:</span>
+        <button class="filter-btn active" data-filter="all">VIEW ALL</button>
+        <span class="filter-sep">|</span>
+        <button class="filter-btn" data-filter="nbr">NBR EXTENSIONS</button>
+        <span class="filter-sep">|</span>
+        <button class="filter-btn" data-filter="color">LUXURY COLOR</button>
+        <span class="filter-sep">|</span>
+        <button class="filter-btn" data-filter="keratin">KERATIN TREATMENT</button>
+      </div>
+      <div class="gallery-divider"></div>
+
+      <div class="gallery-grid">
+        <div class="gallery-item" data-category="nbr" data-animate="fade-up" data-delay="0">
+          <div class="gallery-pair">
+            <img src="images/optimized/gallery-1.webp" alt="Hair extension before and after" loading="lazy" width="800" height="800" decoding="async">
+          </div>
+          <button class="gallery-expand"><img src="images/optimized/expand.svg" alt="Expand"></button>
+        </div>
+        <div class="gallery-item" data-category="nbr" data-animate="fade-up" data-delay="1">
+          <div class="gallery-pair">
+            <img src="images/optimized/gallery-2.webp" alt="Hair extension before and after" loading="lazy" width="800" height="800" decoding="async">
+          </div>
+          <button class="gallery-expand"><img src="images/optimized/expand.svg" alt="Expand"></button>
+        </div>
+        <div class="gallery-item" data-category="color" data-animate="fade-up" data-delay="2">
+          <div class="gallery-pair">
+            <img src="images/optimized/gallery-3.webp" alt="Hair color transformation" loading="lazy" width="800" height="800" decoding="async">
+          </div>
+          <button class="gallery-expand"><img src="images/optimized/expand.svg" alt="Expand"></button>
+        </div>
+        <div class="gallery-item" data-category="nbr" data-animate="fade-up" data-delay="0">
+          <div class="gallery-pair">
+            <img src="images/optimized/gallery-4.webp" alt="Hair extension before and after" loading="lazy" width="800" height="800" decoding="async">
+          </div>
+          <button class="gallery-expand"><img src="images/optimized/expand.svg" alt="Expand"></button>
+        </div>
+        <div class="gallery-item" data-category="color" data-animate="fade-up" data-delay="1">
+          <div class="gallery-pair">
+            <img src="images/optimized/gallery-5.webp" alt="Hair color transformation" loading="lazy" width="800" height="800" decoding="async">
+          </div>
+          <button class="gallery-expand"><img src="images/optimized/expand.svg" alt="Expand"></button>
+        </div>
+        <div class="gallery-item" data-category="nbr" data-animate="fade-up" data-delay="2">
+          <div class="gallery-pair">
+            <img src="images/optimized/gallery-6.webp" alt="Hair extension before and after" loading="lazy" width="800" height="800" decoding="async">
+          </div>
+          <button class="gallery-expand"><img src="images/optimized/expand.svg" alt="Expand"></button>
+        </div>
+        <div class="gallery-item" data-category="keratin" data-animate="fade-up" data-delay="0">
+          <div class="gallery-pair">
+            <img src="images/optimized/gallery-7.webp" alt="Keratin treatment before and after" loading="lazy" width="800" height="800" decoding="async">
+          </div>
+          <button class="gallery-expand"><img src="images/optimized/expand.svg" alt="Expand"></button>
+        </div>
+        <div class="gallery-item" data-category="nbr" data-animate="fade-up" data-delay="1">
+          <div class="gallery-pair">
+            <img src="images/optimized/gallery-8.webp" alt="Hair extension before and after" loading="lazy" width="800" height="800" decoding="async">
+          </div>
+          <button class="gallery-expand"><img src="images/optimized/expand.svg" alt="Expand"></button>
+        </div>
+        <div class="gallery-item" data-category="color" data-animate="fade-up" data-delay="2">
+          <div class="gallery-pair">
+            <img src="images/optimized/gallery-9.webp" alt="Hair color transformation" loading="lazy" width="800" height="800" decoding="async">
+          </div>
+          <button class="gallery-expand"><img src="images/optimized/expand.svg" alt="Expand"></button>
+        </div>
+        <div class="gallery-item" data-category="nbr" data-animate="fade-up" data-delay="0">
+          <div class="gallery-pair">
+            <img src="images/optimized/gallery-10.webp" alt="Hair extension before and after" loading="lazy" width="800" height="800" decoding="async">
+          </div>
+          <button class="gallery-expand"><img src="images/optimized/expand.svg" alt="Expand"></button>
+        </div>
+        <div class="gallery-item" data-category="color" data-animate="fade-up" data-delay="1">
+          <div class="gallery-pair">
+            <img src="images/optimized/gallery-11.webp" alt="Hair color transformation" loading="lazy" width="800" height="800" decoding="async">
+          </div>
+          <button class="gallery-expand"><img src="images/optimized/expand.svg" alt="Expand"></button>
+        </div>
+        <div class="gallery-item" data-category="keratin" data-animate="fade-up" data-delay="2">
+          <div class="gallery-pair">
+            <img src="images/optimized/gallery-12.webp" alt="Keratin treatment before and after" loading="lazy" width="800" height="800" decoding="async">
+          </div>
+          <button class="gallery-expand"><img src="images/optimized/expand.svg" alt="Expand"></button>
+        </div>
+        <div class="gallery-item" data-category="nbr" data-animate="fade-up" data-delay="0">
+          <div class="gallery-pair">
+            <img src="images/optimized/gallery-13.webp" alt="Hair extension before and after" loading="lazy" width="800" height="800" decoding="async">
+          </div>
+          <button class="gallery-expand"><img src="images/optimized/expand.svg" alt="Expand"></button>
+        </div>
+        <div class="gallery-item" data-category="color" data-animate="fade-up" data-delay="1">
+          <div class="gallery-pair">
+            <img src="images/optimized/gallery-14.webp" alt="Hair color transformation" loading="lazy" width="800" height="800" decoding="async">
+          </div>
+          <button class="gallery-expand"><img src="images/optimized/expand.svg" alt="Expand"></button>
+        </div>
+        <div class="gallery-item" data-category="nbr" data-animate="fade-up" data-delay="2">
+          <div class="gallery-pair">
+            <img src="images/optimized/gallery-15.webp" alt="Hair extension before and after" loading="lazy" width="800" height="800" decoding="async">
+          </div>
+          <button class="gallery-expand"><img src="images/optimized/expand.svg" alt="Expand"></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Modal -->
+  <div class="gallery-modal" id="galleryModal">
+    <div class="modal-content">
+      <button class="modal-close">CLOSE X</button>
+      <img src="" alt="Expanded gallery image" class="modal-image" id="modalImage">
+    </div>
+  </div>
+
+  <!-- Testimonials Section -->
+  <section class="section-testimonials">
+    <div class="testimonials-inner">
+      <div class="testimonial-slider" id="testimonialSlider">
+        <div class="testimonial-track" id="testimonialTrack">
+          <div class="testimonial-slide">
+            <div class="stars">
+              <img src="images/optimized/star-rating.svg" alt="5 stars">
+            </div>
+            <blockquote class="testimonial-quote">"The vibe in the studio is super chill and the other staff are extremely friendly!"</blockquote>
+            <p class="testimonial-body">"Hope is absolutely awesome!!! She makes me feel so welcome. She works with me, listens, and always makes my hair look incredible! She's Brilliant and the only person in Fresno I trust with my hair. Hope's chair and the studio is a safe space and she knows how to deal with different textures and ethnic hair. My hair is wavy with a slight curl that can get unruly and she gives me the perfect cut and style every single time."</p>
+            <p class="testimonial-author">- Deborah B.</p>
+          </div>
+          <div class="testimonial-slide">
+            <div class="stars">
+              <img src="images/optimized/star-rating.svg" alt="5 stars">
+            </div>
+            <blockquote class="testimonial-quote">"She was very sweet and attentive."</blockquote>
+            <p class="testimonial-body">"I was helped by Carina, who attentively listened to exactly what I wanted. She made sure I was comfortable throughout the entire appointment. The salon is very clean and has a very relaxing atmosphere."</p>
+            <p class="testimonial-author">- Fusustina M.</p>
+          </div>
+          <div class="testimonial-slide">
+            <div class="stars">
+              <img src="images/optimized/star-rating.svg" alt="5 stars">
+            </div>
+            <blockquote class="testimonial-quote">"Her new salon is comfortable, inviting and stylishly decorated."</blockquote>
+            <p class="testimonial-body">"Cat has been my stylist for 20 + years. She is professional, punctual and so easy to talk to. She always knows what looks best and I trust her completely. Her new salon is comfortable, inviting and stylishly decorated."</p>
+            <p class="testimonial-author">- Cathy G.</p>
+          </div>
+          <div class="testimonial-slide">
+            <div class="stars">
+              <img src="images/optimized/star-rating.svg" alt="5 stars">
+            </div>
+            <blockquote class="testimonial-quote">"Cat is quite the artist I trust her opinion on what will look best for me."</blockquote>
+            <p class="testimonial-body">"Cat is quite the artist. I trust her opinion on what will look best for me. She is always up on the latest trends and techniques. I have been going to her for years and have never been disappointed."</p>
+            <p class="testimonial-author">- Barbara G.</p>
+          </div>
+          <div class="testimonial-slide">
+            <div class="stars">
+              <img src="images/optimized/star-rating.svg" alt="5 stars">
+            </div>
+            <blockquote class="testimonial-quote">"Now, my hair is what I always imagined."</blockquote>
+            <p class="testimonial-body">"Before I got extensions from Cat, my hair was flat and fine. I had always dreamed of having long, beautiful hair but never thought it was possible. Now, my hair is what I always imagined. The extensions look and feel completely natural."</p>
+            <p class="testimonial-author">- Sontoya R.</p>
+          </div>
+        </div>
+
+        <button class="slider-arrow slider-prev" id="sliderPrev" aria-label="Previous testimonial">
+          <svg width="40" height="20" viewBox="0 0 40 20" fill="none"><path d="M40 10H2M2 10L12 1M2 10L12 19" stroke="#f5f5f5" stroke-width="1.5"/></svg>
+        </button>
+        <button class="slider-arrow slider-next" id="sliderNext" aria-label="Next testimonial">
+          <svg width="40" height="20" viewBox="0 0 40 20" fill="none"><path d="M0 10H38M38 10L28 1M38 10L28 19" stroke="#f5f5f5" stroke-width="1.5"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="section-cta">
+    <div class="cta-bg-image">
+      <img src="images/optimized/cta-bg.webp" alt="" width="1440" height="2159" loading="lazy" decoding="async">
+    </div>
+    <div class="cta-content" data-animate="fade-up">
+      <h2 class="cta-heading">The #1 Luxury Hair Extension and Color Salon in the Central Valley</h2>
+      <a href="/booking" class="primary-button">book now</a>
+    </div>
+  </section>
+
+  <!-- Newsletter Section -->
+  <section class="section-newsletter">
+    <div class="newsletter-inner" data-animate="fade-up">
+      <h2 class="newsletter-heading">Welcome to the, <em>pretty hair club.</em></h2>
+      <p class="newsletter-label">GET STUDIO UPDATES STRAIGHT TO YOUR INBOX:</p>
+      <form class="newsletter-form" onsubmit="event.preventDefault();">
+        <input type="email" placeholder="Email address" class="newsletter-input" required>
+        <button type="submit" class="newsletter-submit">SUBSCRIBE</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <!-- Location & Hours -->
+        <div class="footer-info">
+          <div class="footer-location">
+            <h3 class="footer-section-title">LOCATION</h3>
+            <p>2950 E Nees Ave., #103<br>Fresno, CA 93720</p>
+            <a href="tel:5597959724" class="footer-phone">559-795-9724</a>
+            <a href="sms:5597959724" class="footer-phone">559-795-9724 (text)</a>
+          </div>
+
+          <div class="footer-hours">
+            <h3 class="footer-section-title">STUDIO HOURS</h3>
+            <table class="hours-table">
+              <tr><td>MON</td><td>10 am&ndash;8 pm</td></tr>
+              <tr><td>TUE</td><td>10 am&ndash;8 pm</td></tr>
+              <tr><td>WED</td><td>10 am&ndash;8 pm</td></tr>
+              <tr><td>THU</td><td>10 am&ndash;8 pm</td></tr>
+              <tr><td>FRI</td><td>10 am&ndash;7 pm</td></tr>
+              <tr><td>SAT</td><td>10 am&ndash;6 pm</td></tr>
+              <tr><td>SUN</td><td>CLOSED</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <!-- Instagram Feed Placeholder -->
+        <div class="footer-instagram">
+          <h3 class="footer-ig-heading">See more <em>transformations</em> on Instagram:</h3>
+          <a href="https://www.instagram.com/studioonefresno/" target="_blank" rel="noopener" class="ig-grid">
+            <div class="ig-thumb"><img src="images/optimized/gallery-1.webp" alt="Instagram post" loading="lazy" decoding="async"></div>
+            <div class="ig-thumb"><img src="images/optimized/gallery-4.webp" alt="Instagram post" loading="lazy" decoding="async"></div>
+            <div class="ig-thumb"><img src="images/optimized/gallery-6.webp" alt="Instagram post" loading="lazy" decoding="async"></div>
+            <div class="ig-thumb"><img src="images/optimized/gallery-8.webp" alt="Instagram post" loading="lazy" decoding="async"></div>
+            <div class="ig-thumb"><img src="images/optimized/gallery-10.webp" alt="Instagram post" loading="lazy" decoding="async"></div>
+          </a>
+        </div>
+
+        <!-- Social Links -->
+        <div class="footer-social">
+          <a href="https://www.instagram.com/studioonefresno/" target="_blank" rel="noopener">@STUDIOONEFRESNO</a>
+          <a href="https://www.facebook.com/studio.one.fresno" target="_blank" rel="noopener" class="fb-icon">
+            <svg width="10" height="20" viewBox="0 0 10 20" fill="none"><path d="M6.5 7H9.5L8.5 11H6.5V20H3V11H0V7H3V5.128C3 3.345 3.186 2.698 3.534 2.046C3.875 1.407 4.407 0.875 5.046 0.534C5.698 0.186 6.345 0 8.128 0C8.65 0 9.108 0.05 9.5 0.15V3.5H8.128C7.159 3.5 6.862 3.537 6.556 3.694C6.329 3.812 6.162 3.979 6.044 4.206C5.887 4.512 5.85 4.809 5.85 5.778V7H6.5Z" fill="#f5f5f5"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-right">
+        <!-- Footer Nav -->
+        <nav class="footer-nav">
+          <a href="/">HOME</a>
+          <a href="/nbr-extensions">NBR EXTENSIONS</a>
+          <a href="/services">CLASSIC SERVICES</a>
+          <a href="/wigs">WIGS</a>
+          <a href="/shop">SHOP</a>
+          <a href="/hair-gallery">HAIR GALLERY</a>
+          <a href="/meet-the-team">MEET THE TEAM</a>
+          <a href="/testimonials">SUCCESS STORIES</a>
+          <a href="/blog">BLOG</a>
+          <a href="/booking">BOOK APPOINTMENT</a>
+          <a href="/shadowing-program">SHADOWING PROGRAM</a>
+          <a href="/careers">CAREERS</a>
+          <a href="/nically-hair">NICALLY HAIR</a>
+          <a href="/shop-nically-hair">SHOP NICALLY HAIR</a>
+        </nav>
+
+        <!-- Google Map Embed -->
+        <div class="footer-map">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3193.8!2d-119.74!3d36.85!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzbCsDUxJzAwLjAiTiAxMTnCsDQ0JzI0LjAiVw!5e0!3m2!1sen!2sus!4v1"
+            width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"
+            title="Studio One Location Map"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2024-2025 by Studio One</p>
+      <p>WEBSITE BY DESIGN NOOK</p>
+      <a href="/legal">Legal</a>
+    </div>
+  </footer>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
