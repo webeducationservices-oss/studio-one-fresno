@@ -1,0 +1,62 @@
+{
+  "slug": "services",
+  "url_original": "https://www.studioonefresno.com/services",
+  "meta_title": "Studio One | Services",
+  "meta_description": null,
+  "h1": "The true salon classics and more.",
+  "hero_subtitle": "We are a hybrid salon. Please refer to stylist's name under each service for accurate pricing.",
+  "hero_cta_text": "book online",
+  "hero_cta_url": "https://www.vagaro.com/us02/studioone4/services",
+  "hero_image_url": "https://cdn.prod.website-files.com/66ba2051d0399b442aef2d6e/66c4f9b619c009857c4087fd_Dev%20Studio%20One.avif",
+  "sections": [
+    {
+      "heading": "Luxury Color & Highlights",
+      "subheading": null,
+      "body": "Mini Highlight - 1.5 hours - $90+\nIncludes 5-6 foils max. For lighter pieces around your face.\n\nTouch-Up/All Over Color - 2 hours - $120-$195\nColoring regrowth from previous color or gray hair. Does not include lightening services.\n\nTransformation/Color Correction - 4 hours - $260-$640\nFor unsatisfied color results from at-home applications or dramatic changes needed.\n\nPartial Blonding - 2.5 hours - $150-$180\nLightening/blonding throughout top of head and hairlines.\n\nFull Head Blonding - 3 hours - $180-$375\nLightening/blonding top, sides and back of head. Includes blowout.",
+      "image_urls": [],
+      "cta": {"text": "book now", "url": "https://www.vagaro.com/studioone4/book-now"}
+    },
+    {
+      "heading": "Cut & Styling",
+      "subheading": null,
+      "body": "Signature Blowout - 45 minutes - $45-$65\nHair wash, head massage, blow-dry and style using Oribe and Goldwell Kerasilk. Does NOT include iron work.\n\nHaircut And Blow Dry - 45 minutes - $85-$150\nIn-depth consultation, custom haircut with luxurious wash, scalp massage, blowout and style.",
+      "image_urls": [],
+      "cta": {"text": "book now", "url": "https://www.vagaro.com/studioone4/book-now"}
+    },
+    {
+      "heading": "Treatments",
+      "subheading": null,
+      "body": "Keratin Smoothing - $290+ (for 2oz) $30 per extra oz\nTame or enhance natural hair. Reduce style time, frizz, or volume.",
+      "image_urls": [],
+      "cta": {"text": "book now", "url": "https://www.vagaro.com/studioone4/book-now"}
+    },
+    {
+      "heading": "NBR Extensions",
+      "subheading": null,
+      "body": "Experience natural, lightweight, comfortable hair extensions. Studio One specializes in Natural Beaded Row extensions with luxury services.",
+      "image_urls": [],
+      "cta": {"text": "get started", "url": "https://form.jotform.com/83406488092160"}
+    }
+  ],
+  "ctas_on_page": [
+    {"text": "book online", "url": "https://www.vagaro.com/us02/studioone4/services"},
+    {"text": "book now", "url": "https://www.vagaro.com/studioone4/book-now"},
+    {"text": "get started", "url": "https://form.jotform.com/83406488092160"},
+    {"text": "learn more", "url": "/nbr-extensions"}
+  ],
+  "third_party_embeds": [
+    {"type": "JotForm", "id": "83406488092160", "url": "https://form.jotform.com/83406488092160", "purpose": "NBR Extensions questionnaire"},
+    {"type": "Vagaro", "id": "studioone4", "url": "https://www.vagaro.com/studioone4/book-now", "purpose": "Appointment booking"}
+  ],
+  "all_image_urls": [
+    "https://cdn.prod.website-files.com/66ba2051d0399b442aef2d6e/66c4f9b619c009857c4087fd_Dev%20Studio%20One.avif"
+  ],
+  "faq_items": [
+    {"q": "What form of payment do you take?", "a": "Cash, Debit Cards, Apple Pay, Visa, and MasterCard accepted."},
+    {"q": "Is it okay to have products in my hair?", "a": "Light products okay. Avoid temporary root concealers for optimal grey coverage."},
+    {"q": "How long do I have to cancel or reschedule my appointment?", "a": "Provide 48-hour notice to cancel or reschedule."},
+    {"q": "Can I bring my children?", "a": "Children present only for their own services. Must be supervised at all times."},
+    {"q": "What if I miss my appointment or don't cancel without giving a 48-hour notice?", "a": "50% service charge billed per booked service. Payment due before future appointments."},
+    {"q": "Do you do kids cuts?", "a": "Yes, we work with all ages. No different rates per age or gender."}
+  ]
+}

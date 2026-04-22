@@ -1,0 +1,19 @@
+{
+  "slug": "menu",
+  "url_original": "https://www.studioonefresno.com/menu",
+  "meta_title": "Salon Service Menu | Studio One Fresno",
+  "meta_description": null,
+  "h1": null,
+  "hero_subtitle": null,
+  "hero_cta_text": "Book Appointment",
+  "hero_cta_url": "/booking",
+  "hero_image_url": null,
+  "sections": [],
+  "ctas_on_page": [
+    {"text": "Book Appointment", "url": "/booking"}
+  ],
+  "third_party_embeds": [],
+  "all_image_urls": [],
+  "faq_items": [],
+  "notes": "Scrape returned navigation structure only; no main content sections, service listings with prices, FAQ items, or booking embeds were captured. Page may be a Webflow-rendered menu requiring JS execution, or may effectively be a stub/landing route. Manually verify rendered content in browser."
+}

@@ -1,0 +1,84 @@
+{
+  "slug": "nbr-extensions",
+  "url_original": "https://www.studioonefresno.com/nbr-extensions",
+  "meta_title": "NBR Hair Extensions in Fresno | Studio One",
+  "meta_description": "High-end hand-tied hair extensions for unparalleled quality in the Central Valley",
+  "h1": "High-end hand-tied hair extensions for unparalleled quality.",
+  "hero_subtitle": "Elevate your look and ignite your confidence with the most natural looking hand-tied hair extensions in the Central Valley.",
+  "hero_cta_text": "start your nbr application",
+  "hero_cta_url": "https://form.jotform.com/83406488092160",
+  "hero_image_url": "https://cdn.prod.website-files.com/66c254c9a3d76f7428d258ec/66e0ea979f54412d0889b19c_FEAD5062-78B1-4C5B-B910-EF58A0F9DE05.JPG",
+  "sections": [
+    {
+      "heading": "Why choose NBR at Studio One?",
+      "subheading": null,
+      "body": "Studio One specializes in Natural Beaded Row hand-tied hair extensions using ISLA Hair, available only to NBR Certified artists. Installation uses beaded rows with no heat, glue, or adhesives for minimal damage.",
+      "image_urls": [],
+      "cta": null
+    },
+    {
+      "heading": "How to apply for NBR hair extensions with Studio One",
+      "subheading": null,
+      "body": "STEP 1: Share your hair history with us via our online questionnaire.\n\nSTEP 2: Upload photos of your current hair and an inspo photo.\n\nSTEP 3: Schedule your phone consult and book your appointment.",
+      "image_urls": [],
+      "cta": {"text": "start the process", "url": "https://form.jotform.com/83406488092160"}
+    },
+    {
+      "heading": "Testimonials",
+      "subheading": null,
+      "body": "Barbara G.: \"I leave feeling confident and looking my best!\" Cat is quite the artist. I trust her opinion on what will look best for me.\n\nSontoya R.: \"She gave me the long luxurious hair that my genetics could not!\" Before I got extensions from Cat, my hair was flat and fine. Now, my hair is what I always imagined.",
+      "image_urls": [],
+      "cta": null
+    },
+    {
+      "heading": "NBR Packages",
+      "subheading": null,
+      "body": "REVAMP - 3 Rows - every 6-8 weeks\n18\": $2880-$3760  |  22\": $3600-$4600\nPerfect for maximum thickness and length; ideal for naturally thick hair or short layers.\n\nAMPLIFY - 2 Rows - every 6-8 weeks\n18\": $2160-$2880  |  22\": $2700-$3600\nMost popular choice; ideal for hair reaching collarbone with desired added length.\n\nPOLISH - 1 Row - every 6-8 weeks\n18\": $1440-$2000  |  22\": $1800-$2500\nEnhance volume and texture in existing natural or slightly longer hair.",
+      "image_urls": [],
+      "cta": {"text": "apply now", "url": "https://form.jotform.com/83406488092160"}
+    },
+    {
+      "heading": "Hair Extensions Payment Plans",
+      "subheading": null,
+      "body": "Payment plans available for all services through Cherry Payment.",
+      "image_urls": [],
+      "cta": {"text": "apply for a payment plan", "url": "https://pay.withcherry.com/catbarcohair"}
+    },
+    {
+      "heading": "Get ready to achieve stunning hair results and NO damage.",
+      "subheading": null,
+      "body": null,
+      "image_urls": [],
+      "cta": {"text": "apply for nbr", "url": "https://form.jotform.com/83406488092160"}
+    }
+  ],
+  "ctas_on_page": [
+    {"text": "start your nbr application", "url": "https://form.jotform.com/83406488092160"},
+    {"text": "start the process", "url": "https://form.jotform.com/83406488092160"},
+    {"text": "apply now", "url": "https://form.jotform.com/83406488092160"},
+    {"text": "apply for nbr", "url": "https://form.jotform.com/83406488092160"},
+    {"text": "apply for a payment plan", "url": "https://pay.withcherry.com/catbarcohair"}
+  ],
+  "third_party_embeds": [
+    {"type": "JotForm", "id": "83406488092160", "url": "https://form.jotform.com/83406488092160", "purpose": "NBR Application and Consultation"},
+    {"type": "Cherry", "id": "catbarcohair", "url": "https://pay.withcherry.com/catbarcohair", "purpose": "Payment plan"}
+  ],
+  "all_image_urls": [
+    "https://cdn.prod.website-files.com/66c254c9a3d76f7428d258ec/66e0ea979f54412d0889b19c_FEAD5062-78B1-4C5B-B910-EF58A0F9DE05.JPG"
+  ],
+  "faq_items": [
+    {"q": "What type of hair do you use for NBR Extensions?", "a": "ISLA Hair is exclusively Remy 100% human hair, available only to NBR Certified artists. Hand-tied wefts cover more surface area for seamless, natural results."},
+    {"q": "Do I have to come in for a consultation?", "a": "No, consultations are conducted over the phone to discuss your current hair, history, and desired transformation."},
+    {"q": "What is the maintenance?", "a": "Usually 6-8 weeks depending on hair density and growth cycle."},
+    {"q": "How long is the reservation?", "a": "A typical reservation is 3-5 hours, depending on your customized hair transformation."},
+    {"q": "Do you color my hair when I get my extensions?", "a": "Yes, hair and extensions are colored at the same reservation for seamless blending."},
+    {"q": "How are NBR extensions installed?", "a": "Beaded rows distribute weight evenly with fewer contact points. No heat, glue, or adhesives used."},
+    {"q": "How long do the extensions last?", "a": "NBR hair extensions last from 6 months to 1 year."},
+    {"q": "What are rows?", "a": "Rows are the sections used to install the wefts."},
+    {"q": "What do you mean by wefts?", "a": "Wefts are strips of sewn hair extensions, typically 10-12 inches long, installed like a headband."},
+    {"q": "Can I wear my hair in braids or half up?", "a": "Yes. Seamless blend allows extensions to remain hidden when hair is split or styled up."},
+    {"q": "Can I wear my extensions up?", "a": "Yes, even immediately after your appointment. You can maintain an active lifestyle."},
+    {"q": "Can I swim or work out with extensions?", "a": "Yes. Extensions are lightweight; you should not need to modify your regular activities."},
+    {"q": "Do you offer payment plans?", "a": "Absolutely. Payment plan options are available upon request during consultation."}
+  ]
+}

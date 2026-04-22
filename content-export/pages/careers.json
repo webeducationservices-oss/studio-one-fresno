@@ -1,0 +1,136 @@
+{
+  "slug": "careers",
+  "url_original": "https://www.studioonefresno.com/careers",
+  "meta_title": "Studio One | Careers",
+  "meta_description": "A luxury salon built for stylists who want better clients, better balance, and a better long-term career.",
+  "h1": "Careers at Studio One Hair Design (Fresno, CA)",
+  "hero_subtitle": "A luxury salon built for stylists who want better clients, better balance, and a better long-term career.",
+  "hero_cta_text": "APPLY NOW",
+  "hero_cta_url": "#apply",
+  "hero_image_url": "https://cdn.prod.website-files.com/66ba2051d0399b442aef2d6e/66c4f9b619c009857c4087fd_Dev%20Studio%20One.avif",
+  "sections": [
+    {
+      "heading": "Built for Stylists Who Want More",
+      "subheading": null,
+      "body": "Studio One Hair Design is a modern, luxury salon in Fresno designed for stylists who want to grow without burnout. We're a hybrid salon, which means we offer both employee opportunities and booth rental options, depending on what fits your season of life and career goals.",
+      "image_urls": [],
+      "cta": null
+    },
+    {
+      "heading": "OPTION 1: Employee Stylist Positions",
+      "subheading": null,
+      "body": "Perfect for stylists who want structure, mentorship, and a clear growth plan. You focus on your craft and guest experience, and we help you build consistency, confidence, and momentum.",
+      "image_urls": [
+        "https://cdn.prod.website-files.com/66ba2051d0399b442aef2d6e/698f763dec965d2f6dc61959_career-employee.webp"
+      ],
+      "cta": {"text": "Learn more", "url": "#employee-careers"}
+    },
+    {
+      "heading": "OPTION 2: Booth Rental Opportunities",
+      "subheading": null,
+      "body": "Best for independent stylists who want freedom, control, and a luxury space that supports premium pricing. You run your business your way, with the benefit of being in a clean, professional salon environment that still feels supportive.",
+      "image_urls": [
+        "https://cdn.prod.website-files.com/66ba2051d0399b442aef2d6e/698f763de1a37b50b25b7a2e_career-booth.webp"
+      ],
+      "cta": {"text": "Explore Options", "url": "#booth-rental"}
+    },
+    {
+      "heading": "The Studio One Difference",
+      "subheading": null,
+      "body": "A luxury experience that feels easy to work in - From the moment you walk in, Studio One is designed to feel elevated, calm, and client-ready. It's clean, branded, well-appointed, and built to match the kind of work you want to do.\n\nA culture that protects your peace - We're big on positivity, professionalism, and kindness. We keep the salon environment supportive and drama-free, so you can stay focused on your guests and your goals.\n\nReal systems that help you grow - We're not a figure-it-out kind of salon. We have defined systems for the guest experience, accountability, and culture fit, so things stay consistent and your career stays on track.",
+      "image_urls": [
+        "https://cdn.prod.website-files.com/66ba2051d0399b442aef2d6e/698f79a53b21208ae50f4628_career-experience.png",
+        "https://cdn.prod.website-files.com/66ba2051d0399b442aef2d6e/698f79a5ee28d89a40276722_career-culture.png",
+        "https://cdn.prod.website-files.com/66ba2051d0399b442aef2d6e/698f79a59966c70d41021cc0_career-system.png"
+      ],
+      "cta": null
+    },
+    {
+      "heading": "Booth Rental in Fresno",
+      "subheading": null,
+      "body": "If you're searching for a booth rental salon in Fresno that feels professional and premium, Studio One is built for stylists who want independence without isolation. You'll have the freedom to choose your schedule and grow your business, while working in a space that supports luxury pricing and client confidence. We also offer a first-week rent-free option for qualified renters, so you can transition smoothly.",
+      "image_urls": [],
+      "cta": null
+    },
+    {
+      "heading": "Employee Careers",
+      "subheading": "Support + Structure Without Burnout",
+      "body": "If you're looking for a salon job in Fresno that supports your growth and protects your time, Studio One is a great fit. Our employee roles are designed around balance, consistency, and long-term success. You'll have a real career path, support for building clientele, and the tools you need to deliver a high-end experience without feeling overwhelmed.",
+      "image_urls": [],
+      "cta": null
+    },
+    {
+      "heading": "Education + Marketing Support",
+      "subheading": "Available for Both Employees and Renters",
+      "body": "In-House Academy - We offer ongoing education and mentorship to help stylists refine their craft, stay inspired, and build a sustainable career. This includes hands-on training and access to proven techniques that support long-term growth.\n\nMarketing + Content Support - Stylists shouldn't have to guess what to post or how to attract new guests. We provide content support, salon-created resources, and tools that help you market yourself confidently and consistently.",
+      "image_urls": [
+        "https://cdn.prod.website-files.com/66ba2051d0399b442aef2d6e/698f7dd0bba84e7d860ccdb2_career-academy.webp",
+        "https://cdn.prod.website-files.com/66ba2051d0399b442aef2d6e/698f7dd0e40bfe6eda5951fd_career-content.webp"
+      ],
+      "cta": null
+    },
+    {
+      "heading": "Booth Rental Pricing (For Independent Stylists)",
+      "subheading": null,
+      "body": "Full-Time Salon Chair Rental - $275/week\nBest value per day and ideal for established stylists and extension specialists. Dedicated styling station. 6 days/week availability. 24/7 salon access.\n\nBoutique Flex Chair Rental - $225/week\nDesigned for balance and flexibility with consistent assigned days. 3 assigned days/week. 24/7 access on those days. Same elevated Studio One environment.",
+      "image_urls": [],
+      "cta": {"text": "Inquire", "url": "#apply"}
+    },
+    {
+      "heading": "Employee Compensation (For Career Stylists)",
+      "subheading": null,
+      "body": "Stylists begin as hourly employees at the current California minimum wage ($16.90/hour). Commission becomes available once performance goals are achieved. Our scheduling structure is based on approximately 5.5-hour workdays to support growth without burnout. Pricing and availability may vary based on experience and schedule.",
+      "image_urls": [],
+      "cta": {"text": "Apply Now", "url": "#apply"}
+    },
+    {
+      "heading": "Salon Highlights Stylists Love",
+      "subheading": null,
+      "body": "- Guaranteed parking + easy access\n- Safe, secure salon environment\n- Spacious stations + comfortable setup\n- Luxury products and professional standards\n- Storage, organization, and clean systems",
+      "image_urls": [],
+      "cta": null
+    },
+    {
+      "heading": "Our Mission + Vision",
+      "subheading": null,
+      "body": "Our Mission: Studio One Hair Design exists to provide our guests with luxury hair services while creating a world-class experience, every visit.\n\nOur Vision: Studio One is built to empower thousands of women with confidence, beauty, and time. We're a salon fully committed to hair extensions, luxury color, and elevated results, delivered in a space that feels calm, professional, and high-end.",
+      "image_urls": [],
+      "cta": null
+    },
+    {
+      "heading": "Core Values",
+      "subheading": null,
+      "body": "Growth - Always have an open mindset, you can never stop learning.\n\nTeam Player - You are a person who plays or works well as a member of a team or group.\n\nConsistency - Consistency in our work.\n\nInnovative - Make changes in something established, especially by introducing new methods, ideas, or product.\n\nSelf Awareness - Conscious knowledge of one's character, feelings, motives, and desires.\n\nAccountability - Acceptance of responsibility for honest and ethical conduct towards others.",
+      "image_urls": [],
+      "cta": null
+    },
+    {
+      "heading": "Grow your career at Studio One",
+      "subheading": null,
+      "body": "Whether you're looking for booth rental in Fresno or you're ready for a salon career with structure and support, Studio One is a place where stylists build real momentum.",
+      "image_urls": [],
+      "cta": {"text": "Apply Now", "url": "https://form.jotform.com/catbarco/application-for-booth-rent-commissi"}
+    }
+  ],
+  "ctas_on_page": [
+    {"text": "APPLY NOW", "url": "#apply"},
+    {"text": "Learn more", "url": "#employee-careers"},
+    {"text": "Explore Options", "url": "#booth-rental"},
+    {"text": "Inquire", "url": "#apply"},
+    {"text": "Apply Now", "url": "https://form.jotform.com/catbarco/application-for-booth-rent-commissi"}
+  ],
+  "third_party_embeds": [
+    {"type": "JotForm", "id": "catbarco/application-for-booth-rent-commissi", "url": "https://form.jotform.com/catbarco/application-for-booth-rent-commissi", "purpose": "Booth rent / commission stylist application"}
+  ],
+  "all_image_urls": [
+    "https://cdn.prod.website-files.com/66ba2051d0399b442aef2d6e/66c4f9b619c009857c4087fd_Dev%20Studio%20One.avif",
+    "https://cdn.prod.website-files.com/66ba2051d0399b442aef2d6e/698f763dec965d2f6dc61959_career-employee.webp",
+    "https://cdn.prod.website-files.com/66ba2051d0399b442aef2d6e/698f763de1a37b50b25b7a2e_career-booth.webp",
+    "https://cdn.prod.website-files.com/66ba2051d0399b442aef2d6e/698f79a53b21208ae50f4628_career-experience.png",
+    "https://cdn.prod.website-files.com/66ba2051d0399b442aef2d6e/698f79a5ee28d89a40276722_career-culture.png",
+    "https://cdn.prod.website-files.com/66ba2051d0399b442aef2d6e/698f79a59966c70d41021cc0_career-system.png",
+    "https://cdn.prod.website-files.com/66ba2051d0399b442aef2d6e/698f7dd0bba84e7d860ccdb2_career-academy.webp",
+    "https://cdn.prod.website-files.com/66ba2051d0399b442aef2d6e/698f7dd0e40bfe6eda5951fd_career-content.webp"
+  ],
+  "faq_items": []
+}

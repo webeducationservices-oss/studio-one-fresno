@@ -1,0 +1,22 @@
+{
+  "slug": "promos",
+  "url_original": "https://www.studioonefresno.com/promos",
+  "meta_title": "Salon Specials & Promotions | Studio One",
+  "meta_description": null,
+  "h1": "Stay in the Loop, Gorgeous.",
+  "hero_subtitle": "Be the first to know about exclusive specials, dreamy hair extension offers, and salon updates. Sign up to receive beauty secrets straight to your inbox, because your best hair days are ahead.",
+  "hero_cta_text": "Call Studio One",
+  "hero_cta_url": "tel:5597959724",
+  "hero_image_url": "https://cdn.prod.website-files.com/66ba2051d0399b442aef2d6e/68c85711f135f83f75571fb2_phone.svg",
+  "sections": [],
+  "ctas_on_page": [
+    {"text": "Call Studio One", "url": "tel:5597959724"},
+    {"text": "Text Studio One", "url": "sms:5597959724"}
+  ],
+  "third_party_embeds": [],
+  "all_image_urls": [
+    "https://cdn.prod.website-files.com/66ba2051d0399b442aef2d6e/68c85711f135f83f75571fb2_phone.svg"
+  ],
+  "faq_items": [],
+  "notes": "Page appears to be a newsletter signup landing; body content sparse. No email signup form embed was detected on scrape; may be managed by inline JS widget not captured via markdown conversion."
+}

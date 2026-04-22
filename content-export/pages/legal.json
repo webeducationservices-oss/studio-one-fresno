@@ -1,0 +1,54 @@
+{
+  "slug": "legal",
+  "url_original": "https://www.studioonefresno.com/legal",
+  "meta_title": "Legal Information | Studio One Fresno",
+  "meta_description": null,
+  "h1": "Studio One Legal Policies",
+  "hero_subtitle": null,
+  "hero_cta_text": null,
+  "hero_cta_url": null,
+  "hero_image_url": null,
+  "sections": [
+    {
+      "heading": "Terms of Service",
+      "subheading": "Cancellations, No Shows and Other Policies",
+      "body": "Clients should provide 48-hour notice for cancellations or rescheduling. Missing appointments without notice incurs a 50% service charge. Confirmation calls occur 48-72 hours prior to appointments. The studio offers corrective services at no charge within seven days if unsatisfied with services, and accepts retail exchanges within 14 days of purchase with full credit.",
+      "image_urls": [],
+      "cta": null
+    },
+    {
+      "heading": "Terms of Service",
+      "subheading": "Child Supervision",
+      "body": "Children must be supervised in and around the salon and surrounding areas at all times. Children should only be present when receiving services.",
+      "image_urls": [],
+      "cta": null
+    },
+    {
+      "heading": "Terms of Service",
+      "subheading": "Appointment Times",
+      "body": "Clients are requested to arrive ten minutes early. Booking the next appointment before leaving is recommended.",
+      "image_urls": [],
+      "cta": null
+    },
+    {
+      "heading": "Privacy Policy",
+      "subheading": null,
+      "body": "Emails are collected through website, forms, and in-person interactions for appointment confirmations and promotions. Our email list will never be shared or sold to an individual or company for any reason. Subscribers may request removal anytime but must still follow cancellation policies.",
+      "image_urls": [],
+      "cta": null
+    },
+    {
+      "heading": "ADA Website Compliance Policy",
+      "subheading": null,
+      "body": "1. General Use - Website use requires compliance with applicable laws and terms of service.\n\n2. Privacy - Personal data is collected only for booking or improving experience and is never sold without consent except as required by law.\n\n3. Data Security - Security measures protect information, though no method is completely secure. Data breaches will be addressed per regulations.\n\n4. Accessibility - The website strives to meet accessibility standards. An accessibility plugin is used to improve site usability.\n\n5. Copyright - All content is owned by Studio One Hair Design. Reproduction without permission is prohibited.\n\n6. Product and Service Information - Service details, prices, and availability may change without notice.\n\n7. Liability - The studio is not liable for damages from website use, technical issues, or third-party links.\n\n8. Contact Us - Contact: cat@catbarcohair.com or (559) 795-9724.",
+      "image_urls": [],
+      "cta": null
+    }
+  ],
+  "ctas_on_page": [
+    {"text": "book appointment", "url": "/booking"}
+  ],
+  "third_party_embeds": [],
+  "all_image_urls": [],
+  "faq_items": []
+}

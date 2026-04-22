@@ -1,0 +1,95 @@
+{
+  "slug": "meet-the-team",
+  "url_original": "https://www.studioonefresno.com/meet-the-team",
+  "meta_title": "Meet the Team | Studio One Fresno Salon",
+  "meta_description": null,
+  "h1": "Meet the Studio One team:",
+  "hero_subtitle": "Meet our team and learn more about each of our incredible designers.",
+  "hero_cta_text": null,
+  "hero_cta_url": null,
+  "hero_image_url": null,
+  "sections": [
+    {
+      "heading": "Why we do what we do.",
+      "subheading": null,
+      "body": null,
+      "image_urls": [],
+      "cta": null
+    },
+    {
+      "heading": "The Team",
+      "subheading": null,
+      "body": "Carina Lopez - Hair Designer\nYou can often find me at the gym, spending time with my family, or enjoying the beach.\n\nMakayla Davila - Hair Designer\nWhen I'm not behind the chair, you'll usually find me staying active—whether it's playing pickleball, exploring the coast, or spending quality time with my family.\n\nHope Sanchez - Hair Designer\nYou can find me lost in a good book (romance, horror, and thrillers) or binge-watching my favorite shows. All while sipping on some coffee.\n\nAmber Kehoe - Hair Designer\nOutside of the salon, I'm a proud mom of three (plus two amazing bonus kids!) and I love staying active with workouts that keep me energized.\n\nCat Barco - Owner & Hair Designer\nYou can usually find me sipping on a creamy protein coffee or, in the summer, a green tea lemonade with matcha—always with a podcast or audiobook playing in the background.",
+      "image_urls": [
+        "https://cdn.prod.website-files.com/66c254c9a3d76f7428d258ec/66c4dfe1734c15fde8fbfc69_carina_headshot.avif",
+        "https://cdn.prod.website-files.com/66c254c9a3d76f7428d258ec/68fb9062830a1ee115d9854f_makayla-headshot.webp",
+        "https://cdn.prod.website-files.com/66c254c9a3d76f7428d258ec/66c4dfe8c11df131c430a5b5_hope_headshot.avif",
+        "https://cdn.prod.website-files.com/66c254c9a3d76f7428d258ec/695c249d375b0ae4aa5ece1a_Screenshot%202026-01-05%20at%203.52.36%E2%80%AFPM.png",
+        "https://cdn.prod.website-files.com/66c254c9a3d76f7428d258ec/66c4dfd795d6f059c1f44950_cat_headshot.avif"
+      ],
+      "cta": null
+    },
+    {
+      "heading": "Inside the Salon",
+      "subheading": null,
+      "body": "Gallery of interior salon photography.",
+      "image_urls": [
+        "https://cdn.prod.website-files.com/66c254c9a3d76f7428d258ec/68fb917839f6211ae49e85c0_Screenshot%202025-10-24%20at%2010.43.57%E2%80%AFAM.webp",
+        "https://cdn.prod.website-files.com/66c254c9a3d76f7428d258ec/67321c010c9f19a031259dd8_EGCP-082.jpg",
+        "https://cdn.prod.website-files.com/66c254c9a3d76f7428d258ec/67321a291622f6164f2de4eb_EGCP-016.jpg",
+        "https://cdn.prod.website-files.com/66c254c9a3d76f7428d258ec/67321a539e575f0f0e24d6ce_EGCP-022.jpg",
+        "https://cdn.prod.website-files.com/66c254c9a3d76f7428d258ec/67321a415387060c755bc889_EGCP-020.jpg",
+        "https://cdn.prod.website-files.com/66c254c9a3d76f7428d258ec/67321ac2d3f7246f12e09712_EGCP-032.jpg",
+        "https://cdn.prod.website-files.com/66c254c9a3d76f7428d258ec/67321ad96e5b8c45f5dd7e78_EGCP-035.jpg",
+        "https://cdn.prod.website-files.com/66c254c9a3d76f7428d258ec/67321d66df7c46f95e1ff7fd_EGCP-055.jpg",
+        "https://cdn.prod.website-files.com/66c254c9a3d76f7428d258ec/67321d825773e32c9468cdaa_EGCP-215.jpg",
+        "https://cdn.prod.website-files.com/66c254c9a3d76f7428d258ec/67321d07ac101628a109d7f0_EGCP-029.jpg",
+        "https://cdn.prod.website-files.com/66c254c9a3d76f7428d258ec/67321b9a0ebf7cf7dfe8fdaa_EGCP-060.jpg",
+        "https://cdn.prod.website-files.com/66c254c9a3d76f7428d258ec/673219f4251bff7cfaa488ba_EGCP-008.jpg",
+        "https://cdn.prod.website-files.com/66c254c9a3d76f7428d258ec/67321d538bef7e1a51144585_EGCP-037.jpg",
+        "https://cdn.prod.website-files.com/66c254c9a3d76f7428d258ec/68fb914b8137f95ae0f5c743_Screenshot%202025-10-24%20at%2010.43.27%E2%80%AFAM.webp",
+        "https://cdn.prod.website-files.com/66c254c9a3d76f7428d258ec/67321a86a63da4ba036537da_EGCP-025.jpg"
+      ],
+      "cta": null
+    }
+  ],
+  "ctas_on_page": [
+    {"text": "learn more (Carina)", "url": "/team-members/carina-lopez"},
+    {"text": "learn more (Makayla)", "url": "/team-members/makayla-davila"},
+    {"text": "learn more (Hope)", "url": "/team-members/hope-sanchez"},
+    {"text": "learn more (Amber)", "url": "/team-members/amber"},
+    {"text": "learn more (Cat)", "url": "/team-members/cat-barco"},
+    {"text": "book appointment", "url": "/booking"}
+  ],
+  "third_party_embeds": [],
+  "all_image_urls": [
+    "https://cdn.prod.website-files.com/66c254c9a3d76f7428d258ec/66c4dfe1734c15fde8fbfc69_carina_headshot.avif",
+    "https://cdn.prod.website-files.com/66c254c9a3d76f7428d258ec/68fb9062830a1ee115d9854f_makayla-headshot.webp",
+    "https://cdn.prod.website-files.com/66c254c9a3d76f7428d258ec/66c4dfe8c11df131c430a5b5_hope_headshot.avif",
+    "https://cdn.prod.website-files.com/66c254c9a3d76f7428d258ec/695c249d375b0ae4aa5ece1a_Screenshot%202026-01-05%20at%203.52.36%E2%80%AFPM.png",
+    "https://cdn.prod.website-files.com/66c254c9a3d76f7428d258ec/66c4dfd795d6f059c1f44950_cat_headshot.avif",
+    "https://cdn.prod.website-files.com/66c254c9a3d76f7428d258ec/68fb917839f6211ae49e85c0_Screenshot%202025-10-24%20at%2010.43.57%E2%80%AFAM.webp",
+    "https://cdn.prod.website-files.com/66c254c9a3d76f7428d258ec/67321c010c9f19a031259dd8_EGCP-082.jpg",
+    "https://cdn.prod.website-files.com/66c254c9a3d76f7428d258ec/67321a291622f6164f2de4eb_EGCP-016.jpg",
+    "https://cdn.prod.website-files.com/66c254c9a3d76f7428d258ec/67321a539e575f0f0e24d6ce_EGCP-022.jpg",
+    "https://cdn.prod.website-files.com/66c254c9a3d76f7428d258ec/67321a415387060c755bc889_EGCP-020.jpg",
+    "https://cdn.prod.website-files.com/66c254c9a3d76f7428d258ec/67321ac2d3f7246f12e09712_EGCP-032.jpg",
+    "https://cdn.prod.website-files.com/66c254c9a3d76f7428d258ec/67321ad96e5b8c45f5dd7e78_EGCP-035.jpg",
+    "https://cdn.prod.website-files.com/66c254c9a3d76f7428d258ec/67321d66df7c46f95e1ff7fd_EGCP-055.jpg",
+    "https://cdn.prod.website-files.com/66c254c9a3d76f7428d258ec/67321d825773e32c9468cdaa_EGCP-215.jpg",
+    "https://cdn.prod.website-files.com/66c254c9a3d76f7428d258ec/67321d07ac101628a109d7f0_EGCP-029.jpg",
+    "https://cdn.prod.website-files.com/66c254c9a3d76f7428d258ec/67321b9a0ebf7cf7dfe8fdaa_EGCP-060.jpg",
+    "https://cdn.prod.website-files.com/66c254c9a3d76f7428d258ec/673219f4251bff7cfaa488ba_EGCP-008.jpg",
+    "https://cdn.prod.website-files.com/66c254c9a3d76f7428d258ec/67321d538bef7e1a51144585_EGCP-037.jpg",
+    "https://cdn.prod.website-files.com/66c254c9a3d76f7428d258ec/68fb914b8137f95ae0f5c743_Screenshot%202025-10-24%20at%2010.43.27%E2%80%AFAM.webp",
+    "https://cdn.prod.website-files.com/66c254c9a3d76f7428d258ec/67321a86a63da4ba036537da_EGCP-025.jpg"
+  ],
+  "faq_items": [],
+  "team_members": [
+    {"name": "Carina Lopez", "role": "Hair Designer", "image": "https://cdn.prod.website-files.com/66c254c9a3d76f7428d258ec/66c4dfe1734c15fde8fbfc69_carina_headshot.avif", "profile_url": "/team-members/carina-lopez"},
+    {"name": "Makayla Davila", "role": "Hair Designer", "image": "https://cdn.prod.website-files.com/66c254c9a3d76f7428d258ec/68fb9062830a1ee115d9854f_makayla-headshot.webp", "profile_url": "/team-members/makayla-davila"},
+    {"name": "Hope Sanchez", "role": "Hair Designer", "image": "https://cdn.prod.website-files.com/66c254c9a3d76f7428d258ec/66c4dfe8c11df131c430a5b5_hope_headshot.avif", "profile_url": "/team-members/hope-sanchez"},
+    {"name": "Amber Kehoe", "role": "Hair Designer", "image": "https://cdn.prod.website-files.com/66c254c9a3d76f7428d258ec/695c249d375b0ae4aa5ece1a_Screenshot%202026-01-05%20at%203.52.36%E2%80%AFPM.png", "profile_url": "/team-members/amber"},
+    {"name": "Cat Barco", "role": "Owner & Hair Designer", "image": "https://cdn.prod.website-files.com/66c254c9a3d76f7428d258ec/66c4dfd795d6f059c1f44950_cat_headshot.avif", "profile_url": "/team-members/cat-barco"}
+  ]
+}

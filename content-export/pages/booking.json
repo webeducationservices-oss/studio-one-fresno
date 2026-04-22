@@ -1,0 +1,34 @@
+{
+  "slug": "booking",
+  "url_original": "https://www.studioonefresno.com/booking",
+  "meta_title": "Book a Hair Appointment at Studio One in Fresno",
+  "meta_description": null,
+  "h1": "Let's get you booked in, Gorgeous.",
+  "hero_subtitle": "After booking your appointment through our online booking system, please check your email to see if a consultation form has been requested.",
+  "hero_cta_text": "book extension services",
+  "hero_cta_url": "https://form.jotform.com/83406488092160",
+  "hero_image_url": "https://cdn.prod.website-files.com/66ba2051d0399b442aef2d6e/66c4f9b619c009857c4087fd_Dev%20Studio%20One.avif",
+  "sections": [
+    {
+      "heading": "Booking Options",
+      "subheading": null,
+      "body": "Book extension services via JotForm, or book other salon services via Vagaro.",
+      "image_urls": [],
+      "cta": {"text": "book other salon services", "url": "https://www.vagaro.com/studioone4/services"}
+    }
+  ],
+  "ctas_on_page": [
+    {"text": "book extension services", "url": "https://form.jotform.com/83406488092160"},
+    {"text": "book other salon services", "url": "https://www.vagaro.com/studioone4/services"},
+    {"text": "Call Studio One", "url": "tel:5597959724"},
+    {"text": "Text Studio One", "url": "sms:5597959724"}
+  ],
+  "third_party_embeds": [
+    {"type": "JotForm", "id": "83406488092160", "url": "https://form.jotform.com/83406488092160", "purpose": "Extension services booking"},
+    {"type": "Vagaro", "id": "studioone4", "url": "https://www.vagaro.com/studioone4/services", "purpose": "Salon services booking"}
+  ],
+  "all_image_urls": [
+    "https://cdn.prod.website-files.com/66ba2051d0399b442aef2d6e/66c4f9b619c009857c4087fd_Dev%20Studio%20One.avif"
+  ],
+  "faq_items": []
+}
