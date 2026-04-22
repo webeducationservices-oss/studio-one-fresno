@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart | Studio One Shop</title>
+  <meta name="description" content="Review items in your Studio One cart and check out.">
+  <link rel="canonical" href="https://www.studioonefresno.com/cart">
+  <meta property="og:title" content="Cart | Studio One Shop">
+  <meta property="og:description" content="Review items in your Studio One cart and check out.">
+  <meta property="og:image" content="https://www.studioonefresno.com/images/og-image.jpg">
+  <meta property="og:url" content="https://www.studioonefresno.com/cart">
+  <meta property="og:type" content="product">
+  <meta property="og:site_name" content="Studio One Hair Design">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://use.typekit.net" crossorigin>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{'analytics_storage':'granted','ad_storage':'denied','ad_user_data':'denied','ad_personalization':'denied'});</script>
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-WQGCMZ9Q');</script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P0H19W2KWM"></script>
+  <script>gtag('js',new Date());gtag('config','G-P0H19W2KWM');</script>
+  <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','24036206522645936');fbq('track','PageView');</script>
+  
+  <style>
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    :root{--olive:#4c5223;--olive-light:#6b7332;--black:#000;--dark:#0a0a0a;--white:#fff;--off-white:#f5f5f5;--light-gray:#d9d9d9;--body-font:'Inter',Arial,sans-serif;--heading-font:'freight-big-pro',Georgia,serif}
+    html{-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
+    body{font-family:var(--body-font);background:var(--black);color:var(--light-gray);font-size:16px;line-height:1.6;overflow-x:hidden}
+    img{max-width:100%;height:auto;display:block}
+    a{color:inherit;text-decoration:none}
+    button{cursor:pointer;background:none;border:none;color:inherit;font-family:inherit}
+    .header{position:fixed;top:0;left:0;right:0;z-index:90;padding:24px 40px;transition:background .3s ease}
+    .header.scrolled{background:rgba(0,0,0,.9);backdrop-filter:blur(10px)}
+    .header-inner{display:flex;justify-content:space-between;align-items:center;max-width:1400px;margin:0 auto}
+    .logo{height:28px;width:auto}
+    .menu-toggle{font-size:14px;font-weight:500;letter-spacing:2px;color:var(--off-white);text-transform:uppercase}
+    .cart-icon{position:relative;margin-right:24px;color:var(--off-white)}
+    .cart-count{position:absolute;top:-6px;right:-8px;background:var(--olive);color:var(--white);font-size:10px;min-width:16px;height:16px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:600;padding:0 4px}
+    .cart-count.is-empty{display:none}
+    .floating-phone-widget{position:fixed;bottom:32px;left:32px;z-index:100}
+    .floating-phone{width:56px;height:56px;background:var(--olive);border-radius:50%;display:flex;align-items:center;justify-content:center}
+    .nav-overlay{position:fixed;inset:0;z-index:200;background:var(--black);opacity:0;pointer-events:none}
+    [data-animate]{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+    [data-animate].is-visible{opacity:1;transform:translate(0,0)}
+    .primary-button{display:inline-block;padding:16px 32px;border:1px solid var(--olive);color:var(--light-gray);font-size:12px;font-weight:500;letter-spacing:3px;text-transform:uppercase;transition:background .3s,color .3s}
+    .primary-button:hover{background:var(--olive);color:var(--white)}
+    .olive-button{display:inline-block;padding:16px 32px;background:var(--olive);color:var(--white);font-size:12px;font-weight:600;letter-spacing:3px;text-transform:uppercase;transition:background .3s;border:none;cursor:pointer}
+    .olive-button:hover{background:var(--olive-light)}
+    .olive-button:disabled{opacity:.5;cursor:not-allowed}
+    .eyebrow{font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--olive-light);margin-bottom:16px}
+    @media (max-width:768px){.header{padding:16px 20px}}
+  </style>
+  <link rel="stylesheet" href="/styles.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="/styles.css"></noscript>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <link href="https://use.typekit.net/iqt4hfw.css" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://use.typekit.net/iqt4hfw.css" rel="stylesheet">
+  </noscript>
+<style>
+.cart-section{padding:120px 40px 80px;min-height:80vh;background:var(--black)}
+.cart-inner{max-width:1000px;margin:0 auto}
+.cart-header{text-align:center;margin-bottom:48px}
+.cart-header h1{font-family:var(--heading-font);font-size:48px;color:var(--white);font-weight:400;line-height:1.1;margin-bottom:12px}
+.cart-header p{font-size:15px;color:var(--light-gray);font-weight:300}
+.cart-empty{text-align:center;padding:80px 20px}
+.cart-empty p{font-size:17px;color:var(--light-gray);margin-bottom:32px;font-weight:300}
+.cart-items{border-top:1px solid rgba(255,255,255,.08)}
+.cart-item{display:grid;grid-template-columns:80px 1fr 120px 120px 40px;gap:20px;padding:20px 0;border-bottom:1px solid rgba(255,255,255,.08);align-items:center}
+.cart-item-img{background:rgba(255,255,255,.04);border-radius:4px;padding:8px;aspect-ratio:1;display:flex;align-items:center;justify-content:center}
+.cart-item-img img{max-width:100%;max-height:100%;object-fit:contain}
+.cart-item-info h3{font-size:15px;color:var(--white);margin-bottom:4px;font-weight:500}
+.cart-item-info .variant{font-size:12px;color:var(--light-gray);font-weight:300}
+.cart-item-info .brand{font-size:10px;letter-spacing:2px;color:var(--olive-light);text-transform:uppercase;font-weight:600;margin-bottom:4px}
+.cart-qty{display:flex;align-items:center}
+.cart-qty button{width:28px;height:28px;background:rgba(255,255,255,.05);color:var(--white);border:1px solid rgba(255,255,255,.1);font-size:14px}
+.cart-qty input{width:40px;height:28px;text-align:center;background:transparent;color:var(--white);border:1px solid rgba(255,255,255,.1);border-left:none;border-right:none;font-family:inherit}
+.cart-item-price{font-size:14px;color:var(--off-white);text-align:right;font-weight:500}
+.cart-remove{color:var(--light-gray);font-size:18px;opacity:.6;transition:opacity .3s}
+.cart-remove:hover{opacity:1}
+.cart-summary{background:rgba(255,255,255,.03);padding:32px;margin-top:32px;border-radius:4px}
+.cart-row{display:flex;justify-content:space-between;padding:8px 0;font-size:14px;color:var(--light-gray)}
+.cart-row--total{border-top:1px solid rgba(255,255,255,.08);margin-top:12px;padding-top:16px;font-size:18px;color:var(--white);font-weight:500}
+.paypal-placeholder{margin-top:24px;padding:24px;background:rgba(76,82,35,.1);border:1px dashed rgba(76,82,35,.4);border-radius:4px;text-align:center}
+.paypal-placeholder h3{font-size:14px;color:var(--off-white);letter-spacing:1px;margin-bottom:8px;font-weight:600}
+.paypal-placeholder p{font-size:13px;color:var(--light-gray);font-weight:300;line-height:1.7;margin-bottom:16px}
+@media(max-width:768px){
+  .cart-item{grid-template-columns:60px 1fr;grid-template-rows:auto auto;gap:12px 16px}
+  .cart-item-img{grid-row:span 2}
+  .cart-qty{grid-column:2}
+  .cart-item-price{text-align:left;grid-column:2}
+  .cart-remove{position:absolute;top:16px;right:0}
+  .cart-item{position:relative;padding:20px 0}
+  .cart-section{padding:110px 20px 60px}
+}
+</style>
+</head>
+<body>
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WQGCMZ9Q" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <div class="floating-phone-widget" id="phoneWidget">
+    <div class="phone-actions" id="phoneActions">
+      <a href="https://www.google.com/maps/dir//2950+E+Nees+Ave+%23103,+Fresno,+CA+93720" target="_blank" rel="noopener" class="phone-action-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" stroke="#f5f5f5" stroke-width="2"/><circle cx="12" cy="10" r="3" stroke="#f5f5f5" stroke-width="2"/></svg><span>Directions</span></a>
+      <a href="sms:5597959724" class="phone-action-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke="#f5f5f5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Text</span></a>
+      <a href="tel:5597959724" class="phone-action-btn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" stroke="#f5f5f5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Call</span></a>
+    </div>
+    <button class="floating-phone" id="phoneToggle" aria-label="Contact Studio One"><svg class="phone-icon" width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" stroke="#f5f5f5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><svg class="close-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" style="display:none"><path d="M18 6L6 18M6 6l12 12" stroke="#f5f5f5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  </div>
+
+  <header class="header">
+    <div class="header-inner">
+      <a href="/" class="logo-link"><img src="/images/optimized/logo.avif" alt="Studio One" class="logo"></a>
+      <div style="display:flex;align-items:center">
+        <a href="/cart" class="cart-icon" aria-label="Cart"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 3h2l2 14h12l2-10H6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="20" r="1.5" fill="currentColor"/><circle cx="17" cy="20" r="1.5" fill="currentColor"/></svg><span class="cart-count is-empty" id="cartCount">0</span></a>
+        <button class="menu-toggle" id="menuToggle"><span class="menu-text">MENU</span></button>
+      </div>
+    </div>
+  </header>
+
+  <nav class="nav-overlay" id="navOverlay">
+    <button class="nav-close" id="navClose"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="#f5f5f5" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+    <div class="nav-inner">
+      <div class="nav-label">NAVIGATE:</div>
+      <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/meet-the-team">Meet the Team</a>
+        <a href="/services">Classic Services</a>
+        <a href="/nbr-extensions">NBR Extensions</a>
+        <a href="/wigs">Wigs</a>
+        <a href="/shop">Shop</a>
+        <a href="/hair-gallery">Hair Gallery</a>
+        <a href="/blog">Blog</a>
+        <a href="/booking">Book Appointment</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="cart-section">
+    <div class="cart-inner">
+      <div class="cart-header">
+        <p class="eyebrow">Your Cart</p>
+        <h1>Review your order.</h1>
+        <p id="cartItemCount">0 items</p>
+      </div>
+
+      <div id="cartEmpty" class="cart-empty" style="display:none">
+        <p>Your cart is empty.</p>
+        <a href="/shop" class="olive-button">start shopping</a>
+      </div>
+
+      <div id="cartContent" style="display:none">
+        <div class="cart-items" id="cartItems"></div>
+
+        <div class="cart-summary">
+          <div class="cart-row"><span>Subtotal</span><span id="sumSubtotal">$0.00</span></div>
+          <div class="cart-row"><span>Shipping</span><span id="sumShipping">Calculated at checkout</span></div>
+          <div class="cart-row"><span>Tax (CA 7.975%)</span><span id="sumTax">$0.00</span></div>
+          <div class="cart-row cart-row--total"><span>Total</span><span id="sumTotal">$0.00</span></div>
+        </div>
+
+        <div class="paypal-placeholder">
+          <h3>PayPal Checkout — Launching Soon</h3>
+          <p>We're finalizing our PayPal integration. In the meantime, call or text us at 559-795-9724 and we'll process your order by phone, or stop by the salon.</p>
+          <a href="tel:5597959724" class="olive-button">call 559-795-9724</a>
+        </div>
+
+        <!-- PAYPAL BUTTONS MOUNT POINT (Phase 4)
+        <div id="paypal-button-container" style="margin-top:24px"></div>
+        -->
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Render cart on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      if (window.Cart) window.Cart.renderCartPage();
+    });
+  </script>
+
+  <script src="/script.js" defer></script>
+  <script src="/cart.js" defer></script>
+</body>
+</html>
