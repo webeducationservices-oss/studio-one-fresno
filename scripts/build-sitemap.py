@@ -17,7 +17,7 @@ urls.append((f"{DOMAIN}/", TODAY, "1.0", "weekly"))
 CORE = [
     "menu", "meet-the-team", "services", "booking", "nbr-extensions",
     "shadowing-program", "blog", "shop", "legal", "hair-gallery",
-    "promos", "nically-hair", "careers", "wigs", "cart",
+    "promos", "nically-hair", "careers", "wigs", "cart", "contact",
     "hair-extension-methods-fresno",
 ]
 for slug in CORE:

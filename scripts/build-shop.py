@@ -164,6 +164,7 @@ BODY_OPEN = """</head>
         <a href="/hair-gallery">Hair Gallery</a>
         <a href="/blog">Blog</a>
         <a href="/booking">Book Appointment</a>
+        <a href="/contact">Contact</a>
       </div>
     </div>
   </nav>
