@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Not yet live during staging
+Disallow: /cart
+Disallow: /order-confirmation
+
+Sitemap: https://www.studioonefresno.com/sitemap.xml
