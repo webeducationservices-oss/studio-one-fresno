@@ -49,6 +49,12 @@
     .olive-button:hover{background:var(--olive-light)}
     .eyebrow{font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--olive-light);margin-bottom:16px}
     @media (max-width:768px){.header{padding:16px 20px}}
+
+    /* Blog category filter buttons */
+    .cat-filter-btn{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:10px 18px;border:1px solid rgba(255,255,255,.15);border-radius:24px;color:var(--light-gray);transition:all .3s;cursor:pointer;font-family:inherit;background:none}
+    .cat-filter-btn:hover{color:var(--white);border-color:var(--olive-light)}
+    .cat-filter-btn.is-active{background:var(--olive);border-color:var(--olive);color:var(--white)}
+    .cat-card[hidden]{display:none}
   </style>
   <link rel="stylesheet" href="/styles.css" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="/styles.css"></noscript>
@@ -152,19 +158,19 @@
   <section class="cat-wrap">
     <div class="cat-inner">
       <nav class="cat-nav" data-animate>
-        <a href="/blog" class="active">All Posts</a>
-        <a href="/blog-categories/behind-the-scenes">Behind the Scenes</a>
-        <a href="/blog-categories/client-spotlights">Client Spotlights</a>
-        <a href="/blog-categories/color">Color</a>
-        <a href="/blog-categories/extensions">Extensions</a>
-        <a href="/blog-categories/hair-care">Hair Care</a>
-        <a href="/blog-categories/hair-products">Hair Products</a>
-        <a href="/blog-categories/salon-team">Salon Team</a>
-        <a href="/blog-categories/styling">Styling</a>
+        <button type="button" class="cat-filter-btn is-active" data-filter="all">All Posts</button>
+        <button type="button" class="cat-filter-btn" data-filter="behind-the-scenes">Behind the Scenes</button>
+        <button type="button" class="cat-filter-btn" data-filter="client-spotlights">Client Spotlights</button>
+        <button type="button" class="cat-filter-btn" data-filter="color">Color</button>
+        <button type="button" class="cat-filter-btn" data-filter="extensions">Extensions</button>
+        <button type="button" class="cat-filter-btn" data-filter="hair-care">Hair Care</button>
+        <button type="button" class="cat-filter-btn" data-filter="hair-products">Hair Products</button>
+        <button type="button" class="cat-filter-btn" data-filter="salon-team">Salon Team</button>
+        <button type="button" class="cat-filter-btn" data-filter="styling">Styling</button>
       </nav>
       <p class="eyebrow" data-animate style="text-align:center">Featured</p>
       <div class="cat-grid" data-animate style="margin-bottom:64px">
-        <a href="/blog/strawberry-blonde-hair-with-extensions-the-perfect-blend-of-warmth-and-dimension" class="cat-card">
+        <a href="/blog/strawberry-blonde-hair-with-extensions-the-perfect-blend-of-warmth-and-dimension" class="cat-card" data-cat="color">
           <div class="cat-card-img"><img src="/images/blog/strawberry-blonde-hair-with-extensions-the-perfect-blend-of-warmth-and-dimension.webp" alt="Strawberry Blonde Hair with Extensions: The Perfect Blend of Warmth and Dimensio" loading="lazy" decoding="async"></div>
           <div class="cat-card-body">
             <p class="cat-card-cat">Color</p>
@@ -173,7 +179,7 @@
             <span class="cat-card-read">Read More</span>
           </div>
         </a>
-        <a href="/blog/how-much-do-hair-extensions-cost" class="cat-card">
+        <a href="/blog/how-much-do-hair-extensions-cost" class="cat-card" data-cat="extensions">
           <div class="cat-card-img"><img src="/images/blog/how-much-do-hair-extensions-cost.webp" alt="How Much Do Hair Extensions Cost?" loading="lazy" decoding="async"></div>
           <div class="cat-card-body">
             <p class="cat-card-cat">Extensions</p>
@@ -182,7 +188,7 @@
             <span class="cat-card-read">Read More</span>
           </div>
         </a>
-        <a href="/blog/a-journey-to-fuller-natural-looking-hair" class="cat-card">
+        <a href="/blog/a-journey-to-fuller-natural-looking-hair" class="cat-card" data-cat="client-spotlights">
           <div class="cat-card-img"><img src="/images/optimized/services-bg.webp" alt="Barbara&#x27;s NBR Hair Transformation: A Journey to Fuller, Natural-Looking Hai" loading="lazy" decoding="async"></div>
           <div class="cat-card-body">
             <p class="cat-card-cat">Client Spotlights</p>
@@ -194,7 +200,7 @@
       </div>
       <p class="eyebrow" data-animate style="text-align:center">All Posts</p>
       <div class="cat-grid" data-animate>
-        <a href="/blog/why-indulge-in-a-brazilian-keratin-treatment" class="cat-card">
+        <a href="/blog/why-indulge-in-a-brazilian-keratin-treatment" class="cat-card" data-cat="hair-care">
           <div class="cat-card-img"><img src="/images/optimized/services-bg.webp" alt="Why Indulge in a Brazilian Keratin Treatment?" loading="lazy" decoding="async"></div>
           <div class="cat-card-body">
             <p class="cat-card-cat">Hair Care</p>
@@ -203,7 +209,7 @@
             <span class="cat-card-read">Read More</span>
           </div>
         </a>
-        <a href="/blog/meet-the-team-at-studio-one" class="cat-card">
+        <a href="/blog/meet-the-team-at-studio-one" class="cat-card" data-cat="salon-team">
           <div class="cat-card-img"><img src="/images/blog/meet-the-team-at-studio-one.webp" alt="Meet the Team at Studio One" loading="lazy" decoding="async"></div>
           <div class="cat-card-body">
             <p class="cat-card-cat">Salon Team</p>
@@ -212,7 +218,7 @@
             <span class="cat-card-read">Read More</span>
           </div>
         </a>
-        <a href="/blog/best-products-for-hair-growth-thickness" class="cat-card">
+        <a href="/blog/best-products-for-hair-growth-thickness" class="cat-card" data-cat="hair-products">
           <div class="cat-card-img"><img src="/images/blog/best-products-for-hair-growth-thickness.webp" alt="Best Products for Hair Growth &amp; Thickness" loading="lazy" decoding="async"></div>
           <div class="cat-card-body">
             <p class="cat-card-cat">Hair Products</p>
@@ -221,7 +227,7 @@
             <span class="cat-card-read">Read More</span>
           </div>
         </a>
-        <a href="/blog/cooler-weather-hair-extension-care" class="cat-card">
+        <a href="/blog/cooler-weather-hair-extension-care" class="cat-card" data-cat="extensions">
           <div class="cat-card-img"><img src="/images/blog/cooler-weather-hair-extension-care.webp" alt="Cooler Weather Hair Extension Care" loading="lazy" decoding="async"></div>
           <div class="cat-card-body">
             <p class="cat-card-cat">Extensions</p>
@@ -230,7 +236,7 @@
             <span class="cat-card-read">Read More</span>
           </div>
         </a>
-        <a href="/blog/semi-permanent-hair-color-damage" class="cat-card">
+        <a href="/blog/semi-permanent-hair-color-damage" class="cat-card" data-cat="color">
           <div class="cat-card-img"><img src="/images/blog/semi-permanent-hair-color-damage.webp" alt="Semi-Permanent Hair Color &amp; Damage" loading="lazy" decoding="async"></div>
           <div class="cat-card-body">
             <p class="cat-card-cat">Color</p>
@@ -239,7 +245,7 @@
             <span class="cat-card-read">Read More</span>
           </div>
         </a>
-        <a href="/blog/what-is-pretty-hair-discover-the-secret-at-studio-one" class="cat-card">
+        <a href="/blog/what-is-pretty-hair-discover-the-secret-at-studio-one" class="cat-card" data-cat="behind-the-scenes">
           <div class="cat-card-img"><img src="/images/blog/what-is-pretty-hair-discover-the-secret-at-studio-one.webp" alt="What Is Pretty Hair? Discover the Secret at Studio One (PRETTY HAIR CLUB)" loading="lazy" decoding="async"></div>
           <div class="cat-card-body">
             <p class="cat-card-cat">Behind the Scenes</p>
@@ -248,7 +254,7 @@
             <span class="cat-card-read">Read More</span>
           </div>
         </a>
-        <a href="/blog/hair-transformation-for-women-studio-one-fresno" class="cat-card">
+        <a href="/blog/hair-transformation-for-women-studio-one-fresno" class="cat-card" data-cat="client-spotlights">
           <div class="cat-card-img"><img src="/images/blog/hair-transformation-for-women-studio-one-fresno.webp" alt="Hair Transformation for Women | Studio One Fresno" loading="lazy" decoding="async"></div>
           <div class="cat-card-body">
             <p class="cat-card-cat">Client Spotlights</p>
@@ -257,7 +263,7 @@
             <span class="cat-card-read">Read More</span>
           </div>
         </a>
-        <a href="/blog/holiday-hair-trends" class="cat-card">
+        <a href="/blog/holiday-hair-trends" class="cat-card" data-cat="styling">
           <div class="cat-card-img"><img src="/images/optimized/services-bg.webp" alt="Holiday Hair Trends: The Perfect Styles for Thanksgiving, Christmas, and New Yea" loading="lazy" decoding="async"></div>
           <div class="cat-card-body">
             <p class="cat-card-cat">Styling</p>
@@ -266,7 +272,7 @@
             <span class="cat-card-read">Read More</span>
           </div>
         </a>
-        <a href="/blog/curly-hair-talk-natural-vs-permed-curls" class="cat-card">
+        <a href="/blog/curly-hair-talk-natural-vs-permed-curls" class="cat-card" data-cat="styling">
           <div class="cat-card-img"><img src="/images/optimized/services-bg.webp" alt="Curly Hair Talk: Natural vs. Permed Curls (And Why &quot;Permanent&quot; Isn&#x2" loading="lazy" decoding="async"></div>
           <div class="cat-card-body">
             <p class="cat-card-cat">Styling</p>
@@ -275,7 +281,7 @@
             <span class="cat-card-read">Read More</span>
           </div>
         </a>
-        <a href="/blog/keep-extensions-looking-gorgeous" class="cat-card">
+        <a href="/blog/keep-extensions-looking-gorgeous" class="cat-card" data-cat="extensions">
           <div class="cat-card-img"><img src="/images/optimized/services-bg.webp" alt="How to Keep Your Hair Extensions Looking Gorgeous This Summer—and Beyond!" loading="lazy" decoding="async"></div>
           <div class="cat-card-body">
             <p class="cat-card-cat">Extensions</p>
@@ -284,7 +290,7 @@
             <span class="cat-card-read">Read More</span>
           </div>
         </a>
-        <a href="/blog/hair-extension-recovery" class="cat-card">
+        <a href="/blog/hair-extension-recovery" class="cat-card" data-cat="extensions">
           <div class="cat-card-img"><img src="/images/optimized/services-bg.webp" alt="Hair Extension Recovery: Because You Deserve the Prettiest Hair in Fresno" loading="lazy" decoding="async"></div>
           <div class="cat-card-body">
             <p class="cat-card-cat">Extensions</p>
@@ -293,7 +299,7 @@
             <span class="cat-card-read">Read More</span>
           </div>
         </a>
-        <a href="/blog/hairdresser-extensions-what-to-know-before-you-book" class="cat-card">
+        <a href="/blog/hairdresser-extensions-what-to-know-before-you-book" class="cat-card" data-cat="extensions">
           <div class="cat-card-img"><img src="/images/blog/hairdresser-extensions-what-to-know-before-you-book.webp" alt="Hairdresser Extensions: What to Know Before You Book" loading="lazy" decoding="async"></div>
           <div class="cat-card-body">
             <p class="cat-card-cat">Extensions</p>
@@ -302,7 +308,7 @@
             <span class="cat-card-read">Read More</span>
           </div>
         </a>
-        <a href="/blog/hair-extension-options-halo-bellami-hand-tied" class="cat-card">
+        <a href="/blog/hair-extension-options-halo-bellami-hand-tied" class="cat-card" data-cat="extensions">
           <div class="cat-card-img"><img src="/images/optimized/services-bg.webp" alt="Hair Extension Options: Halo, Bellami &amp; Hand-Tied" loading="lazy" decoding="async"></div>
           <div class="cat-card-body">
             <p class="cat-card-cat">Extensions</p>
@@ -311,7 +317,7 @@
             <span class="cat-card-read">Read More</span>
           </div>
         </a>
-        <a href="/blog/saizon-restaurant" class="cat-card">
+        <a href="/blog/saizon-restaurant" class="cat-card" data-cat="behind-the-scenes">
           <div class="cat-card-img"><img src="/images/optimized/services-bg.webp" alt="Local Spotlight: Saizon Restaurant – Where Napa Valley Meets Mexico City" loading="lazy" decoding="async"></div>
           <div class="cat-card-body">
             <p class="cat-card-cat">Behind the Scenes</p>
@@ -320,7 +326,7 @@
             <span class="cat-card-read">Read More</span>
           </div>
         </a>
-        <a href="/blog/hair-gloss-treatments-in-fresno" class="cat-card">
+        <a href="/blog/hair-gloss-treatments-in-fresno" class="cat-card" data-cat="color">
           <div class="cat-card-img"><img src="/images/optimized/services-bg.webp" alt="Hair Gloss Treatments in Fresno – Shine &amp; Revive Color" loading="lazy" decoding="async"></div>
           <div class="cat-card-body">
             <p class="cat-card-cat">Color</p>
@@ -329,7 +335,7 @@
             <span class="cat-card-read">Read More</span>
           </div>
         </a>
-        <a href="/blog/the-truth-about-nbr-extensions-at-studio-one" class="cat-card">
+        <a href="/blog/the-truth-about-nbr-extensions-at-studio-one" class="cat-card" data-cat="extensions">
           <div class="cat-card-img"><img src="/images/optimized/services-bg.webp" alt="Are Hair Extensions Damaging? The Truth About NBR Extensions at Studio One Hair " loading="lazy" decoding="async"></div>
           <div class="cat-card-body">
             <p class="cat-card-cat">Extensions</p>
@@ -338,7 +344,7 @@
             <span class="cat-card-read">Read More</span>
           </div>
         </a>
-        <a href="/blog/how-long-does-grey-hair-coverage-last" class="cat-card">
+        <a href="/blog/how-long-does-grey-hair-coverage-last" class="cat-card" data-cat="color">
           <div class="cat-card-img"><img src="/images/optimized/services-bg.webp" alt="How Long Does Grey Hair Coverage Last?" loading="lazy" decoding="async"></div>
           <div class="cat-card-body">
             <p class="cat-card-cat">Color</p>
@@ -347,7 +353,7 @@
             <span class="cat-card-read">Read More</span>
           </div>
         </a>
-        <a href="/blog/studio-one-signature-drinks" class="cat-card">
+        <a href="/blog/studio-one-signature-drinks" class="cat-card" data-cat="behind-the-scenes">
           <div class="cat-card-img"><img src="/images/optimized/services-bg.webp" alt="Sip in Style: Studio One Hair Design&#x27;s Signature Drinks" loading="lazy" decoding="async"></div>
           <div class="cat-card-body">
             <p class="cat-card-cat">Behind the Scenes</p>
@@ -356,7 +362,7 @@
             <span class="cat-card-read">Read More</span>
           </div>
         </a>
-        <a href="/blog/how-hair-extensions-work-volume-length-confidence" class="cat-card">
+        <a href="/blog/how-hair-extensions-work-volume-length-confidence" class="cat-card" data-cat="extensions">
           <div class="cat-card-img"><img src="/images/blog/how-hair-extensions-work-volume-length-confidence.webp" alt="How Hair Extensions Work: Volume, Length &amp; Confidence" loading="lazy" decoding="async"></div>
           <div class="cat-card-body">
             <p class="cat-card-cat">Extensions</p>
@@ -365,7 +371,7 @@
             <span class="cat-card-read">Read More</span>
           </div>
         </a>
-        <a href="/blog/is-dry-shampoo-good-for-your-scalp" class="cat-card">
+        <a href="/blog/is-dry-shampoo-good-for-your-scalp" class="cat-card" data-cat="hair-care">
           <div class="cat-card-img"><img src="/images/optimized/services-bg.webp" alt="Is Dry Shampoo Good for Your Scalp?" loading="lazy" decoding="async"></div>
           <div class="cat-card-body">
             <p class="cat-card-cat">Hair Care</p>
@@ -374,7 +380,7 @@
             <span class="cat-card-read">Read More</span>
           </div>
         </a>
-        <a href="/blog/best-haircuts-for-thin-hair-that-add-volume" class="cat-card">
+        <a href="/blog/best-haircuts-for-thin-hair-that-add-volume" class="cat-card" data-cat="styling">
           <div class="cat-card-img"><img src="/images/blog/best-haircuts-for-thin-hair-that-add-volume.webp" alt="Best Haircuts for Thin Hair That Add Volume" loading="lazy" decoding="async"></div>
           <div class="cat-card-body">
             <p class="cat-card-cat">Styling</p>
@@ -383,7 +389,7 @@
             <span class="cat-card-read">Read More</span>
           </div>
         </a>
-        <a href="/blog/stress-and-hair-health" class="cat-card">
+        <a href="/blog/stress-and-hair-health" class="cat-card" data-cat="hair-care">
           <div class="cat-card-img"><img src="/images/optimized/services-bg.webp" alt="Stress and Hair Health: Tips for Keeping Your Locks Fabulous" loading="lazy" decoding="async"></div>
           <div class="cat-card-body">
             <p class="cat-card-cat">Hair Care</p>
@@ -392,7 +398,7 @@
             <span class="cat-card-read">Read More</span>
           </div>
         </a>
-        <a href="/blog/how-hair-gloss-works-for-soft-lasting-shine" class="cat-card">
+        <a href="/blog/how-hair-gloss-works-for-soft-lasting-shine" class="cat-card" data-cat="color">
           <div class="cat-card-img"><img src="/images/blog/how-hair-gloss-works-for-soft-lasting-shine.webp" alt="How Hair Gloss Works for Soft, Lasting Shine" loading="lazy" decoding="async"></div>
           <div class="cat-card-body">
             <p class="cat-card-cat">Color</p>
@@ -401,7 +407,7 @@
             <span class="cat-card-read">Read More</span>
           </div>
         </a>
-        <a href="/blog/new-year-new-you-resolutions-weight-loss-and-how-it-affects-your-hair" class="cat-card">
+        <a href="/blog/new-year-new-you-resolutions-weight-loss-and-how-it-affects-your-hair" class="cat-card" data-cat="hair-care">
           <div class="cat-card-img"><img src="/images/optimized/services-bg.webp" alt="New Year, New You: Resolutions, Weight Loss, and How It Affects Your Hair" loading="lazy" decoding="async"></div>
           <div class="cat-card-body">
             <p class="cat-card-cat">Hair Care</p>
@@ -410,7 +416,7 @@
             <span class="cat-card-read">Read More</span>
           </div>
         </a>
-        <a href="/blog/best-hair-color-for-gray-hair-a-guide-to-radiant-ageless-style" class="cat-card">
+        <a href="/blog/best-hair-color-for-gray-hair-a-guide-to-radiant-ageless-style" class="cat-card" data-cat="color">
           <div class="cat-card-img"><img src="/images/blog/best-hair-color-for-gray-hair-a-guide-to-radiant-ageless-style.webp" alt="Best Hair Color for Gray Hair: A Guide to Radiant, Ageless Style" loading="lazy" decoding="async"></div>
           <div class="cat-card-body">
             <p class="cat-card-cat">Color</p>
@@ -419,7 +425,7 @@
             <span class="cat-card-read">Read More</span>
           </div>
         </a>
-        <a href="/blog/keratin-treatment-california-whats-changed-what-you-need-to-know" class="cat-card">
+        <a href="/blog/keratin-treatment-california-whats-changed-what-you-need-to-know" class="cat-card" data-cat="hair-care">
           <div class="cat-card-img"><img src="/images/blog/keratin-treatment-california-whats-changed-what-you-need-to-know.webp" alt="Keratin Treatment California: What&#x27;s Changed &amp; What You Need to Know" loading="lazy" decoding="async"></div>
           <div class="cat-card-body">
             <p class="cat-card-cat">Hair Care</p>
@@ -428,7 +434,7 @@
             <span class="cat-card-read">Read More</span>
           </div>
         </a>
-        <a href="/blog/new-year-new-hair-navigating-life-changes-and-hair-health-in-2025" class="cat-card">
+        <a href="/blog/new-year-new-hair-navigating-life-changes-and-hair-health-in-2025" class="cat-card" data-cat="hair-care">
           <div class="cat-card-img"><img src="/images/blog/new-year-new-hair-navigating-life-changes-and-hair-health-in-2025.webp" alt="New Year, New Hair: Navigating Life Changes and Hair Health in 2025" loading="lazy" decoding="async"></div>
           <div class="cat-card-body">
             <p class="cat-card-cat">Hair Care</p>
@@ -437,7 +443,7 @@
             <span class="cat-card-read">Read More</span>
           </div>
         </a>
-        <a href="/blog/the-psychology-of-hair" class="cat-card">
+        <a href="/blog/the-psychology-of-hair" class="cat-card" data-cat="hair-care">
           <div class="cat-card-img"><img src="/images/optimized/services-bg.webp" alt="The Psychology of Hair: How Our Styles Affect Self-Image" loading="lazy" decoding="async"></div>
           <div class="cat-card-body">
             <p class="cat-card-cat">Hair Care</p>
@@ -446,7 +452,7 @@
             <span class="cat-card-read">Read More</span>
           </div>
         </a>
-        <a href="/blog/holiday-hair-prep-for-travel-studio-one-fresno" class="cat-card">
+        <a href="/blog/holiday-hair-prep-for-travel-studio-one-fresno" class="cat-card" data-cat="hair-care">
           <div class="cat-card-img"><img src="/images/blog/holiday-hair-prep-for-travel-studio-one-fresno.webp" alt="Holiday Hair Prep for Travel | Studio One Fresno" loading="lazy" decoding="async"></div>
           <div class="cat-card-body">
             <p class="cat-card-cat">Hair Care</p>
@@ -455,7 +461,7 @@
             <span class="cat-card-read">Read More</span>
           </div>
         </a>
-        <a href="/blog/best-hair-colors-for-brown-eyes-studio-one-fresno" class="cat-card">
+        <a href="/blog/best-hair-colors-for-brown-eyes-studio-one-fresno" class="cat-card" data-cat="color">
           <div class="cat-card-img"><img src="/images/blog/best-hair-colors-for-brown-eyes-studio-one-fresno.webp" alt="Best Hair Colors for Brown Eyes | Studio One Fresno" loading="lazy" decoding="async"></div>
           <div class="cat-card-body">
             <p class="cat-card-cat">Color</p>
@@ -464,7 +470,7 @@
             <span class="cat-card-read">Read More</span>
           </div>
         </a>
-        <a href="/blog/hair-extension-models-needed-in-fresno" class="cat-card">
+        <a href="/blog/hair-extension-models-needed-in-fresno" class="cat-card" data-cat="extensions">
           <div class="cat-card-img"><img src="/images/blog/hair-extension-models-needed-in-fresno.webp" alt="Hair Extension Models Needed in Fresno" loading="lazy" decoding="async"></div>
           <div class="cat-card-body">
             <p class="cat-card-cat">Extensions</p>
@@ -473,7 +479,7 @@
             <span class="cat-card-read">Read More</span>
           </div>
         </a>
-        <a href="/blog/what-most-people-get-wrong-about-hair-extensions" class="cat-card">
+        <a href="/blog/what-most-people-get-wrong-about-hair-extensions" class="cat-card" data-cat="extensions">
           <div class="cat-card-img"><img src="/images/blog/what-most-people-get-wrong-about-hair-extensions.webp" alt="What Most People Get Wrong About Hair Extensions" loading="lazy" decoding="async"></div>
           <div class="cat-card-body">
             <p class="cat-card-cat">Extensions</p>
@@ -482,7 +488,7 @@
             <span class="cat-card-read">Read More</span>
           </div>
         </a>
-        <a href="/blog/the-biggest-myth-about-winter-shedding" class="cat-card">
+        <a href="/blog/the-biggest-myth-about-winter-shedding" class="cat-card" data-cat="hair-care">
           <div class="cat-card-img"><img src="/images/blog/the-biggest-myth-about-winter-shedding.webp" alt="The Biggest Myth About Winter Shedding" loading="lazy" decoding="async"></div>
           <div class="cat-card-body">
             <p class="cat-card-cat">Hair Care</p>
@@ -491,7 +497,7 @@
             <span class="cat-card-read">Read More</span>
           </div>
         </a>
-        <a href="/blog/can-you-dye-weft-hair-extensions" class="cat-card">
+        <a href="/blog/can-you-dye-weft-hair-extensions" class="cat-card" data-cat="extensions">
           <div class="cat-card-img"><img src="/images/optimized/services-bg.webp" alt="Can You Dye Weft Hair Extensions?" loading="lazy" decoding="async"></div>
           <div class="cat-card-body">
             <p class="cat-card-cat">Extensions</p>
@@ -500,7 +506,7 @@
             <span class="cat-card-read">Read More</span>
           </div>
         </a>
-        <a href="/blog/can-thinning-hair-grow-back" class="cat-card">
+        <a href="/blog/can-thinning-hair-grow-back" class="cat-card" data-cat="hair-care">
           <div class="cat-card-img"><img src="/images/optimized/services-bg.webp" alt="Can Thinning Hair Grow Back?" loading="lazy" decoding="async"></div>
           <div class="cat-card-body">
             <p class="cat-card-cat">Hair Care</p>
@@ -509,7 +515,7 @@
             <span class="cat-card-read">Read More</span>
           </div>
         </a>
-        <a href="/blog/barbaras-nbr-hair-extension-journey-at-studio-one" class="cat-card">
+        <a href="/blog/barbaras-nbr-hair-extension-journey-at-studio-one" class="cat-card" data-cat="client-spotlights">
           <div class="cat-card-img"><img src="/images/blog/barbaras-nbr-hair-extension-journey-at-studio-one.webp" alt="Barbara&#x27;s NBR Hair Extension Journey at Studio One" loading="lazy" decoding="async"></div>
           <div class="cat-card-body">
             <p class="cat-card-cat">Client Spotlights</p>
@@ -518,7 +524,7 @@
             <span class="cat-card-read">Read More</span>
           </div>
         </a>
-        <a href="/blog/wassabi-on-fire" class="cat-card">
+        <a href="/blog/wassabi-on-fire" class="cat-card" data-cat="behind-the-scenes">
           <div class="cat-card-img"><img src="/images/optimized/services-bg.webp" alt="Local Spotlight: Wassabi on Fire – A Family-Friendly Favorite in Montecito Plaza" loading="lazy" decoding="async"></div>
           <div class="cat-card-body">
             <p class="cat-card-cat">Behind the Scenes</p>
@@ -527,7 +533,7 @@
             <span class="cat-card-read">Read More</span>
           </div>
         </a>
-        <a href="/blog/studio-one-hair-design-top-salon-with-hair-specialists-in-fresno" class="cat-card">
+        <a href="/blog/studio-one-hair-design-top-salon-with-hair-specialists-in-fresno" class="cat-card" data-cat="salon-team">
           <div class="cat-card-img"><img src="/images/blog/studio-one-hair-design-top-salon-with-hair-specialists-in-fresno.webp" alt="Studio One Hair Design: Top salon with hair specialists in Fresno" loading="lazy" decoding="async"></div>
           <div class="cat-card-body">
             <p class="cat-card-cat">Salon Team</p>
@@ -536,7 +542,7 @@
             <span class="cat-card-read">Read More</span>
           </div>
         </a>
-        <a href="/blog/studio-one-hair-design-fresno-hair-stylist" class="cat-card">
+        <a href="/blog/studio-one-hair-design-fresno-hair-stylist" class="cat-card" data-cat="salon-team">
           <div class="cat-card-img"><img src="/images/blog/studio-one-hair-design-fresno-hair-stylist.webp" alt="Find Your Dream Fresno Hair Stylist at Studio One" loading="lazy" decoding="async"></div>
           <div class="cat-card-body">
             <p class="cat-card-cat">Salon Team</p>
@@ -549,6 +555,88 @@
     </div>
   </section>
 
+    <!-- Universal Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <div class="footer-info">
+          <div class="footer-location">
+            <h3 class="footer-section-title">LOCATION</h3>
+            <p>2950 E Nees Ave., #103<br>Fresno, CA 93720</p>
+            <a href="tel:5597959724" class="footer-phone">559-795-9724</a>
+            <a href="sms:5597959724" class="footer-phone">559-795-9724 (text)</a>
+          </div>
+          <div class="footer-hours">
+            <h3 class="footer-section-title">STUDIO HOURS</h3>
+            <table class="hours-table">
+              <tr><td>MON</td><td>10 am&ndash;8 pm</td></tr>
+              <tr><td>TUE</td><td>10 am&ndash;8 pm</td></tr>
+              <tr><td>WED</td><td>10 am&ndash;8 pm</td></tr>
+              <tr><td>THU</td><td>10 am&ndash;8 pm</td></tr>
+              <tr><td>FRI</td><td>10 am&ndash;7 pm</td></tr>
+              <tr><td>SAT</td><td>10 am&ndash;6 pm</td></tr>
+              <tr><td>SUN</td><td>CLOSED</td></tr>
+            </table>
+          </div>
+        </div>
+        <div class="footer-instagram">
+          <h3 class="footer-ig-heading">See more <em>transformations</em> on Instagram:</h3>
+          <a href="https://www.instagram.com/studioonefresno/" target="_blank" rel="noopener" class="ig-grid">
+            <div class="ig-thumb"><img src="/images/optimized/gallery-1.webp" alt="Instagram post" loading="lazy" decoding="async"></div>
+            <div class="ig-thumb"><img src="/images/optimized/gallery-4.webp" alt="Instagram post" loading="lazy" decoding="async"></div>
+            <div class="ig-thumb"><img src="/images/optimized/gallery-6.webp" alt="Instagram post" loading="lazy" decoding="async"></div>
+            <div class="ig-thumb"><img src="/images/optimized/gallery-8.webp" alt="Instagram post" loading="lazy" decoding="async"></div>
+            <div class="ig-thumb"><img src="/images/optimized/gallery-10.webp" alt="Instagram post" loading="lazy" decoding="async"></div>
+          </a>
+        </div>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/studioonefresno/" target="_blank" rel="noopener">@STUDIOONEFRESNO</a>
+          <a href="https://www.facebook.com/studio.one.fresno" target="_blank" rel="noopener" class="fb-icon" aria-label="Facebook">
+            <svg width="10" height="20" viewBox="0 0 10 20" fill="none"><path d="M6.5 7H9.5L8.5 11H6.5V20H3V11H0V7H3V5.128C3 3.345 3.186 2.698 3.534 2.046C3.875 1.407 4.407 0.875 5.046 0.534C5.698 0.186 6.345 0 8.128 0C8.65 0 9.108 0.05 9.5 0.15V3.5H8.128C7.159 3.5 6.862 3.537 6.556 3.694C6.329 3.812 6.162 3.979 6.044 4.206C5.887 4.512 5.85 4.809 5.85 5.778V7H6.5Z" fill="#f5f5f5"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-right">
+        <nav class="footer-nav">
+          <a href="/">HOME</a>
+          <a href="/nbr-extensions">NBR EXTENSIONS</a>
+          <a href="/services">CLASSIC SERVICES</a>
+          <a href="/wigs">WIGS</a>
+          <a href="/shop">SHOP</a>
+          <a href="/hair-gallery">HAIR GALLERY</a>
+          <a href="/meet-the-team">MEET THE TEAM</a>
+          <a href="/blog">BLOG</a>
+          <a href="/booking">BOOK APPOINTMENT</a>
+          <a href="/contact">CONTACT</a>
+          <a href="/shadowing-program">SHADOWING PROGRAM</a>
+          <a href="/careers">CAREERS</a>
+          <a href="/nically-hair">NICALLY HAIR</a>
+        </nav>
+        <div class="footer-map">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3193.8!2d-119.74!3d36.85!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzbCsDUxJzAwLjAiTiAxMTnCsDQ0JzI0LjAiVw!5e0!3m2!1sen!2sus!4v1" width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy" title="Studio One Location Map"></iframe>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024-2026 Studio One Hair Design</p>
+      <p>Website by Web Education Services</p>
+      <a href="/legal">Legal</a>
+    </div>
+  </footer>
+
+
   <script src="/script.js" defer></script>
+  <script>
+    (function(){
+      const btns = document.querySelectorAll('.cat-filter-btn');
+      const cards = document.querySelectorAll('.cat-card');
+      btns.forEach(b => b.addEventListener('click', () => {
+        btns.forEach(x => x.classList.remove('is-active'));
+        b.classList.add('is-active');
+        const f = b.dataset.filter;
+        cards.forEach(c => { c.hidden = (f !== 'all' && c.dataset.cat !== f); });
+      }));
+    })();
+  </script>
 </body>
 </html>
