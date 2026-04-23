@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Salon Services Fresno | Studio One Hair Design</title>
-  <meta name="description" content="The true salon classics and more — cut, color, keratin, extensions, and styling services at Studio One Hair Design in Fresno.">
+  <meta name="description" content="The true salon classics and more — color, cut, keratin, and NBR extensions at Studio One Hair Design in Fresno. Hybrid salon pricing by stylist.">
   <link rel="canonical" href="https://www.studioonefresno.com/services">
 
   <meta property="og:title" content="Salon Services Fresno | Studio One Hair Design">
-  <meta property="og:description" content="The true salon classics and more — cut, color, keratin, extensions, and styling services at Studio One Hair Design in Fresno.">
+  <meta property="og:description" content="The true salon classics and more — color, cut, keratin, and NBR extensions at Studio One Hair Design in Fresno.">
   <meta property="og:image" content="https://www.studioonefresno.com/images/og-image.jpg">
   <meta property="og:url" content="https://www.studioonefresno.com/services">
   <meta property="og:type" content="website">
@@ -18,7 +18,7 @@
   <link rel="icon" href="/favicon.ico">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
-  
+
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -37,7 +37,7 @@
     fbq('init','24036206522645936');fbq('track','PageView');
   </script>
 
-  
+
 
   <style>
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -77,14 +77,58 @@
     .section-heading{font-family:var(--heading-font);font-size:42px;font-weight:400;color:var(--white);line-height:1.2;margin-bottom:24px}
     .section-body p{font-size:15px;line-height:1.8;color:var(--light-gray);font-weight:300;margin-bottom:20px}
     .text-center{text-align:center}
+
+    /* Service category menu */
+    .category-group{margin-bottom:72px}
+    .category-label{font-family:var(--heading-font);font-size:32px;color:var(--white);font-weight:400;letter-spacing:0;margin-bottom:32px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.12)}
+    .service-row{display:grid;grid-template-columns:260px 1fr 180px;gap:40px;padding:26px 0;border-bottom:1px solid rgba(255,255,255,.06);align-items:start}
+    .service-row h4{font-family:var(--heading-font);font-size:22px;color:var(--white);font-weight:400;line-height:1.2}
+    .service-row p{font-size:13px;color:var(--light-gray);font-weight:300;line-height:1.7}
+    .service-row .meta{font-size:11px;letter-spacing:2px;color:var(--olive-light);text-transform:uppercase;font-weight:500;margin-top:8px}
+    .service-row .price{font-size:14px;letter-spacing:1px;color:var(--off-white);font-weight:500;text-align:right;white-space:nowrap}
+    .service-row .price small{display:block;font-size:11px;color:var(--light-gray);font-weight:300;letter-spacing:0;text-transform:none;margin-top:4px;opacity:.75}
+
+    /* NBR feature section */
+    .nbr-feature{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+    .nbr-feature-media{position:relative;aspect-ratio:4/5;overflow:hidden}
+    .nbr-feature-media img{width:100%;height:100%;object-fit:cover}
+    .nbr-feature-copy h2{font-family:var(--heading-font);font-size:44px;color:var(--white);font-weight:400;line-height:1.15;margin-bottom:20px}
+    .nbr-feature-copy p{font-size:15px;line-height:1.8;color:var(--light-gray);font-weight:300;margin-bottom:28px}
+
+    /* Banner strip */
+    .banner-strip{position:relative;min-height:360px;display:flex;align-items:center;justify-content:center;text-align:center;padding:80px 40px;overflow:hidden}
+    .banner-strip-bg{position:absolute;inset:0;z-index:0}
+    .banner-strip-bg img{width:100%;height:100%;object-fit:cover}
+    .banner-strip-overlay{position:absolute;inset:0;background:rgba(0,0,0,.55);z-index:1}
+    .banner-strip-content{position:relative;z-index:2;max-width:860px}
+    .banner-strip-content h2{font-family:var(--heading-font);font-size:44px;color:var(--white);font-weight:400;line-height:1.2;margin-bottom:24px}
+
+    /* FAQ */
+    .faq-list{max-width:820px;margin:48px auto 0}
+    .faq-item{border-bottom:1px solid rgba(255,255,255,.08);padding:20px 0}
+    .faq-q{display:flex;justify-content:space-between;align-items:center;width:100%;text-align:left;font-size:15px;font-weight:500;color:var(--off-white);gap:16px}
+    .faq-q span{font-size:20px;color:var(--olive-light);transition:transform .3s;flex-shrink:0}
+    .faq-q.is-open span{transform:rotate(45deg)}
+    .faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s ease}
+    .faq-a.is-open{max-height:500px;padding-top:14px}
+    .faq-a p{font-size:14px;color:var(--light-gray);line-height:1.8;font-weight:300}
+
+    @media (max-width:1024px){
+      .nbr-feature{grid-template-columns:1fr;gap:40px}
+    }
     @media (max-width:768px){
       .page-hero h1{font-size:34px}
       .page-hero{padding:120px 24px 60px;min-height:60vh}
       .section{padding:64px 24px}
       .section-heading{font-size:30px}
       .header{padding:16px 20px}
+      .category-label{font-size:26px}
+      .service-row{grid-template-columns:1fr;gap:8px}
+      .service-row .price{text-align:left}
+      .nbr-feature-copy h2{font-size:32px}
+      .banner-strip-content h2{font-size:28px}
+      .banner-strip{padding:60px 24px;min-height:280px}
     }
-    .service-row{display:grid;grid-template-columns:300px 1fr 140px;gap:40px;padding:32px 0;border-bottom:1px solid rgba(255,255,255,.08);align-items:start}.service-row h3{font-family:var(--heading-font);font-size:26px;color:var(--white);font-weight:400;line-height:1.2}.service-row p{font-size:14px;color:var(--light-gray);font-weight:300;line-height:1.7}.service-row .price{font-size:13px;letter-spacing:2px;color:var(--olive-light);text-transform:uppercase;font-weight:500;text-align:right}.service-note{font-size:12px;color:var(--light-gray);font-weight:300;opacity:.7;margin-top:8px}@media(max-width:768px){.service-row{grid-template-columns:1fr;gap:8px}.service-row .price{text-align:left}}
   </style>
 
   <link rel="stylesheet" href="/styles.css" media="print" onload="this.media='all'">
@@ -155,56 +199,155 @@
   </nav>
 
   <section class="page-hero">
+    <div class="page-hero-bg"><img src="/images/webflow/gallery/3d5fc523-00ce-47cb-a239-d042abdbca71.webp" alt="" loading="eager"></div>
     <div class="page-hero-overlay"></div>
     <div class="page-hero-content" data-animate>
-      <p class="eyebrow">Classic Services</p>
+      <p class="eyebrow">Our Service Menu</p>
       <h1>The true salon classics and more.</h1>
-      <p>We are a hybrid salon. Pricing varies by stylist &mdash; please refer to the stylist's name under each service for accurate pricing.</p>
+      <p>We are a hybrid salon. Please refer to the stylist's name under each service for accurate pricing.</p>
       <a href="https://www.vagaro.com/us02/studioone4/services" target="_blank" rel="noopener" class="olive-button">book online</a>
     </div>
   </section>
 
   <section class="section section--dark">
     <div class="section-inner">
-      <div data-animate class="text-center">
-        <p class="eyebrow">Hair Services</p>
-        <h2 class="section-heading">Everything you need under one roof.</h2>
-        <p style="font-size:15px;color:var(--light-gray);max-width:640px;margin:0 auto 8px;font-weight:300">From signature color to precision cuts, keratin smoothing, and luxury extensions &mdash; every service at Studio One is tailored to your hair, your stylist, and your goals.</p>
-      </div>
-      <div data-animate style="max-width:960px;margin:60px auto 0">
+
+      <div class="category-group" data-animate>
+        <h2 class="category-label">Luxury Color &amp; Highlights</h2>
         <div class="service-row">
-          <h3>NBR Extensions</h3>
-          <div><p>Our signature hand-tied beaded row method using ISLA Hair. Certified artists only. Custom installed for fullness, length, and blend.</p><p class="service-note">First install requires application + consultation.</p></div>
+          <h4>Mini Highlight</h4>
+          <div>
+            <p>A quick refresh around the face and part. Perfect for brightening between full color appointments.</p>
+            <p class="meta">1.5 hours</p>
+          </div>
+          <div class="price">$90+</div>
+        </div>
+        <div class="service-row">
+          <h4>Touch-Up / All Over Color</h4>
+          <div>
+            <p>Root touch-up or all-over color to maintain rich, dimensional tone and gray coverage.</p>
+            <p class="meta">2 hours</p>
+          </div>
+          <div class="price">$120&ndash;$195</div>
+        </div>
+        <div class="service-row">
+          <h4>Transformation / Color Correction</h4>
+          <div>
+            <p>For major color changes and corrective work. Priced by the stylist based on complexity and time.</p>
+            <p class="meta">4 hours</p>
+          </div>
+          <div class="price">$260&ndash;$640</div>
+        </div>
+        <div class="service-row">
+          <h4>Partial Blonding</h4>
+          <div>
+            <p>Face-framing and strategic highlights for dimension without a full-head commitment.</p>
+            <p class="meta">2.5 hours</p>
+          </div>
+          <div class="price">$150&ndash;$180</div>
+        </div>
+        <div class="service-row">
+          <h4>Full Head Blonding</h4>
+          <div>
+            <p>Full-head highlights or balayage for an all-over lift. Includes a finishing blowout.</p>
+            <p class="meta">3 hours &middot; Includes blowout</p>
+          </div>
+          <div class="price">$180&ndash;$375</div>
+        </div>
+      </div>
+
+      <div class="category-group" data-animate>
+        <h2 class="category-label">Cut &amp; Styling</h2>
+        <div class="service-row">
+          <h4>Signature Blowout</h4>
+          <div>
+            <p>A smooth, polished finish styled to your preference.</p>
+            <p class="meta">45 minutes</p>
+          </div>
+          <div class="price">$45&ndash;$65</div>
+        </div>
+        <div class="service-row">
+          <h4>Haircut and Blow Dry</h4>
+          <div>
+            <p>Precision haircut tailored to your face shape and texture, finished with a blow dry.</p>
+            <p class="meta">45 minutes</p>
+          </div>
+          <div class="price">$85&ndash;$150</div>
+        </div>
+      </div>
+
+      <div class="category-group" data-animate>
+        <h2 class="category-label">Treatments</h2>
+        <div class="service-row">
+          <h4>Keratin Smoothing</h4>
+          <div>
+            <p>A smoothing, conditioning treatment that softens curls, reduces frizz, and restores shine.</p>
+            <p class="meta">Starts at 2 oz &middot; $30 per additional oz</p>
+          </div>
+          <div class="price">$290+</div>
+        </div>
+      </div>
+
+      <div class="category-group" data-animate>
+        <h2 class="category-label">NBR Extensions</h2>
+        <div class="service-row">
+          <h4>NBR Hair Extensions</h4>
+          <div>
+            <p>Our salon's specialty. Natural Beaded Row hand-tied extensions using ISLA Hair &mdash; no glue, no heat, no damage. First install requires an application and consultation.</p>
+            <p class="meta">Certified artists only</p>
+          </div>
           <div class="price"><a href="/nbr-extensions" style="color:var(--olive-light);border-bottom:1px solid var(--olive-light);padding-bottom:2px">View Packages</a></div>
         </div>
-        <div class="service-row">
-          <h3>Luxury Color</h3>
-          <div><p>Dimensional color, highlights, balayage, gray coverage, and corrective work. We specialize in low-maintenance transformations that look natural as they grow out.</p></div>
-          <div class="price">By Stylist</div>
+      </div>
+
+      <div data-animate style="text-align:center;margin-top:60px">
+        <a href="https://www.vagaro.com/us02/studioone4/services" target="_blank" rel="noopener" class="olive-button">book online</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-inner">
+      <div class="nbr-feature">
+        <div class="nbr-feature-media" data-animate="fade-right">
+          <img src="/images/webflow/gallery/1a1353e0-aa5b-4535-b3a3-ba69e4368de0.webp" alt="NBR hair extensions styled at Studio One" loading="lazy">
         </div>
-        <div class="service-row">
-          <h3>Keratin Treatment</h3>
-          <div><p>A smoothing, conditioning treatment for all hair types. Softens curls, reduces frizz, and restores shine &mdash; especially effective on over-processed or dry hair.</p></div>
-          <div class="price">By Stylist</div>
-        </div>
-        <div class="service-row">
-          <h3>Haircuts &amp; Styling</h3>
-          <div><p>Precision cuts, blowouts, and event styling. Every cut is designed around your face shape, texture, and daily routine.</p></div>
-          <div class="price">By Stylist</div>
-        </div>
-        <div class="service-row">
-          <h3>Wigs &amp; Hair Replacement</h3>
-          <div><p>Luxury, medical, and topper options for thinning hair, medical hair loss, or style variety. Fitted, cut, and styled for a natural look.</p></div>
-          <div class="price"><a href="/wigs" style="color:var(--olive-light);border-bottom:1px solid var(--olive-light);padding-bottom:2px">Learn More</a></div>
-        </div>
-        <div class="service-row">
-          <h3>Textured &amp; Curly Hair</h3>
-          <div><p>Specialized services for natural curls, waves, and textured hair &mdash; cuts, conditioning, and curl-supportive styling.</p></div>
-          <div class="price">By Stylist</div>
+        <div class="nbr-feature-copy" data-animate="fade-left">
+          <p class="eyebrow">NBR Extensions</p>
+          <h2>Our salon's specialty.</h2>
+          <p>Experience the most natural, lightweight, and comfortable hair extensions you've ever had. At Studio One, we are experts in Natural Beaded Row Hair Extensions. Our mission is to match luxury hair services with a world-class experience. It's time you experience the best!</p>
+          <div style="display:flex;gap:14px;flex-wrap:wrap">
+            <a href="https://form.jotform.com/83406488092160" target="_blank" rel="noopener" class="olive-button">get started</a>
+            <a href="/nbr-extensions" class="primary-button">learn more</a>
+          </div>
         </div>
       </div>
-      <div data-animate style="text-align:center;margin-top:60px">
-        <a href="https://www.vagaro.com/us02/studioone4/services" target="_blank" rel="noopener" class="olive-button">see pricing &amp; book</a>
+    </div>
+  </section>
+
+  <section class="banner-strip">
+    <div class="banner-strip-bg"><img src="/images/webflow/gallery/2a3a2da2-7c7a-4088-922a-23627e0b6175.webp" alt="" loading="lazy"></div>
+    <div class="banner-strip-overlay"></div>
+    <div class="banner-strip-content" data-animate>
+      <p class="eyebrow">Studio One Hair Design</p>
+      <h2>The #1 Luxury Hair Extension and Color Salon in the Central Valley.</h2>
+      <a href="/booking" class="olive-button">book now</a>
+    </div>
+  </section>
+
+  <section class="section section--dark">
+    <div class="section-inner" data-animate>
+      <div class="text-center">
+        <p class="eyebrow">Good to Know</p>
+        <h2 class="section-heading">Frequently Asked Questions</h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item"><button class="faq-q">What form of payment do you take? <span>+</span></button><div class="faq-a"><p>We are happy to take cash, debit cards, Apple Pay, Visa, and MasterCard for service and retail purchases.</p></div></div>
+        <div class="faq-item"><button class="faq-q">Is it okay to have products in my hair? <span>+</span></button><div class="faq-a"><p>Light products are okay. For optimum grey coverage, please avoid using any temporary root concealers.</p></div></div>
+        <div class="faq-item"><button class="faq-q">How long do I have to cancel or reschedule my appointment? <span>+</span></button><div class="faq-a"><p>If you must cancel or reschedule an appointment, we ask that you kindly provide a 48-hour notice.</p></div></div>
+        <div class="faq-item"><button class="faq-q">Can I bring my children? <span>+</span></button><div class="faq-a"><p>It is our goal that the environment in the salon allows for an opportunity to relax from the stresses of daily life. With that in mind, we ask that children only be present when services are provided for them. Children must be supervised in and around the salon and surrounding areas at all times.</p></div></div>
+        <div class="faq-item"><button class="faq-q">What if I miss my appointment or don't cancel with a 48-hour notice? <span>+</span></button><div class="faq-a"><p>You would be billed a 50% service charge per service booked. These fees will be expected to be paid prior to any future appointments.</p></div></div>
+        <div class="faq-item"><button class="faq-q">Do you do kids' cuts? <span>+</span></button><div class="faq-a"><p>Yes, we work with all ages. However, we do not have different rates per age or gender.</p></div></div>
       </div>
     </div>
   </section>
@@ -219,5 +362,15 @@
   </section>
 
   <script src="/script.js" defer></script>
+  <script>
+    document.querySelectorAll('.faq-q').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const ans = btn.nextElementSibling;
+        const open = btn.classList.contains('is-open');
+        document.querySelectorAll('.faq-q').forEach(b => { b.classList.remove('is-open'); b.nextElementSibling.classList.remove('is-open'); });
+        if (!open) { btn.classList.add('is-open'); ans.classList.add('is-open'); }
+      });
+    });
+  </script>
 </body>
 </html>

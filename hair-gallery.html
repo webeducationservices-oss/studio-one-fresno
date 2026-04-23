@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hair Gallery | Studio One Hair Design Fresno</title>
-  <meta name="description" content="Browse our work — NBR extensions, dimensional color, keratin treatments, and curl transformations from Studio One Fresno.">
+  <title>Hair Gallery | Guest Transformations | Studio One Fresno</title>
+  <meta name="description" content="Browse real guest transformations from Studio One Fresno — NBR extensions, luxury color, and keratin treatments from Fresno's premier hair studio.">
   <link rel="canonical" href="https://www.studioonefresno.com/hair-gallery">
 
-  <meta property="og:title" content="Hair Gallery | Studio One Hair Design Fresno">
-  <meta property="og:description" content="Browse our work — NBR extensions, dimensional color, keratin treatments, and curl transformations from Studio One Fresno.">
+  <meta property="og:title" content="Hair Gallery | Guest Transformations | Studio One Fresno">
+  <meta property="og:description" content="Browse real guest transformations from Studio One Fresno — NBR extensions, luxury color, and keratin treatments from Fresno's premier hair studio.">
   <meta property="og:image" content="https://www.studioonefresno.com/images/og-image.jpg">
   <meta property="og:url" content="https://www.studioonefresno.com/hair-gallery">
   <meta property="og:type" content="website">
@@ -18,7 +18,7 @@
   <link rel="icon" href="/favicon.ico">
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
-  
+
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -37,7 +37,7 @@
     fbq('init','24036206522645936');fbq('track','PageView');
   </script>
 
-  
+
 
   <style>
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -84,7 +84,37 @@
       .section-heading{font-size:30px}
       .header{padding:16px 20px}
     }
-    .gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}.gallery-grid img{aspect-ratio:1;object-fit:cover;width:100%;transition:transform .5s}.gallery-grid a:hover img{transform:scale(1.03)}.gallery-filter{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin:32px 0 48px}.gallery-filter button{font-size:12px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--light-gray);padding:8px 2px;border-bottom:1px solid transparent;transition:color .3s,border-color .3s}.gallery-filter button:hover,.gallery-filter button.active{color:var(--white);border-color:var(--olive)}@media(max-width:1024px){.gallery-grid{grid-template-columns:repeat(3,1fr)}}@media(max-width:640px){.gallery-grid{grid-template-columns:repeat(2,1fr)}}
+    .gallery-intro{text-align:center;margin-bottom:24px}
+    .gallery-intro h2{font-family:var(--heading-font);font-size:32px;font-weight:400;color:var(--white);line-height:1.2}
+    .gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
+    .gallery-grid button.gallery-item{padding:0;overflow:hidden;position:relative;display:block;aspect-ratio:1;background:var(--dark)}
+    .gallery-grid button.gallery-item img{aspect-ratio:1;object-fit:cover;width:100%;height:100%;transition:transform .5s}
+    .gallery-grid button.gallery-item:hover img{transform:scale(1.03)}
+    .gallery-grid button.gallery-item[hidden]{display:none}
+    .gallery-filter{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin:32px 0 48px}
+    .gallery-filter button{font-size:12px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--light-gray);padding:8px 2px;border-bottom:1px solid transparent;transition:color .3s,border-color .3s}
+    .gallery-filter button:hover,.gallery-filter button.active{color:var(--white);border-color:var(--olive)}
+    @media(max-width:1024px){.gallery-grid{grid-template-columns:repeat(3,1fr)}}
+    @media(max-width:640px){.gallery-grid{grid-template-columns:repeat(2,1fr)}}
+    /* Lightbox */
+    .lightbox{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.94);display:none;align-items:center;justify-content:center;padding:40px;opacity:0;transition:opacity .3s}
+    .lightbox.open{display:flex;opacity:1}
+    .lightbox-img{max-width:90vw;max-height:85vh;object-fit:contain}
+    .lightbox-close{position:absolute;top:28px;right:32px;display:flex;align-items:center;gap:8px;font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--off-white);font-weight:500}
+    .lightbox-close:hover{color:var(--olive-light)}
+    .lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);width:52px;height:52px;border-radius:50%;background:rgba(0,0,0,.4);border:1px solid rgba(245,245,245,.2);display:flex;align-items:center;justify-content:center;color:var(--off-white);transition:background .3s,border-color .3s}
+    .lightbox-nav:hover{background:var(--olive);border-color:var(--olive)}
+    .lightbox-prev{left:24px}
+    .lightbox-next{right:24px}
+    @media (max-width:640px){
+      .lightbox{padding:20px}
+      .lightbox-nav{width:40px;height:40px}
+      .lightbox-prev{left:8px}
+      .lightbox-next{right:8px}
+    }
+    .cta-stack{display:flex;flex-direction:column;align-items:center;gap:24px}
+    .insta-link{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--olive-light)}
+    .insta-link:hover{color:var(--white)}
   </style>
 
   <link rel="stylesheet" href="/styles.css" media="print" onload="this.media='all'">
@@ -157,60 +187,160 @@
   <section class="page-hero" style="min-height:55vh">
     <div class="page-hero-overlay"></div>
     <div class="page-hero-content" data-animate>
-      <p class="eyebrow">Our Work</p>
+      <p class="eyebrow">Guest Transformations</p>
       <h1>Hair Gallery</h1>
-      <p>Real transformations from real guests. Browse by category or scroll the full feed.</p>
+      <p>Recent work from the Studio One chairs — NBR extensions, luxury color, and keratin treatments on real guests.</p>
     </div>
   </section>
 
   <section class="section section--dark">
-    <div class="section-inner" data-animate>
-      <div class="gallery-filter">
+    <div class="section-inner">
+      <div class="gallery-intro" data-animate>
+        <h2>Recent Transformations</h2>
+      </div>
+      <div class="gallery-filter" data-animate>
         <button class="active" data-filter="all">View All</button>
         <button data-filter="nbr">NBR Extensions</button>
         <button data-filter="color">Luxury Color</button>
-        <button data-filter="keratin">Keratin</button>
+        <button data-filter="keratin">Keratin Treatment</button>
       </div>
-      <div class="gallery-grid" data-animate>
-        <!-- Gallery will pull from existing optimized homepage images + team portfolios -->
-        <a href="#"><img src="/images/optimized/gallery-1.webp" alt="Hair transformation" loading="lazy" decoding="async"></a>
-        <a href="#"><img src="/images/optimized/gallery-2.webp" alt="Hair transformation" loading="lazy" decoding="async"></a>
-        <a href="#"><img src="/images/optimized/gallery-3.webp" alt="Hair transformation" loading="lazy" decoding="async"></a>
-        <a href="#"><img src="/images/optimized/gallery-4.webp" alt="Hair transformation" loading="lazy" decoding="async"></a>
-        <a href="#"><img src="/images/optimized/gallery-5.webp" alt="Hair transformation" loading="lazy" decoding="async"></a>
-        <a href="#"><img src="/images/optimized/gallery-6.webp" alt="Hair transformation" loading="lazy" decoding="async"></a>
-        <a href="#"><img src="/images/optimized/gallery-7.webp" alt="Hair transformation" loading="lazy" decoding="async"></a>
-        <a href="#"><img src="/images/optimized/gallery-8.webp" alt="Hair transformation" loading="lazy" decoding="async"></a>
-        <a href="#"><img src="/images/optimized/gallery-9.webp" alt="Hair transformation" loading="lazy" decoding="async"></a>
-        <a href="#"><img src="/images/optimized/gallery-10.webp" alt="Hair transformation" loading="lazy" decoding="async"></a>
-        <a href="#"><img src="/images/optimized/gallery-11.webp" alt="Hair transformation" loading="lazy" decoding="async"></a>
-        <a href="#"><img src="/images/optimized/gallery-12.webp" alt="Hair transformation" loading="lazy" decoding="async"></a>
-        <a href="#"><img src="/images/optimized/gallery-13.webp" alt="Hair transformation" loading="lazy" decoding="async"></a>
-        <a href="#"><img src="/images/optimized/gallery-14.webp" alt="Hair transformation" loading="lazy" decoding="async"></a>
-        <a href="#"><img src="/images/optimized/gallery-15.webp" alt="Hair transformation" loading="lazy" decoding="async"></a>
-        <a href="#"><img src="/images/team/cat/portfolio-1.webp" alt="Cat Barco transformation" loading="lazy" decoding="async"></a>
-        <a href="#"><img src="/images/team/cat/portfolio-2.webp" alt="Cat Barco transformation" loading="lazy" decoding="async"></a>
-        <a href="#"><img src="/images/team/cat/portfolio-3.webp" alt="Cat Barco transformation" loading="lazy" decoding="async"></a>
-        <a href="#"><img src="/images/team/cat/portfolio-4.webp" alt="Cat Barco transformation" loading="lazy" decoding="async"></a>
-        <a href="#"><img src="/images/team/hope/portfolio-1.webp" alt="Hope Sanchez transformation" loading="lazy" decoding="async"></a>
-        <a href="#"><img src="/images/team/hope/portfolio-2.webp" alt="Hope Sanchez transformation" loading="lazy" decoding="async"></a>
-        <a href="#"><img src="/images/team/hope/portfolio-3.webp" alt="Hope Sanchez transformation" loading="lazy" decoding="async"></a>
-        <a href="#"><img src="/images/team/amber/portfolio-1.webp" alt="Amber Kehoe transformation" loading="lazy" decoding="async"></a>
-        <a href="#"><img src="/images/team/amber/portfolio-2.webp" alt="Amber Kehoe transformation" loading="lazy" decoding="async"></a>
-        <a href="#"><img src="/images/team/carina-lopez/portfolio-1.webp" alt="Carina Lopez transformation" loading="lazy" decoding="async"></a>
-        <a href="#"><img src="/images/team/carina-lopez/portfolio-2.webp" alt="Carina Lopez transformation" loading="lazy" decoding="async"></a>
-        <a href="#"><img src="/images/team/makayla-davila/portfolio-1.webp" alt="Makayla Davila transformation" loading="lazy" decoding="async"></a>
-        <a href="#"><img src="/images/team/makayla-davila/portfolio-2.webp" alt="Makayla Davila transformation" loading="lazy" decoding="async"></a>
+      <div class="gallery-grid" id="galleryGrid" data-animate>
+        <button type="button" class="gallery-item" data-cat="nbr color" data-src="/images/webflow/gallery/8e909f3e-d2bb-4f8b-97ed-7dde24299817.webp"><img src="/images/webflow/gallery/8e909f3e-d2bb-4f8b-97ed-7dde24299817.webp" alt="Hair transformation" width="800" height="800" loading="eager" decoding="async"></button>
+        <button type="button" class="gallery-item" data-cat="nbr" data-src="/images/webflow/gallery/fead5062-78b1-4c5b-b910-ef58a0f9de05.webp"><img src="/images/webflow/gallery/fead5062-78b1-4c5b-b910-ef58a0f9de05.webp" alt="Hair transformation" width="800" height="800" loading="eager" decoding="async"></button>
+        <button type="button" class="gallery-item" data-cat="color" data-src="/images/webflow/gallery/fd386cce-3495-4cae-b10c-3fd38071f686.webp"><img src="/images/webflow/gallery/fd386cce-3495-4cae-b10c-3fd38071f686.webp" alt="Hair transformation" width="800" height="800" loading="eager" decoding="async"></button>
+        <button type="button" class="gallery-item" data-cat="nbr color" data-src="/images/webflow/gallery/fa51ecad-fbf6-4a53-a212-4bc67818470d.webp"><img src="/images/webflow/gallery/fa51ecad-fbf6-4a53-a212-4bc67818470d.webp" alt="Hair transformation" width="800" height="800" loading="eager" decoding="async"></button>
+        <button type="button" class="gallery-item" data-cat="color" data-src="/images/webflow/gallery/e918ae7e-22d8-4231-b76c-35e1c45fb23e.webp"><img src="/images/webflow/gallery/e918ae7e-22d8-4231-b76c-35e1c45fb23e.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" data-cat="nbr" data-src="/images/webflow/gallery/d206a345-4fb4-4c3f-a6e4-5877ec573b31.webp"><img src="/images/webflow/gallery/d206a345-4fb4-4c3f-a6e4-5877ec573b31.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" data-cat="color" data-src="/images/webflow/gallery/d6a79973-b466-48c4-8462-da40c7d70f9d.webp"><img src="/images/webflow/gallery/d6a79973-b466-48c4-8462-da40c7d70f9d.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" data-cat="keratin" data-src="/images/webflow/gallery/cd11106b-5813-4a4d-ab20-7437619f2ff9.webp"><img src="/images/webflow/gallery/cd11106b-5813-4a4d-ab20-7437619f2ff9.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" data-cat="nbr" data-src="/images/webflow/gallery/ac82ae5e-ef75-4dc0-8b1d-c3e02550db50.webp"><img src="/images/webflow/gallery/ac82ae5e-ef75-4dc0-8b1d-c3e02550db50.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" data-cat="color" data-src="/images/webflow/gallery/c5281899-3c5d-494d-a715-a8c91fb53c29.webp"><img src="/images/webflow/gallery/c5281899-3c5d-494d-a715-a8c91fb53c29.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" data-cat="nbr color" data-src="/images/webflow/gallery/c33c1d56-a9d1-46b8-91a5-e312d6aaf60b.webp"><img src="/images/webflow/gallery/c33c1d56-a9d1-46b8-91a5-e312d6aaf60b.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" data-cat="nbr" data-src="/images/webflow/gallery/bdaf4812-bd16-4837-9f89-03c28367ebbe.webp"><img src="/images/webflow/gallery/bdaf4812-bd16-4837-9f89-03c28367ebbe.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" data-cat="color" data-src="/images/webflow/gallery/999e24f5-99c5-4de5-824e-e2a4cc92afcb.webp"><img src="/images/webflow/gallery/999e24f5-99c5-4de5-824e-e2a4cc92afcb.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" data-cat="nbr color" data-src="/images/webflow/gallery/151dc96c-ebf0-47cc-a327-495611dc3f01.webp"><img src="/images/webflow/gallery/151dc96c-ebf0-47cc-a327-495611dc3f01.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" data-cat="color" data-src="/images/webflow/gallery/3452ca31-3422-4fe8-8bb2-6ad081395d64.webp"><img src="/images/webflow/gallery/3452ca31-3422-4fe8-8bb2-6ad081395d64.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" data-cat="nbr" data-src="/images/webflow/gallery/a6f86b6c-7925-43fe-ba68-1062c83b5ba6.webp"><img src="/images/webflow/gallery/a6f86b6c-7925-43fe-ba68-1062c83b5ba6.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" data-cat="color" data-src="/images/webflow/gallery/68994865-961c-4d6e-8bce-aab564e7c525.webp"><img src="/images/webflow/gallery/68994865-961c-4d6e-8bce-aab564e7c525.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" data-cat="nbr" data-src="/images/webflow/gallery/9862c4b6-44ed-4b44-9f3a-087219167767.webp"><img src="/images/webflow/gallery/9862c4b6-44ed-4b44-9f3a-087219167767.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" data-cat="nbr color" data-src="/images/webflow/gallery/0664dcf8-1e95-4072-8240-15d3e9d861d5.webp"><img src="/images/webflow/gallery/0664dcf8-1e95-4072-8240-15d3e9d861d5.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" data-cat="keratin" data-src="/images/webflow/gallery/554cedb3-6ab7-4724-9957-b95ea9e8b4f4.webp"><img src="/images/webflow/gallery/554cedb3-6ab7-4724-9957-b95ea9e8b4f4.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" data-cat="nbr" data-src="/images/webflow/gallery/d6963495-8d0a-4260-8b80-81e6078e0eba.webp"><img src="/images/webflow/gallery/d6963495-8d0a-4260-8b80-81e6078e0eba.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" data-cat="color" data-src="/images/webflow/gallery/195de183-49d1-4275-ac31-148d08b8237c.webp"><img src="/images/webflow/gallery/195de183-49d1-4275-ac31-148d08b8237c.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" data-cat="nbr color" data-src="/images/webflow/gallery/97dbcf64-083f-41f6-a19a-9d9456ee7edc.webp"><img src="/images/webflow/gallery/97dbcf64-083f-41f6-a19a-9d9456ee7edc.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" data-cat="color" data-src="/images/webflow/gallery/88d027dd-b7e3-42b1-a0a1-55b7a6948617.webp"><img src="/images/webflow/gallery/88d027dd-b7e3-42b1-a0a1-55b7a6948617.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" data-cat="nbr" data-src="/images/webflow/gallery/86baea16-1aa4-4105-8d84-f4ce3819b2ed.webp"><img src="/images/webflow/gallery/86baea16-1aa4-4105-8d84-f4ce3819b2ed.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" data-cat="color" data-src="/images/webflow/gallery/67bf5406-d51b-4369-a813-f76399662b53.webp"><img src="/images/webflow/gallery/67bf5406-d51b-4369-a813-f76399662b53.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" data-cat="nbr" data-src="/images/webflow/gallery/62c8fb93-c071-462a-85d9-42554f7b94f3.webp"><img src="/images/webflow/gallery/62c8fb93-c071-462a-85d9-42554f7b94f3.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" data-cat="keratin" data-src="/images/webflow/gallery/d14988fa-7dca-4422-875b-a53977147d93.webp"><img src="/images/webflow/gallery/d14988fa-7dca-4422-875b-a53977147d93.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" data-cat="nbr color" data-src="/images/webflow/gallery/50b4254a-b898-479c-bbcd-d58f8dd9c29e.webp"><img src="/images/webflow/gallery/50b4254a-b898-479c-bbcd-d58f8dd9c29e.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" data-cat="color" data-src="/images/webflow/gallery/43fdd92b-64d9-4c0d-b5fc-dce2944a54ed.webp"><img src="/images/webflow/gallery/43fdd92b-64d9-4c0d-b5fc-dce2944a54ed.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" data-cat="nbr" data-src="/images/webflow/gallery/35c60098-5eb6-42ec-857d-a81b98df8754.webp"><img src="/images/webflow/gallery/35c60098-5eb6-42ec-857d-a81b98df8754.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" data-cat="color" data-src="/images/webflow/gallery/30e34078-9ba1-4381-8ac7-960df01879a4.webp"><img src="/images/webflow/gallery/30e34078-9ba1-4381-8ac7-960df01879a4.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" data-cat="nbr color" data-src="/images/webflow/gallery/14f9c241-e7b2-4180-b95d-32caa4164895.webp"><img src="/images/webflow/gallery/14f9c241-e7b2-4180-b95d-32caa4164895.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" data-cat="nbr" data-src="/images/webflow/gallery/9b9c4c7d-c2c6-4741-9246-f389f6ea1743.webp"><img src="/images/webflow/gallery/9b9c4c7d-c2c6-4741-9246-f389f6ea1743.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" data-cat="color" data-src="/images/webflow/gallery/009aab06-1564-4e55-a940-ad764f7fb211.webp"><img src="/images/webflow/gallery/009aab06-1564-4e55-a940-ad764f7fb211.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" data-cat="nbr" data-src="/images/webflow/gallery/8da3a8c4-28b8-4422-a87a-d92023c5f534.webp"><img src="/images/webflow/gallery/8da3a8c4-28b8-4422-a87a-d92023c5f534.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" data-cat="color" data-src="/images/webflow/gallery/7a792944-c63c-422f-b2d7-3d6059202f6f.webp"><img src="/images/webflow/gallery/7a792944-c63c-422f-b2d7-3d6059202f6f.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" data-cat="nbr color" data-src="/images/webflow/gallery/006f748c-2e87-497b-adda-07726568ea6c.webp"><img src="/images/webflow/gallery/006f748c-2e87-497b-adda-07726568ea6c.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" data-cat="keratin" data-src="/images/webflow/gallery/5ecce647-ecde-4a46-a311-a2ef34511bb5.webp"><img src="/images/webflow/gallery/5ecce647-ecde-4a46-a311-a2ef34511bb5.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" data-cat="color" data-src="/images/webflow/gallery/5dbb1aa0-2a33-4e0e-9338-b7113f7c85b2.webp"><img src="/images/webflow/gallery/5dbb1aa0-2a33-4e0e-9338-b7113f7c85b2.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" data-cat="nbr" data-src="/images/webflow/gallery/5d01ff4c-565a-4a26-9512-8e8ee5e8adc3.webp"><img src="/images/webflow/gallery/5d01ff4c-565a-4a26-9512-8e8ee5e8adc3.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" data-cat="color" data-src="/images/webflow/gallery/4b46cd9c-5143-44ca-8527-c563a4f7ead9.webp"><img src="/images/webflow/gallery/4b46cd9c-5143-44ca-8527-c563a4f7ead9.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" data-cat="nbr color" data-src="/images/webflow/gallery/3d5fc523-00ce-47cb-a239-d042abdbca71.webp"><img src="/images/webflow/gallery/3d5fc523-00ce-47cb-a239-d042abdbca71.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" data-cat="color" data-src="/images/webflow/gallery/3cf0c884-111c-4ef0-a376-89d3c38f82af.webp"><img src="/images/webflow/gallery/3cf0c884-111c-4ef0-a376-89d3c38f82af.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" data-cat="nbr" data-src="/images/webflow/gallery/2ea863ec-d0f8-4919-ab35-e5ec84e28d78.webp"><img src="/images/webflow/gallery/2ea863ec-d0f8-4919-ab35-e5ec84e28d78.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" data-cat="color" data-src="/images/webflow/gallery/2d0d342e-228a-4efd-855a-cebbbe4cbecc.webp"><img src="/images/webflow/gallery/2d0d342e-228a-4efd-855a-cebbbe4cbecc.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" data-cat="keratin" data-src="/images/webflow/gallery/5555dd16-e262-48a9-b482-a856fd0d8bb2.webp"><img src="/images/webflow/gallery/5555dd16-e262-48a9-b482-a856fd0d8bb2.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" data-cat="nbr color" data-src="/images/webflow/gallery/2af17aa0-42ab-4853-bcdf-747f736c5c10.webp"><img src="/images/webflow/gallery/2af17aa0-42ab-4853-bcdf-747f736c5c10.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" data-cat="nbr" data-src="/images/webflow/gallery/2a3a2da2-7c7a-4088-922a-23627e0b6175.webp"><img src="/images/webflow/gallery/2a3a2da2-7c7a-4088-922a-23627e0b6175.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" data-cat="color" data-src="/images/webflow/gallery/1ddabca5-0f2d-41d5-b86d-37221040df7b.webp"><img src="/images/webflow/gallery/1ddabca5-0f2d-41d5-b86d-37221040df7b.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" data-cat="nbr" data-src="/images/webflow/gallery/1ad0a2c7-9848-439a-97b1-bd33dc639a8c.webp"><img src="/images/webflow/gallery/1ad0a2c7-9848-439a-97b1-bd33dc639a8c.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" data-cat="color" data-src="/images/webflow/gallery/1a1353e0-aa5b-4535-b3a3-ba69e4368de0.webp"><img src="/images/webflow/gallery/1a1353e0-aa5b-4535-b3a3-ba69e4368de0.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" data-cat="nbr color" data-src="/images/webflow/gallery/0bd9955c-2a09-4df2-ac59-78ba661c2cbc.webp"><img src="/images/webflow/gallery/0bd9955c-2a09-4df2-ac59-78ba661c2cbc.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" data-cat="nbr" data-src="/images/webflow/gallery/0b75b07b-4024-48ae-bdf9-57be1fab66ae.webp"><img src="/images/webflow/gallery/0b75b07b-4024-48ae-bdf9-57be1fab66ae.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
       </div>
     </div>
   </section>
 
   <section class="section text-center">
     <div class="section-inner" data-animate>
-      <h2 class="section-heading" style="max-width:720px;margin:0 auto 20px">Your transformation starts here.</h2>
-      <a href="/booking" class="olive-button">book your consultation</a>
+      <div class="cta-stack">
+        <h2 class="section-heading" style="max-width:720px;margin:0 auto">Ready to join the #PrettyHairClub?</h2>
+        <a href="/booking" class="olive-button">book now</a>
+        <a href="https://www.instagram.com/studioonefresno/" target="_blank" rel="noopener" class="insta-link">See more on Instagram: @studioonefresno</a>
+      </div>
     </div>
   </section>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-label="Image viewer" aria-modal="true">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close">Close <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous image"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    <img class="lightbox-img" id="lightboxImg" src="" alt="">
+    <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next image"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+  </div>
+
+  <script>
+    (function(){
+      var filters = document.querySelectorAll('.gallery-filter button');
+      var items = document.querySelectorAll('#galleryGrid .gallery-item');
+      filters.forEach(function(btn){
+        btn.addEventListener('click', function(){
+          filters.forEach(function(b){b.classList.remove('active');});
+          btn.classList.add('active');
+          var f = btn.getAttribute('data-filter');
+          items.forEach(function(item){
+            if (f === 'all' || (item.getAttribute('data-cat')||'').split(' ').indexOf(f) > -1) {
+              item.hidden = false;
+            } else {
+              item.hidden = true;
+            }
+          });
+        });
+      });
+
+      var lightbox = document.getElementById('lightbox');
+      var lightboxImg = document.getElementById('lightboxImg');
+      var lightboxClose = document.getElementById('lightboxClose');
+      var lightboxPrev = document.getElementById('lightboxPrev');
+      var lightboxNext = document.getElementById('lightboxNext');
+      var currentIndex = 0;
+
+      function visibleItems(){
+        return Array.prototype.filter.call(items, function(el){ return !el.hidden; });
+      }
+      function openAt(i){
+        var list = visibleItems();
+        if (!list.length) return;
+        currentIndex = (i + list.length) % list.length;
+        lightboxImg.src = list[currentIndex].getAttribute('data-src');
+        lightbox.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+      function close(){
+        lightbox.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+      items.forEach(function(item, idx){
+        item.addEventListener('click', function(){
+          var list = visibleItems();
+          var i = list.indexOf(item);
+          if (i > -1) openAt(i);
+        });
+      });
+      lightboxClose.addEventListener('click', close);
+      lightboxPrev.addEventListener('click', function(){ openAt(currentIndex - 1); });
+      lightboxNext.addEventListener('click', function(){ openAt(currentIndex + 1); });
+      lightbox.addEventListener('click', function(e){ if (e.target === lightbox) close(); });
+      document.addEventListener('keydown', function(e){
+        if (!lightbox.classList.contains('open')) return;
+        if (e.key === 'Escape') close();
+        if (e.key === 'ArrowLeft') openAt(currentIndex - 1);
+        if (e.key === 'ArrowRight') openAt(currentIndex + 1);
+      });
+    })();
+  </script>
 
   <script src="/script.js" defer></script>
 </body>
