@@ -218,6 +218,17 @@
     .faq-filter-btn:hover{color:var(--white);border-color:var(--olive-light)}
     .faq-filter-btn.is-active{background:var(--olive);border-color:var(--olive);color:var(--white)}
     .faq-item[hidden]{display:none}
+    .text-center{text-align:center}
+
+    /* Testimonials with photos */
+    .testimonial--with-photo{display:grid;grid-template-columns:200px 1fr;gap:24px;align-items:center;padding:32px 28px}
+    .testimonial--with-photo .testimonial-photo{width:200px;height:200px;overflow:hidden;border-radius:4px;background:#1a1a1a}
+    .testimonial--with-photo .testimonial-photo img{width:100%;height:100%;object-fit:cover}
+    .testimonial--with-photo .testimonial-text{display:flex;flex-direction:column;gap:0}
+    @media (max-width:768px){
+      .testimonial--with-photo{grid-template-columns:1fr;text-align:left;gap:20px}
+      .testimonial--with-photo .testimonial-photo{width:100%;height:240px}
+    }
   </style>
 
   <link rel="stylesheet" href="/styles.css" media="print" onload="this.media='all'">
@@ -301,23 +312,6 @@
     </div>
   </section>
 
-  <!-- ==================== VIDEO ==================== -->
-  <section class="section video-section" style="padding:80px 40px">
-    <div class="section-inner text-center" data-animate>
-      <p class="eyebrow">See It In Action</p>
-      <h2 class="section-heading" style="max-width:800px;margin:0 auto 32px">How NBR Hair Extensions come to life</h2>
-      <div class="video-wrap">
-        <iframe src="https://www.youtube-nocookie.com/embed/M4zzCYIE9ZY"
-                title="NBR Hair Extensions at Studio One"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allowfullscreen
-                loading="lazy"></iframe>
-      </div>
-    </div>
-  </section>
-
   <!-- ==================== GALLERY TICKER ==================== -->
   <section class="section section--dark gallery-ticker-wrap" style="padding:60px 0">
     <div class="ticker" data-animate>
@@ -396,6 +390,23 @@
     </div>
   </section>
 
+  <!-- ==================== VIDEO ==================== -->
+  <section class="section video-section" style="padding:80px 40px">
+    <div class="section-inner text-center" data-animate>
+      <p class="eyebrow">See It In Action</p>
+      <h2 class="section-heading" style="max-width:800px;margin:0 auto 32px">How NBR Hair Extensions come to life</h2>
+      <div class="video-wrap">
+        <iframe src="https://www.youtube-nocookie.com/embed/M4zzCYIE9ZY"
+                title="NBR Hair Extensions at Studio One"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+                loading="lazy"></iframe>
+      </div>
+    </div>
+  </section>
+
   <!-- ==================== PROCESS / HOW TO APPLY ==================== -->
   <section class="section">
     <div class="section-inner">
@@ -434,17 +445,25 @@
         <h2 class="section-heading">Why choose NBR at Studio One?</h2>
       </div>
       <div class="testimonials-strip" data-animate>
-        <div class="testimonial">
+        <div class="testimonial testimonial--with-photo">
+          <div class="testimonial-photo"><img src="/images/blog/barbaras-nbr-hair-extension-journey-at-studio-one.webp" alt="Hair transformation by Barbara G." loading="lazy"></div>
+          <div class="testimonial-text">
           <p class="testimonial-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</p>
           <p class="testimonial-quote">&ldquo;I leave feeling confident and looking my best!&rdquo;</p>
           <p class="testimonial-body">Cat is quite the artist I trust her opinion on what will look best for me. She is a professional and super talented. I always feel well cared for, and understands what look I'm going for.</p>
           <p class="testimonial-author">&mdash; Barbara G.</p>
+        
+          </div>
         </div>
-        <div class="testimonial">
+        <div class="testimonial testimonial--with-photo">
+          <div class="testimonial-photo"><img src="/images/webflow/gallery/3cf0c884-111c-4ef0-a376-89d3c38f82af-p-800.webp" alt="Hair transformation by Sontoya R." loading="lazy"></div>
+          <div class="testimonial-text">
           <p class="testimonial-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</p>
           <p class="testimonial-quote">&ldquo;She gave me the long luxurious hair that my genetics could not!&rdquo;</p>
           <p class="testimonial-body">Before I got extensions from Cat, my hair was flat and fine without tons of teasing and caked on hair products! Now, my hair is what I always imagined it could be! The extensions look and feel natural and hold style so well. Super grateful I was introduced to Cat and she gave me the long luxurious hair that my genetics could not!</p>
           <p class="testimonial-author">&mdash; Sontoya R.</p>
+        
+          </div>
         </div>
       </div>
     </div>
@@ -686,7 +705,6 @@
       <a href="/legal">Legal</a>
     </div>
   </footer>
-
 
   <script src="/script.js" defer></script>
   <script>
