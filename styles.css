@@ -949,3 +949,13 @@ button { cursor: pointer; background: none; border: none; color: inherit; font-f
   .hero-bg-image img { object-position: calc(100% + 100px) center; }
   .nav-links a { font-size: 20px; }
 }
+
+
+/* Menu overlay logo */
+.nav-logo{display:inline-block;margin-bottom:48px;opacity:.95;transition:opacity .3s ease}
+.nav-logo:hover{opacity:1}
+.nav-logo img{height:36px;width:auto;display:block}
+@media (max-width:768px){
+  .nav-logo{margin-bottom:32px}
+  .nav-logo img{height:30px}
+}
