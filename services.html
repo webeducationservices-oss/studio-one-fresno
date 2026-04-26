@@ -103,15 +103,18 @@
     .banner-strip-content{position:relative;z-index:2;max-width:860px}
     .banner-strip-content h2{font-family:var(--heading-font);font-size:44px;color:var(--white);font-weight:400;line-height:1.2;margin-bottom:24px}
 
-    /* FAQ */
-    .faq-list{max-width:820px;margin:48px auto 0}
-    .faq-item{border-bottom:1px solid rgba(255,255,255,.08);padding:20px 0}
-    .faq-q{display:flex;justify-content:space-between;align-items:center;width:100%;text-align:left;font-size:15px;font-weight:500;color:var(--off-white);gap:16px}
-    .faq-q span{font-size:20px;color:var(--olive-light);transition:transform .3s;flex-shrink:0}
-    .faq-q.is-open span{transform:rotate(45deg)}
-    .faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s ease}
-    .faq-a.is-open{max-height:500px;padding-top:14px}
-    .faq-a p{font-size:14px;color:var(--light-gray);line-height:1.8;font-weight:300}
+    /* FAQ — refined card style */
+    .faq-list{max-width:880px;margin:64px auto 0;display:flex;flex-direction:column;gap:14px}
+    .faq-item{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.06);border-radius:6px;overflow:hidden;transition:border-color .3s ease,background .3s ease}
+    .faq-item:hover{border-color:rgba(76,82,35,.4);background:rgba(255,255,255,.04)}
+    .faq-q{display:flex;justify-content:space-between;align-items:center;width:100%;text-align:left;font-family:var(--heading-font);font-size:20px;font-weight:400;color:var(--white);gap:24px;padding:22px 28px;line-height:1.35;cursor:pointer;transition:color .3s ease}
+    .faq-q:hover{color:var(--olive-light)}
+    .faq-q span{display:flex;align-items:center;justify-content:center;width:32px;height:32px;border:1px solid var(--olive);border-radius:50%;font-size:14px;font-weight:300;color:var(--olive-light);transition:transform .4s cubic-bezier(.4,0,.2,1),background .3s ease,border-color .3s ease,color .3s ease;flex-shrink:0}
+    .faq-q:hover span{background:var(--olive);color:var(--white);border-color:var(--olive)}
+    .faq-q.is-open span{transform:rotate(45deg);background:var(--olive);color:var(--white);border-color:var(--olive)}
+    .faq-a{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.4,0,.2,1)}
+    .faq-a.is-open{max-height:600px}
+    .faq-a p{font-size:15px;color:var(--light-gray);line-height:1.8;font-weight:300;margin:0;padding:0 28px 26px;border-top:1px solid rgba(255,255,255,.06);padding-top:18px}
 
     @media (max-width:1024px){
       .nbr-feature{grid-template-columns:1fr;gap:40px}
@@ -149,6 +152,9 @@
       .menu-row,.menu-row--reverse{grid-template-columns:1fr;gap:32px;direction:ltr}
       .menu-row-image{aspect-ratio:16/10;order:-1}
     }
+
+    .menu-item-book{display:inline-block;margin-top:10px;font-size:11px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--olive-light);border-bottom:1px solid var(--olive);padding-bottom:2px;transition:color .3s,border-color .3s}
+    .menu-item-book:hover{color:var(--white);border-color:var(--olive-light)}
   </style>
 
   <link rel="stylesheet" href="/styles.css" media="print" onload="this.media='all'">
@@ -241,12 +247,22 @@
           <p class="eyebrow">Color</p>
           <h2 class="section-heading">Luxury Color &amp; Highlights</h2>
           <div class="menu-list">
-            <div class="menu-item"><div class="menu-item-head"><span class="menu-item-name">Mini Highlight</span><span class="menu-item-price">$90+</span></div><p class="menu-item-desc">1.5h &middot; Targeted brightening around the face or part.</p></div>
-            <div class="menu-item"><div class="menu-item-head"><span class="menu-item-name">Touch-Up / All-Over Color</span><span class="menu-item-price">$120&ndash;$195</span></div><p class="menu-item-desc">2h &middot; Root touch-up or all-over color refresh.</p></div>
-            <div class="menu-item"><div class="menu-item-head"><span class="menu-item-name">Partial Blonding</span><span class="menu-item-price">$150&ndash;$180</span></div><p class="menu-item-desc">2.5h &middot; Partial highlights for dimensional lift.</p></div>
-            <div class="menu-item"><div class="menu-item-head"><span class="menu-item-name">Full Head Blonding</span><span class="menu-item-price">$180&ndash;$375</span></div><p class="menu-item-desc">3h &middot; Full-foil blonding, blowout included.</p></div>
-            <div class="menu-item"><div class="menu-item-head"><span class="menu-item-name">Transformation / Color Correction</span><span class="menu-item-price">$260&ndash;$640</span></div><p class="menu-item-desc">4h &middot; Complex color change or correction work.</p></div>
-          </div>
+            <div class="menu-item"><div class="menu-item-head"><span class="menu-item-name">Mini Highlight</span><span class="menu-item-price">$90+</span></div><p class="menu-item-desc">1.5h &middot; Targeted brightening around the face or part.</p>
+              <a href="https://www.vagaro.com/studioone4/services" target="_blank" rel="noopener" class="menu-item-book">Book Now &rarr;</a>
+            </div>
+            <div class="menu-item"><div class="menu-item-head"><span class="menu-item-name">Touch-Up / All-Over Color</span><span class="menu-item-price">$120&ndash;$195</span></div><p class="menu-item-desc">2h &middot; Root touch-up or all-over color refresh.</p>
+              <a href="https://www.vagaro.com/studioone4/services" target="_blank" rel="noopener" class="menu-item-book">Book Now &rarr;</a>
+            </div>
+            <div class="menu-item"><div class="menu-item-head"><span class="menu-item-name">Partial Blonding</span><span class="menu-item-price">$150&ndash;$180</span></div><p class="menu-item-desc">2.5h &middot; Partial highlights for dimensional lift.</p>
+              <a href="https://www.vagaro.com/studioone4/services" target="_blank" rel="noopener" class="menu-item-book">Book Now &rarr;</a>
+            </div>
+            <div class="menu-item"><div class="menu-item-head"><span class="menu-item-name">Full Head Blonding</span><span class="menu-item-price">$180&ndash;$375</span></div><p class="menu-item-desc">3h &middot; Full-foil blonding, blowout included.</p>
+              <a href="https://www.vagaro.com/studioone4/services" target="_blank" rel="noopener" class="menu-item-book">Book Now &rarr;</a>
+            </div>
+            <div class="menu-item"><div class="menu-item-head"><span class="menu-item-name">Transformation / Color Correction</span><span class="menu-item-price">$260&ndash;$640</span></div><p class="menu-item-desc">4h &middot; Complex color change or correction work.</p>
+              <a href="https://www.vagaro.com/studioone4/services" target="_blank" rel="noopener" class="menu-item-book">Book Now &rarr;</a>
+            </div>
+            </div>
         </div>
       </div>
     </div>
@@ -263,9 +279,13 @@
           <p class="eyebrow">Cut + Style</p>
           <h2 class="section-heading">Cut &amp; Styling</h2>
           <div class="menu-list">
-            <div class="menu-item"><div class="menu-item-head"><span class="menu-item-name">Signature Blowout</span><span class="menu-item-price">$45&ndash;$65</span></div><p class="menu-item-desc">45m &middot; Smooth, polished blowout styling.</p></div>
-            <div class="menu-item"><div class="menu-item-head"><span class="menu-item-name">Haircut &amp; Blow Dry</span><span class="menu-item-price">$85&ndash;$150</span></div><p class="menu-item-desc">45m &middot; Custom cut with blowout finish.</p></div>
-          </div>
+            <div class="menu-item"><div class="menu-item-head"><span class="menu-item-name">Signature Blowout</span><span class="menu-item-price">$45&ndash;$65</span></div><p class="menu-item-desc">45m &middot; Smooth, polished blowout styling.</p>
+              <a href="https://www.vagaro.com/studioone4/services" target="_blank" rel="noopener" class="menu-item-book">Book Now &rarr;</a>
+            </div>
+            <div class="menu-item"><div class="menu-item-head"><span class="menu-item-name">Haircut &amp; Blow Dry</span><span class="menu-item-price">$85&ndash;$150</span></div><p class="menu-item-desc">45m &middot; Custom cut with blowout finish.</p>
+              <a href="https://www.vagaro.com/studioone4/services" target="_blank" rel="noopener" class="menu-item-book">Book Now &rarr;</a>
+            </div>
+            </div>
         </div>
       </div>
     </div>
@@ -282,8 +302,10 @@
           <p class="eyebrow">Treatment</p>
           <h2 class="section-heading">Treatments</h2>
           <div class="menu-list">
-            <div class="menu-item"><div class="menu-item-head"><span class="menu-item-name">Keratin Smoothing</span><span class="menu-item-price">$290+ / 2oz</span></div><p class="menu-item-desc">Additional oz $30 each &middot; Smoothing treatment for frizz-free, manageable hair.</p></div>
-          </div>
+            <div class="menu-item"><div class="menu-item-head"><span class="menu-item-name">Keratin Smoothing</span><span class="menu-item-price">$290+ / 2oz</span></div><p class="menu-item-desc">Additional oz $30 each &middot; Smoothing treatment for frizz-free, manageable hair.</p>
+              <a href="https://www.vagaro.com/studioone4/services" target="_blank" rel="noopener" class="menu-item-book">Book Now &rarr;</a>
+            </div>
+            </div>
         </div>
       </div>
     </div>
