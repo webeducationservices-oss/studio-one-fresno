@@ -83,14 +83,14 @@
     .floating-phone{width:56px;height:56px;background:var(--olive);border-radius:50%;display:flex;align-items:center;justify-content:center}
     .nav-overlay{position:fixed;inset:0;z-index:200;background:var(--black);opacity:0;pointer-events:none}
     
-    .page-hero-bg{position:absolute;inset:0;z-index:0;opacity:.3}
-    .page-hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 30%}
-    .page-hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,.75));z-index:1}
-    .page-hero-content{position:relative;z-index:2}
-.page-hero{position:relative;min-height:60vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:140px 40px 80px;background:var(--black)}
-    .page-hero .eyebrow{font-size:11px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--olive-light);margin-bottom:18px;display:block}
-    .page-hero h1{font-family:var(--heading-font);font-size:64px;font-weight:400;line-height:1.1;color:var(--white);margin-bottom:20px;letter-spacing:-0.01em}
-    .page-hero p{font-size:17px;color:var(--light-gray);font-weight:300;max-width:640px;line-height:1.7;margin:0 auto}
+    .page-hero{position:relative;min-height:80vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:140px 40px 80px;background:var(--black);overflow:hidden}
+    .page-hero-bg{position:absolute;inset:0;z-index:0}
+    .page-hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 35%}
+    .page-hero-overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.45) 0%,rgba(0,0,0,.7) 55%,rgba(0,0,0,.92) 100%);z-index:1}
+    .page-hero-content{position:relative;z-index:2;max-width:900px}
+    .page-hero .eyebrow{font-size:11px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--olive-light);margin-bottom:18px;display:block;text-shadow:0 1px 14px rgba(0,0,0,.6)}
+    .page-hero h1{font-family:var(--heading-font);font-size:64px;font-weight:400;line-height:1.1;color:var(--white);margin-bottom:20px;letter-spacing:-0.01em;text-shadow:0 2px 24px rgba(0,0,0,.6)}
+    .page-hero p{font-size:17px;color:var(--off-white);font-weight:300;max-width:640px;line-height:1.7;margin:0 auto;text-shadow:0 1px 14px rgba(0,0,0,.6)}
     [data-animate]{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
     [data-animate].is-visible{opacity:1;transform:translate(0,0)}
 
@@ -174,6 +174,18 @@
       .team-closing{padding:72px 24px}
       .team-closing h2{font-size:30px}
     }
+
+    /* Scrolling ticker (shared with /nbr-extensions) */
+    .salon-gallery-section .ticker{overflow:hidden;position:relative}
+    .salon-gallery-section .ticker::before,.salon-gallery-section .ticker::after{content:"";position:absolute;top:0;bottom:0;width:120px;z-index:2;pointer-events:none}
+    .salon-gallery-section .ticker::before{left:0;background:linear-gradient(90deg,var(--black),transparent)}
+    .salon-gallery-section .ticker::after{right:0;background:linear-gradient(270deg,var(--black),transparent)}
+    .ticker-track{display:flex;gap:12px;width:max-content;animation:ticker 90s linear infinite;will-change:transform}
+    .ticker-track:hover{animation-play-state:paused}
+    .ticker-tile{flex:0 0 auto;width:280px;height:280px;overflow:hidden;border-radius:4px;background:#1a1a1a}
+    .ticker-tile img{width:100%;height:100%;object-fit:cover;display:block}
+    @keyframes ticker{to{transform:translateX(-50%)}}
+    @media(max-width:768px){.ticker-tile{width:200px;height:200px}}
   </style>
 </head>
 <body>
@@ -259,7 +271,7 @@
 
   <!-- ==================== PAGE HERO ==================== -->
   <section class="page-hero">
-      <div class="page-hero-bg"><img src="/images/webflow/team-group/egcp-012-p-1080.webp" alt="The Studio One team"></div>
+      <div class="page-hero-bg"><img src="/images/pages/meet-the-team-hero.webp" alt="The Studio One team" fetchpriority="high"></div>
       <div class="page-hero-overlay"></div>
       
     <div data-animate>
@@ -353,52 +365,97 @@
         <span class="eyebrow">Our Space</span>
         <h2>Inside the Salon</h2>
       </div>
-
-      <div class="salon-gallery" data-animate>
-        <div class="g-item"><img src="/images/webflow/team-group/egcp-034.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
-        <div class="g-item"><img src="/images/webflow/team-group/egcp-069.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
-        <div class="g-item"><img src="/images/webflow/team-group/egcp-012.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
-        <div class="g-item"><img src="/images/webflow/team-group/egcp-055.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
-        <div class="g-item"><img src="/images/webflow/team-group/egcp-008.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
-        <div class="g-item"><img src="/images/webflow/team-group/egcp-032.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
-        <div class="g-item"><img src="/images/webflow/team-group/egcp-056.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
-        <div class="g-item"><img src="/images/webflow/team-group/screenshot-202025-10-24-20at-2010-43-39-e2-80-afam.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
-        <div class="g-item"><img src="/images/webflow/team-group/egcp-001.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
-        <div class="g-item"><img src="/images/webflow/team-group/egcp-039.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
-        <div class="g-item"><img src="/images/webflow/team-group/egcp-037.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
-        <div class="g-item"><img src="/images/webflow/team-group/egcp-026.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
-        <div class="g-item"><img src="/images/webflow/team-group/egcp-057.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
-        <div class="g-item"><img src="/images/webflow/team-group/egcp-106.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
-        <div class="g-item"><img src="/images/webflow/team-group/egcp-184.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
-        <div class="g-item"><img src="/images/webflow/team-group/egcp-035.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
-        <div class="g-item"><img src="/images/webflow/team-group/egcp-046.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
-        <div class="g-item"><img src="/images/webflow/team-group/egcp-023.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
-        <div class="g-item"><img src="/images/webflow/team-group/egcp-025.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
-        <div class="g-item"><img src="/images/webflow/team-group/egcp-081.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
-        <div class="g-item"><img src="/images/webflow/team-group/egcp-051.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
-        <div class="g-item"><img src="/images/webflow/team-group/egcp-096.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
-        <div class="g-item"><img src="/images/webflow/team-group/egcp-042.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
-        <div class="g-item"><img src="/images/webflow/team-group/egcp-022.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
-        <div class="g-item"><img src="/images/webflow/team-group/egcp-052.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
-        <div class="g-item"><img src="/images/webflow/team-group/egcp-101.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
-        <div class="g-item"><img src="/images/webflow/team-group/egcp-019.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
-        <div class="g-item"><img src="/images/webflow/team-group/egcp-060.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
-        <div class="g-item"><img src="/images/webflow/team-group/egcp-215.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
-        <div class="g-item"><img src="/images/webflow/team-group/egcp-020.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
-        <div class="g-item"><img src="/images/webflow/team-group/screenshot-202025-10-24-20at-2010-43-27-e2-80-afam.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
-        <div class="g-item"><img src="/images/webflow/team-group/egcp-030.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
-        <div class="g-item"><img src="/images/webflow/team-group/egcp-073.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
-        <div class="g-item"><img src="/images/webflow/team-group/egcp-013.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
-        <div class="g-item"><img src="/images/webflow/team-group/egcp-065.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
-        <div class="g-item"><img src="/images/webflow/team-group/egcp-016.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
-        <div class="g-item"><img src="/images/webflow/team-group/egcp-003.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
-        <div class="g-item"><img src="/images/webflow/team-group/screenshot-202025-10-24-20at-2010-43-52-e2-80-afam.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
-        <div class="g-item"><img src="/images/webflow/team-group/egcp-082.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
-        <div class="g-item"><img src="/images/webflow/team-group/egcp-191.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
-        <div class="g-item"><img src="/images/webflow/team-group/egcp-088.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
-        <div class="g-item"><img src="/images/webflow/team-group/screenshot-202025-10-24-20at-2010-43-57-e2-80-afam.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
-        <div class="g-item"><img src="/images/webflow/team-group/screenshot-202025-10-24-20at-2010-44-09-e2-80-afam.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
-        <div class="g-item"><img src="/images/webflow/team-group/egcp-029.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+      <div class="ticker" data-animate>
+        <div class="ticker-track">
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-034.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-069.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-012.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-055.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-008.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-032.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-056.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/screenshot-202025-10-24-20at-2010-43-39-e2-80-afam.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-001.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-039.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-037.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-026.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-057.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-106.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-184.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-035.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-046.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-023.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-025.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-081.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-051.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-096.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-042.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-022.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-052.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-101.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-019.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-060.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-215.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-020.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/screenshot-202025-10-24-20at-2010-43-27-e2-80-afam.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-030.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-073.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-013.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-065.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-016.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-003.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/screenshot-202025-10-24-20at-2010-43-52-e2-80-afam.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-082.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-191.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-088.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/screenshot-202025-10-24-20at-2010-43-57-e2-80-afam.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/screenshot-202025-10-24-20at-2010-44-09-e2-80-afam.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-029.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-034.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-069.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-012.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-055.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-008.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-032.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-056.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/screenshot-202025-10-24-20at-2010-43-39-e2-80-afam.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-001.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-039.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-037.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-026.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-057.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-106.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-184.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-035.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-046.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-023.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-025.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-081.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-051.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-096.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-042.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-022.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-052.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-101.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-019.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-060.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-215.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-020.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/screenshot-202025-10-24-20at-2010-43-27-e2-80-afam.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-030.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-073.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-013.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-065.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-016.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-003.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/screenshot-202025-10-24-20at-2010-43-52-e2-80-afam.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-082.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-191.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-088.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/screenshot-202025-10-24-20at-2010-43-57-e2-80-afam.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/screenshot-202025-10-24-20at-2010-44-09-e2-80-afam.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        <div class="ticker-tile"><img src="/images/webflow/team-group/egcp-029.webp" alt="Inside Studio One salon" loading="lazy" decoding="async"></div>
+        </div>
       </div>
     </div>
   </section>

@@ -86,7 +86,41 @@
 .cat-card-read{font-size:11px;letter-spacing:2px;color:var(--olive-light);text-transform:uppercase;font-weight:500;padding-bottom:2px;border-bottom:1px solid var(--olive);align-self:flex-start}
 .cat-empty{text-align:center;padding:60px;color:var(--light-gray);font-weight:300}
 @media(max-width:1024px){.cat-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:1024px){.cat-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:768px){.cat-grid{grid-template-columns:1fr}.cat-hero h1{font-size:40px}.cat-wrap{padding:40px 20px}}
+
+/* Featured posts section */
+.featured-section{padding:100px 40px 20px;background:var(--dark)}
+.featured-inner{max-width:1280px;margin:0 auto}
+.featured-heading{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:48px;flex-wrap:wrap}
+.featured-heading .eyebrow{font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--olive-light);margin-bottom:8px;display:block}
+.featured-heading h2{font-family:var(--heading-font);font-size:42px;font-weight:400;color:var(--white);line-height:1.2}
+.featured-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:24px}
+.featured-card{display:flex;flex-direction:column;text-decoration:none;color:inherit;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:4px;overflow:hidden;transition:transform .4s ease,border-color .3s ease}
+.featured-card:hover{transform:translateY(-4px);border-color:rgba(76,82,35,.5)}
+.featured-card-img{aspect-ratio:16/10;overflow:hidden;background:#1a1a1a}
+.featured-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .8s ease}
+.featured-card:hover .featured-card-img img{transform:scale(1.05)}
+.featured-card-body{padding:28px 28px 32px;flex:1;display:flex;flex-direction:column}
+.featured-card-cat{font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--olive-light);margin-bottom:14px}
+.featured-card h3{font-family:var(--heading-font);font-size:26px;font-weight:400;color:var(--white);line-height:1.25;margin-bottom:12px}
+.featured-card p{font-size:14px;color:var(--light-gray);font-weight:300;line-height:1.7;margin-bottom:18px;flex:1}
+.featured-card .read-more{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--olive-light);font-weight:500;border-bottom:1px solid var(--olive);padding-bottom:2px;align-self:flex-start}
+/* Make the lead card span 2 rows on its left side */
+.featured-card--lead{grid-row:span 2;flex-direction:column}
+.featured-card--lead .featured-card-img{aspect-ratio:5/4}
+.featured-card--lead h3{font-size:34px}
+@media(max-width:1024px){
+  .featured-grid{grid-template-columns:1fr 1fr;grid-auto-rows:auto}
+  .featured-card--lead{grid-column:span 2;grid-row:auto}
+  .featured-card--lead .featured-card-img{aspect-ratio:16/9}
+}
+@media(max-width:768px){
+  .featured-section{padding:60px 20px 20px}
+  .featured-grid{grid-template-columns:1fr}
+  .featured-card--lead{grid-column:auto}
+  .featured-heading h2{font-size:30px}
+}
 </style>
 </head>
 <body>
@@ -146,6 +180,47 @@
       </div>
     </div>
   </nav>
+
+  <!-- Featured posts -->
+  <section class="featured-section">
+    <div class="featured-inner">
+      <div class="featured-heading">
+        <div>
+          <span class="eyebrow">From the Chair</span>
+          <h2>Featured Reads</h2>
+        </div>
+      </div>
+      <div class="featured-grid">
+        <a href="/blog/the-truth-about-nbr-extensions-at-studio-one" class="featured-card featured-card--lead">
+          <div class="featured-card-img"><img src="/images/blog/the-truth-about-nbr-extensions-at-studio-one.webp" alt="The truth about NBR Extensions at Studio One" loading="lazy" decoding="async"></div>
+          <div class="featured-card-body">
+            <span class="featured-card-cat">Extensions</span>
+            <h3>The truth about NBR Extensions at Studio One</h3>
+            <p>What separates a Natural Beaded Row install from every other extension method &mdash; from custom blending and color matching to the daily-wear difference clients feel from day one.</p>
+            <span class="read-more">Read More &rarr;</span>
+          </div>
+        </a>
+        <a href="/blog/best-hair-color-for-gray-hair-a-guide-to-radiant-ageless-style" class="featured-card">
+          <div class="featured-card-img"><img src="/images/blog/best-hair-color-for-gray-hair-a-guide-to-radiant-ageless-style.webp" alt="Best Hair Color for Gray Hair" loading="lazy" decoding="async"></div>
+          <div class="featured-card-body">
+            <span class="featured-card-cat">Color</span>
+            <h3>Best Hair Color for Gray Hair</h3>
+            <p>A guide to radiant, ageless tones &mdash; the colors and dimensional techniques that flatter gray and silver naturally.</p>
+            <span class="read-more">Read More &rarr;</span>
+          </div>
+        </a>
+        <a href="/blog/how-much-do-hair-extensions-cost" class="featured-card">
+          <div class="featured-card-img"><img src="/images/blog/how-much-do-hair-extensions-cost.webp" alt="How Much Do Hair Extensions Cost" loading="lazy" decoding="async"></div>
+          <div class="featured-card-body">
+            <span class="featured-card-cat">Extensions</span>
+            <h3>How Much Do Hair Extensions Cost?</h3>
+            <p>From clip-ins to luxury beaded rows &mdash; what really drives extension pricing, plus what to expect with maintenance over time.</p>
+            <span class="read-more">Read More &rarr;</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
 
   <section class="cat-hero">
     <div data-animate>
