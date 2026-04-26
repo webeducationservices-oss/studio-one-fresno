@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hair Gallery | Guest Transformations | Studio One Fresno</title>
-  <meta name="description" content="Browse real guest transformations from Studio One Fresno — NBR extensions, luxury color, and keratin treatments from Fresno's premier hair studio.">
+  <title>Hair Extensions, Color & Keratin Gallery Fresno | Studio One</title>
+  <meta name="description" content="Real hair transformation gallery from Studio One Fresno: NBR hand-tied hair extensions, dimensional color, and keratin smoothing (Brazilian Blowout). See 50+ recent guest results from Fresno's premier hair salon.">
   <link rel="canonical" href="https://www.studioonefresno.com/hair-gallery">
 
-  <meta property="og:title" content="Hair Gallery | Guest Transformations | Studio One Fresno">
-  <meta property="og:description" content="Browse real guest transformations from Studio One Fresno — NBR extensions, luxury color, and keratin treatments from Fresno's premier hair studio.">
+  <meta property="og:title" content="Hair Extensions, Color & Keratin Gallery Fresno | Studio One">
+  <meta property="og:description" content="Real hair transformation gallery from Studio One Fresno: NBR hand-tied hair extensions, dimensional color, and keratin smoothing (Brazilian Blowout). See 50+ recent guest results from Fresno's premier hair salon.">
   <meta property="og:image" content="https://www.studioonefresno.com/images/og-image.jpg">
   <meta property="og:url" content="https://www.studioonefresno.com/hair-gallery">
   <meta property="og:type" content="website">
@@ -115,6 +115,29 @@
     .cta-stack{display:flex;flex-direction:column;align-items:center;gap:24px}
     .insta-link{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--olive-light)}
     .insta-link:hover{color:var(--white)}
+
+    /* Gallery SEO sections */
+    .gallery-intro-seo .eyebrow{color:var(--olive-light)}
+    .gallery-intro-seo strong{color:var(--off-white);font-weight:500}
+    .cat-overview-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+    .cat-overview-card{padding:36px 32px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.06);border-radius:6px;transition:border-color .3s ease,background .3s ease,transform .3s ease}
+    .cat-overview-card:hover{border-color:rgba(76,82,35,.6);background:rgba(76,82,35,.06);transform:translateY(-4px)}
+    .cat-overview-card .eyebrow{font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--olive-light);margin-bottom:14px;display:block}
+    .cat-overview-card h3{font-family:var(--heading-font);font-size:24px;color:var(--white);font-weight:400;line-height:1.25;margin-bottom:14px}
+    .cat-overview-card p{font-size:14px;color:var(--light-gray);line-height:1.8;font-weight:300;margin-bottom:20px}
+    .cat-overview-link{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--olive-light);font-weight:500;border-bottom:1px solid var(--olive);padding-bottom:2px;transition:color .3s ease,border-color .3s ease}
+    .cat-overview-link:hover{color:var(--white);border-color:var(--white)}
+    @media (max-width:1024px){
+      .cat-overview-grid{grid-template-columns:1fr;gap:18px}
+    }
+
+    /* Why Fresno SEO closing block */
+    .gallery-why{padding:80px 40px;background:var(--dark);border-top:1px solid rgba(255,255,255,.04)}
+    .gallery-why-inner{max-width:920px;margin:0 auto;text-align:center}
+    .gallery-why h2{font-family:var(--heading-font);font-size:36px;color:var(--white);font-weight:400;line-height:1.2;margin-bottom:24px}
+    .gallery-why p{font-size:15px;color:var(--light-gray);line-height:1.85;font-weight:300;margin-bottom:18px}
+    .gallery-why a{color:var(--olive-light);border-bottom:1px solid var(--olive);padding-bottom:1px}
+    .gallery-why a:hover{color:var(--white);border-color:var(--white)}
   </style>
 
   <link rel="stylesheet" href="/styles.css" media="print" onload="this.media='all'">
@@ -125,6 +148,57 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://use.typekit.net/iqt4hfw.css" rel="stylesheet">
   </noscript>
+
+  <!-- LocalBusiness / HairSalon schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HairSalon",
+    "@id": "https://www.studioonefresno.com/#salon",
+    "name": "Studio One Hair Design",
+    "description": "Premier Fresno hair salon specializing in NBR hand-tied hair extensions, dimensional color, and keratin smoothing treatments (Brazilian Blowout).",
+    "url": "https://www.studioonefresno.com/",
+    "image": "https://www.studioonefresno.com/images/og-image.jpg",
+    "telephone": "+1-559-795-9724",
+    "priceRange": "$$$",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "2950 E Nees Ave., #103",
+      "addressLocality": "Fresno",
+      "addressRegion": "CA",
+      "postalCode": "93720",
+      "addressCountry": "US"
+    },
+    "geo": { "@type": "GeoCoordinates", "latitude": 36.85, "longitude": -119.74 },
+    "openingHoursSpecification": [
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday"], "opens": "10:00", "closes": "20:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Friday", "opens": "10:00", "closes": "19:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "10:00", "closes": "18:00" }
+    ],
+    "areaServed": { "@type": "City", "name": "Fresno" },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Salon Services",
+      "itemListElement": [
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "NBR Hair Extensions Fresno", "url": "https://www.studioonefresno.com/nbr-extensions" }},
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Hair Color Salon Fresno", "url": "https://www.studioonefresno.com/services" }},
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Keratin Treatment Fresno (Brazilian Blowout)", "url": "https://www.studioonefresno.com/services" }}
+      ]
+    }
+  }
+  </script>
+  <!-- ImageGallery schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ImageGallery",
+    "name": "Studio One Fresno Hair Transformation Gallery",
+    "description": "Recent NBR extensions, color, and keratin transformations by Studio One Hair Design in Fresno, CA.",
+    "url": "https://www.studioonefresno.com/hair-gallery",
+    "publisher": { "@id": "https://www.studioonefresno.com/#salon" }
+  }
+  </script>
+
 </head>
 <body>
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WQGCMZ9Q" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -190,9 +264,51 @@
   <section class="page-hero" style="min-height:55vh">
     <div class="page-hero-overlay"></div>
     <div class="page-hero-content" data-animate>
-      <p class="eyebrow">Guest Transformations</p>
-      <h1>Hair Gallery</h1>
-      <p>Recent work from the Studio One chairs — NBR extensions, luxury color, and keratin treatments on real guests.</p>
+      <p class="eyebrow">Real Guests, Real Results</p>
+      <h1>Hair Extensions, Color &amp; Keratin Transformations in Fresno</h1>
+      <p>Recent guest work from Studio One Hair Design &mdash; Fresno's destination for NBR hand-tied hair extensions, dimensional color, and keratin smoothing (Brazilian Blowout).</p>
+    </div>
+  </section>
+
+  
+  <!-- SEO INTRO -->
+  <section class="section section--dark gallery-intro-seo">
+    <div class="section-inner" data-animate>
+      <p class="eyebrow">Inside the Gallery</p>
+      <h2 class="section-heading" style="max-width:780px">A real look at Studio One's signature work in Fresno.</h2>
+      <p style="max-width:780px;font-size:16px;color:var(--light-gray);line-height:1.8;font-weight:300;margin-bottom:20px">
+        Every photo below is a real Studio One guest. We don't run stock shots or styled-only campaigns &mdash; the gallery shows the work that walks out of the salon every week.
+        Filter by category to focus on the transformation type you're researching: <strong style="color:var(--off-white);font-weight:500">NBR hair extensions in Fresno</strong>, <strong style="color:var(--off-white);font-weight:500">luxury hair color</strong>, or <strong style="color:var(--off-white);font-weight:500">keratin smoothing &amp; Brazilian Blowout</strong>.
+      </p>
+      <p style="max-width:780px;font-size:16px;color:var(--light-gray);line-height:1.8;font-weight:300">
+        Hover any image for a quick description, or click to view full-size. When you find the look you want, <a href="/booking" style="color:var(--olive-light);border-bottom:1px solid var(--olive)">book your consultation</a> and we'll plan a custom approach for your hair goals.
+      </p>
+    </div>
+  </section>
+
+  <!-- CATEGORY OVERVIEW STRIP -->
+  <section class="section gallery-category-overview">
+    <div class="section-inner">
+      <div class="cat-overview-grid">
+        <article class="cat-overview-card" data-animate>
+          <p class="eyebrow">Category 01</p>
+          <h3>NBR Hair Extensions in Fresno</h3>
+          <p>Natural Beaded Row hand-tied extensions install with no glue, no heat, and no damage &mdash; just custom-colored wefts beaded onto rows for the most seamless, longest-lasting result available. The most common transformations in this gallery are NBR.</p>
+          <a href="/nbr-extensions" class="cat-overview-link">See NBR Extensions service &rarr;</a>
+        </article>
+        <article class="cat-overview-card" data-animate>
+          <p class="eyebrow">Category 02</p>
+          <h3>Hair Color Salon in Fresno</h3>
+          <p>Studio One's color work centers on dimensional, low-maintenance color &mdash; balayage, foil-applied highlights, gloss-finished blondes, root touch-ups, gray coverage, and full color corrections. Every guest gets a custom formulation for their natural base.</p>
+          <a href="/services" class="cat-overview-link">See Color services &rarr;</a>
+        </article>
+        <article class="cat-overview-card" data-animate>
+          <p class="eyebrow">Category 03</p>
+          <h3>Keratin Treatment Fresno (Brazilian Blowout)</h3>
+          <p>Keratin smoothing reduces frizz, cuts blow-dry time, and makes hair feel softer for months at a time. We offer Brazilian Blowout-style treatments customized for your texture &mdash; minimal scalp contact, salon-only finishing, no harsh fumes.</p>
+          <a href="/services" class="cat-overview-link">See Keratin services &rarr;</a>
+        </article>
+      </div>
     </div>
   </section>
 
@@ -208,60 +324,60 @@
         <button data-filter="keratin">Keratin Treatment</button>
       </div>
       <div class="gallery-grid" id="galleryGrid">
-        <button type="button" class="gallery-item" data-cat="nbr color" data-src="/images/webflow/gallery/8e909f3e-d2bb-4f8b-97ed-7dde24299817.webp"><img src="/images/webflow/gallery/8e909f3e-d2bb-4f8b-97ed-7dde24299817.webp" alt="Hair transformation" width="800" height="800" loading="eager" decoding="async"></button>
-        <button type="button" class="gallery-item" data-cat="nbr" data-src="/images/webflow/gallery/fead5062-78b1-4c5b-b910-ef58a0f9de05.webp"><img src="/images/webflow/gallery/fead5062-78b1-4c5b-b910-ef58a0f9de05.webp" alt="Hair transformation" width="800" height="800" loading="eager" decoding="async"></button>
-        <button type="button" class="gallery-item" data-cat="color" data-src="/images/webflow/gallery/fd386cce-3495-4cae-b10c-3fd38071f686.webp"><img src="/images/webflow/gallery/fd386cce-3495-4cae-b10c-3fd38071f686.webp" alt="Hair transformation" width="800" height="800" loading="eager" decoding="async"></button>
-        <button type="button" class="gallery-item" data-cat="nbr color" data-src="/images/webflow/gallery/fa51ecad-fbf6-4a53-a212-4bc67818470d.webp"><img src="/images/webflow/gallery/fa51ecad-fbf6-4a53-a212-4bc67818470d.webp" alt="Hair transformation" width="800" height="800" loading="eager" decoding="async"></button>
-        <button type="button" class="gallery-item" data-cat="color" data-src="/images/webflow/gallery/e918ae7e-22d8-4231-b76c-35e1c45fb23e.webp"><img src="/images/webflow/gallery/e918ae7e-22d8-4231-b76c-35e1c45fb23e.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
-        <button type="button" class="gallery-item" data-cat="nbr" data-src="/images/webflow/gallery/d206a345-4fb4-4c3f-a6e4-5877ec573b31.webp"><img src="/images/webflow/gallery/d206a345-4fb4-4c3f-a6e4-5877ec573b31.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
-        <button type="button" class="gallery-item" data-cat="color" data-src="/images/webflow/gallery/d6a79973-b466-48c4-8462-da40c7d70f9d.webp"><img src="/images/webflow/gallery/d6a79973-b466-48c4-8462-da40c7d70f9d.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
-        <button type="button" class="gallery-item" data-cat="keratin" data-src="/images/webflow/gallery/cd11106b-5813-4a4d-ab20-7437619f2ff9.webp"><img src="/images/webflow/gallery/cd11106b-5813-4a4d-ab20-7437619f2ff9.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
-        <button type="button" class="gallery-item" data-cat="nbr" data-src="/images/webflow/gallery/ac82ae5e-ef75-4dc0-8b1d-c3e02550db50.webp"><img src="/images/webflow/gallery/ac82ae5e-ef75-4dc0-8b1d-c3e02550db50.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
-        <button type="button" class="gallery-item" data-cat="color" data-src="/images/webflow/gallery/c5281899-3c5d-494d-a715-a8c91fb53c29.webp"><img src="/images/webflow/gallery/c5281899-3c5d-494d-a715-a8c91fb53c29.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
-        <button type="button" class="gallery-item" data-cat="nbr color" data-src="/images/webflow/gallery/c33c1d56-a9d1-46b8-91a5-e312d6aaf60b.webp"><img src="/images/webflow/gallery/c33c1d56-a9d1-46b8-91a5-e312d6aaf60b.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
-        <button type="button" class="gallery-item" data-cat="nbr" data-src="/images/webflow/gallery/bdaf4812-bd16-4837-9f89-03c28367ebbe.webp"><img src="/images/webflow/gallery/bdaf4812-bd16-4837-9f89-03c28367ebbe.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
-        <button type="button" class="gallery-item" data-cat="color" data-src="/images/webflow/gallery/999e24f5-99c5-4de5-824e-e2a4cc92afcb.webp"><img src="/images/webflow/gallery/999e24f5-99c5-4de5-824e-e2a4cc92afcb.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
-        <button type="button" class="gallery-item" data-cat="nbr color" data-src="/images/webflow/gallery/151dc96c-ebf0-47cc-a327-495611dc3f01.webp"><img src="/images/webflow/gallery/151dc96c-ebf0-47cc-a327-495611dc3f01.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
-        <button type="button" class="gallery-item" data-cat="color" data-src="/images/webflow/gallery/3452ca31-3422-4fe8-8bb2-6ad081395d64.webp"><img src="/images/webflow/gallery/3452ca31-3422-4fe8-8bb2-6ad081395d64.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
-        <button type="button" class="gallery-item" data-cat="nbr" data-src="/images/webflow/gallery/a6f86b6c-7925-43fe-ba68-1062c83b5ba6.webp"><img src="/images/webflow/gallery/a6f86b6c-7925-43fe-ba68-1062c83b5ba6.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
-        <button type="button" class="gallery-item" data-cat="color" data-src="/images/webflow/gallery/68994865-961c-4d6e-8bce-aab564e7c525.webp"><img src="/images/webflow/gallery/68994865-961c-4d6e-8bce-aab564e7c525.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
-        <button type="button" class="gallery-item" data-cat="nbr" data-src="/images/webflow/gallery/9862c4b6-44ed-4b44-9f3a-087219167767.webp"><img src="/images/webflow/gallery/9862c4b6-44ed-4b44-9f3a-087219167767.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
-        <button type="button" class="gallery-item" data-cat="nbr color" data-src="/images/webflow/gallery/0664dcf8-1e95-4072-8240-15d3e9d861d5.webp"><img src="/images/webflow/gallery/0664dcf8-1e95-4072-8240-15d3e9d861d5.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
-        <button type="button" class="gallery-item" data-cat="keratin" data-src="/images/webflow/gallery/554cedb3-6ab7-4724-9957-b95ea9e8b4f4.webp"><img src="/images/webflow/gallery/554cedb3-6ab7-4724-9957-b95ea9e8b4f4.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
-        <button type="button" class="gallery-item" data-cat="nbr" data-src="/images/webflow/gallery/d6963495-8d0a-4260-8b80-81e6078e0eba.webp"><img src="/images/webflow/gallery/d6963495-8d0a-4260-8b80-81e6078e0eba.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
-        <button type="button" class="gallery-item" data-cat="color" data-src="/images/webflow/gallery/195de183-49d1-4275-ac31-148d08b8237c.webp"><img src="/images/webflow/gallery/195de183-49d1-4275-ac31-148d08b8237c.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
-        <button type="button" class="gallery-item" data-cat="nbr color" data-src="/images/webflow/gallery/97dbcf64-083f-41f6-a19a-9d9456ee7edc.webp"><img src="/images/webflow/gallery/97dbcf64-083f-41f6-a19a-9d9456ee7edc.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
-        <button type="button" class="gallery-item" data-cat="color" data-src="/images/webflow/gallery/88d027dd-b7e3-42b1-a0a1-55b7a6948617.webp"><img src="/images/webflow/gallery/88d027dd-b7e3-42b1-a0a1-55b7a6948617.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
-        <button type="button" class="gallery-item" data-cat="nbr" data-src="/images/webflow/gallery/86baea16-1aa4-4105-8d84-f4ce3819b2ed.webp"><img src="/images/webflow/gallery/86baea16-1aa4-4105-8d84-f4ce3819b2ed.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
-        <button type="button" class="gallery-item" data-cat="color" data-src="/images/webflow/gallery/67bf5406-d51b-4369-a813-f76399662b53.webp"><img src="/images/webflow/gallery/67bf5406-d51b-4369-a813-f76399662b53.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
-        <button type="button" class="gallery-item" data-cat="nbr" data-src="/images/webflow/gallery/62c8fb93-c071-462a-85d9-42554f7b94f3.webp"><img src="/images/webflow/gallery/62c8fb93-c071-462a-85d9-42554f7b94f3.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
-        <button type="button" class="gallery-item" data-cat="keratin" data-src="/images/webflow/gallery/d14988fa-7dca-4422-875b-a53977147d93.webp"><img src="/images/webflow/gallery/d14988fa-7dca-4422-875b-a53977147d93.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
-        <button type="button" class="gallery-item" data-cat="nbr color" data-src="/images/webflow/gallery/50b4254a-b898-479c-bbcd-d58f8dd9c29e.webp"><img src="/images/webflow/gallery/50b4254a-b898-479c-bbcd-d58f8dd9c29e.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
-        <button type="button" class="gallery-item" data-cat="color" data-src="/images/webflow/gallery/43fdd92b-64d9-4c0d-b5fc-dce2944a54ed.webp"><img src="/images/webflow/gallery/43fdd92b-64d9-4c0d-b5fc-dce2944a54ed.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
-        <button type="button" class="gallery-item" data-cat="nbr" data-src="/images/webflow/gallery/35c60098-5eb6-42ec-857d-a81b98df8754.webp"><img src="/images/webflow/gallery/35c60098-5eb6-42ec-857d-a81b98df8754.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
-        <button type="button" class="gallery-item" data-cat="color" data-src="/images/webflow/gallery/30e34078-9ba1-4381-8ac7-960df01879a4.webp"><img src="/images/webflow/gallery/30e34078-9ba1-4381-8ac7-960df01879a4.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
-        <button type="button" class="gallery-item" data-cat="nbr color" data-src="/images/webflow/gallery/14f9c241-e7b2-4180-b95d-32caa4164895.webp"><img src="/images/webflow/gallery/14f9c241-e7b2-4180-b95d-32caa4164895.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
-        <button type="button" class="gallery-item" data-cat="nbr" data-src="/images/webflow/gallery/9b9c4c7d-c2c6-4741-9246-f389f6ea1743.webp"><img src="/images/webflow/gallery/9b9c4c7d-c2c6-4741-9246-f389f6ea1743.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
-        <button type="button" class="gallery-item" data-cat="color" data-src="/images/webflow/gallery/009aab06-1564-4e55-a940-ad764f7fb211.webp"><img src="/images/webflow/gallery/009aab06-1564-4e55-a940-ad764f7fb211.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
-        <button type="button" class="gallery-item" data-cat="nbr" data-src="/images/webflow/gallery/8da3a8c4-28b8-4422-a87a-d92023c5f534.webp"><img src="/images/webflow/gallery/8da3a8c4-28b8-4422-a87a-d92023c5f534.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
-        <button type="button" class="gallery-item" data-cat="color" data-src="/images/webflow/gallery/7a792944-c63c-422f-b2d7-3d6059202f6f.webp"><img src="/images/webflow/gallery/7a792944-c63c-422f-b2d7-3d6059202f6f.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
-        <button type="button" class="gallery-item" data-cat="nbr color" data-src="/images/webflow/gallery/006f748c-2e87-497b-adda-07726568ea6c.webp"><img src="/images/webflow/gallery/006f748c-2e87-497b-adda-07726568ea6c.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
-        <button type="button" class="gallery-item" data-cat="keratin" data-src="/images/webflow/gallery/5ecce647-ecde-4a46-a311-a2ef34511bb5.webp"><img src="/images/webflow/gallery/5ecce647-ecde-4a46-a311-a2ef34511bb5.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
-        <button type="button" class="gallery-item" data-cat="color" data-src="/images/webflow/gallery/5dbb1aa0-2a33-4e0e-9338-b7113f7c85b2.webp"><img src="/images/webflow/gallery/5dbb1aa0-2a33-4e0e-9338-b7113f7c85b2.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
-        <button type="button" class="gallery-item" data-cat="nbr" data-src="/images/webflow/gallery/5d01ff4c-565a-4a26-9512-8e8ee5e8adc3.webp"><img src="/images/webflow/gallery/5d01ff4c-565a-4a26-9512-8e8ee5e8adc3.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
-        <button type="button" class="gallery-item" data-cat="color" data-src="/images/webflow/gallery/4b46cd9c-5143-44ca-8527-c563a4f7ead9.webp"><img src="/images/webflow/gallery/4b46cd9c-5143-44ca-8527-c563a4f7ead9.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
-        <button type="button" class="gallery-item" data-cat="nbr color" data-src="/images/webflow/gallery/3d5fc523-00ce-47cb-a239-d042abdbca71.webp"><img src="/images/webflow/gallery/3d5fc523-00ce-47cb-a239-d042abdbca71.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
-        <button type="button" class="gallery-item" data-cat="color" data-src="/images/webflow/gallery/3cf0c884-111c-4ef0-a376-89d3c38f82af.webp"><img src="/images/webflow/gallery/3cf0c884-111c-4ef0-a376-89d3c38f82af.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
-        <button type="button" class="gallery-item" data-cat="nbr" data-src="/images/webflow/gallery/2ea863ec-d0f8-4919-ab35-e5ec84e28d78.webp"><img src="/images/webflow/gallery/2ea863ec-d0f8-4919-ab35-e5ec84e28d78.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
-        <button type="button" class="gallery-item" data-cat="color" data-src="/images/webflow/gallery/2d0d342e-228a-4efd-855a-cebbbe4cbecc.webp"><img src="/images/webflow/gallery/2d0d342e-228a-4efd-855a-cebbbe4cbecc.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
-        <button type="button" class="gallery-item" data-cat="keratin" data-src="/images/webflow/gallery/5555dd16-e262-48a9-b482-a856fd0d8bb2.webp"><img src="/images/webflow/gallery/5555dd16-e262-48a9-b482-a856fd0d8bb2.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
-        <button type="button" class="gallery-item" data-cat="nbr color" data-src="/images/webflow/gallery/2af17aa0-42ab-4853-bcdf-747f736c5c10.webp"><img src="/images/webflow/gallery/2af17aa0-42ab-4853-bcdf-747f736c5c10.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
-        <button type="button" class="gallery-item" data-cat="nbr" data-src="/images/webflow/gallery/2a3a2da2-7c7a-4088-922a-23627e0b6175.webp"><img src="/images/webflow/gallery/2a3a2da2-7c7a-4088-922a-23627e0b6175.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
-        <button type="button" class="gallery-item" data-cat="color" data-src="/images/webflow/gallery/1ddabca5-0f2d-41d5-b86d-37221040df7b.webp"><img src="/images/webflow/gallery/1ddabca5-0f2d-41d5-b86d-37221040df7b.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
-        <button type="button" class="gallery-item" data-cat="nbr" data-src="/images/webflow/gallery/1ad0a2c7-9848-439a-97b1-bd33dc639a8c.webp"><img src="/images/webflow/gallery/1ad0a2c7-9848-439a-97b1-bd33dc639a8c.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
-        <button type="button" class="gallery-item" data-cat="color" data-src="/images/webflow/gallery/1a1353e0-aa5b-4535-b3a3-ba69e4368de0.webp"><img src="/images/webflow/gallery/1a1353e0-aa5b-4535-b3a3-ba69e4368de0.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
-        <button type="button" class="gallery-item" data-cat="nbr color" data-src="/images/webflow/gallery/0bd9955c-2a09-4df2-ac59-78ba661c2cbc.webp"><img src="/images/webflow/gallery/0bd9955c-2a09-4df2-ac59-78ba661c2cbc.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
-        <button type="button" class="gallery-item" data-cat="nbr" data-src="/images/webflow/gallery/0b75b07b-4024-48ae-bdf9-57be1fab66ae.webp"><img src="/images/webflow/gallery/0b75b07b-4024-48ae-bdf9-57be1fab66ae.webp" alt="Hair transformation" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" title="NBR install + custom color transformation" aria-label="NBR install + custom color transformation" data-cat="nbr color" data-src="/images/webflow/gallery/8e909f3e-d2bb-4f8b-97ed-7dde24299817.webp"><img src="/images/webflow/gallery/8e909f3e-d2bb-4f8b-97ed-7dde24299817.webp" alt="NBR hair extensions plus dimensional color, Studio One Fresno" width="800" height="800" loading="eager" decoding="async"></button>
+        <button type="button" class="gallery-item" title="Long, full hair with NBR extensions installed at Studio One Fresno" aria-label="Long, full hair with NBR extensions installed at Studio One Fresno" data-cat="nbr" data-src="/images/webflow/gallery/fead5062-78b1-4c5b-b910-ef58a0f9de05.webp"><img src="/images/webflow/gallery/fead5062-78b1-4c5b-b910-ef58a0f9de05.webp" alt="NBR hand-tied hair extensions in Fresno — beaded row install" width="800" height="800" loading="eager" decoding="async"></button>
+        <button type="button" class="gallery-item" title="Gloss-finished blonde refresh, Studio One Fresno" aria-label="Gloss-finished blonde refresh, Studio One Fresno" data-cat="color" data-src="/images/webflow/gallery/fd386cce-3495-4cae-b10c-3fd38071f686.webp"><img src="/images/webflow/gallery/fd386cce-3495-4cae-b10c-3fd38071f686.webp" alt="Gloss-finished blonde color, Studio One Fresno" width="800" height="800" loading="eager" decoding="async"></button>
+        <button type="button" class="gallery-item" title="Long blonde extensions with custom color" aria-label="Long blonde extensions with custom color" data-cat="nbr color" data-src="/images/webflow/gallery/fa51ecad-fbf6-4a53-a212-4bc67818470d.webp"><img src="/images/webflow/gallery/fa51ecad-fbf6-4a53-a212-4bc67818470d.webp" alt="Long blonde extensions with custom color, Fresno" width="800" height="800" loading="eager" decoding="async"></button>
+        <button type="button" class="gallery-item" title="Honey blonde balayage by Studio One" aria-label="Honey blonde balayage by Studio One" data-cat="color" data-src="/images/webflow/gallery/e918ae7e-22d8-4231-b76c-35e1c45fb23e.webp"><img src="/images/webflow/gallery/e918ae7e-22d8-4231-b76c-35e1c45fb23e.webp" alt="Honey blonde balayage, Fresno hair color salon" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" title="Before & after — added length and density with NBR" aria-label="Before & after — added length and density with NBR" data-cat="nbr" data-src="/images/webflow/gallery/d206a345-4fb4-4c3f-a6e4-5877ec573b31.webp"><img src="/images/webflow/gallery/d206a345-4fb4-4c3f-a6e4-5877ec573b31.webp" alt="Hair extension before and after, Studio One Fresno" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" title="Full-head foil blonding by Studio One Fresno" aria-label="Full-head foil blonding by Studio One Fresno" data-cat="color" data-src="/images/webflow/gallery/d6a79973-b466-48c4-8462-da40c7d70f9d.webp"><img src="/images/webflow/gallery/d6a79973-b466-48c4-8462-da40c7d70f9d.webp" alt="Hair color salon in Fresno — full-foil blonding" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" title="Keratin smoothing on textured curly hair" aria-label="Keratin smoothing on textured curly hair" data-cat="keratin" data-src="/images/webflow/gallery/cd11106b-5813-4a4d-ab20-7437619f2ff9.webp"><img src="/images/webflow/gallery/cd11106b-5813-4a4d-ab20-7437619f2ff9.webp" alt="Keratin treatment for curly hair, Fresno salon" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" title="Custom-colored NBR hair extensions, long length transformation" aria-label="Custom-colored NBR hair extensions, long length transformation" data-cat="nbr" data-src="/images/webflow/gallery/ac82ae5e-ef75-4dc0-8b1d-c3e02550db50.webp"><img src="/images/webflow/gallery/ac82ae5e-ef75-4dc0-8b1d-c3e02550db50.webp" alt="Long luxurious NBR hair extensions, custom color match" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" title="Custom-formulated color for the guest's natural base" aria-label="Custom-formulated color for the guest's natural base" data-cat="color" data-src="/images/webflow/gallery/c5281899-3c5d-494d-a715-a8c91fb53c29.webp"><img src="/images/webflow/gallery/c5281899-3c5d-494d-a715-a8c91fb53c29.webp" alt="Custom hair color formulation, Fresno hair color salon" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" title="Extensions + color in one visit" aria-label="Extensions + color in one visit" data-cat="nbr color" data-src="/images/webflow/gallery/c33c1d56-a9d1-46b8-91a5-e312d6aaf60b.webp"><img src="/images/webflow/gallery/c33c1d56-a9d1-46b8-91a5-e312d6aaf60b.webp" alt="Hair extensions and color in one visit, Studio One Fresno" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" title="Long, full hair with NBR extensions installed at Studio One Fresno" aria-label="Long, full hair with NBR extensions installed at Studio One Fresno" data-cat="nbr" data-src="/images/webflow/gallery/bdaf4812-bd16-4837-9f89-03c28367ebbe.webp"><img src="/images/webflow/gallery/bdaf4812-bd16-4837-9f89-03c28367ebbe.webp" alt="NBR hand-tied hair extensions in Fresno — beaded row install" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" title="Dimensional balayage transformation, Studio One Fresno" aria-label="Dimensional balayage transformation, Studio One Fresno" data-cat="color" data-src="/images/webflow/gallery/999e24f5-99c5-4de5-824e-e2a4cc92afcb.webp"><img src="/images/webflow/gallery/999e24f5-99c5-4de5-824e-e2a4cc92afcb.webp" alt="Dimensional balayage color at Studio One Fresno" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" title="NBR install + custom color transformation" aria-label="NBR install + custom color transformation" data-cat="nbr color" data-src="/images/webflow/gallery/151dc96c-ebf0-47cc-a327-495611dc3f01.webp"><img src="/images/webflow/gallery/151dc96c-ebf0-47cc-a327-495611dc3f01.webp" alt="NBR hair extensions plus dimensional color, Studio One Fresno" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" title="Honey blonde balayage by Studio One" aria-label="Honey blonde balayage by Studio One" data-cat="color" data-src="/images/webflow/gallery/3452ca31-3422-4fe8-8bb2-6ad081395d64.webp"><img src="/images/webflow/gallery/3452ca31-3422-4fe8-8bb2-6ad081395d64.webp" alt="Honey blonde balayage, Fresno hair color salon" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" title="Added fullness with beaded row hair extensions" aria-label="Added fullness with beaded row hair extensions" data-cat="nbr" data-src="/images/webflow/gallery/a6f86b6c-7925-43fe-ba68-1062c83b5ba6.webp"><img src="/images/webflow/gallery/a6f86b6c-7925-43fe-ba68-1062c83b5ba6.webp" alt="Beaded row hair extensions for fullness, Fresno salon" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" title="Partial highlights — natural sun-kissed lift" aria-label="Partial highlights — natural sun-kissed lift" data-cat="color" data-src="/images/webflow/gallery/68994865-961c-4d6e-8bce-aab564e7c525.webp"><img src="/images/webflow/gallery/68994865-961c-4d6e-8bce-aab564e7c525.webp" alt="Partial highlights for natural lift, Studio One Fresno" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" title="Before-and-after transformation, NBR install" aria-label="Before-and-after transformation, NBR install" data-cat="nbr" data-src="/images/webflow/gallery/9862c4b6-44ed-4b44-9f3a-087219167767.webp"><img src="/images/webflow/gallery/9862c4b6-44ed-4b44-9f3a-087219167767.webp" alt="NBR extensions before-and-after, Studio One Fresno guest" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" title="NBR install + custom color transformation" aria-label="NBR install + custom color transformation" data-cat="nbr color" data-src="/images/webflow/gallery/0664dcf8-1e95-4072-8240-15d3e9d861d5.webp"><img src="/images/webflow/gallery/0664dcf8-1e95-4072-8240-15d3e9d861d5.webp" alt="NBR hair extensions plus dimensional color, Studio One Fresno" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" title="Keratin smoothing on textured curly hair" aria-label="Keratin smoothing on textured curly hair" data-cat="keratin" data-src="/images/webflow/gallery/554cedb3-6ab7-4724-9957-b95ea9e8b4f4.webp"><img src="/images/webflow/gallery/554cedb3-6ab7-4724-9957-b95ea9e8b4f4.webp" alt="Keratin treatment for curly hair, Fresno salon" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" title="Added fullness with beaded row hair extensions" aria-label="Added fullness with beaded row hair extensions" data-cat="nbr" data-src="/images/webflow/gallery/d6963495-8d0a-4260-8b80-81e6078e0eba.webp"><img src="/images/webflow/gallery/d6963495-8d0a-4260-8b80-81e6078e0eba.webp" alt="Beaded row hair extensions for fullness, Fresno salon" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" title="Partial highlights — natural sun-kissed lift" aria-label="Partial highlights — natural sun-kissed lift" data-cat="color" data-src="/images/webflow/gallery/195de183-49d1-4275-ac31-148d08b8237c.webp"><img src="/images/webflow/gallery/195de183-49d1-4275-ac31-148d08b8237c.webp" alt="Partial highlights for natural lift, Studio One Fresno" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" title="Extensions + color in one visit" aria-label="Extensions + color in one visit" data-cat="nbr color" data-src="/images/webflow/gallery/97dbcf64-083f-41f6-a19a-9d9456ee7edc.webp"><img src="/images/webflow/gallery/97dbcf64-083f-41f6-a19a-9d9456ee7edc.webp" alt="Hair extensions and color in one visit, Studio One Fresno" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" title="Honey blonde balayage by Studio One" aria-label="Honey blonde balayage by Studio One" data-cat="color" data-src="/images/webflow/gallery/88d027dd-b7e3-42b1-a0a1-55b7a6948617.webp"><img src="/images/webflow/gallery/88d027dd-b7e3-42b1-a0a1-55b7a6948617.webp" alt="Honey blonde balayage, Fresno hair color salon" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" title="Wefts custom-colored to blend with natural base" aria-label="Wefts custom-colored to blend with natural base" data-cat="nbr" data-src="/images/webflow/gallery/86baea16-1aa4-4105-8d84-f4ce3819b2ed.webp"><img src="/images/webflow/gallery/86baea16-1aa4-4105-8d84-f4ce3819b2ed.webp" alt="NBR extension color match, Studio One Fresno" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" title="Custom-formulated color for the guest's natural base" aria-label="Custom-formulated color for the guest's natural base" data-cat="color" data-src="/images/webflow/gallery/67bf5406-d51b-4369-a813-f76399662b53.webp"><img src="/images/webflow/gallery/67bf5406-d51b-4369-a813-f76399662b53.webp" alt="Custom hair color formulation, Fresno hair color salon" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" title="Natural-looking density transformation with NBR" aria-label="Natural-looking density transformation with NBR" data-cat="nbr" data-src="/images/webflow/gallery/62c8fb93-c071-462a-85d9-42554f7b94f3.webp"><img src="/images/webflow/gallery/62c8fb93-c071-462a-85d9-42554f7b94f3.webp" alt="Natural Beaded Row extensions for thicker, longer hair" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" title="Keratin smoothing — frizz-free, glossy result" aria-label="Keratin smoothing — frizz-free, glossy result" data-cat="keratin" data-src="/images/webflow/gallery/d14988fa-7dca-4422-875b-a53977147d93.webp"><img src="/images/webflow/gallery/d14988fa-7dca-4422-875b-a53977147d93.webp" alt="Keratin smoothing treatment in Fresno (Brazilian Blowout)" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" title="Long blonde extensions with custom color" aria-label="Long blonde extensions with custom color" data-cat="nbr color" data-src="/images/webflow/gallery/50b4254a-b898-479c-bbcd-d58f8dd9c29e.webp"><img src="/images/webflow/gallery/50b4254a-b898-479c-bbcd-d58f8dd9c29e.webp" alt="Long blonde extensions with custom color, Fresno" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" title="Strawberry blonde dimensional color" aria-label="Strawberry blonde dimensional color" data-cat="color" data-src="/images/webflow/gallery/43fdd92b-64d9-4c0d-b5fc-dce2944a54ed.webp"><img src="/images/webflow/gallery/43fdd92b-64d9-4c0d-b5fc-dce2944a54ed.webp" alt="Strawberry blonde dimensional color, Fresno salon" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" title="Seamlessly blended hand-tied wefts on natural color" aria-label="Seamlessly blended hand-tied wefts on natural color" data-cat="nbr" data-src="/images/webflow/gallery/35c60098-5eb6-42ec-857d-a81b98df8754.webp"><img src="/images/webflow/gallery/35c60098-5eb6-42ec-857d-a81b98df8754.webp" alt="Seamless NBR extension blend, Fresno hand-tied wefts" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" title="Gloss-finished blonde refresh, Studio One Fresno" aria-label="Gloss-finished blonde refresh, Studio One Fresno" data-cat="color" data-src="/images/webflow/gallery/30e34078-9ba1-4381-8ac7-960df01879a4.webp"><img src="/images/webflow/gallery/30e34078-9ba1-4381-8ac7-960df01879a4.webp" alt="Gloss-finished blonde color, Studio One Fresno" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" title="Long blonde extensions with custom color" aria-label="Long blonde extensions with custom color" data-cat="nbr color" data-src="/images/webflow/gallery/14f9c241-e7b2-4180-b95d-32caa4164895.webp"><img src="/images/webflow/gallery/14f9c241-e7b2-4180-b95d-32caa4164895.webp" alt="Long blonde extensions with custom color, Fresno" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" title="Added fullness with beaded row hair extensions" aria-label="Added fullness with beaded row hair extensions" data-cat="nbr" data-src="/images/webflow/gallery/9b9c4c7d-c2c6-4741-9246-f389f6ea1743.webp"><img src="/images/webflow/gallery/9b9c4c7d-c2c6-4741-9246-f389f6ea1743.webp" alt="Beaded row hair extensions for fullness, Fresno salon" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" title="Custom color correction with full gray coverage" aria-label="Custom color correction with full gray coverage" data-cat="color" data-src="/images/webflow/gallery/009aab06-1564-4e55-a940-ad764f7fb211.webp"><img src="/images/webflow/gallery/009aab06-1564-4e55-a940-ad764f7fb211.webp" alt="Color correction & gray coverage at Studio One" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" title="Custom-colored NBR hair extensions, long length transformation" aria-label="Custom-colored NBR hair extensions, long length transformation" data-cat="nbr" data-src="/images/webflow/gallery/8da3a8c4-28b8-4422-a87a-d92023c5f534.webp"><img src="/images/webflow/gallery/8da3a8c4-28b8-4422-a87a-d92023c5f534.webp" alt="Long luxurious NBR hair extensions, custom color match" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" title="Full-head foil blonding by Studio One Fresno" aria-label="Full-head foil blonding by Studio One Fresno" data-cat="color" data-src="/images/webflow/gallery/7a792944-c63c-422f-b2d7-3d6059202f6f.webp"><img src="/images/webflow/gallery/7a792944-c63c-422f-b2d7-3d6059202f6f.webp" alt="Hair color salon in Fresno — full-foil blonding" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" title="Extensions + color in one visit" aria-label="Extensions + color in one visit" data-cat="nbr color" data-src="/images/webflow/gallery/006f748c-2e87-497b-adda-07726568ea6c.webp"><img src="/images/webflow/gallery/006f748c-2e87-497b-adda-07726568ea6c.webp" alt="Hair extensions and color in one visit, Studio One Fresno" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" title="Keratin smoothing — frizz-free, glossy result" aria-label="Keratin smoothing — frizz-free, glossy result" data-cat="keratin" data-src="/images/webflow/gallery/5ecce647-ecde-4a46-a311-a2ef34511bb5.webp"><img src="/images/webflow/gallery/5ecce647-ecde-4a46-a311-a2ef34511bb5.webp" alt="Keratin smoothing treatment in Fresno (Brazilian Blowout)" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" title="Custom color correction with full gray coverage" aria-label="Custom color correction with full gray coverage" data-cat="color" data-src="/images/webflow/gallery/5dbb1aa0-2a33-4e0e-9338-b7113f7c85b2.webp"><img src="/images/webflow/gallery/5dbb1aa0-2a33-4e0e-9338-b7113f7c85b2.webp" alt="Color correction & gray coverage at Studio One" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" title="Seamlessly blended hand-tied wefts on natural color" aria-label="Seamlessly blended hand-tied wefts on natural color" data-cat="nbr" data-src="/images/webflow/gallery/5d01ff4c-565a-4a26-9512-8e8ee5e8adc3.webp"><img src="/images/webflow/gallery/5d01ff4c-565a-4a26-9512-8e8ee5e8adc3.webp" alt="Seamless NBR extension blend, Fresno hand-tied wefts" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" title="Custom-formulated color for the guest's natural base" aria-label="Custom-formulated color for the guest's natural base" data-cat="color" data-src="/images/webflow/gallery/4b46cd9c-5143-44ca-8527-c563a4f7ead9.webp"><img src="/images/webflow/gallery/4b46cd9c-5143-44ca-8527-c563a4f7ead9.webp" alt="Custom hair color formulation, Fresno hair color salon" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" title="Dimensional color applied to NBR wefts" aria-label="Dimensional color applied to NBR wefts" data-cat="nbr color" data-src="/images/webflow/gallery/3d5fc523-00ce-47cb-a239-d042abdbca71.webp"><img src="/images/webflow/gallery/3d5fc523-00ce-47cb-a239-d042abdbca71.webp" alt="Dimensional color on NBR extensions, hand-tied wefts" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" title="Dimensional balayage transformation, Studio One Fresno" aria-label="Dimensional balayage transformation, Studio One Fresno" data-cat="color" data-src="/images/webflow/gallery/3cf0c884-111c-4ef0-a376-89d3c38f82af.webp"><img src="/images/webflow/gallery/3cf0c884-111c-4ef0-a376-89d3c38f82af.webp" alt="Dimensional balayage color at Studio One Fresno" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" title="Wefts custom-colored to blend with natural base" aria-label="Wefts custom-colored to blend with natural base" data-cat="nbr" data-src="/images/webflow/gallery/2ea863ec-d0f8-4919-ab35-e5ec84e28d78.webp"><img src="/images/webflow/gallery/2ea863ec-d0f8-4919-ab35-e5ec84e28d78.webp" alt="NBR extension color match, Studio One Fresno" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" title="Partial highlights — natural sun-kissed lift" aria-label="Partial highlights — natural sun-kissed lift" data-cat="color" data-src="/images/webflow/gallery/2d0d342e-228a-4efd-855a-cebbbe4cbecc.webp"><img src="/images/webflow/gallery/2d0d342e-228a-4efd-855a-cebbbe4cbecc.webp" alt="Partial highlights for natural lift, Studio One Fresno" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" title="Keratin smoothing — frizz-free, glossy result" aria-label="Keratin smoothing — frizz-free, glossy result" data-cat="keratin" data-src="/images/webflow/gallery/5555dd16-e262-48a9-b482-a856fd0d8bb2.webp"><img src="/images/webflow/gallery/5555dd16-e262-48a9-b482-a856fd0d8bb2.webp" alt="Keratin smoothing treatment in Fresno (Brazilian Blowout)" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" title="Extensions + color in one visit" aria-label="Extensions + color in one visit" data-cat="nbr color" data-src="/images/webflow/gallery/2af17aa0-42ab-4853-bcdf-747f736c5c10.webp"><img src="/images/webflow/gallery/2af17aa0-42ab-4853-bcdf-747f736c5c10.webp" alt="Hair extensions and color in one visit, Studio One Fresno" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" title="Custom-colored NBR hair extensions, long length transformation" aria-label="Custom-colored NBR hair extensions, long length transformation" data-cat="nbr" data-src="/images/webflow/gallery/2a3a2da2-7c7a-4088-922a-23627e0b6175.webp"><img src="/images/webflow/gallery/2a3a2da2-7c7a-4088-922a-23627e0b6175.webp" alt="Long luxurious NBR hair extensions, custom color match" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" title="Partial highlights — natural sun-kissed lift" aria-label="Partial highlights — natural sun-kissed lift" data-cat="color" data-src="/images/webflow/gallery/1ddabca5-0f2d-41d5-b86d-37221040df7b.webp"><img src="/images/webflow/gallery/1ddabca5-0f2d-41d5-b86d-37221040df7b.webp" alt="Partial highlights for natural lift, Studio One Fresno" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" title="Natural-looking density transformation with NBR" aria-label="Natural-looking density transformation with NBR" data-cat="nbr" data-src="/images/webflow/gallery/1ad0a2c7-9848-439a-97b1-bd33dc639a8c.webp"><img src="/images/webflow/gallery/1ad0a2c7-9848-439a-97b1-bd33dc639a8c.webp" alt="Natural Beaded Row extensions for thicker, longer hair" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" title="Custom-formulated color for the guest's natural base" aria-label="Custom-formulated color for the guest's natural base" data-cat="color" data-src="/images/webflow/gallery/1a1353e0-aa5b-4535-b3a3-ba69e4368de0.webp"><img src="/images/webflow/gallery/1a1353e0-aa5b-4535-b3a3-ba69e4368de0.webp" alt="Custom hair color formulation, Fresno hair color salon" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" title="Dimensional color applied to NBR wefts" aria-label="Dimensional color applied to NBR wefts" data-cat="nbr color" data-src="/images/webflow/gallery/0bd9955c-2a09-4df2-ac59-78ba661c2cbc.webp"><img src="/images/webflow/gallery/0bd9955c-2a09-4df2-ac59-78ba661c2cbc.webp" alt="Dimensional color on NBR extensions, hand-tied wefts" width="800" height="800" loading="lazy" decoding="async"></button>
+        <button type="button" class="gallery-item" title="Before-and-after transformation, NBR install" aria-label="Before-and-after transformation, NBR install" data-cat="nbr" data-src="/images/webflow/gallery/0b75b07b-4024-48ae-bdf9-57be1fab66ae.webp"><img src="/images/webflow/gallery/0b75b07b-4024-48ae-bdf9-57be1fab66ae.webp" alt="NBR extensions before-and-after, Studio One Fresno guest" width="800" height="800" loading="lazy" decoding="async"></button>
       </div>
     </div>
   </section>
@@ -346,6 +462,20 @@
   </script>
 
     <!-- Universal Footer -->
+  <!-- WHY STUDIO ONE — SEO CLOSING -->
+  <section class="gallery-why">
+    <div class="gallery-why-inner" data-animate>
+      <h2>Fresno's go-to for hair extensions, color &amp; keratin smoothing.</h2>
+      <p>
+        Studio One Hair Design has built its reputation in Fresno on three core specialties: <a href="/nbr-extensions">NBR hand-tied hair extensions</a>, dimensional <a href="/services">hair color</a>, and <a href="/services">keratin smoothing treatments (Brazilian Blowout)</a>. Every guest in this gallery received a fully customized service &mdash; no swatch matching, no one-size-fits-all packages.
+      </p>
+      <p>
+        Looking for a <strong>hair extensions salon in Fresno</strong> that won't damage your natural hair? Want a <strong>Fresno hair color salon</strong> that gets dimensional blondes and lived-in brunettes right? Need a <strong>keratin treatment in Fresno</strong> (or a Brazilian Blowout) that lasts? Studio One handles all three under one roof.
+      </p>
+      <p style="margin-top:32px"><a href="/booking" style="display:inline-block;padding:16px 32px;background:var(--olive);color:var(--white);font-size:12px;font-weight:600;letter-spacing:3px;text-transform:uppercase;border-radius:0;border:none;border-bottom:0;text-decoration:none">Book your consultation</a></p>
+    </div>
+  </section>
+
   <footer class="footer">
     <div class="footer-inner">
       <div class="footer-left">
