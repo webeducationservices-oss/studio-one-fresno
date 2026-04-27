@@ -61,7 +61,7 @@ def HEAD(title, description, path, preload_hero=None, extra_head="", schema=""):
 
   <style>
     *,*::before,*::after{{margin:0;padding:0;box-sizing:border-box}}
-    :root{{--olive:#4c5223;--olive-light:#6b7332;--black:#000;--dark:#0a0a0a;--white:#fff;--off-white:#f5f5f5;--light-gray:#d9d9d9;--body-font:'Inter',Arial,sans-serif;--heading-font:'freight-big-pro',Georgia,serif}}
+    :root{{--olive:#4c5223;--olive-light:#6b7332;--black:#000;--dark:#0a0a0a;--white:#fff;--off-white:#f5f5f5;--light-gray:#d9d9d9;--body-font:Arial, sans-serif;--heading-font:'freight-big-pro',Georgia,serif}}
     html{{-webkit-font-smoothing:antialiased;scroll-behavior:smooth}}
     body{{font-family:var(--body-font);background:var(--black);color:var(--light-gray);font-size:16px;line-height:1.6;overflow-x:hidden}}
     img{{max-width:100%;height:auto;display:block}}
@@ -108,12 +108,8 @@ def HEAD(title, description, path, preload_hero=None, extra_head="", schema=""):
   </style>
 
   <link rel="stylesheet" href="/styles.css" media="print" onload="this.media='all'">
-  <noscript><link rel="stylesheet" href="/styles.css"></noscript>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-  <link href="https://use.typekit.net/iqt4hfw.css" rel="stylesheet" media="print" onload="this.media='all'">
-  <noscript>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://use.typekit.net/iqt4hfw.css" rel="stylesheet">
+  <noscript><link rel="stylesheet" href="/styles.css"></noscript><link href="https://use.typekit.net/epq0gor.css" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://use.typekit.net/epq0gor.css" rel="stylesheet">
   </noscript>
 </head>
 <body>
