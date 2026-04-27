@@ -114,6 +114,15 @@
     /* Gallery SEO sections */
     .gallery-intro-seo .eyebrow{color:var(--olive-light)}
     .gallery-intro-seo strong{color:var(--off-white);font-weight:500}
+    .gallery-intro-seo .intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+    .gallery-intro-seo .intro-image{position:relative;aspect-ratio:4/5;overflow:hidden;border-radius:4px;background:#1a1a1a}
+    .gallery-intro-seo .intro-image img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .8s ease}
+    .gallery-intro-seo .intro-image:hover img{transform:scale(1.02)}
+    .gallery-intro-seo .intro-copy{max-width:560px}
+    @media (max-width:1024px){
+      .gallery-intro-seo .intro-grid{grid-template-columns:1fr;gap:32px}
+      .gallery-intro-seo .intro-image{aspect-ratio:16/10;max-height:380px}
+    }
     .cat-overview-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
     .cat-overview-card{padding:36px 32px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.06);border-radius:6px;transition:border-color .3s ease,background .3s ease,transform .3s ease}
     .cat-overview-card:hover{border-color:rgba(76,82,35,.6);background:rgba(76,82,35,.06);transform:translateY(-4px)}
@@ -266,16 +275,21 @@
   
   <!-- SEO INTRO -->
   <section class="section section--dark gallery-intro-seo">
-    <div class="section-inner" data-animate>
-      <p class="eyebrow">Inside the Gallery</p>
-      <h2 class="section-heading" style="max-width:780px">A real look at Studio One's signature work in Fresno.</h2>
-      <p style="max-width:780px;font-size:16px;color:var(--light-gray);line-height:1.8;font-weight:300;margin-bottom:20px">
-        Every photo below is a real Studio One guest. We don't run stock shots or styled-only campaigns &mdash; the gallery shows the work that walks out of the salon every week.
-        Filter by category to focus on the transformation type you're researching: <strong style="color:var(--off-white);font-weight:500">NBR hair extensions in Fresno</strong>, <strong style="color:var(--off-white);font-weight:500">luxury hair color</strong>, or <strong style="color:var(--off-white);font-weight:500">keratin smoothing &amp; Brazilian Blowout</strong>.
-      </p>
-      <p style="max-width:780px;font-size:16px;color:var(--light-gray);line-height:1.8;font-weight:300">
-        Hover any image for a quick description, or click to view full-size. When you find the look you want, <a href="/booking" style="color:var(--olive-light);border-bottom:1px solid var(--olive)">book your consultation</a> and we'll plan a custom approach for your hair goals.
-      </p>
+    <div class="section-inner intro-grid">
+      <div class="intro-image" data-animate="fade-right">
+        <img src="/images/cta-bg.jpg" alt="Studio One Fresno salon — hair extensions, color & keratin" loading="lazy" decoding="async">
+      </div>
+      <div class="intro-copy" data-animate="fade-left">
+        <p class="eyebrow">Inside the Gallery</p>
+        <h2 class="section-heading">A real look at Studio One's signature work in Fresno.</h2>
+        <p style="font-size:16px;color:var(--light-gray);line-height:1.8;font-weight:300;margin-bottom:20px">
+          Every photo below is a real Studio One guest. We don't run stock shots or styled-only campaigns &mdash; the gallery shows the work that walks out of the salon every week.
+          Filter by category to focus on the transformation type you're researching: <strong style="color:var(--off-white);font-weight:500">NBR hair extensions in Fresno</strong>, <strong style="color:var(--off-white);font-weight:500">luxury hair color</strong>, or <strong style="color:var(--off-white);font-weight:500">keratin smoothing &amp; Brazilian Blowout</strong>.
+        </p>
+        <p style="font-size:16px;color:var(--light-gray);line-height:1.8;font-weight:300">
+          Hover any image for a quick description, or click to view full-size. When you find the look you want, <a href="/booking" style="color:var(--olive-light);border-bottom:1px solid var(--olive)">book your consultation</a> and we'll plan a custom approach for your hair goals.
+        </p>
+      </div>
     </div>
   </section>
 
