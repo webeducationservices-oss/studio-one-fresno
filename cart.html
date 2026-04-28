@@ -82,6 +82,25 @@
 .cart-summary{background:rgba(255,255,255,.03);padding:32px;margin-top:32px;border-radius:4px}
 .cart-row{display:flex;justify-content:space-between;padding:8px 0;font-size:14px;color:var(--light-gray)}
 .cart-row--total{border-top:1px solid rgba(255,255,255,.08);margin-top:12px;padding-top:16px;font-size:18px;color:var(--white);font-weight:500}
+.checkout-options{margin-top:32px;padding:28px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.06);border-radius:6px}
+.checkout-options-title{font-family:var(--heading-font);font-size:22px;color:var(--white);font-weight:400;margin-bottom:18px}
+.ship-options{display:flex;flex-direction:column;gap:12px}
+.ship-opt{display:flex;align-items:flex-start;gap:14px;padding:16px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.08);border-radius:6px;cursor:pointer;transition:border-color .2s,background .2s}
+.ship-opt:has(input:checked){border-color:var(--olive);background:rgba(76,82,35,.08)}
+.ship-opt input{margin-top:3px;accent-color:var(--olive)}
+.ship-opt-content{display:flex;flex-direction:column;gap:4px;flex:1}
+.ship-opt-name{font-size:15px;color:var(--white);font-weight:500}
+.ship-opt-meta{font-size:13px;color:var(--light-gray);font-weight:300}
+.ship-state-group{margin-top:18px;padding-top:18px;border-top:1px solid rgba(255,255,255,.06)}
+.ship-state-label{display:block;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--off-white);font-weight:500;margin-bottom:8px}
+.ship-state-select{width:100%;padding:12px 14px;background:rgba(0,0,0,.4);color:var(--white);border:1px solid rgba(255,255,255,.15);border-radius:4px;font-family:inherit;font-size:14px}
+.ship-state-select:focus{outline:none;border-color:var(--olive)}
+.paypal-wrap{margin-top:24px}
+.paypal-secure-note{font-size:12px;color:var(--light-gray);text-align:center;margin-top:14px;font-weight:300}
+.paypal-error{padding:14px 18px;margin-bottom:14px;background:rgba(220,60,60,.15);border:1px solid rgba(220,60,60,.4);border-radius:4px;color:#ffb0b0;font-size:14px}
+.wholesale-cta-note{font-size:13px;color:var(--light-gray);font-weight:300;margin-top:24px;text-align:center;padding-top:24px;border-top:1px solid rgba(255,255,255,.06)}
+.wholesale-cta-note a{color:var(--olive-light);border-bottom:1px solid var(--olive);padding-bottom:1px}
+.wholesale-cta-note a:hover{color:var(--white)}
 .paypal-placeholder{margin-top:24px;padding:24px;background:rgba(76,82,35,.1);border:1px dashed rgba(76,82,35,.4);border-radius:4px;text-align:center}
 .paypal-placeholder h3{font-size:14px;color:var(--off-white);letter-spacing:1px;margin-bottom:8px;font-weight:600}
 .paypal-placeholder p{font-size:13px;color:var(--light-gray);font-weight:300;line-height:1.7;margin-bottom:16px}
@@ -176,30 +195,216 @@
       <div id="cartContent" style="display:none">
         <div class="cart-items" id="cartItems"></div>
 
+        <div class="checkout-options">
+          <h3 class="checkout-options-title">How would you like to receive your order?</h3>
+          <div class="ship-options">
+            <label class="ship-opt">
+              <input type="radio" name="shipMethod" value="pickup" checked>
+              <span class="ship-opt-content">
+                <span class="ship-opt-name">In-Store Pickup</span>
+                <span class="ship-opt-meta">Free &middot; 2950 E Nees Ave, #103, Fresno, CA 93720</span>
+              </span>
+            </label>
+            <label class="ship-opt">
+              <input type="radio" name="shipMethod" value="ship">
+              <span class="ship-opt-content">
+                <span class="ship-opt-name">Ship to Me (US Only)</span>
+                <span class="ship-opt-meta">$8 flat &middot; Free over $75 &middot; PayPal collects address at checkout</span>
+              </span>
+            </label>
+          </div>
+
+          <div id="shipStateGroup" class="ship-state-group" style="display:none">
+            <label for="shipStateSelect" class="ship-state-label">Where will this ship to?</label>
+            <select id="shipStateSelect" class="ship-state-select">
+              <option value="">Select state…</option>
+              <option value="CA">California (8.35% sales tax applies)</option>
+              <option value="OTHER">Other US state (no sales tax)</option>
+            </select>
+          </div>
+        </div>
+
         <div class="cart-summary">
           <div class="cart-row"><span>Subtotal</span><span id="sumSubtotal">$0.00</span></div>
-          <div class="cart-row"><span>Shipping</span><span id="sumShipping">Calculated at checkout</span></div>
-          <div class="cart-row"><span>Tax (CA 7.975%)</span><span id="sumTax">$0.00</span></div>
+          <div class="cart-row"><span>Shipping</span><span id="sumShipping">Free (in-store pickup)</span></div>
+          <div class="cart-row"><span id="sumTaxLabel">Tax</span><span id="sumTax">Tax (CA 8.35%) $0.00</span></div>
           <div class="cart-row cart-row--total"><span>Total</span><span id="sumTotal">$0.00</span></div>
         </div>
 
-        <div class="paypal-placeholder">
-          <h3>PayPal Checkout — Launching Soon</h3>
-          <p>We're finalizing our PayPal integration. In the meantime, call or text us at 559-795-9724 and we'll process your order by phone, or stop by the salon.</p>
-          <a href="tel:5597959724" class="olive-button">call 559-795-9724</a>
+        <!-- PayPal Smart Payment Buttons -->
+        <div class="paypal-wrap">
+          <div id="paypal-button-container"></div>
+          <div id="paypal-error" class="paypal-error" hidden></div>
+          <p class="paypal-secure-note">
+            Secured by PayPal. Pay with your PayPal balance, debit/credit card, Venmo, or Pay Later.
+          </p>
         </div>
 
-        <!-- PAYPAL BUTTONS MOUNT POINT (Phase 4)
-        <div id="paypal-button-container" style="margin-top:24px"></div>
-        -->
+        <p class="wholesale-cta-note">
+          Are you a licensed stylist or salon? <a href="/wholesale">Request a wholesale quote &rarr;</a> for tax-exempt pricing.
+        </p>
       </div>
     </div>
   </section>
 
+  <!-- PayPal SDK — Smart Payment Buttons + card guest checkout + Venmo + Pay Later -->
+  <script src="https://www.paypal.com/sdk/js?client-id=AW4HfPBgoAi0ej4WYNWCyFbvm8eKoO3tKuvUrL5YVbD5MZu-nOsaInJxJDLiOfRErgnjtieDEC73lhux&currency=USD&intent=capture&enable-funding=venmo,paylater&components=buttons" data-sdk-integration-source="cart"></script>
+
   <script>
-    // Render cart on page load
+    /* ------------------------------------------------------------------
+     * Cart page — PayPal Smart Payment Buttons integration
+     * Tax: 8.35% Fresno on pickup + CA-shipped
+     * Shipping: free pickup / $8 ship / free over $75
+     * ------------------------------------------------------------------ */
     document.addEventListener('DOMContentLoaded', () => {
-      if (window.Cart) window.Cart.renderCartPage();
+      const cart = window.Cart;
+      if (!cart) return;
+
+      // Initial state — pickup default
+      const persisted = cart.readState() || {};
+      if (!persisted.method) {
+        cart.writeState({ method: 'pickup', shipState: '', wholesale: false });
+      }
+
+      // Render items + summary
+      cart.renderCartPage();
+
+      // Wire pickup vs ship radios
+      document.querySelectorAll('input[name="shipMethod"]').forEach(r => {
+        // Restore checked state from localStorage
+        if (r.value === (cart.readState().method || 'pickup')) r.checked = true;
+        r.addEventListener('change', () => {
+          const state = cart.readState();
+          state.method = r.value;
+          cart.writeState(state);
+          document.getElementById('shipStateGroup').style.display = (r.value === 'ship') ? 'block' : 'none';
+          cart.recomputeSummary();
+        });
+      });
+      // Show state selector if ship was previously chosen
+      document.getElementById('shipStateGroup').style.display =
+        (cart.readState().method === 'ship') ? 'block' : 'none';
+
+      // Wire ship-state selector
+      const stateSel = document.getElementById('shipStateSelect');
+      stateSel.value = cart.readState().shipState || '';
+      stateSel.addEventListener('change', () => {
+        const state = cart.readState();
+        state.shipState = stateSel.value;
+        cart.writeState(state);
+        cart.recomputeSummary();
+      });
+
+      cart.recomputeSummary();
+
+      // ---- PayPal Buttons ----
+      if (typeof paypal === 'undefined') {
+        document.getElementById('paypal-error').hidden = false;
+        document.getElementById('paypal-error').textContent =
+          'PayPal failed to load. Please refresh, or call 559-795-9724 to place your order.';
+        return;
+      }
+
+      function buildOrder(actions) {
+        const items = cart.read();
+        if (items.length === 0) throw new Error('Cart is empty');
+        const state = cart.readState();
+        const sub = cart.subtotalCents();
+        const tax = cart.taxCents(state);
+        const ship = cart.shippingCents(state);
+        const tot = sub + tax + ship;
+
+        // Convert items to PayPal item array
+        const ppItems = items.map(i => ({
+          name: (i.name || '').slice(0, 127),
+          description: (i.variant || '').slice(0, 127) || undefined,
+          sku: i.slug.slice(0, 127),
+          unit_amount: { currency_code: 'USD', value: (i.price_cents / 100).toFixed(2) },
+          quantity: String(i.qty),
+          category: 'PHYSICAL_GOODS',
+        }));
+
+        const purchase_unit = {
+          description: `Studio One Fresno — ${items.length} item${items.length === 1 ? '' : 's'}`,
+          amount: {
+            currency_code: 'USD',
+            value: (tot / 100).toFixed(2),
+            breakdown: {
+              item_total:   { currency_code: 'USD', value: (sub / 100).toFixed(2) },
+              tax_total:    { currency_code: 'USD', value: (tax / 100).toFixed(2) },
+              shipping:     { currency_code: 'USD', value: (ship / 100).toFixed(2) },
+            },
+          },
+          items: ppItems,
+          custom_id: 'cart_' + Date.now(),
+        };
+
+        // Set shipping_preference based on pickup vs ship
+        const application_context = {
+          shipping_preference: (state.method === 'pickup') ? 'NO_SHIPPING' : 'GET_FROM_FILE',
+          user_action: 'PAY_NOW',
+          brand_name: 'Studio One Hair Design',
+        };
+
+        return actions.order.create({
+          purchase_units: [purchase_unit],
+          application_context,
+        });
+      }
+
+      paypal.Buttons({
+        style: {
+          layout: 'vertical',
+          color: 'gold',
+          shape: 'rect',
+          label: 'paypal',
+        },
+        createOrder: function (data, actions) {
+          try {
+            return buildOrder(actions);
+          } catch (e) {
+            const err = document.getElementById('paypal-error');
+            err.hidden = false;
+            err.textContent = e.message || 'Could not start checkout.';
+            return Promise.reject(e);
+          }
+        },
+        onApprove: function (data, actions) {
+          return actions.order.capture().then(function (details) {
+            // Clear cart on success
+            cart.clear();
+            // Track conversion
+            if (typeof gtag !== 'undefined') {
+              gtag('event', 'purchase', {
+                transaction_id: details.id,
+                value: parseFloat(details.purchase_units?.[0]?.amount?.value || 0),
+                currency: 'USD',
+              });
+            }
+            if (typeof fbq !== 'undefined') {
+              fbq('track', 'Purchase', {
+                value: parseFloat(details.purchase_units?.[0]?.amount?.value || 0),
+                currency: 'USD',
+              });
+            }
+            // Redirect to thank-you page
+            const params = new URLSearchParams({
+              order: details.id,
+              status: details.status || 'COMPLETED',
+            });
+            window.location.href = '/order-confirmation?' + params.toString();
+          });
+        },
+        onError: function (err) {
+          console.error('PayPal error:', err);
+          const e = document.getElementById('paypal-error');
+          e.hidden = false;
+          e.textContent = 'Checkout failed. Please refresh and try again, or call 559-795-9724.';
+        },
+        onCancel: function () {
+          // Buyer cancelled — no need to show an error
+        },
+      }).render('#paypal-button-container');
     });
   </script>
 

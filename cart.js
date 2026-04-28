@@ -1,26 +1,38 @@
 /* Studio One Fresno — client-side cart module.
  * Persists to localStorage, updates cart icon badge, renders cart page.
- * PayPal Smart Payment Buttons integration slot lives in cart.html (commented)
- * and will be activated in Phase 4 when credentials arrive.
+ * Tax + shipping logic exposed for PayPal Smart Payment Buttons in cart.html.
  */
 (function () {
   'use strict';
 
   const STORAGE_KEY = 'studio_one_cart_v1';
-  const TAX_RATE = 0.07975; // California sales tax — confirm w/ client
+  const STATE_KEY   = 'studio_one_cart_state_v1';
+
+  // Fresno + CA Sales Tax = 8.35%
+  const CA_TAX_RATE = 0.0835;
+
+  // Shipping config (mirrors .env.keys.cat / Vercel env vars)
+  const SHIPPING_FLAT_USD     = 8.00;
+  const SHIPPING_FREE_OVER    = 75.00;
 
   function read() {
-    try {
-      return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-    } catch {
-      return [];
-    }
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); }
+    catch { return []; }
   }
 
   function write(items) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
     updateBadge(items);
     document.dispatchEvent(new CustomEvent('cart:updated', { detail: items }));
+  }
+
+  // Cart-page state (pickup vs ship, ship-to state) — persists across reloads
+  function readState() {
+    try { return JSON.parse(localStorage.getItem(STATE_KEY) || '{}'); }
+    catch { return {}; }
+  }
+  function writeState(s) {
+    localStorage.setItem(STATE_KEY, JSON.stringify(s));
   }
 
   function updateBadge(items) {
@@ -36,52 +48,57 @@
     const items = read();
     const key = item.slug + (item.variant || '');
     const existing = items.find(i => (i.slug + (i.variant || '')) === key);
-    if (existing) {
-      existing.qty += item.qty;
-    } else {
-      items.push(item);
-    }
+    if (existing) existing.qty += item.qty;
+    else items.push(item);
     write(items);
   }
 
   function remove(slug, variant) {
-    const items = read().filter(i => !(i.slug === slug && (i.variant || '') === (variant || '')));
-    write(items);
+    write(read().filter(i => !(i.slug === slug && (i.variant || '') === (variant || ''))));
   }
 
   function updateQty(slug, variant, qty) {
     const items = read();
     const item = items.find(i => i.slug === slug && (i.variant || '') === (variant || ''));
     if (!item) return;
-    if (qty < 1) {
-      return remove(slug, variant);
-    }
+    if (qty < 1) return remove(slug, variant);
     item.qty = qty;
     write(items);
   }
 
-  function clear() {
-    write([]);
-  }
+  function clear() { write([]); }
 
+  // ---- Money math (all in cents, formatted to dollars at display time) ----
   function subtotalCents() {
     return read().reduce((sum, i) => sum + i.price_cents * i.qty, 0);
   }
 
-  function taxCents() {
-    return Math.round(subtotalCents() * TAX_RATE);
+  /** Tax cents — only charged for in-store pickup OR shipping to CA. */
+  function taxCents(state = readState()) {
+    const sub = subtotalCents();
+    const isPickup = state.method === 'pickup';
+    const isCA = (state.shipState || '').toUpperCase() === 'CA';
+    if (state.wholesale) return 0;          // future: wholesale exempt
+    if (isPickup || (state.method === 'ship' && isCA)) {
+      return Math.round(sub * CA_TAX_RATE);
+    }
+    return 0;
   }
 
-  function totalCents() {
-    return subtotalCents() + taxCents();
+  /** Shipping cents — free for pickup, free over $75 ship, else flat $8. */
+  function shippingCents(state = readState()) {
+    if (state.method === 'pickup') return 0;
+    const sub = subtotalCents();
+    if (sub >= SHIPPING_FREE_OVER * 100) return 0;
+    return Math.round(SHIPPING_FLAT_USD * 100);
   }
 
-  function fmt(cents) {
-    return '$' + (cents / 100).toFixed(2);
+  function totalCents(state = readState()) {
+    return subtotalCents() + taxCents(state) + shippingCents(state);
   }
 
-  // ------------------------------------------------------------------------
-  // Cart page rendering (/cart)
+  function fmt(cents) { return '$' + (cents / 100).toFixed(2); }
+
   // ------------------------------------------------------------------------
   function renderCartPage() {
     const items = read();
@@ -89,16 +106,17 @@
     const content = document.getElementById('cartContent');
     const itemsEl = document.getElementById('cartItems');
     const itemCountEl = document.getElementById('cartItemCount');
-    if (!itemsEl) return; // not on cart page
+    if (!itemsEl) return;
 
     if (items.length === 0) {
-      empty.style.display = 'block';
-      content.style.display = 'none';
-      itemCountEl.textContent = '0 items';
+      if (empty) empty.style.display = 'block';
+      if (content) content.style.display = 'none';
+      if (itemCountEl) itemCountEl.textContent = '0 items';
+      document.dispatchEvent(new CustomEvent('cart:rendered', { detail: { empty: true } }));
       return;
     }
-    empty.style.display = 'none';
-    content.style.display = 'block';
+    if (empty) empty.style.display = 'none';
+    if (content) content.style.display = 'block';
 
     const totalQty = items.reduce((s, i) => s + i.qty, 0);
     itemCountEl.textContent = totalQty + (totalQty === 1 ? ' item' : ' items');
@@ -121,49 +139,73 @@
       </div>
     `).join('');
 
-    // Wire up +/- and remove
     itemsEl.querySelectorAll('.cart-item').forEach(row => {
-      const slug = row.dataset.slug;
-      const variant = row.dataset.variant;
+      const slug = row.dataset.slug, variant = row.dataset.variant;
       row.querySelector('.qty-dec').addEventListener('click', () => {
         const cur = read().find(i => i.slug === slug && (i.variant || '') === variant);
         if (cur) updateQty(slug, variant, cur.qty - 1);
         renderCartPage();
+        recomputeSummary();
       });
       row.querySelector('.qty-inc').addEventListener('click', () => {
         const cur = read().find(i => i.slug === slug && (i.variant || '') === variant);
         if (cur) updateQty(slug, variant, cur.qty + 1);
         renderCartPage();
+        recomputeSummary();
       });
       row.querySelector('input').addEventListener('change', (e) => {
-        const q = parseInt(e.target.value, 10) || 1;
-        updateQty(slug, variant, q);
+        updateQty(slug, variant, parseInt(e.target.value, 10) || 1);
         renderCartPage();
+        recomputeSummary();
       });
       row.querySelector('.cart-remove').addEventListener('click', () => {
         remove(slug, variant);
         renderCartPage();
+        recomputeSummary();
       });
     });
 
-    // Totals
-    document.getElementById('sumSubtotal').textContent = fmt(subtotalCents());
-    document.getElementById('sumTax').textContent = fmt(taxCents());
-    document.getElementById('sumTotal').textContent = fmt(totalCents());
+    recomputeSummary();
+    document.dispatchEvent(new CustomEvent('cart:rendered', { detail: { empty: false } }));
+  }
+
+  function recomputeSummary() {
+    const state = readState();
+    const sub = subtotalCents();
+    const ship = shippingCents(state);
+    const tax = taxCents(state);
+    const tot = sub + ship + tax;
+    setText('sumSubtotal', fmt(sub));
+    setText('sumShipping', state.method === 'pickup' ? 'Free (in-store pickup)' : (ship === 0 ? 'Free' : fmt(ship)));
+    setText('sumTax', taxLabel(state) + ' ' + fmt(tax));
+    setText('sumTotal', fmt(tot));
+    document.dispatchEvent(new CustomEvent('cart:summary-updated', { detail: { sub, ship, tax, tot, state } }));
+  }
+
+  function taxLabel(state) {
+    if (state.wholesale) return 'Tax (wholesale exempt)';
+    if (state.method === 'pickup') return 'Tax (CA 8.35%)';
+    if (state.method === 'ship' && (state.shipState || '').toUpperCase() === 'CA') return 'Tax (CA 8.35%)';
+    if (state.method === 'ship') return 'Tax (out-of-state, exempt)';
+    return 'Tax';
+  }
+
+  function setText(id, txt) {
+    const el = document.getElementById(id);
+    if (el) el.textContent = txt;
   }
 
   function escapeHtml(s) {
     return String(s || '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   }
 
-  // Initialize badge on any page
   updateBadge(read());
 
-  // Public API
   window.Cart = {
     add, remove, updateQty, clear, read, write,
-    subtotalCents, taxCents, totalCents, fmt,
-    renderCartPage,
-    TAX_RATE,
+    subtotalCents, taxCents, shippingCents, totalCents, fmt,
+    renderCartPage, recomputeSummary,
+    readState, writeState,
+    CA_TAX_RATE, SHIPPING_FLAT_USD, SHIPPING_FREE_OVER,
   };
 })();

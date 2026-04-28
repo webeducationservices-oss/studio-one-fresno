@@ -151,15 +151,15 @@
   </section>
 
   <script>
-    // Show order ID from PayPal return (?oid= param)
+    // Show order ID from PayPal return (?order= or ?oid= param)
     const params = new URLSearchParams(location.search);
-    const oid = params.get('oid');
+    const oid = params.get('order') || params.get('oid');
     if (oid) {
       const el = document.getElementById('orderIdDisplay');
       el.textContent = 'Order #' + oid;
       el.style.display = 'inline-block';
     }
-    // Clear cart
+    // Clear cart (in case it wasn't already cleared)
     if (window.Cart) window.Cart.clear();
   </script>
 

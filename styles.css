@@ -959,3 +959,37 @@ button { cursor: pointer; background: none; border: none; color: inherit; font-f
   .nav-logo{margin-bottom:32px}
   .nav-logo img{height:30px}
 }
+
+
+/* Product page wholesale CTA */
+.wholesale-link {
+  display: block;
+  margin-top: -4px;
+  margin-bottom: 16px;
+  padding: 14px 18px;
+  background: rgba(76,82,35,0.08);
+  border: 1px solid rgba(76,82,35,0.4);
+  border-radius: 4px;
+  font-size: 12px;
+  color: var(--light-gray);
+  text-align: center;
+  transition: background 0.3s, border-color 0.3s;
+}
+.wholesale-link span {
+  display: inline-block;
+  color: var(--olive-light);
+  letter-spacing: 1px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-left: 4px;
+  border-bottom: 1px solid var(--olive);
+  padding-bottom: 1px;
+}
+.wholesale-link:hover {
+  background: rgba(76,82,35,0.16);
+  border-color: var(--olive);
+}
+.wholesale-link:hover span {
+  color: var(--white);
+  border-color: var(--white);
+}
