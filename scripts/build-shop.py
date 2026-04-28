@@ -280,7 +280,7 @@ def shop_page():
   </div>
 
   <section class="shop-grid-wrap">
-    <div class="shop-grid" data-animate id="shopGrid">
+    <div class="shop-grid" id="shopGrid">
     {cards_html}
     </div>
     <div class="shop-empty" id="shopEmpty" style="display:none">No products match those filters.</div>

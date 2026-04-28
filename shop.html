@@ -62,6 +62,14 @@
 .shop-hero{min-height:40vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:140px 40px 40px;background:var(--black)}
 .shop-hero h1{font-family:var(--heading-font);font-size:56px;font-weight:400;color:var(--white);line-height:1.1;margin-bottom:16px}
 .shop-hero p{font-size:16px;color:var(--light-gray);max-width:560px;margin:0 auto 24px;font-weight:300}
+.shop-search{padding:0 40px 24px;background:var(--black);display:flex;justify-content:center}
+.shop-search-inner{position:relative;width:100%;max-width:560px}
+.shop-search-icon{position:absolute;top:50%;left:18px;transform:translateY(-50%);color:var(--light-gray);pointer-events:none;opacity:.7}
+#shopSearch{width:100%;padding:14px 44px 14px 50px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:32px;color:var(--white);font-family:inherit;font-size:14px;transition:border-color .25s,background .25s}
+#shopSearch::placeholder{color:rgba(255,255,255,.45)}
+#shopSearch:focus{outline:none;border-color:var(--olive);background:rgba(76,82,35,.08)}
+.shop-search-clear{position:absolute;top:50%;right:14px;transform:translateY(-50%);width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:22px;line-height:1;color:var(--light-gray);background:rgba(255,255,255,.06);border:none;border-radius:50%;cursor:pointer;transition:background .25s,color .25s}
+.shop-search-clear:hover{background:var(--olive);color:var(--white)}
 .shop-filters{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;padding:0 40px 48px;background:var(--black)}
 .shop-filter-group{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
 .shop-filter-label{font-size:10px;letter-spacing:2px;color:var(--olive-light);text-transform:uppercase;font-weight:600;margin-right:8px}
@@ -158,6 +166,16 @@
     </div>
   </section>
 
+  <div class="shop-search">
+    <div class="shop-search-inner">
+      <svg class="shop-search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="11" cy="11" r="7"/><path d="M21 21l-4.5-4.5"/>
+      </svg>
+      <input type="search" id="shopSearch" placeholder="Search products by name or brand…" aria-label="Search products" autocomplete="off">
+      <button type="button" id="shopSearchClear" class="shop-search-clear" aria-label="Clear search" hidden>&times;</button>
+    </div>
+  </div>
+
   <div class="shop-filters">
     <div class="shop-filter-group">
       <span class="shop-filter-label">Brand</span>
@@ -179,7 +197,7 @@
   </div>
 
   <section class="shop-grid-wrap">
-    <div class="shop-grid" data-animate id="shopGrid">
+    <div class="shop-grid" id="shopGrid">
     <a href="/product/demo-test-item" class="product-card product-card--demo" data-brand="Studio One" data-cat="other">
       <div class="product-img"><img src="/images/products/demo-test-item-1.webp" alt="$1 Studio One demo / test product" loading="lazy" decoding="async"></div>
       <div class="product-body">
@@ -1050,21 +1068,37 @@
 
   <script>
     (function() {
-      const state = { brand: 'all', cat: 'all' };
+      const state = { brand: 'all', cat: 'all', q: '' };
       const buttons = document.querySelectorAll('.shop-filter-btn');
       const cards = document.querySelectorAll('.product-card');
       const emptyMsg = document.getElementById('shopEmpty');
+      const searchInput = document.getElementById('shopSearch');
+      const searchClear = document.getElementById('shopSearchClear');
+
+      // Pre-index searchable text on each card (name + brand)
+      cards.forEach(c => {
+        const name = (c.querySelector('.product-name')?.textContent || '').toLowerCase();
+        const brand = (c.dataset.brand || '').toLowerCase();
+        c.dataset.search = (name + ' ' + brand).trim();
+      });
 
       function apply() {
         let visible = 0;
+        const q = state.q.toLowerCase().trim();
         cards.forEach(c => {
           const okBrand = state.brand === 'all' || c.dataset.brand === state.brand;
           const okCat = state.cat === 'all' || c.dataset.cat === state.cat;
-          const show = okBrand && okCat;
+          const okQ = !q || (c.dataset.search || '').includes(q);
+          const show = okBrand && okCat && okQ;
           c.classList.toggle('is-hidden', !show);
           if (show) visible++;
         });
         emptyMsg.style.display = visible === 0 ? 'block' : 'none';
+        if (q) {
+          emptyMsg.textContent = visible === 0 ? `No products match "${state.q}".` : 'No products match those filters.';
+        } else {
+          emptyMsg.textContent = 'No products match those filters.';
+        }
       }
 
       buttons.forEach(b => {
@@ -1076,6 +1110,37 @@
           apply();
         });
       });
+
+      // Search — debounce input by 100ms for typing
+      let t;
+      if (searchInput) {
+        searchInput.addEventListener('input', e => {
+          clearTimeout(t);
+          t = setTimeout(() => {
+            state.q = e.target.value;
+            searchClear.hidden = !e.target.value;
+            apply();
+          }, 100);
+        });
+        searchInput.addEventListener('keydown', e => {
+          if (e.key === 'Escape') {
+            searchInput.value = '';
+            state.q = '';
+            searchClear.hidden = true;
+            apply();
+            searchInput.blur();
+          }
+        });
+      }
+      if (searchClear) {
+        searchClear.addEventListener('click', () => {
+          searchInput.value = '';
+          state.q = '';
+          searchClear.hidden = true;
+          searchInput.focus();
+          apply();
+        });
+      }
     })();
   </script>
 
