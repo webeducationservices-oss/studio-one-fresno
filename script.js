@@ -1,42 +1,11 @@
-/* ===== Smooth Scroll (Lenis-style) ===== */
-(function () {
-  if (window.location.search.includes('noscroll')) return;
-  let scrollY = window.scrollY;
-  let targetY = window.scrollY;
-  let isSmooth = true;
-  const ease = 0.08;
-
-  function lerp(a, b, t) { return a + (b - a) * t; }
-
-  function smoothScroll() {
-    if (!isSmooth) return;
-    scrollY = lerp(scrollY, targetY, ease);
-    if (Math.abs(scrollY - targetY) < 0.5) scrollY = targetY;
-    window.scrollTo(0, scrollY);
-    requestAnimationFrame(smoothScroll);
-  }
-
-  window.addEventListener('wheel', function (e) {
-    e.preventDefault();
-    targetY = Math.max(0, Math.min(targetY + e.deltaY * 0.5, document.body.scrollHeight - window.innerHeight));
-  }, { passive: false });
-
-  window.addEventListener('touchstart', () => { isSmooth = false; });
-  window.addEventListener('touchend', () => {
-    isSmooth = true;
-    scrollY = window.scrollY;
-    targetY = window.scrollY;
-    smoothScroll();
-  });
-
-  // Sync on resize
-  window.addEventListener('resize', () => {
-    scrollY = window.scrollY;
-    targetY = window.scrollY;
-  });
-
-  smoothScroll();
-})();
+/* ===== Smooth Scroll (DISABLED) =====
+ * Removed the Lenis-style wheel-event hijacker because preventDefault() on
+ * wheel events breaks third-party iframes (PayPal credit-card form, JotForm
+ * embeds, YouTube embeds, etc.). Native browser smooth scroll is good
+ * enough on modern hardware and doesn't fight with iframes.
+ *
+ * Use CSS `scroll-behavior: smooth` on <html> for in-page anchor jumps.
+ */
 
 /* ===== Scroll-triggered Animations ===== */
 (function () {
