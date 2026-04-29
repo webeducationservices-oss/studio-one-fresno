@@ -266,6 +266,28 @@
         cart.writeState({ method: 'pickup', shipState: '', wholesale: false });
       }
 
+      // Auto-add support: ?add=<slug> populates the cart with a known item.
+      // Used for direct payment links (e.g. /cart?add=demo-test-item).
+      const KNOWN_ITEMS = {
+        'demo-test-item': {
+          slug: 'demo-test-item',
+          name: '$1 Test Product',
+          brand: 'Studio One',
+          image: '/images/products/demo-test-item-1.webp',
+          variant: null,
+          price_cents: 100,
+          qty: 1,
+        },
+      };
+      const addParam = new URLSearchParams(location.search).get('add');
+      if (addParam && KNOWN_ITEMS[addParam]) {
+        // Don't duplicate if it's already in the cart
+        const exists = cart.read().some(i => i.slug === addParam);
+        if (!exists) cart.add(KNOWN_ITEMS[addParam]);
+        // Strip the ?add= so a refresh doesn't add again
+        history.replaceState({}, '', location.pathname);
+      }
+
       // Render items + summary
       cart.renderCartPage();
 

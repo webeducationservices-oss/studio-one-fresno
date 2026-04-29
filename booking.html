@@ -80,7 +80,26 @@
       .section-heading{font-size:30px}
       .header{padding:16px 20px}
     }
-    .booking-paths{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:48px}.booking-card{padding:48px 36px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.08);border-radius:4px;text-align:center}.booking-card h2{font-family:var(--heading-font);font-size:32px;font-weight:400;color:var(--white);margin-bottom:16px;line-height:1.2}.booking-card p{font-size:14px;color:var(--light-gray);font-weight:300;line-height:1.7;margin-bottom:28px;min-height:80px}@media(max-width:768px){.booking-paths{grid-template-columns:1fr}}
+    .booking-paths{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:48px}
+    .booking-card{padding:48px 36px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.08);border-radius:4px;text-align:center}
+    .booking-card h2{font-family:var(--heading-font);font-size:32px;font-weight:400;color:var(--white);margin-bottom:16px;line-height:1.2}
+    .booking-card p{font-size:14px;color:var(--light-gray);font-weight:300;line-height:1.7;margin-bottom:28px;min-height:80px}
+    @media(max-width:768px){.booking-paths{grid-template-columns:1fr}}
+
+    /* Compact booking hero — keep CTAs above the fold */
+    .booking-hero{min-height:auto;padding:120px 40px 48px}
+    .booking-hero h1{font-size:46px;margin-bottom:16px}
+    .booking-hero .hero-sub{font-size:15px;color:var(--light-gray);font-weight:300;max-width:600px;line-height:1.6;margin:0 auto 28px}
+    .hero-cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:18px}
+    .hero-cta{padding:16px 28px;font-size:11px}
+    .hero-fineprint{font-size:12px;color:rgba(255,255,255,.55);font-weight:300;margin-top:14px}
+    @media(max-width:768px){
+      .booking-hero{padding:100px 20px 36px}
+      .booking-hero h1{font-size:30px;margin-bottom:12px}
+      .booking-hero .hero-sub{font-size:14px;margin-bottom:22px}
+      .hero-cta-row{flex-direction:column;align-items:stretch;gap:10px;max-width:320px;margin-left:auto;margin-right:auto}
+      .hero-cta{padding:15px 20px}
+    }
   </style>
 
   <link rel="stylesheet" href="/styles.css" media="print" onload="this.media='all'">
@@ -151,25 +170,22 @@
     </div>
   </nav>
 
-  <section class="page-hero" style="min-height:60vh">
+  <section class="page-hero booking-hero">
     <div class="page-hero-overlay"></div>
     <div class="page-hero-content" data-animate>
       <p class="eyebrow">Book a Hair Appointment at Studio One in Fresno</p>
       <h1>Let&rsquo;s get you booked in, Gorgeous.</h1>
-      <p>After booking your appointment through our online booking system, please check your email to see if a consultation form has been requested.*</p>
+      <p class="hero-sub">Pick the booking path that fits your service. Both open in a new window.</p>
+      <div class="hero-cta-row">
+        <a href="https://form.jotform.com/83406488092160" target="_blank" rel="noopener" class="olive-button hero-cta">Book Extension Services</a>
+        <a href="https://www.vagaro.com/studioone4/services" target="_blank" rel="noopener" class="olive-button hero-cta">Book Other Salon Services</a>
+      </div>
+      <p class="hero-fineprint">After booking, check your email for a consultation form, if requested.</p>
     </div>
   </section>
 
   <section class="section section--dark">
     <div class="section-inner">
-      <div style="text-align:center;margin-bottom:64px" data-animate>
-        <p style="font-size:14px;color:var(--light-gray);margin-bottom:20px;font-weight:300">Questions before you book? Reach the front desk directly.</p>
-        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
-          <a href="tel:5597959724" class="primary-button">call studio one</a>
-          <a href="sms:5597959724" class="primary-button">text studio one</a>
-        </div>
-        <p style="font-size:24px;font-family:var(--heading-font);color:var(--white);margin-top:24px"><a href="tel:5597959724" style="border-bottom:1px solid var(--olive);padding-bottom:4px">559-795-9724</a></p>
-      </div>
       <div class="booking-paths" data-animate>
         <div class="booking-card">
           <p class="eyebrow">Extension Services</p>
@@ -183,6 +199,14 @@
           <p>Cut, color, keratin, styling, textured services, and move-up appointments. Choose your stylist and time through Vagaro.</p>
           <a href="https://www.vagaro.com/studioone4/services" target="_blank" rel="noopener" class="olive-button">book other salon services</a>
         </div>
+      </div>
+      <div style="text-align:center;margin-top:64px" data-animate>
+        <p style="font-size:14px;color:var(--light-gray);margin-bottom:20px;font-weight:300">Questions before you book? Reach the front desk directly.</p>
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+          <a href="tel:5597959724" class="primary-button">call studio one</a>
+          <a href="sms:5597959724" class="primary-button">text studio one</a>
+        </div>
+        <p style="font-size:24px;font-family:var(--heading-font);color:var(--white);margin-top:24px"><a href="tel:5597959724" style="border-bottom:1px solid var(--olive);padding-bottom:4px">559-795-9724</a></p>
       </div>
     </div>
   </section>
