@@ -19,6 +19,7 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
 <link rel="preconnect" href="https://use.typekit.net" crossorigin>
+  <script src="https://www.google.com/recaptcha/api.js?render=6Lck8aQsAAAAALMA-T6nwfkSf7bv4K-mOhkszeKh"></script>
 
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -73,6 +74,49 @@
     .section-heading{font-family:var(--heading-font);font-size:42px;font-weight:400;color:var(--white);line-height:1.2;margin-bottom:24px}
     .section-body p{font-size:15px;line-height:1.8;color:var(--light-gray);font-weight:300;margin-bottom:20px}
     .text-center{text-align:center}
+
+    /* === Perks grid === */
+    .perks-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+    .perk-card{padding:36px 30px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.06);border-radius:6px;transition:transform .4s ease,border-color .3s ease,background .3s ease;text-align:left}
+    .perk-card:hover{transform:translateY(-4px);border-color:rgba(76,82,35,.45);background:rgba(76,82,35,.06)}
+    .perk-icon{display:inline-flex;align-items:center;justify-content:center;width:54px;height:54px;border:1px solid var(--olive);border-radius:50%;color:var(--olive-light);margin-bottom:20px}
+    .perk-card h3{font-family:var(--heading-font);font-size:24px;color:var(--white);font-weight:400;line-height:1.25;margin-bottom:14px}
+    .perk-card p{font-size:14px;color:var(--light-gray);font-weight:300;line-height:1.75}
+
+    /* === Signup form === */
+    .signup-section{padding:80px 40px;background:var(--black)}
+    .signup-inner{max-width:700px;margin:0 auto}
+    .signup-form-wrap{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:48px 44px;box-shadow:0 24px 64px rgba(0,0,0,.5)}
+    .signup-heading{font-family:var(--heading-font);font-size:38px;color:var(--white);font-weight:400;line-height:1.15;margin-bottom:12px}
+    .signup-sub{font-size:14px;color:var(--light-gray);font-weight:300;max-width:440px;margin:0 auto;line-height:1.7}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+    .form-group{margin-bottom:14px}
+    .form-group label{display:block;font-size:11px;font-weight:500;letter-spacing:2px;color:var(--off-white);text-transform:uppercase;margin-bottom:8px}
+    .form-group input[type="text"],.form-group input[type="email"],.form-group input[type="tel"]{width:100%;padding:13px 16px;background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.12);color:var(--white);font-family:inherit;font-size:14px;border-radius:4px;transition:border-color .25s,background .25s}
+    .form-group input:focus{outline:none;border-color:var(--olive);background:rgba(76,82,35,.06)}
+    .form-group input::placeholder{color:rgba(255,255,255,.3)}
+    .check-row{display:flex;align-items:center;gap:10px;padding:8px 4px;cursor:pointer;font-size:14px;color:var(--off-white);font-weight:400}
+    .check-row input{accent-color:var(--olive);width:16px;height:16px;cursor:pointer;flex-shrink:0}
+    .signup-submit{width:100%;margin-top:18px;padding:18px}
+    .form-legal{font-size:11px;color:rgba(255,255,255,.4);margin-top:14px;line-height:1.5;text-align:center}
+    .form-legal a{color:var(--olive-light);text-decoration:underline}
+    .form-success{display:none;text-align:center;padding:32px 8px}
+    .form-success.show{display:block}
+    .form-success .success-icon{width:64px;height:64px;border-radius:50%;background:var(--olive);display:flex;align-items:center;justify-content:center;margin:0 auto 22px;color:var(--white)}
+    .form-success h3{font-family:var(--heading-font);font-size:30px;color:var(--white);font-weight:400;margin-bottom:14px}
+    .form-success p{font-size:15px;color:var(--light-gray);font-weight:300;line-height:1.7}
+    .grecaptcha-badge{visibility:hidden!important}
+
+    @media (max-width:1024px){
+      .perks-grid{grid-template-columns:1fr;gap:18px}
+    }
+    @media (max-width:640px){
+      .signup-form-wrap{padding:32px 22px}
+      .form-row{grid-template-columns:1fr;gap:0}
+      .signup-heading{font-size:28px}
+      .perks-grid{gap:14px}
+      .perk-card{padding:28px 22px}
+    }
     @media (max-width:768px){
       .page-hero h1{font-size:34px}
       .page-hero{padding:120px 24px 60px;min-height:60vh}
@@ -151,20 +195,127 @@
     </div>
   </nav>
 
-  <section class="page-hero" style="min-height:70vh">
-    <div class="page-hero-overlay"></div>
+  <section class="page-hero" style="min-height:55vh;padding:140px 40px 50px">
+    <div class="page-hero-bg"><img src="/images/cta-bg.jpg" alt=""></div>
+    <div class="page-hero-overlay" style="background:linear-gradient(180deg,rgba(0,0,0,.4) 0%,rgba(0,0,0,.6) 60%,rgba(0,0,0,.85) 100%)"></div>
     <div class="page-hero-content" data-animate>
       <p class="eyebrow">Specials &amp; Promotions</p>
-      <h1>Stay in the Loop, Gorgeous.</h1>
-      <p>Be the first to know about exclusive specials, dreamy hair extension offers, and salon updates. Sign up to receive beauty secrets straight to your inbox&mdash; because your best hair days are ahead.</p>
-      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:16px">
-        <a href="tel:5597959724" class="olive-button">Call Studio One</a>
-        <a href="sms:5597959724" class="primary-button">Text Studio One</a>
+      <h1 style="font-style:italic">Stay in the Loop, Gorgeous.</h1>
+      <p>Be the first to know about exclusive specials, dreamy hair extension offers, and salon updates &mdash; sign up below for beauty secrets straight to your inbox.</p>
+      <a href="#signup" class="olive-button" style="margin-top:8px">Sign Me Up</a>
+    </div>
+  </section>
+
+  <!-- Perks grid -->
+  <section class="section section--dark" style="padding:90px 40px 60px">
+    <div class="section-inner">
+      <div class="text-center" style="margin-bottom:48px" data-animate>
+        <p class="eyebrow">Member Perks</p>
+        <h2 class="section-heading" style="max-width:780px;margin:0 auto 12px">A few reasons to join the list.</h2>
       </div>
-      <div style="margin-top:56px;display:flex;justify-content:center" data-animate>
-        <svg width="72" height="72" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="opacity:.85">
-          <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" stroke="#6b7332" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+      <div class="perks-grid">
+        <div class="perk-card" data-animate>
+          <div class="perk-icon" aria-hidden="true">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15 9 22 9.5 17 14.5 18.5 22 12 18 5.5 22 7 14.5 2 9.5 9 9 12 2"/></svg>
+          </div>
+          <h3>Early access to specials</h3>
+          <p>Subscribers find out about extension promos, color discounts, and seasonal events before anyone else. Limited slots; first in line gets them.</p>
+        </div>
+        <div class="perk-card" data-animate>
+          <div class="perk-icon" aria-hidden="true">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v9H4v-9"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 010-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 000-5C13 2 12 7 12 7z"/></svg>
+          </div>
+          <h3>Birthday treat</h3>
+          <p>A little something on us during your birthday month &mdash; styled blowout discount, complimentary gloss, or a surprise add-on at your next appointment.</p>
+        </div>
+        <div class="perk-card" data-animate>
+          <div class="perk-icon" aria-hidden="true">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+          </div>
+          <h3>Hair tips &amp; how-tos</h3>
+          <p>From extension after-care to color-saving routines &mdash; little notes from Cat to help you keep salon-fresh hair between visits.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Signup section -->
+  <section class="signup-section" id="signup">
+    <div class="signup-inner">
+      <div class="signup-form-wrap" data-animate>
+        <form action="https://myaieditor.com/api/form-notify" method="POST" data-ajax id="promosSignup">
+          <div class="form-fields">
+            <div class="text-center" style="margin-bottom:28px">
+              <p class="eyebrow">Sign Up</p>
+              <h2 class="signup-heading">Join the list.</h2>
+              <p class="signup-sub">No spam. A few notes a month, and a little extra love on your birthday. Unsubscribe anytime.</p>
+            </div>
+
+            <input type="hidden" name="site_slug" value="studio-one">
+            <input type="hidden" name="form_type" value="newsletter_signup">
+            <input type="hidden" name="recaptcha_token" id="recaptcha_token">
+            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="ps-first">First Name *</label>
+                <input type="text" id="ps-first" name="first_name" required autocomplete="given-name">
+              </div>
+              <div class="form-group">
+                <label for="ps-email">Email *</label>
+                <input type="email" id="ps-email" name="email" required autocomplete="email">
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="ps-phone">Phone (optional, for SMS-only specials)</label>
+              <input type="tel" id="ps-phone" name="phone" autocomplete="tel">
+            </div>
+
+            <div class="form-group" style="margin-bottom:8px">
+              <label class="check-row">
+                <input type="checkbox" name="interest_extensions" value="yes" checked>
+                <span>NBR Extensions specials</span>
+              </label>
+              <label class="check-row">
+                <input type="checkbox" name="interest_color" value="yes" checked>
+                <span>Color &amp; gloss promos</span>
+              </label>
+              <label class="check-row">
+                <input type="checkbox" name="interest_keratin" value="yes">
+                <span>Keratin / Brazilian Blowout deals</span>
+              </label>
+              <label class="check-row">
+                <input type="checkbox" name="interest_events" value="yes">
+                <span>Salon events &amp; community moments</span>
+              </label>
+            </div>
+
+            <button type="submit" class="olive-button signup-submit">Sign Me Up</button>
+            <p class="form-legal">Protected by reCAPTCHA. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy</a> &middot; <a href="https://policies.google.com/terms" target="_blank" rel="noopener">Terms</a></p>
+          </div>
+
+          <div class="form-success">
+            <div class="success-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            </div>
+            <h3>You're on the list!</h3>
+            <p>Welcome to the inner circle. Watch your inbox for your first note from the salon.</p>
+            <p style="font-size:13px;margin-top:14px">Want to book in the meantime? <a href="/booking" style="color:var(--olive-light);border-bottom:1px solid var(--olive)">Book your appointment &rarr;</a></p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer CTA — phone -->
+  <section class="section signup-bottom-cta" style="padding:60px 40px 90px">
+    <div class="section-inner text-center" data-animate>
+      <p class="eyebrow">Or skip the form</p>
+      <h3 style="font-family:var(--heading-font);font-size:30px;color:var(--white);font-weight:400;margin-bottom:18px">Reach the front desk directly.</h3>
+      <p style="font-size:14px;color:var(--light-gray);font-weight:300;margin-bottom:24px;max-width:520px;margin-left:auto;margin-right:auto">We're often quicker by text. Drop a line and we'll let you know what's running this week.</p>
+      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+        <a href="tel:5597959724" class="primary-button">Call 559-795-9724</a>
+        <a href="sms:5597959724" class="primary-button">Text 559-795-9724</a>
       </div>
     </div>
   </section>
@@ -240,5 +391,46 @@
 
 
   <script src="/script.js" defer></script>
+  <script>
+    // Newsletter signup — form-notify + reCAPTCHA + inline thank-you
+    document.querySelectorAll('form[data-ajax]').forEach(form => {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (form.querySelector('[name="_honey"]')?.value) return;
+        const btn = form.querySelector('[type="submit"]');
+        const original = btn.textContent;
+        btn.disabled = true;
+        btn.textContent = 'Signing you up…';
+        try {
+          if (typeof grecaptcha !== 'undefined') {
+            await new Promise(r => grecaptcha.ready(r));
+            const token = await grecaptcha.execute('6Lck8aQsAAAAALMA-T6nwfkSf7bv4K-mOhkszeKh', { action: 'newsletter_signup' });
+            const f = form.querySelector('[name="recaptcha_token"]');
+            if (f) f.value = token;
+          }
+        } catch (err) { console.warn('reCAPTCHA error:', err); }
+        try {
+          const fd = new FormData(form);
+          // Collect interests as comma-separated list for the email body
+          const interests = [];
+          ['extensions','color','keratin','events'].forEach(k => {
+            if (fd.get('interest_'+k)) interests.push(k);
+          });
+          const data = Object.fromEntries(fd.entries());
+          data.interests = interests.join(', ') || 'none specified';
+          await fetch('https://myaieditor.com/api/form-notify', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+          });
+        } catch (err) { console.error('Submit error:', err); }
+        form.querySelector('.form-fields').style.display = 'none';
+        form.querySelector('.form-success').classList.add('show');
+        if (typeof gtag !== 'undefined') gtag('event', 'sign_up', { method: 'newsletter' });
+        if (typeof fbq !== 'undefined') fbq('track', 'Lead');
+        window.scrollTo({ top: form.getBoundingClientRect().top + window.scrollY - 80, behavior: 'smooth' });
+      });
+    });
+  </script>
 </body>
 </html>
