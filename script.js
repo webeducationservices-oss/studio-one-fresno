@@ -139,6 +139,7 @@
 (function () {
   const filterBtns = document.querySelectorAll('.filter-btn');
   const items = document.querySelectorAll('.gallery-item');
+  const empty = document.getElementById('homeGalleryEmpty');
 
   filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
@@ -146,16 +147,24 @@
       btn.classList.add('active');
 
       const filter = btn.dataset.filter;
+      let visible = 0;
 
       items.forEach(item => {
-        if (filter === 'all' || item.dataset.category === filter) {
+        const match = filter === 'all' || item.dataset.category === filter;
+        if (match) {
           item.classList.remove('hidden');
           item.style.display = '';
+          visible++;
         } else {
           item.classList.add('hidden');
           item.style.display = 'none';
         }
       });
+
+      if (empty) {
+        empty.hidden = visible !== 0;
+        empty.classList.toggle('is-shown', visible === 0);
+      }
     });
   });
 })();
