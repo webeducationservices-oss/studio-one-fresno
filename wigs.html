@@ -58,7 +58,7 @@
     "description": "Private luxury wig and medical-grade wig consultations for women experiencing hair loss from chemotherapy, alopecia, PCOS, hormonal changes, and natural thinning. In partnership with Maven Mane & Co.",
     "provider": {"@type":"HairSalon","name":"Studio One Hair Design","url":"https://www.studioonefresno.com/"},
     "areaServed": {"@type":"City","name":"Fresno"},
-    "offers": {"@type":"AggregateOffer","priceCurrency":"USD","description":"Personalized quote during your consultation"}
+    "offers": {"@type":"AggregateOffer","priceCurrency":"USD","lowPrice":"1997","highPrice":"3147","description":"Pricing varies by length, color customization, and cap construction. Insurance guidance available through Maven Mane & Co."}
   }
   </script>
   <script type="application/ld+json">
@@ -131,6 +131,26 @@
     .list-clean li{position:relative;padding:16px 0 16px 32px;border-bottom:1px solid rgba(255,255,255,.06);font-size:15.5px;color:var(--light-gray);font-weight:300;line-height:1.7}
     .list-clean li::before{content:'';position:absolute;left:0;top:25px;width:18px;height:1px;background:var(--olive-light)}
     .list-clean li:last-child{border-bottom:none}
+
+    /* Price tables */
+    .price-tables{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:56px auto 0;max-width:920px}
+    .price-table{padding:36px 32px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:6px;transition:border-color .3s ease}
+    .price-table:hover{border-color:rgba(76,82,35,.5)}
+    .price-table .col-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--olive-light);font-weight:600;margin-bottom:8px;display:block}
+    .price-table h3{font-family:var(--heading-font);font-size:28px;color:var(--white);font-weight:400;line-height:1.2;margin-bottom:6px}
+    .price-table .price-subhead{font-size:13px;color:var(--light-gray);font-weight:300;font-style:italic;margin-bottom:22px}
+    .price-grid{width:100%;border-collapse:collapse;font-size:15px}
+    .price-grid thead th{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--olive-light);font-weight:600;text-align:left;padding:10px 0 14px;border-bottom:1px solid rgba(255,255,255,.12)}
+    .price-grid thead th:last-child{text-align:right}
+    .price-grid tbody td{padding:13px 0;border-bottom:1px solid rgba(255,255,255,.06);color:var(--light-gray);font-weight:300}
+    .price-grid tbody tr:last-child td{border-bottom:none}
+    .price-grid tbody td:first-child{font-family:var(--heading-font);font-size:18px;color:var(--white);font-weight:400}
+    .price-grid tbody td:last-child{text-align:right;color:var(--off-white);font-weight:500;font-size:15px}
+    .price-note{margin:36px auto 0;max-width:760px;text-align:center;font-size:13px;color:var(--light-gray);font-weight:300;line-height:1.7;font-style:italic;padding:18px 22px;background:rgba(76,82,35,.05);border-left:2px solid var(--olive);border-radius:4px}
+    @media (max-width:760px){
+      .price-tables{grid-template-columns:1fr;gap:18px;margin-top:40px}
+      .price-table{padding:28px 24px}
+    }
 
     /* Consultation section — title + description per item */
     .consult-items{margin:28px 0 0;display:flex;flex-direction:column;gap:0}
@@ -537,7 +557,50 @@
         <li>Insurance coverage (if eligible)</li>
       </ul>
       <div class="text-center" style="margin-top:48px" data-animate>
-        <p class="lead" style="margin-bottom:28px">You&rsquo;ll receive a personalized quote during your consultation.</p>
+        <p class="lead" style="margin-bottom:28px">You&rsquo;ll receive a personalized quote during your consultation. Below is a starting reference by length and color category.</p>
+      </div>
+
+      <div class="price-tables" data-animate>
+        <div class="price-table">
+          <p class="col-label">Tier 1</p>
+          <h3>Base Colors</h3>
+          <p class="price-subhead">Levels 1, 1B, 2, 4, 6</p>
+          <table class="price-grid">
+            <thead><tr><th>Length</th><th>Retail</th></tr></thead>
+            <tbody>
+              <tr><td>14&Prime;</td><td>$1,997+</td></tr>
+              <tr><td>16&Prime;</td><td>$2,197+</td></tr>
+              <tr><td>18&Prime;</td><td>$2,397+</td></tr>
+              <tr><td>20&Prime;</td><td>$2,597+</td></tr>
+              <tr><td>22&Prime;</td><td>$2,797+</td></tr>
+              <tr><td>24&Prime;</td><td>$2,997+</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="price-table">
+          <p class="col-label">Tier 2</p>
+          <h3>All Colors</h3>
+          <p class="price-subhead">Custom-blended &amp; specialty colors</p>
+          <table class="price-grid">
+            <thead><tr><th>Length</th><th>Retail</th></tr></thead>
+            <tbody>
+              <tr><td>14&Prime;</td><td>$2,147+</td></tr>
+              <tr><td>16&Prime;</td><td>$2,347+</td></tr>
+              <tr><td>18&Prime;</td><td>$2,547+</td></tr>
+              <tr><td>20&Prime;</td><td>$2,747+</td></tr>
+              <tr><td>22&Prime;</td><td>$2,947+</td></tr>
+              <tr><td>24&Prime;</td><td>$3,147+</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <p class="price-note" data-animate>
+        Final pricing depends on cap construction, density, length, color customization, and insurance coverage (when eligible).
+        Many medical wigs can be covered with proper documentation through Maven Mane &amp; Co.&reg;
+      </p>
+
+      <div class="text-center" style="margin-top:40px" data-animate>
         <a href="https://form.jotform.com/253186527338161" target="_blank" rel="noopener" class="olive-button">Book Your Consultation</a>
       </div>
     </div>
