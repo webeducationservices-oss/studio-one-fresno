@@ -133,6 +133,27 @@
     .list-clean li:last-child{border-bottom:none}
 
     /* Price tables */
+    /* Feature checkmark grid (What Makes Our Wigs Different) */
+    .feature-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px 36px;margin:48px auto 0;max-width:780px}
+    .feature-item{display:flex;align-items:flex-start;gap:14px;padding:14px 18px;background:rgba(76,82,35,.04);border:1px solid rgba(76,82,35,.18);border-radius:6px;font-size:14.5px;color:var(--off-white);font-weight:400;line-height:1.5;transition:background .3s,border-color .3s}
+    .feature-item:hover{background:rgba(76,82,35,.12);border-color:rgba(76,82,35,.45)}
+    .feature-check{flex-shrink:0;display:flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:var(--olive);color:var(--white);font-size:12px;font-weight:700;margin-top:2px}
+    @media (max-width:680px){.feature-grid{grid-template-columns:1fr;gap:10px}}
+
+    /* Numbered reason grid (Why Women Choose Studio One) */
+    .reason-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px 28px;margin:48px auto 0;max-width:920px}
+    .reason-item{display:flex;align-items:flex-start;gap:20px;padding:24px 28px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.06);border-radius:6px;transition:transform .3s,border-color .3s,background .3s}
+    .reason-item:hover{transform:translateY(-2px);border-color:rgba(76,82,35,.5);background:rgba(76,82,35,.06)}
+    .reason-num{font-family:var(--heading-font);font-size:32px;color:var(--olive-light);font-weight:400;line-height:1;flex-shrink:0;min-width:42px}
+    .reason-item p{font-size:14.5px;color:var(--light-gray);font-weight:300;line-height:1.65;margin:0}
+    .reason-item p strong{color:var(--white);font-weight:500}
+    @media (max-width:760px){.reason-grid{grid-template-columns:1fr;gap:12px}.reason-item{padding:18px 22px;gap:14px}.reason-num{font-size:26px;min-width:36px}}
+
+    /* Condition chips (Is This Right for You?) */
+    .condition-chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:48px auto 0;max-width:780px}
+    .condition-chips span{padding:11px 22px;background:rgba(76,82,35,.08);border:1px solid rgba(76,82,35,.4);border-radius:32px;font-size:13.5px;color:var(--off-white);font-weight:500;letter-spacing:.4px;transition:background .3s,transform .25s}
+    .condition-chips span:hover{background:var(--olive);color:var(--white);transform:translateY(-2px)}
+
     .price-tables{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:56px auto 0;max-width:920px}
     .price-table{padding:36px 32px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:6px;transition:border-color .3s ease}
     .price-table:hover{border-color:rgba(76,82,35,.5)}
@@ -213,7 +234,10 @@
     .faq-a p{font-size:15px;color:var(--light-gray);line-height:1.8;font-weight:300;margin:0;padding:18px 28px 26px;border-top:1px solid rgba(255,255,255,.06)}
 
     /* Closing CTA */
-    .closing-cta{position:relative;padding:140px 40px;text-align:center;overflow:hidden;background:var(--dark)}
+    .closing-cta{position:relative;padding:140px 40px;text-align:center;overflow:hidden;background:#0a0a0a}
+    .closing-cta-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
+    .closing-cta-bg img{width:100%;height:100%;object-fit:cover;opacity:.32;filter:grayscale(.4)}
+    .closing-cta-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,10,.55) 0%,rgba(10,10,10,.75) 60%,rgba(10,10,10,.92) 100%)}
     .closing-cta-inner{position:relative;z-index:2;max-width:760px;margin:0 auto}
     .closing-cta h2{font-family:var(--heading-font);font-size:46px;color:var(--white);font-weight:400;line-height:1.15;margin-bottom:20px;letter-spacing:-.5px}
     .closing-cta p{font-size:17px;color:var(--light-gray);font-weight:300;line-height:1.75;margin-bottom:36px}
@@ -485,16 +509,16 @@
         <h2 class="section-heading">What Makes Our Wigs Different</h2>
         <p class="lead">Your wig should look and feel like your hair. Studio One delivers:</p>
       </div>
-      <ul class="list-clean">
-        <li>Premium 100% real human hair</li>
-        <li>Lifespan of up to 5 years with premium care</li>
-        <li>Lightweight, breathable caps</li>
-        <li>Soft, realistic lace fronts</li>
-        <li>Natural movement</li>
-        <li>Secure, comfortable fit</li>
-        <li>Custom color, tone &amp; blending</li>
-        <li>A private, elevated experience tailored to you</li>
-      </ul>
+      <div class="feature-grid" data-animate>
+        <div class="feature-item"><span class="feature-check" aria-hidden="true">✓</span><span>Premium 100% real human hair</span></div>
+        <div class="feature-item"><span class="feature-check" aria-hidden="true">✓</span><span>Up to 5-year lifespan with premium care</span></div>
+        <div class="feature-item"><span class="feature-check" aria-hidden="true">✓</span><span>Lightweight, breathable caps</span></div>
+        <div class="feature-item"><span class="feature-check" aria-hidden="true">✓</span><span>Soft, realistic lace fronts</span></div>
+        <div class="feature-item"><span class="feature-check" aria-hidden="true">✓</span><span>Natural movement</span></div>
+        <div class="feature-item"><span class="feature-check" aria-hidden="true">✓</span><span>Secure, comfortable fit</span></div>
+        <div class="feature-item"><span class="feature-check" aria-hidden="true">✓</span><span>Custom color, tone &amp; blending</span></div>
+        <div class="feature-item"><span class="feature-check" aria-hidden="true">✓</span><span>A private, elevated experience tailored to you</span></div>
+      </div>
     </div>
   </section>
 
@@ -526,16 +550,16 @@
         <span class="divider"></span>
         <h2 class="section-heading">Why Women Choose Studio One for Wig &amp; Medical Wig Support</h2>
       </div>
-      <ul class="list-clean">
-        <li>Over 28 years of experience helping women restore confidence</li>
-        <li>Fresno &amp; Clovis&rsquo;s go-to salon for natural-looking transformations</li>
-        <li>A luxury, private experience for women navigating hair loss</li>
-        <li>Seamless end-to-end support</li>
-        <li>A customized, compassionate process</li>
-        <li>Expertise in tones, blending, and natural movement</li>
-        <li>Medical-grade partnership with Maven Mane &amp; Co.&reg;</li>
-      </ul>
-      <p class="lead text-center" style="margin-top:36px;font-style:italic;color:var(--off-white)" data-animate>You&rsquo;re never alone in this journey. Studio One is your safe space, and your results matter.</p>
+      <div class="reason-grid" data-animate>
+        <div class="reason-item"><span class="reason-num">01</span><p>Over <strong>28 years of experience</strong> helping women restore confidence</p></div>
+        <div class="reason-item"><span class="reason-num">02</span><p><strong>Fresno &amp; Clovis&rsquo;s go-to salon</strong> for natural-looking transformations</p></div>
+        <div class="reason-item"><span class="reason-num">03</span><p>A <strong>luxury, private experience</strong> for women navigating hair loss</p></div>
+        <div class="reason-item"><span class="reason-num">04</span><p><strong>Seamless end-to-end support</strong> from consultation through maintenance</p></div>
+        <div class="reason-item"><span class="reason-num">05</span><p>A <strong>customized, compassionate process</strong> &mdash; never one-size-fits-all</p></div>
+        <div class="reason-item"><span class="reason-num">06</span><p><strong>Expertise in tones, blending,</strong> and natural movement</p></div>
+        <div class="reason-item"><span class="reason-num">07</span><p>A trusted <strong>medical-grade partnership</strong> with Maven Mane &amp; Co.&reg;</p></div>
+      </div>
+      <p class="lead text-center" style="margin-top:48px;font-style:italic;color:var(--off-white);max-width:680px;margin-left:auto;margin-right:auto" data-animate>You&rsquo;re never alone in this journey. Studio One is your safe space, and your results matter.</p>
     </div>
   </section>
 
@@ -704,22 +728,25 @@
         <h2 class="section-heading">Is This Right for You?</h2>
         <p class="lead">This service is perfect if you&rsquo;re experiencing:</p>
       </div>
-      <ul class="list-clean">
-        <li>Medical hair loss</li>
-        <li>Natural thinning</li>
-        <li>Hormonal changes</li>
-        <li>Postpartum shedding</li>
-        <li>Alopecia</li>
-        <li>Confidence loss due to hair concerns</li>
-        <li>A desire for fuller, natural-looking hair</li>
-        <li>A need for secure, reliable solutions</li>
-      </ul>
-      <p class="lead text-center" style="margin-top:36px;font-style:italic;color:var(--off-white)" data-animate>You deserve hair that feels like you.</p>
+      <div class="condition-chips" data-animate>
+        <span>Medical hair loss</span>
+        <span>Natural thinning</span>
+        <span>Hormonal changes</span>
+        <span>Postpartum shedding</span>
+        <span>Alopecia</span>
+        <span>Confidence loss</span>
+        <span>Fuller, natural-looking hair</span>
+        <span>Secure, reliable solutions</span>
+      </div>
+      <p class="lead text-center" style="margin-top:44px;font-style:italic;color:var(--off-white);font-size:20px;font-family:var(--heading-font)" data-animate>You deserve hair that feels like you.</p>
     </div>
   </section>
 
   <!-- ==================== CLOSING CTA ==================== -->
   <section class="closing-cta" id="book">
+    <div class="closing-cta-bg" aria-hidden="true">
+      <img src="/images/optimized/cta-bg.webp" alt="" width="1440" height="2159" loading="lazy" decoding="async">
+    </div>
     <div class="closing-cta-inner" data-animate>
       <p class="eyebrow">Get Started</p>
       <span class="divider"></span>
