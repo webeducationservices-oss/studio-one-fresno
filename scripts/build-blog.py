@@ -296,6 +296,9 @@ POST_PAGE_STYLE = """
 .post-body p{font-size:17px;line-height:1.85;color:var(--light-gray);font-weight:300;margin-bottom:24px}
 .post-body h2{font-family:var(--heading-font);font-size:34px;font-weight:400;color:var(--white);margin:48px 0 16px;line-height:1.2}
 .post-body h3{font-size:16px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--off-white);margin:32px 0 12px}
+.post-body ul{margin:0 0 24px;padding-left:22px;list-style:none}
+.post-body li{position:relative;font-size:17px;line-height:1.8;color:var(--light-gray);font-weight:300;margin-bottom:12px;padding-left:8px}
+.post-body li::before{content:"";position:absolute;left:-14px;top:13px;width:5px;height:5px;border-radius:50%;background:var(--olive-light)}
 .related-posts{background:var(--dark);padding:80px 40px}
 .related-inner{max-width:1200px;margin:0 auto}
 .related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:32px}
@@ -319,6 +322,24 @@ def post_body_html(body_text):
     """Convert \\n\\n-separated paragraphs to <p> tags."""
     paras = [p.strip() for p in (body_text or "").split("\n\n") if p.strip()]
     return "\n    ".join(f"<p>{html.escape(p)}</p>" for p in paras)
+
+def render_body_blocks(blocks):
+    """Render ordered [{tag,text}] blocks to HTML — emits real h2/h3/p and
+    groups consecutive li blocks into a single <ul>. Falls back to <p> only."""
+    out, i = [], 0
+    while i < len(blocks):
+        tag = blocks[i]["tag"]
+        if tag == "li":
+            items = []
+            while i < len(blocks) and blocks[i]["tag"] == "li":
+                items.append(f'<li>{html.escape(blocks[i]["text"])}</li>')
+                i += 1
+            out.append("<ul>\n      " + "\n      ".join(items) + "\n    </ul>")
+            continue
+        t = tag if tag in ("h2", "h3", "p") else "p"
+        out.append(f'<{t}>{html.escape(blocks[i]["text"])}</{t}>')
+        i += 1
+    return "\n    ".join(out)
 
 def render_post(p):
     cat = p["mapped_cat"]
@@ -381,7 +402,7 @@ def render_post(p):
     </section>
 
     <section class="post-body" data-animate>
-      {post_body_html(p.get("body_text",""))}
+      {render_body_blocks(p["body_blocks"]) if p.get("body_blocks") else post_body_html(p.get("body_text",""))}
     </section>
   </article>
 
