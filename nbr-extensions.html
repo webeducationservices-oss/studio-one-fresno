@@ -163,15 +163,21 @@
     .cherry-banner-text p{font-size:15px;color:var(--light-gray);font-weight:300;max-width:640px;margin-bottom:8px}
     .cherry-banner-text .cherry-note{font-size:13px;font-style:italic;color:var(--light-gray);opacity:.75}
 
-    /* FAQ */
-    .faq-list{max-width:820px;margin:48px auto 0}
-    .faq-item{border-bottom:1px solid rgba(255,255,255,.08);padding:20px 0}
-    .faq-q{display:flex;justify-content:space-between;align-items:center;width:100%;text-align:left;font-size:15px;font-weight:500;color:var(--off-white);gap:16px;text-transform:uppercase;letter-spacing:1px}
-    .faq-q span{font-size:20px;color:var(--olive);transition:transform .3s;flex-shrink:0}
-    .faq-q.is-open span{transform:rotate(45deg)}
-    .faq-a{max-height:0;overflow:hidden;transition:max-height .5s ease,padding .3s ease}
-    .faq-a.is-open{max-height:1200px;padding-top:16px}
-    .faq-a p{font-size:14px;color:var(--light-gray);line-height:1.8;font-weight:300}
+    /* FAQ — card accordion (matches nically-hair) */
+    .faq-list{display:flex;flex-direction:column;gap:14px;max-width:820px;margin:36px auto 0}
+    .faq-item{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.06);border-radius:6px;overflow:hidden;transition:border-color .3s ease,background .3s ease}
+    .faq-item:hover{border-color:rgba(76,82,35,.4);background:rgba(255,255,255,.04)}
+    .faq-item.open{border-color:rgba(76,82,35,.6)}
+    .faq-q{display:flex;justify-content:space-between;align-items:center;cursor:pointer;gap:24px;width:100%;text-align:left;padding:22px 28px;transition:color .3s ease}
+    .faq-q h3{font-family:var(--heading-font);font-size:20px;font-weight:400;color:var(--white);line-height:1.35;letter-spacing:0;text-transform:none;transition:color .3s ease}
+    .faq-q:hover h3{color:var(--olive-light)}
+    .faq-toggle{display:flex;align-items:center;justify-content:center;width:32px;height:32px;border:1px solid var(--olive);border-radius:50%;font-size:14px;font-weight:300;color:var(--olive-light);transition:transform .4s cubic-bezier(.4,0,.2,1),background .3s ease,border-color .3s ease,color .3s ease;flex-shrink:0;line-height:1}
+    .faq-q:hover .faq-toggle{background:var(--olive);color:var(--white);border-color:var(--olive)}
+    .faq-item.open .faq-toggle{transform:rotate(45deg);background:var(--olive);color:var(--white);border-color:var(--olive)}
+    .faq-a{max-height:0;overflow:hidden;transition:max-height .5s cubic-bezier(.4,0,.2,1)}
+    .faq-item.open .faq-a{max-height:1500px}
+    .faq-a p{font-size:15px;line-height:1.8;color:var(--light-gray);font-weight:300;margin:0;padding:18px 28px 24px;border-top:1px solid rgba(255,255,255,.06)}
+    @media (max-width:640px){.faq-q{padding:18px 20px;gap:16px}.faq-q h3{font-size:17px}.faq-a p{padding:18px 20px 22px}}
 
     /* IG callout */
     .ig-callout{text-align:center;padding:80px 40px 20px}
@@ -517,57 +523,57 @@
         <button type="button" class="faq-filter-btn" data-filter="wear">Everyday Wear</button>
         <button type="button" class="faq-filter-btn" data-filter="maintenance">Maintenance</button>
       </div>
-      <div class="faq-list" data-animate>
+      <div class="faq-list">
         <div class="faq-item" data-cat="service">
-          <button class="faq-q">What type of hair do you use for NBR Extensions? <span>+</span></button>
+          <button class="faq-q"><h3>What type of hair do you use for NBR Extensions?</h3><span class="faq-toggle">+</span></button>
           <div class="faq-a"><p>ISLA&trade; Hair is only sold to artists who are NBR&reg; Certified. To preserve the integrity and quality of the hair extensions, only those who have undergone the proper training to correctly apply the wefts using the NBR&reg; Method can purchase and use these hair extensions. While numerous hair brands assert the use of solely human hair, they often incorporate synthetic fibers and silicone coatings. Although these additives may provide a temporary illusion of silkiness and thickness, they are susceptible to damage from heat and chemicals, resulting in accelerated wear and tear. ISLA&trade; distinguishes itself by exclusively utilizing Remy 100% human hair, renowned for its exceptional longevity and superior quality. ISLA&trade; Hand-Tied hair, utilized in the NBR&reg; method, is a weft-type of Remy hair. &ldquo;Remy&rdquo; denotes that all strands face the same direction, which minimizes matting and tangling, ensuring a seamless flow. Renowned for its exceptional quality, the Remy hairline boasts a longer lifespan compared to other brands. Highly coveted by industry professionals, it is exclusively available to NBR&reg; certified artists. Hand-tied extensions cover more surface area on your head, which results is a natural and seamless look. When we professionally apply the extensions, they are impossible to tell apart from your natural hair.</p></div>
         </div>
         <div class="faq-item" data-cat="start">
-          <button class="faq-q">Do I have to come in for a consultation? <span>+</span></button>
+          <button class="faq-q"><h3>Do I have to come in for a consultation?</h3><span class="faq-toggle">+</span></button>
           <div class="faq-a"><p>No, we do an over the phone consultation. During our consultation we discuss your current hair, your hair history and your desired transformation. This consultation is to ensure we are a fit to work together and allows us to provide an estimate based on your desired transformation. Every client has a unique journey, with extension it's not a one size fits all, our extensions are custom colored to blend with your hair, we never swatch the extensions to match. This is what sets NBR apart from other extensions, it's 100% customized for each guest.</p></div>
         </div>
         <div class="faq-item" data-cat="maintenance">
-          <button class="faq-q">What is the maintenance? <span>+</span></button>
+          <button class="faq-q"><h3>What is the maintenance?</h3><span class="faq-toggle">+</span></button>
           <div class="faq-a"><p>Usually 6 - 8 weeks depending on hair density and growth cycle.</p></div>
         </div>
         <div class="faq-item" data-cat="service">
-          <button class="faq-q">How long is the reservation? <span>+</span></button>
+          <button class="faq-q"><h3>How long is the reservation?</h3><span class="faq-toggle">+</span></button>
           <div class="faq-a"><p>Depending on your customized hair transformation, a typical reservation is 3-5 hours.</p></div>
         </div>
         <div class="faq-item" data-cat="service">
-          <button class="faq-q">Do you color my hair when I get my extensions? <span>+</span></button>
+          <button class="faq-q"><h3>Do you color my hair when I get my extensions?</h3><span class="faq-toggle">+</span></button>
           <div class="faq-a"><p>Yes! To created a seamless blend we color your hair and the hair extensions at the same reservation. If you have natural hair color and wish to not color your hair, that's ok! We still customize the hair extension color to blend seamlessly with your natural hair color.</p></div>
         </div>
         <div class="faq-item" data-cat="service">
-          <button class="faq-q">How are NBR extensions installed? <span>+</span></button>
+          <button class="faq-q"><h3>How are NBR extensions installed?</h3><span class="faq-toggle">+</span></button>
           <div class="faq-a"><p>NBR extensions are installed by applying a beaded row around the heat to distribute the weight of the extensions evenly with fewer points of contact to the hair. No heat, glue, or any other adhesives are used NBR extensions are custom, cut and colored to blend perfectly into your natural hair.</p></div>
         </div>
         <div class="faq-item" data-cat="maintenance">
-          <button class="faq-q">How long do the extensions last? <span>+</span></button>
+          <button class="faq-q"><h3>How long do the extensions last?</h3><span class="faq-toggle">+</span></button>
           <div class="faq-a"><p>The duration of NBR hair extensions varies, lasting from 6 months to 1 year.</p></div>
         </div>
         <div class="faq-item" data-cat="service">
-          <button class="faq-q">What are rows? <span>+</span></button>
+          <button class="faq-q"><h3>What are rows?</h3><span class="faq-toggle">+</span></button>
           <div class="faq-a"><p>Rows are the sections that are used to install the wefts.</p></div>
         </div>
         <div class="faq-item" data-cat="service">
-          <button class="faq-q">What do you mean by wefts? <span>+</span></button>
+          <button class="faq-q"><h3>What do you mean by wefts?</h3><span class="faq-toggle">+</span></button>
           <div class="faq-a"><p>Wefts are a string of sewn hair extensions that are a strip of hair typically 10-12&Prime; in length that are used like a headband when installed.</p></div>
         </div>
         <div class="faq-item" data-cat="wear">
-          <button class="faq-q">Can I wear my hair in braids or half up? <span>+</span></button>
+          <button class="faq-q"><h3>Can I wear my hair in braids or half up?</h3><span class="faq-toggle">+</span></button>
           <div class="faq-a"><p>YES! Our foundation and customized color allows the Extensions to have a seamless blend making them unseen when the hair is split and even on a windy day!</p></div>
         </div>
         <div class="faq-item" data-cat="wear">
-          <button class="faq-q">Can I wear my extensions up? <span>+</span></button>
+          <button class="faq-q"><h3>Can I wear my extensions up?</h3><span class="faq-toggle">+</span></button>
           <div class="faq-a"><p>YES, even as soon as you leave your reservation! You can live an normal active lifestyle.</p></div>
         </div>
         <div class="faq-item" data-cat="wear">
-          <button class="faq-q">Can I swim or work out with extensions? <span>+</span></button>
+          <button class="faq-q"><h3>Can I swim or work out with extensions?</h3><span class="faq-toggle">+</span></button>
           <div class="faq-a"><p>YES! Extensions are lightweight and very easy to wear, you shouldn't have to stop your life to wear extensions.</p></div>
         </div>
         <div class="faq-item" data-cat="start">
-          <button class="faq-q">Do you offer payment plans? <span>+</span></button>
+          <button class="faq-q"><h3>Do you offer payment plans?</h3><span class="faq-toggle">+</span></button>
           <div class="faq-a"><p>Absolutely! We understand Extensions are an investment and we want our guests to have the opportunity to experience them. If you're interested in payment plans you can request a Payment Plan Option on the consultation form.</p></div>
         </div>
       </div>
@@ -716,10 +722,10 @@
     // Simple FAQ toggle (page-specific — doesn't depend on main script)
     document.querySelectorAll('.faq-q').forEach(btn => {
       btn.addEventListener('click', () => {
-        const ans = btn.nextElementSibling;
-        const open = btn.classList.contains('is-open');
-        document.querySelectorAll('.faq-q').forEach(b => { b.classList.remove('is-open'); b.nextElementSibling.classList.remove('is-open'); });
-        if (!open) { btn.classList.add('is-open'); ans.classList.add('is-open'); }
+        const item = btn.closest('.faq-item');
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(x => x.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
       });
     });
   </script>
@@ -735,10 +741,7 @@
         items.forEach(i => {
           const match = (f === 'all') || i.dataset.cat === f;
           i.hidden = !match;
-          // Also close expanded answer when filter changes
-          const q = i.querySelector('.faq-q');
-          const a = i.querySelector('.faq-a');
-          if (q && a) { q.classList.remove('is-open'); a.classList.remove('is-open'); }
+          i.classList.remove('open'); // close expanded answer when filter changes
         });
       }));
     })();
