@@ -75,6 +75,17 @@ POST_CAT_MAP = {
     "the-biggest-myth-about-winter-shedding": "hair-care",
     "the-psychology-of-hair": "hair-care",
     "the-truth-about-nbr-extensions-at-studio-one": "extensions",
+    "ditch-the-salon-hop-find-your-forever-hair-home-at-studio-one": "behind-the-scenes",
+    "hair-extensions-for-busy-moms-time-saving-styles-confidence-boost": "extensions",
+    "hair-extensions-fresno-viral-trend-vs-reality": "extensions",
+    "hair-extensions-overcome-fears-get-gorgeous-hair": "extensions",
+    "hair-salon-near-madera-studio-one-hair-design": "behind-the-scenes",
+    "lisa-rinnas-hair-dress-extensions-as-art": "extensions",
+    "nail-hair-salon-near-fresno-find-your-perfect-style-at-studio-one": "behind-the-scenes",
+    "nbr-hair-extensions-central-valleys-best-secret": "extensions",
+    "reclaim-your-crown-thinning-hair-solutions-fresno": "hair-care",
+    "semi-permanent-hair-color-is-it-right-for-you": "color",
+    "spring-2026-hair-trends-the-density-era": "styling",
     "wassabi-on-fire": "behind-the-scenes",
     "what-is-pretty-hair-discover-the-secret-at-studio-one": "behind-the-scenes",
     "what-most-people-get-wrong-about-hair-extensions": "extensions",
@@ -448,7 +459,7 @@ def render_category(cat_slug):
             <span class="cat-card-read">Read More</span>
           </div>
         </a>''' for p in cat_posts)
-        body_section = f'<div class="cat-grid" data-animate>\n        {cards}\n      </div>'
+        body_section = f'<div class="cat-grid">\n        {cards}\n      </div>'
     else:
         body_section = f'<div class="cat-empty">No posts in this category yet. Check back soon.</div>'
 
@@ -530,11 +541,11 @@ def render_landing():
         {cat_nav_html(active=None)}
       </nav>
       <p class="eyebrow" data-animate style="text-align:center">Featured</p>
-      <div class="cat-grid" data-animate style="margin-bottom:64px">
+      <div class="cat-grid" style="margin-bottom:64px">
         {featured_html}
       </div>
       <p class="eyebrow" data-animate style="text-align:center">All Posts</p>
-      <div class="cat-grid" data-animate>
+      <div class="cat-grid">
         {rest_html}
       </div>
     </div>
