@@ -43,11 +43,11 @@ schema_ld = '''
   {
     "@context": "https://schema.org",
     "@type": "HairSalon",
-    "@id": "https://studioonefresno.com/#salon",
+    "@id": "https://www.studioonefresno.com/#salon",
     "name": "Studio One Hair Design",
     "description": "Premier Fresno hair salon specializing in NBR hand-tied hair extensions, dimensional color, and keratin smoothing treatments (Brazilian Blowout).",
-    "url": "https://studioonefresno.com/",
-    "image": "https://studioonefresno.com/images/og-image.jpg",
+    "url": "https://www.studioonefresno.com/",
+    "image": "https://www.studioonefresno.com/images/og-image.jpg",
     "telephone": "+1-559-795-9724",
     "priceRange": "$$$",
     "address": {
@@ -69,9 +69,9 @@ schema_ld = '''
       "@type": "OfferCatalog",
       "name": "Salon Services",
       "itemListElement": [
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "NBR Hair Extensions Fresno", "url": "https://studioonefresno.com/nbr-extensions" }},
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Hair Color Salon Fresno", "url": "https://studioonefresno.com/services" }},
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Keratin Treatment Fresno (Brazilian Blowout)", "url": "https://studioonefresno.com/services" }}
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "NBR Hair Extensions Fresno", "url": "https://www.studioonefresno.com/nbr-extensions" }},
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Hair Color Salon Fresno", "url": "https://www.studioonefresno.com/services" }},
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Keratin Treatment Fresno (Brazilian Blowout)", "url": "https://www.studioonefresno.com/services" }}
       ]
     }
   }
@@ -83,8 +83,8 @@ schema_ld = '''
     "@type": "ImageGallery",
     "name": "Studio One Fresno Hair Transformation Gallery",
     "description": "Recent NBR extensions, color, and keratin transformations by Studio One Hair Design in Fresno, CA.",
-    "url": "https://studioonefresno.com/hair-gallery",
-    "publisher": { "@id": "https://studioonefresno.com/#salon" }
+    "url": "https://www.studioonefresno.com/hair-gallery",
+    "publisher": { "@id": "https://www.studioonefresno.com/#salon" }
   }
   </script>
 '''

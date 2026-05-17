@@ -76,15 +76,15 @@ def render_post(p):
     "@context":"https://schema.org",
     "@type":"BlogPosting",
     "headline":{json.dumps(p["title"])},
-    "image":"https://studioonefresno.com{p["local_hero"]}",
+    "image":"https://www.studioonefresno.com{p["local_hero"]}",
     "author":{{"@type":"Organization","name":"Studio One Hair Design"}},
-    "publisher":{{"@type":"Organization","name":"Studio One Hair Design","logo":{{"@type":"ImageObject","url":"https://studioonefresno.com/images/optimized/logo.avif"}}}},
+    "publisher":{{"@type":"Organization","name":"Studio One Hair Design","logo":{{"@type":"ImageObject","url":"https://www.studioonefresno.com/images/optimized/logo.avif"}}}},
     "datePublished":{json.dumps(p.get("published_date",""))},
-    "mainEntityOfPage":"https://studioonefresno.com/blog/{p["slug"]}"
+    "mainEntityOfPage":"https://www.studioonefresno.com/blog/{p["slug"]}"
   }}
   </script>
   <script type="application/ld+json">
-  {{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{{"@type":"ListItem","position":1,"name":"Home","item":"https://studioonefresno.com/"}},{{"@type":"ListItem","position":2,"name":"Blog","item":"https://studioonefresno.com/blog"}},{{"@type":"ListItem","position":3,"name":{json.dumps(p["title"])},"item":"https://studioonefresno.com/blog/{p["slug"]}"}}]}}
+  {{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{{"@type":"ListItem","position":1,"name":"Home","item":"https://www.studioonefresno.com/"}},{{"@type":"ListItem","position":2,"name":"Blog","item":"https://www.studioonefresno.com/blog"}},{{"@type":"ListItem","position":3,"name":{json.dumps(p["title"])},"item":"https://www.studioonefresno.com/blog/{p["slug"]}"}}]}}
   </script>'''
     meta_desc = p.get("meta_description") or p["excerpt"]
     author = p.get("author") or "Studio One Team"

@@ -5,4 +5,4 @@ Allow: /
 Disallow: /cart
 Disallow: /order-confirmation
 
-Sitemap: https://studioonefresno.com/sitemap.xml
+Sitemap: https://www.studioonefresno.com/sitemap.xml

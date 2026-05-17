@@ -99,11 +99,11 @@ def render_post(p):
     "@context":"https://schema.org",
     "@type":"BlogPosting",
     "headline":{json.dumps(p["title"])},
-    "image":"https://studioonefresno.com{p["local_hero"]}",
+    "image":"https://www.studioonefresno.com{p["local_hero"]}",
     "author":{{"@type":"Organization","name":"Studio One Hair Design"}},
-    "publisher":{{"@type":"Organization","name":"Studio One Hair Design","logo":{{"@type":"ImageObject","url":"https://studioonefresno.com/images/optimized/logo.avif"}}}},
+    "publisher":{{"@type":"Organization","name":"Studio One Hair Design","logo":{{"@type":"ImageObject","url":"https://www.studioonefresno.com/images/optimized/logo.avif"}}}},
     "datePublished":{json.dumps(p.get("published_date",""))},
-    "mainEntityOfPage":"https://studioonefresno.com/blog/{p["slug"]}"
+    "mainEntityOfPage":"https://www.studioonefresno.com/blog/{p["slug"]}"
   }}
   </script>'''
     meta_desc = p.get("meta_description") or p["excerpt"]

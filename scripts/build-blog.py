@@ -161,11 +161,11 @@ def head_block(title, desc, path, hero=None, schema=""):
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{html.escape(title)}</title>
   <meta name="description" content="{html.escape(desc)}">
-  <link rel="canonical" href="https://studioonefresno.com{path}">
+  <link rel="canonical" href="https://www.studioonefresno.com{path}">
   <meta property="og:title" content="{html.escape(title)}">
   <meta property="og:description" content="{html.escape(desc)}">
-  <meta property="og:image" content="https://studioonefresno.com{hero or '/images/og-image.jpg'}">
-  <meta property="og:url" content="https://studioonefresno.com{path}">
+  <meta property="og:image" content="https://www.studioonefresno.com{hero or '/images/og-image.jpg'}">
+  <meta property="og:url" content="https://www.studioonefresno.com{path}">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Studio One Hair Design">
   <meta name="twitter:card" content="summary_large_image">
@@ -366,15 +366,15 @@ def render_post(p):
     "@context":"https://schema.org",
     "@type":"BlogPosting",
     "headline":{json.dumps(p["title"])},
-    "image":"https://studioonefresno.com{p["local_hero"]}",
+    "image":"https://www.studioonefresno.com{p["local_hero"]}",
     "author":{{"@type":"Organization","name":"Studio One Hair Design"}},
-    "publisher":{{"@type":"Organization","name":"Studio One Hair Design","logo":{{"@type":"ImageObject","url":"https://studioonefresno.com/images/optimized/logo.avif"}}}},
+    "publisher":{{"@type":"Organization","name":"Studio One Hair Design","logo":{{"@type":"ImageObject","url":"https://www.studioonefresno.com/images/optimized/logo.avif"}}}},
     "datePublished":{json.dumps(p.get("published_date",""))},
-    "mainEntityOfPage":"https://studioonefresno.com/blog/{p["slug"]}"
+    "mainEntityOfPage":"https://www.studioonefresno.com/blog/{p["slug"]}"
   }}
   </script>
   <script type="application/ld+json">
-  {{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{{"@type":"ListItem","position":1,"name":"Home","item":"https://studioonefresno.com/"}},{{"@type":"ListItem","position":2,"name":"Blog","item":"https://studioonefresno.com/blog"}},{{"@type":"ListItem","position":3,"name":{json.dumps(p["title"])},"item":"https://studioonefresno.com/blog/{p["slug"]}"}}]}}
+  {{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{{"@type":"ListItem","position":1,"name":"Home","item":"https://www.studioonefresno.com/"}},{{"@type":"ListItem","position":2,"name":"Blog","item":"https://www.studioonefresno.com/blog"}},{{"@type":"ListItem","position":3,"name":{json.dumps(p["title"])},"item":"https://www.studioonefresno.com/blog/{p["slug"]}"}}]}}
   </script>'''
 
     meta_desc = p.get("meta_description") or p["excerpt"]
