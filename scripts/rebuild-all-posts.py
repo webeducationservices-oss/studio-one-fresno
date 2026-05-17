@@ -82,6 +82,9 @@ def render_post(p):
     "datePublished":{json.dumps(p.get("published_date",""))},
     "mainEntityOfPage":"https://studioonefresno.com/blog/{p["slug"]}"
   }}
+  </script>
+  <script type="application/ld+json">
+  {{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{{"@type":"ListItem","position":1,"name":"Home","item":"https://studioonefresno.com/"}},{{"@type":"ListItem","position":2,"name":"Blog","item":"https://studioonefresno.com/blog"}},{{"@type":"ListItem","position":3,"name":{json.dumps(p["title"])},"item":"https://studioonefresno.com/blog/{p["slug"]}"}}]}}
   </script>'''
     meta_desc = p.get("meta_description") or p["excerpt"]
     author = p.get("author") or "Studio One Team"
