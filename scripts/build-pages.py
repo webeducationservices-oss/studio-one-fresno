@@ -25,12 +25,12 @@ def HEAD(title, description, path, preload_hero=None, extra_head="", schema=""):
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{title}</title>
   <meta name="description" content="{description}">
-  <link rel="canonical" href="https://www.studioonefresno.com{path}">
+  <link rel="canonical" href="https://studioonefresno.com{path}">
 
   <meta property="og:title" content="{title}">
   <meta property="og:description" content="{description}">
-  <meta property="og:image" content="https://www.studioonefresno.com/images/og-image.jpg">
-  <meta property="og:url" content="https://www.studioonefresno.com{path}">
+  <meta property="og:image" content="https://studioonefresno.com/images/og-image.jpg">
+  <meta property="og:url" content="https://studioonefresno.com{path}">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Studio One Hair Design">
   <meta name="twitter:card" content="summary_large_image">

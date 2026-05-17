@@ -1,8 +1,8 @@
 User-agent: *
 Allow: /
 
-# Not yet live during staging
+# Transactional pages — no SEO value
 Disallow: /cart
 Disallow: /order-confirmation
 
-Sitemap: https://www.studioonefresno.com/sitemap.xml
+Sitemap: https://studioonefresno.com/sitemap.xml

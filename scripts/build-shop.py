@@ -69,11 +69,11 @@ def head_block(title, desc, path, hero=None, schema=""):
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{html.escape(title)}</title>
   <meta name="description" content="{html.escape(desc)}">
-  <link rel="canonical" href="https://www.studioonefresno.com{path}">
+  <link rel="canonical" href="https://studioonefresno.com{path}">
   <meta property="og:title" content="{html.escape(title)}">
   <meta property="og:description" content="{html.escape(desc)}">
-  <meta property="og:image" content="https://www.studioonefresno.com{hero or '/images/og-image.jpg'}">
-  <meta property="og:url" content="https://www.studioonefresno.com{path}">
+  <meta property="og:image" content="https://studioonefresno.com{hero or '/images/og-image.jpg'}">
+  <meta property="og:url" content="https://studioonefresno.com{path}">
   <meta property="og:type" content="product">
   <meta property="og:site_name" content="Studio One Hair Design">
   <meta name="twitter:card" content="summary_large_image">
@@ -412,7 +412,7 @@ def render_product_page(p):
     "@context":"https://schema.org",
     "@type":"Product",
     "name":{json.dumps(p["name"])},
-    "image":"https://www.studioonefresno.com{p["local_images"][0]}",
+    "image":"https://studioonefresno.com{p["local_images"][0]}",
     "description":{json.dumps(p["description"][:500])},
     "brand":{{"@type":"Brand","name":{json.dumps(p["brand"])}}},
     "offers":{{"@type":"{"AggregateOffer" if has_variants else "Offer"}","priceCurrency":"USD","{"lowPrice" if has_variants else "price"}":"{p["min_price_cents"]/100:.2f}"{f',"highPrice":"{p["max_price_cents"]/100:.2f}"' if has_variants else ""},"availability":"https://schema.org/InStock"}}

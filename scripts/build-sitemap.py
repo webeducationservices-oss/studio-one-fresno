@@ -6,7 +6,7 @@ from datetime import date
 
 ROOT = Path("/Users/justinbabcock/Desktop/Websites/studio-one-fresno")
 TODAY = date.today().isoformat()
-DOMAIN = "https://www.studioonefresno.com"
+DOMAIN = "https://studioonefresno.com"
 
 urls = []
 
