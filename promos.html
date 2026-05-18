@@ -26,17 +26,19 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('consent', 'default', {'analytics_storage':'granted','ad_storage':'denied','ad_user_data':'denied','ad_personalization':'denied'});
   </script>
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-WQGCMZ9Q');</script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P0H19W2KWM"></script>
-  <script>gtag('js', new Date()); gtag('config', 'G-P0H19W2KWM');</script>
+    <!-- Third-party tags deferred until first interaction (performance) -->
   <script>
-    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init','24036206522645936');fbq('track','PageView');
+  (function(){var l=0;function L(){if(l)return;l=1;
+  (function(w,d,s,a,i){w[a]=w[a]||[];w[a].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s);j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-WQGCMZ9Q');
+  var g=document.createElement('script');g.async=true;g.src='https://www.googletagmanager.com/gtag/js?id=G-P0H19W2KWM';document.head.appendChild(g);
+  gtag('js',new Date());gtag('config','G-P0H19W2KWM');
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init','24036206522645936');fbq('track','PageView');}
+  var E=['scroll','mousemove','touchstart','keydown','pointerdown'],tm;
+  function T(){L();clearTimeout(tm);E.forEach(function(x){removeEventListener(x,T)});}
+  E.forEach(function(x){addEventListener(x,T,{passive:true})});tm=setTimeout(L,5000);})();
   </script>
-
-  
-
-  <style>
+<style>
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
     :root{--olive:#4c5223;--olive-light:#6b7332;--black:#000;--dark:#0a0a0a;--white:#fff;--off-white:#f5f5f5;--light-gray:#d9d9d9;--body-font:Arial, sans-serif;--heading-font:'freight-big-pro',Georgia,serif}
     html{-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
@@ -396,46 +398,5 @@
 
 
   <script src="/script.js" defer></script>
-  <script>
-    // Newsletter signup — form-notify + reCAPTCHA + inline thank-you
-    document.querySelectorAll('form[data-ajax]').forEach(form => {
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        if (form.querySelector('[name="_honey"]')?.value) return;
-        const btn = form.querySelector('[type="submit"]');
-        const original = btn.textContent;
-        btn.disabled = true;
-        btn.textContent = 'Signing you up…';
-        try {
-          if (typeof grecaptcha !== 'undefined') {
-            await new Promise(r => grecaptcha.ready(r));
-            const token = await grecaptcha.execute('6Lck8aQsAAAAALMA-T6nwfkSf7bv4K-mOhkszeKh', { action: 'newsletter_signup' });
-            const f = form.querySelector('[name="recaptcha_token"]');
-            if (f) f.value = token;
-          }
-        } catch (err) { console.warn('reCAPTCHA error:', err); }
-        try {
-          const fd = new FormData(form);
-          // Collect interests as comma-separated list for the email body
-          const interests = [];
-          ['extensions','color','keratin','events'].forEach(k => {
-            if (fd.get('interest_'+k)) interests.push(k);
-          });
-          const data = Object.fromEntries(fd.entries());
-          data.interests = interests.join(', ') || 'none specified';
-          await fetch('https://myaieditor.com/api/form-notify', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data),
-          });
-        } catch (err) { console.error('Submit error:', err); }
-        form.querySelector('.form-fields').style.display = 'none';
-        form.querySelector('.form-success').classList.add('show');
-        if (typeof gtag !== 'undefined') gtag('event', 'sign_up', { method: 'newsletter' });
-        if (typeof fbq !== 'undefined') fbq('track', 'Lead');
-        window.scrollTo({ top: form.getBoundingClientRect().top + window.scrollY - 80, behavior: 'smooth' });
-      });
-    });
-  </script>
-</body>
+  </body>
 </html>

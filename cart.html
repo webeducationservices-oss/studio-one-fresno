@@ -18,12 +18,19 @@
 
 <link rel="preconnect" href="https://use.typekit.net" crossorigin>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{'analytics_storage':'granted','ad_storage':'denied','ad_user_data':'denied','ad_personalization':'denied'});</script>
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-WQGCMZ9Q');</script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P0H19W2KWM"></script>
-  <script>gtag('js',new Date());gtag('config','G-P0H19W2KWM');</script>
-  <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','24036206522645936');fbq('track','PageView');</script>
-  
-  <style>
+    <!-- Third-party tags deferred until first interaction (performance) -->
+  <script>
+  (function(){var l=0;function L(){if(l)return;l=1;
+  (function(w,d,s,a,i){w[a]=w[a]||[];w[a].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s);j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-WQGCMZ9Q');
+  var g=document.createElement('script');g.async=true;g.src='https://www.googletagmanager.com/gtag/js?id=G-P0H19W2KWM';document.head.appendChild(g);
+  gtag('js',new Date());gtag('config','G-P0H19W2KWM');
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init','24036206522645936');fbq('track','PageView');}
+  var E=['scroll','mousemove','touchstart','keydown','pointerdown'],tm;
+  function T(){L();clearTimeout(tm);E.forEach(function(x){removeEventListener(x,T)});}
+  E.forEach(function(x){addEventListener(x,T,{passive:true})});tm=setTimeout(L,5000);})();
+  </script>
+<style>
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
     :root{--olive:#4c5223;--olive-light:#6b7332;--black:#000;--dark:#0a0a0a;--white:#fff;--off-white:#f5f5f5;--light-gray:#d9d9d9;--body-font:Arial, sans-serif;--heading-font:'freight-big-pro',Georgia,serif}
     html{-webkit-font-smoothing:antialiased;scroll-behavior:smooth}
@@ -252,187 +259,7 @@
   <!-- PayPal SDK — Smart Payment Buttons + card guest checkout + Venmo + Pay Later -->
   <script src="https://www.paypal.com/sdk/js?client-id=AW4HfPBgoAi0ej4WYNWCyFbvm8eKoO3tKuvUrL5YVbD5MZu-nOsaInJxJDLiOfRErgnjtieDEC73lhux&currency=USD&intent=capture&enable-funding=venmo,paylater&components=buttons" data-sdk-integration-source="cart"></script>
 
-  <script>
-    /* ------------------------------------------------------------------
-     * Cart page — PayPal Smart Payment Buttons integration
-     * Tax: 8.35% Fresno on pickup + CA-shipped
-     * Shipping: free pickup / $8 ship / free over $75
-     * ------------------------------------------------------------------ */
-    document.addEventListener('DOMContentLoaded', () => {
-      const cart = window.Cart;
-      if (!cart) return;
-
-      // Initial state — pickup default
-      const persisted = cart.readState() || {};
-      if (!persisted.method) {
-        cart.writeState({ method: 'pickup', shipState: '', wholesale: false });
-      }
-
-      // Auto-add support: ?add=<slug> populates the cart with a known item.
-      // Used for direct payment links (e.g. /cart?add=demo-test-item).
-      const KNOWN_ITEMS = {
-        'demo-test-item': {
-          slug: 'demo-test-item',
-          name: '$1 Test Product',
-          brand: 'Studio One',
-          image: '/images/products/demo-test-item-1.webp',
-          variant: null,
-          price_cents: 100,
-          qty: 1,
-        },
-      };
-      const addParam = new URLSearchParams(location.search).get('add');
-      if (addParam && KNOWN_ITEMS[addParam]) {
-        // Don't duplicate if it's already in the cart
-        const exists = cart.read().some(i => i.slug === addParam);
-        if (!exists) cart.add(KNOWN_ITEMS[addParam]);
-        // Strip the ?add= so a refresh doesn't add again
-        history.replaceState({}, '', location.pathname);
-      }
-
-      // Render items + summary
-      cart.renderCartPage();
-
-      // Wire pickup vs ship radios
-      document.querySelectorAll('input[name="shipMethod"]').forEach(r => {
-        // Restore checked state from localStorage
-        if (r.value === (cart.readState().method || 'pickup')) r.checked = true;
-        r.addEventListener('change', () => {
-          const state = cart.readState();
-          state.method = r.value;
-          cart.writeState(state);
-          document.getElementById('shipStateGroup').style.display = (r.value === 'ship') ? 'block' : 'none';
-          cart.recomputeSummary();
-        });
-      });
-      // Show state selector if ship was previously chosen
-      document.getElementById('shipStateGroup').style.display =
-        (cart.readState().method === 'ship') ? 'block' : 'none';
-
-      // Wire ship-state selector
-      const stateSel = document.getElementById('shipStateSelect');
-      stateSel.value = cart.readState().shipState || '';
-      stateSel.addEventListener('change', () => {
-        const state = cart.readState();
-        state.shipState = stateSel.value;
-        cart.writeState(state);
-        cart.recomputeSummary();
-      });
-
-      cart.recomputeSummary();
-
-      // ---- PayPal Buttons ----
-      if (typeof paypal === 'undefined') {
-        document.getElementById('paypal-error').hidden = false;
-        document.getElementById('paypal-error').textContent =
-          'PayPal failed to load. Please refresh, or call 559-795-9724 to place your order.';
-        return;
-      }
-
-      function buildOrder(actions) {
-        const items = cart.read();
-        if (items.length === 0) throw new Error('Cart is empty');
-        const state = cart.readState();
-        const sub = cart.subtotalCents();
-        const tax = cart.taxCents(state);
-        const ship = cart.shippingCents(state);
-        const tot = sub + tax + ship;
-
-        // Convert items to PayPal item array
-        const ppItems = items.map(i => ({
-          name: (i.name || '').slice(0, 127),
-          description: (i.variant || '').slice(0, 127) || undefined,
-          sku: i.slug.slice(0, 127),
-          unit_amount: { currency_code: 'USD', value: (i.price_cents / 100).toFixed(2) },
-          quantity: String(i.qty),
-          category: 'PHYSICAL_GOODS',
-        }));
-
-        const purchase_unit = {
-          description: `Studio One Fresno — ${items.length} item${items.length === 1 ? '' : 's'}`,
-          amount: {
-            currency_code: 'USD',
-            value: (tot / 100).toFixed(2),
-            breakdown: {
-              item_total:   { currency_code: 'USD', value: (sub / 100).toFixed(2) },
-              tax_total:    { currency_code: 'USD', value: (tax / 100).toFixed(2) },
-              shipping:     { currency_code: 'USD', value: (ship / 100).toFixed(2) },
-            },
-          },
-          items: ppItems,
-          custom_id: 'cart_' + Date.now(),
-        };
-
-        // Set shipping_preference based on pickup vs ship
-        const application_context = {
-          shipping_preference: (state.method === 'pickup') ? 'NO_SHIPPING' : 'GET_FROM_FILE',
-          user_action: 'PAY_NOW',
-          brand_name: 'Studio One Hair Design',
-        };
-
-        return actions.order.create({
-          purchase_units: [purchase_unit],
-          application_context,
-        });
-      }
-
-      paypal.Buttons({
-        style: {
-          layout: 'vertical',
-          color: 'gold',
-          shape: 'rect',
-          label: 'paypal',
-        },
-        createOrder: function (data, actions) {
-          try {
-            return buildOrder(actions);
-          } catch (e) {
-            const err = document.getElementById('paypal-error');
-            err.hidden = false;
-            err.textContent = e.message || 'Could not start checkout.';
-            return Promise.reject(e);
-          }
-        },
-        onApprove: function (data, actions) {
-          return actions.order.capture().then(function (details) {
-            // Clear cart on success
-            cart.clear();
-            // Track conversion
-            if (typeof gtag !== 'undefined') {
-              gtag('event', 'purchase', {
-                transaction_id: details.id,
-                value: parseFloat(details.purchase_units?.[0]?.amount?.value || 0),
-                currency: 'USD',
-              });
-            }
-            if (typeof fbq !== 'undefined') {
-              fbq('track', 'Purchase', {
-                value: parseFloat(details.purchase_units?.[0]?.amount?.value || 0),
-                currency: 'USD',
-              });
-            }
-            // Redirect to thank-you page
-            const params = new URLSearchParams({
-              order: details.id,
-              status: details.status || 'COMPLETED',
-            });
-            window.location.href = '/order-confirmation?' + params.toString();
-          });
-        },
-        onError: function (err) {
-          console.error('PayPal error:', err);
-          const e = document.getElementById('paypal-error');
-          e.hidden = false;
-          e.textContent = 'Checkout failed. Please refresh and try again, or call 559-795-9724.';
-        },
-        onCancel: function () {
-          // Buyer cancelled — no need to show an error
-        },
-      }).render('#paypal-button-container');
-    });
-  </script>
-
-    <!-- Universal Footer -->
+  <!-- Universal Footer -->
   <footer class="footer">
     <div class="footer-inner">
       <div class="footer-left">

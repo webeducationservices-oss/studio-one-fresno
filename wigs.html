@@ -26,15 +26,19 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('consent', 'default', {'analytics_storage':'granted','ad_storage':'denied','ad_user_data':'denied','ad_personalization':'denied'});
   </script>
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-WQGCMZ9Q');</script>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P0H19W2KWM"></script>
-  <script>gtag('js', new Date()); gtag('config', 'G-P0H19W2KWM');</script>
+    <!-- Third-party tags deferred until first interaction (performance) -->
   <script>
-    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init','24036206522645936');fbq('track','PageView');
+  (function(){var l=0;function L(){if(l)return;l=1;
+  (function(w,d,s,a,i){w[a]=w[a]||[];w[a].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s);j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-WQGCMZ9Q');
+  var g=document.createElement('script');g.async=true;g.src='https://www.googletagmanager.com/gtag/js?id=G-P0H19W2KWM';document.head.appendChild(g);
+  gtag('js',new Date());gtag('config','G-P0H19W2KWM');
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init','24036206522645936');fbq('track','PageView');}
+  var E=['scroll','mousemove','touchstart','keydown','pointerdown'],tm;
+  function T(){L();clearTimeout(tm);E.forEach(function(x){removeEventListener(x,T)});}
+  E.forEach(function(x){addEventListener(x,T,{passive:true})});tm=setTimeout(L,5000);})();
   </script>
-
-  <!-- JSON-LD: HairSalon + Wig Service -->
+<!-- JSON-LD: HairSalon + Wig Service -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
