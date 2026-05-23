@@ -819,7 +819,7 @@ button { cursor: pointer; background: none; border: none; color: inherit; font-f
 .footer-ig-heading em { font-style: italic; }
 .ig-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 4px;
   text-decoration: none;
 }

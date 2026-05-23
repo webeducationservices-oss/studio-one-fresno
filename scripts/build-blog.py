@@ -254,6 +254,7 @@ BODY_OPEN = """</head>
         <div class="nav-col">
           <div class="nav-label">OUR WORK</div>
           <div class="nav-links">
+            <a href="/">Home</a>
             <a href="/meet-the-team">Meet the Team</a>
             <a href="/hair-gallery">Hair Gallery</a>
             <a href="/blog">Blog</a>
