@@ -462,7 +462,7 @@ def render_product_page(p):
         <div class="cart-confirm" id="cartConfirm" hidden>
           <p class="cart-confirm-msg">Added to your cart &#10003;</p>
           <div class="cart-confirm-actions">
-            <a href="/cart" class="cart-confirm-checkout">Continue to Checkout</a>
+            <a href="/cart" class="cart-confirm-checkout">Go to Checkout</a>
             <a href="/shop" class="cart-confirm-keep">Keep Shopping</a>
           </div>
         </div>
