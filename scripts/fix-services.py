@@ -130,7 +130,7 @@ menu_css = '''
     .menu-row{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
     .menu-row--reverse{direction:rtl}
     .menu-row--reverse > *{direction:ltr}
-    .menu-row-image{aspect-ratio:4/5;overflow:hidden;border-radius:4px;background:#1a1a1a}
+    .menu-row-image{aspect-ratio:1/1;overflow:hidden;border-radius:4px;background:#1a1a1a}
     .menu-row-image img{width:100%;height:100%;object-fit:cover;transition:transform .8s ease}
     .menu-row:hover .menu-row-image img{transform:scale(1.03)}
     .menu-row-copy .eyebrow{color:var(--olive-light)}
@@ -143,7 +143,7 @@ menu_css = '''
     .menu-item-desc{font-size:13px;color:var(--light-gray);line-height:1.6;font-weight:300}
     @media(max-width:900px){
       .menu-row,.menu-row--reverse{grid-template-columns:1fr;gap:32px;direction:ltr}
-      .menu-row-image{aspect-ratio:16/10;order:-1}
+      .menu-row-image{aspect-ratio:1/1;order:-1}
     }
 '''
 if '.menu-row{' not in s_new:
