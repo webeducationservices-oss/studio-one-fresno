@@ -107,7 +107,7 @@
 .add-to-cart{width:100%;padding:18px;background:var(--olive);color:var(--white);font-size:12px;font-weight:600;letter-spacing:3px;text-transform:uppercase;border:none;cursor:pointer;transition:background .3s;margin-bottom:16px}
 .add-to-cart:hover{background:var(--olive-light)}
 .add-to-cart.is-added{background:#3a4019}
-.paypal-note{padding:16px;background:rgba(76,82,35,.1);border:1px solid rgba(76,82,35,.3);border-radius:4px;font-size:12px;color:var(--light-gray);font-weight:300;margin-top:16px;line-height:1.7}
+.cart-confirm{margin-bottom:16px;padding:18px;background:rgba(76,82,35,.12);border:1px solid rgba(76,82,35,.45);border-radius:4px}.cart-confirm-msg{font-size:12px;color:var(--off-white);font-weight:600;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px;text-align:center}.cart-confirm-actions{display:flex;flex-direction:column;gap:10px}.cart-confirm-checkout{display:block;text-align:center;padding:14px;background:var(--olive);color:var(--white);font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;transition:background .3s}.cart-confirm-checkout:hover{background:var(--olive-light)}.cart-confirm-keep{display:block;text-align:center;padding:14px;border:1px solid var(--olive);color:var(--off-white);font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;transition:background .3s}.cart-confirm-keep:hover{background:rgba(76,82,35,.2)}
 .product-desc{margin-top:40px;padding-top:32px;border-top:1px solid rgba(255,255,255,.08)}
 .product-desc h3{font-size:13px;letter-spacing:2px;color:var(--off-white);text-transform:uppercase;font-weight:600;margin-bottom:16px}
 .product-desc p{font-size:15px;color:var(--light-gray);line-height:1.8;font-weight:300;margin-bottom:16px}
@@ -205,8 +205,12 @@
         </div>
         <button class="add-to-cart" id="addToCart" data-slug="airstyle-flexible-finish-cream" data-name="AirStyle Flexible Finish Cream" data-brand="Oribe" data-image="/images/products/airstyle-flexible-finish-cream-1.webp">Add to Cart</button>
           <a href="/wholesale?product=airstyle-flexible-finish-cream" class="wholesale-link">Licensed stylist or salon? <span>Request a wholesale quote &rarr;</span></a>
-        <div class="paypal-note">
-          <strong>Coming Soon:</strong> PayPal Checkout is being wired in. Add to your cart now — the full checkout flow launches with our PayPal integration.
+        <div class="cart-confirm" id="cartConfirm" hidden>
+          <p class="cart-confirm-msg">Added to your cart &#10003;</p>
+          <div class="cart-confirm-actions">
+            <a href="/cart" class="cart-confirm-checkout">Continue to Checkout</a>
+            <a href="/shop" class="cart-confirm-keep">Keep Shopping</a>
+          </div>
         </div>
         <div class="product-desc">
           <h3>About this product</h3>
@@ -305,6 +309,7 @@
           });
           addBtn.textContent = 'Added to Cart ✓';
           addBtn.classList.add('is-added');
+          var cc=document.getElementById('cartConfirm');if(cc)cc.hidden=false;
           setTimeout(() => { addBtn.textContent = 'Add to Cart'; addBtn.classList.remove('is-added'); }, 2000);
         }
       });
