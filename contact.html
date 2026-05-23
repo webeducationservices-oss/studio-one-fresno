@@ -410,6 +410,50 @@
   </footer>
 
 
+  <script>
+    // Form handling — reCAPTCHA v3 + POST to form-notify + inline success
+    document.querySelectorAll('form[data-ajax]').forEach(form => {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (form.querySelector('[name="_honey"]')?.value) return; // bot caught
+
+        const btn = form.querySelector('[type="submit"]');
+        const originalText = btn.textContent;
+        btn.disabled = true;
+        btn.textContent = 'Sending…';
+
+        try {
+          if (typeof grecaptcha !== 'undefined') {
+            await new Promise(r => grecaptcha.ready(r));
+            const token = await grecaptcha.execute('6Lck8aQsAAAAALMA-T6nwfkSf7bv4K-mOhkszeKh', { action: 'contact_submit' });
+            const f = form.querySelector('[name="recaptcha_token"]');
+            if (f) f.value = token;
+          }
+        } catch (err) { console.warn('reCAPTCHA error:', err); }
+
+        try {
+          const data = Object.fromEntries(new FormData(form).entries());
+          await fetch('https://myaieditor.com/api/form-notify', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+          });
+        } catch (err) { console.error('Form submit error:', err); }
+
+        // Show success regardless (data captured client-side, email/sheet sent)
+        form.querySelector('.form-fields').style.display = 'none';
+        form.querySelector('.form-success').classList.add('show');
+
+        // Fire GA conversion event
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'form_submit', { form_type: 'contact' });
+        }
+        if (typeof fbq !== 'undefined') {
+          fbq('track', 'Lead');
+        }
+      });
+    });
+  </script>
   <script src="/script.js" defer></script>
   </body>
 </html>

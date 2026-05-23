@@ -333,6 +333,185 @@
   </footer>
 
 
+  <script>
+    /* ------------------------------------------------------------------
+     * Cart page — PayPal Smart Payment Buttons integration
+     * Tax: 8.35% Fresno on pickup + CA-shipped
+     * Shipping: free pickup / $8 ship / free over $75
+     * ------------------------------------------------------------------ */
+    document.addEventListener('DOMContentLoaded', () => {
+      const cart = window.Cart;
+      if (!cart) return;
+
+      // Initial state — pickup default
+      const persisted = cart.readState() || {};
+      if (!persisted.method) {
+        cart.writeState({ method: 'pickup', shipState: '', wholesale: false });
+      }
+
+      // Auto-add support: ?add=<slug> populates the cart with a known item.
+      // Used for direct payment links (e.g. /cart?add=demo-test-item).
+      const KNOWN_ITEMS = {
+        'demo-test-item': {
+          slug: 'demo-test-item',
+          name: '$1 Test Product',
+          brand: 'Studio One',
+          image: '/images/products/demo-test-item-1.webp',
+          variant: null,
+          price_cents: 100,
+          qty: 1,
+        },
+      };
+      const addParam = new URLSearchParams(location.search).get('add');
+      if (addParam && KNOWN_ITEMS[addParam]) {
+        // Don't duplicate if it's already in the cart
+        const exists = cart.read().some(i => i.slug === addParam);
+        if (!exists) cart.add(KNOWN_ITEMS[addParam]);
+        // Strip the ?add= so a refresh doesn't add again
+        history.replaceState({}, '', location.pathname);
+      }
+
+      // Render items + summary
+      cart.renderCartPage();
+
+      // Wire pickup vs ship radios
+      document.querySelectorAll('input[name="shipMethod"]').forEach(r => {
+        // Restore checked state from localStorage
+        if (r.value === (cart.readState().method || 'pickup')) r.checked = true;
+        r.addEventListener('change', () => {
+          const state = cart.readState();
+          state.method = r.value;
+          cart.writeState(state);
+          document.getElementById('shipStateGroup').style.display = (r.value === 'ship') ? 'block' : 'none';
+          cart.recomputeSummary();
+        });
+      });
+      // Show state selector if ship was previously chosen
+      document.getElementById('shipStateGroup').style.display =
+        (cart.readState().method === 'ship') ? 'block' : 'none';
+
+      // Wire ship-state selector
+      const stateSel = document.getElementById('shipStateSelect');
+      stateSel.value = cart.readState().shipState || '';
+      stateSel.addEventListener('change', () => {
+        const state = cart.readState();
+        state.shipState = stateSel.value;
+        cart.writeState(state);
+        cart.recomputeSummary();
+      });
+
+      cart.recomputeSummary();
+
+      // ---- PayPal Buttons ----
+      if (typeof paypal === 'undefined') {
+        document.getElementById('paypal-error').hidden = false;
+        document.getElementById('paypal-error').textContent =
+          'PayPal failed to load. Please refresh, or call 559-795-9724 to place your order.';
+        return;
+      }
+
+      function buildOrder(actions) {
+        const items = cart.read();
+        if (items.length === 0) throw new Error('Cart is empty');
+        const state = cart.readState();
+        const sub = cart.subtotalCents();
+        const tax = cart.taxCents(state);
+        const ship = cart.shippingCents(state);
+        const tot = sub + tax + ship;
+
+        // Convert items to PayPal item array
+        const ppItems = items.map(i => ({
+          name: (i.name || '').slice(0, 127),
+          description: (i.variant || '').slice(0, 127) || undefined,
+          sku: i.slug.slice(0, 127),
+          unit_amount: { currency_code: 'USD', value: (i.price_cents / 100).toFixed(2) },
+          quantity: String(i.qty),
+          category: 'PHYSICAL_GOODS',
+        }));
+
+        const purchase_unit = {
+          description: `Studio One Fresno — ${items.length} item${items.length === 1 ? '' : 's'}`,
+          amount: {
+            currency_code: 'USD',
+            value: (tot / 100).toFixed(2),
+            breakdown: {
+              item_total:   { currency_code: 'USD', value: (sub / 100).toFixed(2) },
+              tax_total:    { currency_code: 'USD', value: (tax / 100).toFixed(2) },
+              shipping:     { currency_code: 'USD', value: (ship / 100).toFixed(2) },
+            },
+          },
+          items: ppItems,
+          custom_id: 'cart_' + Date.now(),
+        };
+
+        // Set shipping_preference based on pickup vs ship
+        const application_context = {
+          shipping_preference: (state.method === 'pickup') ? 'NO_SHIPPING' : 'GET_FROM_FILE',
+          user_action: 'PAY_NOW',
+          brand_name: 'Studio One Hair Design',
+        };
+
+        return actions.order.create({
+          purchase_units: [purchase_unit],
+          application_context,
+        });
+      }
+
+      paypal.Buttons({
+        style: {
+          layout: 'vertical',
+          color: 'gold',
+          shape: 'rect',
+          label: 'paypal',
+        },
+        createOrder: function (data, actions) {
+          try {
+            return buildOrder(actions);
+          } catch (e) {
+            const err = document.getElementById('paypal-error');
+            err.hidden = false;
+            err.textContent = e.message || 'Could not start checkout.';
+            return Promise.reject(e);
+          }
+        },
+        onApprove: function (data, actions) {
+          return actions.order.capture().then(function (details) {
+            // Clear cart on success
+            cart.clear();
+            // Track conversion
+            if (typeof gtag !== 'undefined') {
+              gtag('event', 'purchase', {
+                transaction_id: details.id,
+                value: parseFloat(details.purchase_units?.[0]?.amount?.value || 0),
+                currency: 'USD',
+              });
+            }
+            if (typeof fbq !== 'undefined') {
+              fbq('track', 'Purchase', {
+                value: parseFloat(details.purchase_units?.[0]?.amount?.value || 0),
+                currency: 'USD',
+              });
+            }
+            // Redirect to thank-you page
+            const params = new URLSearchParams({
+              order: details.id,
+              status: details.status || 'COMPLETED',
+            });
+            window.location.href = '/order-confirmation?' + params.toString();
+          });
+        },
+        onError: function (err) {
+          console.error('PayPal error:', err);
+          const e = document.getElementById('paypal-error');
+          e.hidden = false;
+          e.textContent = 'Checkout failed. Please refresh and try again, or call 559-795-9724.';
+        },
+        onCancel: function () {
+          // Buyer cancelled — no need to show an error
+        },
+      }).render('#paypal-button-container');
+    });
+  </script>
   <script src="/script.js" defer></script>
   <script src="/cart.js" defer></script>
 </body>

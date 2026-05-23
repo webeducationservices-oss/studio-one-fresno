@@ -401,6 +401,47 @@
   </footer>
 
 
+  <script>
+    // Newsletter signup — form-notify + reCAPTCHA + inline thank-you
+    document.querySelectorAll('form[data-ajax]').forEach(form => {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (form.querySelector('[name="_honey"]')?.value) return;
+        const btn = form.querySelector('[type="submit"]');
+        const original = btn.textContent;
+        btn.disabled = true;
+        btn.textContent = 'Signing you up…';
+        try {
+          if (typeof grecaptcha !== 'undefined') {
+            await new Promise(r => grecaptcha.ready(r));
+            const token = await grecaptcha.execute('6Lck8aQsAAAAALMA-T6nwfkSf7bv4K-mOhkszeKh', { action: 'newsletter_signup' });
+            const f = form.querySelector('[name="recaptcha_token"]');
+            if (f) f.value = token;
+          }
+        } catch (err) { console.warn('reCAPTCHA error:', err); }
+        try {
+          const fd = new FormData(form);
+          // Collect interests as comma-separated list for the email body
+          const interests = [];
+          ['extensions','color','keratin','events'].forEach(k => {
+            if (fd.get('interest_'+k)) interests.push(k);
+          });
+          const data = Object.fromEntries(fd.entries());
+          data.interests = interests.join(', ') || 'none specified';
+          await fetch('https://myaieditor.com/api/form-notify', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+          });
+        } catch (err) { console.error('Submit error:', err); }
+        form.querySelector('.form-fields').style.display = 'none';
+        form.querySelector('.form-success').classList.add('show');
+        if (typeof gtag !== 'undefined') gtag('event', 'sign_up', { method: 'newsletter' });
+        if (typeof fbq !== 'undefined') fbq('track', 'Lead');
+        window.scrollTo({ top: form.getBoundingClientRect().top + window.scrollY - 80, behavior: 'smooth' });
+      });
+    });
+  </script>
   <script src="/script.js" defer></script>
   </body>
 </html>

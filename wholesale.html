@@ -383,6 +383,74 @@
     </div>
   </footer>
 
+  <script>
+    // Pre-fill products of interest from ?product= URL param
+    (function(){
+      var p = new URLSearchParams(location.search).get('product');
+      if (p) {
+        var ta = document.getElementById('ws-products');
+        if (ta) ta.value = 'Interested in: ' + p.replace(/-/g, ' ');
+      }
+    })();
+
+    // Form submit
+    document.querySelectorAll('form[data-ajax]').forEach(form => {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (form.querySelector('[name="_honey"]')?.value) return;
+        const btn = form.querySelector('[type="submit"]');
+        const original = btn.textContent;
+        btn.disabled = true;
+        btn.textContent = 'Submitting…';
+        try {
+          if (typeof grecaptcha !== 'undefined') {
+            await new Promise(r => grecaptcha.ready(r));
+            const token = await grecaptcha.execute('6Lck8aQsAAAAALMA-T6nwfkSf7bv4K-mOhkszeKh', { action: 'wholesale_apply' });
+            const f = form.querySelector('[name="recaptcha_token"]');
+            if (f) f.value = token;
+          }
+        } catch (err) { console.warn('reCAPTCHA error:', err); }
+        try {
+          const data = Object.fromEntries(new FormData(form).entries());
+          await fetch('https://myaieditor.com/api/form-notify', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+          });
+        } catch (err) { console.error('Submit error:', err); }
+        form.querySelector('.form-fields').style.display = 'none';
+        form.querySelector('.form-success').classList.add('show');
+        if (typeof gtag !== 'undefined') gtag('event', 'form_submit', { form_type: 'wholesale_application' });
+        if (typeof fbq !== 'undefined') fbq('track', 'Lead');
+        window.scrollTo({ top: form.offsetTop - 80, behavior: 'smooth' });
+      });
+    });
+
+    // Phone widget toggle (matches existing pattern)
+    (function(){
+      const t = document.getElementById('phoneToggle');
+      const a = document.getElementById('phoneActions');
+      const w = document.getElementById('phoneWidget');
+      if (!t) return;
+      const phoneIcon = t.querySelector('.phone-icon');
+      const closeIcon = t.querySelector('.close-icon');
+      let isOpen = false;
+      t.addEventListener('click', () => {
+        isOpen = !isOpen;
+        a.classList.toggle('is-open', isOpen);
+        phoneIcon.style.display = isOpen ? 'none' : 'block';
+        closeIcon.style.display = isOpen ? 'block' : 'none';
+      });
+      document.addEventListener('click', e => {
+        if (isOpen && !w.contains(e.target)) {
+          isOpen = false;
+          a.classList.remove('is-open');
+          phoneIcon.style.display = 'block';
+          closeIcon.style.display = 'none';
+        }
+      });
+    })();
+  </script>
   <script src="/script.js" defer></script>
   </body>
 </html>
