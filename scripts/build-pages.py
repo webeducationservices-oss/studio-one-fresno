@@ -154,6 +154,7 @@ def HEAD(title, description, path, preload_hero=None, extra_head="", schema=""):
             <a href="/">Home</a>
             <a href="/meet-the-team">Meet the Team</a>
             <a href="/hair-gallery">Hair Gallery</a>
+            <a href="/testimonials">Success Stories</a>
             <a href="/blog">Blog</a>
           </div>
         </div>

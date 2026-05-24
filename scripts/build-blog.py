@@ -257,6 +257,7 @@ BODY_OPEN = """</head>
             <a href="/">Home</a>
             <a href="/meet-the-team">Meet the Team</a>
             <a href="/hair-gallery">Hair Gallery</a>
+            <a href="/testimonials">Success Stories</a>
             <a href="/blog">Blog</a>
           </div>
         </div>
