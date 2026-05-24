@@ -198,8 +198,17 @@
     .tst-row{display:grid;grid-template-columns:1fr 1fr;align-items:stretch}
     .tst-row:nth-child(even){direction:rtl}
     .tst-row:nth-child(even)>*{direction:ltr}
-    .tst-photo{position:relative;min-height:540px;overflow:hidden;background:#1a1a1a}
-    .tst-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .tst-photo{position:relative;align-self:stretch;min-height:520px;overflow:hidden;background:#0d0d0d}
+    .tst-photo .tst-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;
+      clip-path:inset(13% 13% 13% 13%);transform:scale(1.12);opacity:0;
+      transition:clip-path 1.15s cubic-bezier(.16,1,.3,1),transform 1.15s cubic-bezier(.16,1,.3,1),opacity .8s ease;will-change:clip-path,transform}
+    .tst-photo .tst-img.is-revealed{clip-path:inset(0 0 0 0);transform:scale(1);opacity:1}
+    @media(prefers-reduced-motion:reduce){.tst-photo .tst-img{clip-path:none;transform:none;opacity:1;transition:none}}
+    /* Whitney audio testimonial */
+    .tst-audio{margin:4px 0 24px;padding:16px 18px;background:rgba(76,82,35,.12);border:1px solid rgba(107,115,50,.4);border-radius:6px}
+    .tst-audio figcaption{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--olive-light);font-weight:600;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+    .tst-audio figcaption svg{flex:0 0 auto}
+    .tst-audio audio{width:100%;height:40px;display:block}
     .tst-copy{padding:80px 64px;display:flex;flex-direction:column;justify-content:center;background:var(--dark)}
     .tst-row:nth-child(even) .tst-copy{background:var(--black)}
     .tst-quote{font-family:var(--heading-font);font-size:29px;font-weight:400;color:var(--white);line-height:1.3;margin-bottom:26px}
@@ -214,7 +223,7 @@
     @media(max-width:860px){
       .tst-hero h1{font-size:36px}.tst-hero .sub{font-size:18px}
       .tst-row,.tst-row:nth-child(even){grid-template-columns:1fr;direction:ltr}
-      .tst-photo{min-height:360px}.tst-copy{padding:48px 26px}.tst-quote{font-size:23px}
+      .tst-photo{min-height:78vw;max-height:96vh}.tst-copy{padding:48px 26px}.tst-quote{font-size:23px}
       .tst-closing{padding:80px 24px}.tst-closing h2{font-size:28px}
     }
 
@@ -323,63 +332,75 @@
 
   <section class="tst-wrap">
       <div class="tst-row">
-        <div class="tst-photo"><img src="/images/testimonials/whitney.webp" alt="Whitney — Studio One guest transformation" loading="lazy" decoding="async"></div>
+        <div class="tst-photo"><img class="tst-img" src="/images/testimonials/whitney.webp" alt="Whitney — Studio One guest transformation" loading="lazy" decoding="async"></div>
         <div class="tst-copy" data-animate>
           <blockquote class="tst-quote">&ldquo;I've been able to cut my dry time in more than half&mdash;it's been such a life changer.&rdquo;</blockquote>
           <p class="tst-body">As a busy mom of three, the BKT was a tremendous help for my life. I'm a busy nurse also, so coming home and washing my hair, the BKT made it so much easier to manage.</p>
           <p class="tst-body">I've been able to cut my dry time in more than half, and it's been such a life changer. My hair is so beautiful and soft. I can't wait to get it done again!</p>
+          <figure class="tst-audio">
+            <figcaption><svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M11 5L6 9H2v6h4l5 4V5z" stroke="#6b7332" stroke-width="2" stroke-linejoin="round"/><path d="M15.5 8.5a5 5 0 010 7M19 5a9 9 0 010 14" stroke="#6b7332" stroke-width="2" stroke-linecap="round"/></svg> Hear Whitney's story</figcaption>
+            <audio controls preload="none" src="/images/testimonials/whitney-testimonial.m4a">Your browser does not support the audio element.</audio>
+          </figure>
           <p class="tst-name">Whitney</p>
         </div>
       </div>
       <div class="tst-row">
-        <div class="tst-photo"><img src="/images/testimonials/jazmin.webp" alt="Jazmin — Studio One guest transformation" loading="lazy" decoding="async"></div>
+        <div class="tst-photo"><img class="tst-img" src="/images/testimonials/jazmin.webp" alt="Jazmin — Studio One guest transformation" loading="lazy" decoding="async"></div>
         <div class="tst-copy" data-animate>
           <blockquote class="tst-quote">&ldquo;Now I have a hair texture that I am much more content with. I feel like my hair is a part of me that I am proud of!&rdquo;</blockquote>
           <p class="tst-body">Before my perm, the only way I was satisfied with my hair was if it was straightened &mdash; and that wasn't my favorite.</p>
+          <p class="tst-body">Now I have a hair texture that I am much more content with. I feel like my hair is a part of me that I am proud of!</p>
           <p class="tst-body">My experience at Studio One really stood out &mdash; I loved how I was treated, the process was speedy, and I was so comfortable. Seeing my hair bounce up for the first time was pretty great!</p>
           <p class="tst-name">Jazmin</p>
         </div>
       </div>
       <div class="tst-row">
-        <div class="tst-photo"><img src="/images/testimonials/barbara.webp" alt="Barbara — Studio One guest transformation" loading="lazy" decoding="async"></div>
+        <div class="tst-photo"><img class="tst-img" src="/images/testimonials/barbara.webp" alt="Barbara — Studio One guest transformation" loading="lazy" decoding="async"></div>
         <div class="tst-copy" data-animate>
           <blockquote class="tst-quote">&ldquo;Now my hair feels so natural, like it's been mine for years. The hardest part? Accepting the compliments without spilling my secret!&rdquo;</blockquote>
-          <p class="tst-body">I had short hair most of my adult life. I wanted to have longer hair for a fun season, and at over 50 I needed help to have fast results. Now it feels natural, as if it has been long for years.</p>
+          <p class="tst-body">I had short hair most of my adult life. I wanted to have longer hair for a fun season, and at over 50 I needed help to have fast results. Now it feels natural, as if it has been long for years. I especially like growing out my bangs and having a totally new look.</p>
           <p class="tst-body">Getting started was easy &mdash; I appreciated Cat consulting with me to determine if I was a good candidate and had realistic expectations. I would recommend NBR treatments if you are ready to pamper yourself and want the best products. I love the natural look, thickness, and how healthy it looks.</p>
+          <p class="tst-body">It's been hard to just accept the compliment about my hair and not tell how I got it. I don't know anyone my age that is growing hair like this.</p>
           <p class="tst-name">Barbara</p>
         </div>
       </div>
       <div class="tst-row">
-        <div class="tst-photo"><img src="/images/testimonials/longtime.webp" alt="Studio One guest transformation" loading="lazy" decoding="async"></div>
+        <div class="tst-photo"><img class="tst-img" src="/images/testimonials/longtime.webp" alt="Studio One guest transformation" loading="lazy" decoding="async"></div>
         <div class="tst-copy" data-animate>
           <blockquote class="tst-quote">&ldquo;I always leave with hair that looks and feels beautiful.&rdquo;</blockquote>
           <p class="tst-body">I first met Cat in the early 2000s, right after her mentor retired. I already knew her from the '90s, when she was assisting, and I trusted her immediately to take care of my hair.</p>
-          <p class="tst-body">Because my hair grows quickly, keeping my cut and color blended naturally is important to me. With my busy schedule, Cat always makes sure my long hair is manageable. What I appreciate most is the individualized attention and quality time she spends creating the perfect style. If you're searching for someone who truly listens and creates a look that fits your lifestyle, I highly recommend Cat.</p>
+          <p class="tst-body">Because my hair grows quickly, keeping my cut and color blended naturally is important to me. With my busy schedule, I don't have a lot of time to spend in the salon, and Cat always makes sure my long hair is manageable. She removes weight and thickness so it's easier to blow dry, style, and keep smooth.</p>
+          <p class="tst-body">What I appreciate most is the individualized attention and quality time Cat spends creating the perfect style. I always leave with hair that looks and feels beautiful. If you're searching for someone who truly listens and creates a look that fits your lifestyle, I highly recommend Cat.</p>
+          <p class="tst-name">Longtime Studio One Guest</p>
         </div>
       </div>
       <div class="tst-row">
-        <div class="tst-photo"><img src="/images/testimonials/grace.webp" alt="Grace — Studio One guest transformation" loading="lazy" decoding="async"></div>
+        <div class="tst-photo"><img class="tst-img" src="/images/testimonials/grace.webp" alt="Grace — Studio One guest transformation" loading="lazy" decoding="async"></div>
         <div class="tst-copy" data-animate>
           <blockquote class="tst-quote">&ldquo;Cat makes sure my hair is under the best care every single time. Studio One really feels like home to me.&rdquo;</blockquote>
-          <p class="tst-body">I've been coming to see Cat since I was a young girl &mdash; probably over 15 years now! I've built so much trust in her over the years, and I just know that every time I go to her, I'm going to walk out happy.</p>
-          <p class="tst-body">I love that she listens and works with me to make the best choices for my hair. My hair feels so much stronger and healthier now because she keeps me on a schedule that prevents damage and keeps it looking its best.</p>
+          <p class="tst-body">My favorite part about Studio One is that I've been coming to see Cat since I was a young girl &mdash; probably over 15 years now! I've built so much trust in her over the years, and I just know that every time I go to her, I'm going to walk out happy.</p>
+          <p class="tst-body">My hair gets healthier every time I visit. Sometimes life gets busy and I don't make it in for a few months, but when I finally get back in that chair, Cat always gets my hair back on track. I love that she listens and works with me to make the best choices for my hair &mdash; it's a team effort, and she always has my best interest in mind.</p>
+          <p class="tst-body">My hair feels so much stronger and healthier now because she keeps me on a schedule that prevents damage and keeps it looking its best. I keep coming back &mdash; not just because I love and trust Cat, but because I know she'll always work with me, no matter what color I want. She makes sure my hair is under the best care every single time. Studio One really feels like home to me.</p>
           <p class="tst-name">Grace</p>
         </div>
       </div>
       <div class="tst-row">
-        <div class="tst-photo"><img src="/images/testimonials/hope.webp" alt="Studio One guest transformation" loading="lazy" decoding="async"></div>
+        <div class="tst-photo"><img class="tst-img" src="/images/testimonials/hope.webp" alt="Studio One guest transformation by Hope" loading="lazy" decoding="async"></div>
         <div class="tst-copy" data-animate>
           <blockquote class="tst-quote">&ldquo;My hair had quite a bit of breakage before, but it's doing so much better now thanks to your care and guidance.&rdquo;</blockquote>
-          <p class="tst-body">Because of Hope I have full trust in her and her skills. The salon has such a modern, welcoming, and trendy vibe &mdash; a huge upgrade compared to where I used to go!</p>
-          <p class="tst-body">I love all the little touches, like being offered water or snacks, and that relaxing head massage during the shampoo &mdash; it makes the whole experience feel special. My daily routine has improved a lot. Thankful to have found Hope!</p>
+          <p class="tst-body">Because of Hope I have full trust in her and her skills. The salon has such a modern, welcoming, and trendy vibe &mdash; a huge upgrade compared to where I used to go! My hair had quite a bit of breakage before, but it's doing so much better now thanks to your care and guidance. I love how my hair looks every time I leave the salon.</p>
+          <p class="tst-body">The vibe here is so fun and current, definitely my kind of energy! I love all the little touches, like being offered water or snacks, and that relaxing head massage during the shampoo &mdash; it makes the whole experience feel special.</p>
+          <p class="tst-body">Hope is extra special to me because I've known her for years &mdash; about 14, to be exact! She was friends with my daughter back when they were both just starting out in cosmetology, and it's so inspiring to see how far she's come. My daily hair routine has improved a lot &mdash; I don't wash it as often now, and I use more leave-in oils to keep it healthy and shiny. Thankful to have found Hope!</p>
+          <p class="tst-name">A Guest of Hope</p>
         </div>
       </div>
       <div class="tst-row">
-        <div class="tst-photo"><img src="/images/testimonials/tori.webp" alt="Tori — Studio One guest transformation" loading="lazy" decoding="async"></div>
+        <div class="tst-photo"><img class="tst-img" src="/images/testimonials/tori.webp" alt="Tori — Studio One guest transformation" loading="lazy" decoding="async"></div>
         <div class="tst-copy" data-animate>
           <blockquote class="tst-quote">&ldquo;The conversations are fun, the environment feels like home, and everyone genuinely wants the best for you.&rdquo;</blockquote>
-          <p class="tst-body">I first came to Studio One simply to support my best friend, getting a quick haircut once a month. I immediately noticed the difference &mdash; my hair felt healthier and started growing so much faster.</p>
-          <p class="tst-body">Before coming here, I struggled with split ends, flat hair, and slow-growing ends. Now my hair has great volume, no split ends, and it grows super fast. The transformation has been amazing &mdash; and honestly, the results speak for themselves.</p>
+          <p class="tst-body">I first came to Studio One simply to support my best friend, getting a quick haircut once a month &mdash; something I never used to do. But I immediately noticed the difference. My hair felt healthier and started growing so much faster. Eventually, I decided to start bleaching it, and I've absolutely loved the results every single time.</p>
+          <p class="tst-body">Before coming here, I struggled with split ends, flat hair, and dead, slow-growing ends. Now my hair has great volume, no split ends, and it grows super fast. The transformation has been amazing. These days, I actually enjoy taking care of my hair &mdash; when my hair looks good, I feel good, and that confidence has become part of my daily routine.</p>
+          <p class="tst-body">Studio One feels like a safe, welcoming place. Everyone is so sweet, genuine, and fun to talk to. If a friend asked me why they should choose Studio One, I'd tell them it's clean, relaxing, and full of amazing people. The conversations are fun, the environment feels like home, and everyone genuinely wants the best for you. And honestly &mdash; the results speak for themselves.</p>
           <p class="tst-name">Tori</p>
         </div>
       </div>
@@ -480,6 +501,23 @@
       wrap.addEventListener('click', activate);
       wrap.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(); } });
     });
+  </script>
+  <script>
+    // Peekaboo reveal: each testimonial photo opens from a centered ~70% crop into the full image
+    (function(){
+      var imgs = document.querySelectorAll('.tst-img');
+      if (!imgs.length) return;
+      if (!('IntersectionObserver' in window)){
+        imgs.forEach(function(i){ i.classList.add('is-revealed'); });
+        return;
+      }
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(e){
+          if (e.isIntersecting){ e.target.classList.add('is-revealed'); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.25, rootMargin: '0px 0px -8% 0px' });
+      imgs.forEach(function(i){ io.observe(i); });
+    })();
   </script>
 </body>
 </html>

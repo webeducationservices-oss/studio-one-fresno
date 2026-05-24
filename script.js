@@ -78,6 +78,7 @@
 /* ===== Testimonial Slider ===== */
 (function () {
   const track = document.getElementById('testimonialTrack');
+  if (!track) return; // page has no homepage slider (e.g. /testimonials)
   const slides = track.querySelectorAll('.testimonial-slide');
   const prevBtn = document.getElementById('sliderPrev');
   const nextBtn = document.getElementById('sliderNext');
