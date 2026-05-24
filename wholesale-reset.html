@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Set Your Password | Studio One Hair Design</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://www.studioonefresno.com/wholesale-reset">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preconnect" href="https://use.typekit.net" crossorigin>
+  <style>
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    :root{--olive:#4c5223;--olive-light:#6b7332;--black:#000;--dark:#0a0a0a;--white:#fff;--off-white:#f5f5f5;--light-gray:#d9d9d9;--body-font:Arial,sans-serif;--heading-font:'freight-big-pro',Georgia,serif}
+    html{-webkit-font-smoothing:antialiased}
+    body{font-family:var(--body-font);background:var(--black);color:var(--light-gray);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px 20px}
+    a{color:var(--olive-light);text-decoration:none}
+    .card{width:100%;max-width:420px;text-align:center}
+    .card .logo{height:34px;margin:0 auto 40px;display:block}
+    .eyebrow{font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--olive-light);margin-bottom:14px}
+    h1{font-family:var(--heading-font);font-size:36px;font-weight:400;color:var(--white);line-height:1.15;margin-bottom:10px}
+    .intro{font-size:14px;color:var(--light-gray);font-weight:300;line-height:1.7;margin-bottom:32px}
+    form{display:flex;flex-direction:column;gap:14px;text-align:left}
+    label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--off-white);font-weight:600;margin-bottom:6px;display:block}
+    input{width:100%;padding:14px 16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.14);border-radius:4px;color:var(--white);font-size:15px;font-family:inherit}
+    input:focus{outline:none;border-color:var(--olive-light);background:rgba(76,82,35,.08)}
+    .btn{margin-top:8px;width:100%;padding:16px;background:var(--olive);color:var(--white);font-size:12px;font-weight:600;letter-spacing:3px;text-transform:uppercase;border:none;border-radius:4px;cursor:pointer;transition:background .3s}
+    .btn:hover{background:var(--olive-light)}
+    .btn:disabled{opacity:.6;cursor:not-allowed}
+    .msg{margin-top:16px;font-size:13.5px;line-height:1.6;padding:12px 14px;border-radius:4px;display:none}
+    .msg.err{display:block;background:rgba(190,60,60,.14);border:1px solid rgba(190,60,60,.4);color:#ffb3b3}
+    .msg.ok{display:block;background:rgba(76,82,35,.14);border:1px solid rgba(76,82,35,.5);color:#cfe0a8}
+    .links{margin-top:22px;font-size:13px;color:var(--light-gray)}
+    .foot-note{margin-top:30px;font-size:12px;color:#7a7a7a;line-height:1.6}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <a href="/"><img src="/images/optimized/logo.avif" alt="Studio One Hair Design" class="logo" width="180" height="34"></a>
+    <p class="eyebrow">Pro / Stylist Access</p>
+    <h1>Set Your Password</h1>
+    <p class="intro">Choose a password for your Studio One wholesale account. You'll use it to sign in and order hair.</p>
+    <form id="resetForm" autocomplete="on" style="display:none">
+      <div>
+        <label for="password">New password</label>
+        <input type="password" id="password" name="password" required minlength="8" autocomplete="new-password">
+      </div>
+      <div>
+        <label for="confirm">Confirm password</label>
+        <input type="password" id="confirm" name="confirm" required minlength="8" autocomplete="new-password">
+      </div>
+      <button type="submit" class="btn" id="submitBtn">Save Password</button>
+    </form>
+    <div class="msg" id="msg"></div>
+    <div class="links">
+      <a href="/wholesale-login">&larr; Back to sign in</a>
+    </div>
+    <p class="foot-note">This link expires for security. If it has expired, return to the sign-in page and tap &ldquo;Forgot your password?&rdquo; to get a fresh link.</p>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.0/dist/umd/supabase.min.js"></script>
+  <script>
+    const SB = window.supabase.createClient(
+      'https://dujhqimohplbnjfgfups.supabase.co',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR1amhxaW1vaHBsYm5qZmdmdXBzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk2MzU1MzksImV4cCI6MjA5NTIxMTUzOX0.un0zmJXXN2TUNm5QJMhIO6F6jbUuLJXekV62N2-sD5g'
+    );
+    const msg = document.getElementById('msg');
+    const form = document.getElementById('resetForm');
+    const show = (t, ok) => { msg.textContent = t; msg.className = 'msg ' + (ok ? 'ok' : 'err'); };
+
+    // The invite / recovery email link carries the token in the URL fragment.
+    // supabase-js (detectSessionInUrl) exchanges it for a session automatically
+    // and fires PASSWORD_RECOVERY. Show the form once we have a usable session.
+    let ready = false;
+    SB.auth.onAuthStateChange((event, session) => {
+      if ((event === 'PASSWORD_RECOVERY' || event === 'SIGNED_IN') && session) {
+        ready = true;
+        form.style.display = 'flex';
+        msg.className = 'msg';
+      }
+    });
+
+    // Fallback: if a session already exists (e.g. token already exchanged), show the form.
+    SB.auth.getSession().then(({ data }) => {
+      if (data.session) { ready = true; form.style.display = 'flex'; }
+      else {
+        // give detectSessionInUrl a moment; if still nothing, the link is bad/expired
+        setTimeout(() => {
+          if (!ready) show('This password link is invalid or has expired. Go back to sign in and request a new one.', false);
+        }, 1500);
+      }
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const pw = document.getElementById('password').value;
+      const cf = document.getElementById('confirm').value;
+      if (pw.length < 8) { show('Password must be at least 8 characters.', false); return; }
+      if (pw !== cf) { show('Those passwords don’t match. Please re-enter them.', false); return; }
+      const btn = document.getElementById('submitBtn');
+      btn.disabled = true; btn.textContent = 'Saving…'; msg.className = 'msg';
+      const { error } = await SB.auth.updateUser({ password: pw });
+      if (error) { show(error.message || 'Could not save your password. Try the link again.', false); btn.disabled = false; btn.textContent = 'Save Password'; return; }
+      show('Password saved. Taking you to the wholesale shop…', true);
+      setTimeout(() => location.replace('/wholesale-shop'), 1200);
+    });
+  </script>
+</body>
+</html>
