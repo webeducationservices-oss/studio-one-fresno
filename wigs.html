@@ -361,11 +361,13 @@
     .closing-cta-bg img{width:100%;height:100%;object-fit:cover;opacity:.32;filter:grayscale(.4)}
     .closing-cta-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,10,.55) 0%,rgba(10,10,10,.75) 60%,rgba(10,10,10,.92) 100%)}
     /* Lifestyle photo backgrounds on select text rows */
-    .section--bg{position:relative;overflow:hidden}
-    .section--bg>.section-inner{position:relative;z-index:2}
-    .section-bg-media{position:absolute;inset:0;z-index:0}
-    .section-bg-media img{width:100%;height:100%;object-fit:cover;opacity:.28;filter:grayscale(.35)}
-    .section-bg-media::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,10,.62),rgba(10,10,10,.85))}
+    /* Full-bleed photo section backgrounds + empty parallax divider rows (match old Webflow wigs page) */
+    .wig-photo-bg{position:relative;background-size:cover;background-position:center}
+    .wig-photo-bg>*{position:relative;z-index:2}
+    .wig-photo-bg::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(10,10,10,.82),rgba(10,10,10,.9));pointer-events:none}
+    .wig-divider{position:relative;height:440px;background-size:cover;background-position:center top;background-attachment:fixed}
+    .wig-divider::after{content:"";position:absolute;inset:0;background:rgba(10,10,10,.30)}
+    @media(max-width:820px){.wig-divider{height:260px;background-attachment:scroll}}
     .closing-cta-inner{position:relative;z-index:2;max-width:760px;margin:0 auto}
     .closing-cta h2{font-family:var(--heading-font);font-size:46px;color:var(--white);font-weight:400;line-height:1.15;margin-bottom:20px;letter-spacing:-.5px}
     .closing-cta p{font-size:17px;color:var(--light-gray);font-weight:300;line-height:1.75;margin-bottom:36px}
@@ -545,6 +547,8 @@
     </div>
   </section>
 
+  <div class="wig-divider" style="background-image:url('/images/webflow/wigs-live/wig-lifestyle-night.webp')" aria-hidden="true"></div>
+
   <!-- ==================== PARTNERSHIP WITH MAVEN MANE ==================== -->
   <section class="section">
     <div class="section-inner">
@@ -585,6 +589,8 @@
       <p class="lead text-center" style="margin-top:48px;font-style:italic;color:var(--off-white)" data-animate>This partnership ensures premium craftsmanship, medical accuracy, and Studio One&rsquo;s signature touch on every finished piece.</p>
     </div>
   </section>
+
+  <div class="wig-divider" style="background-image:url('/images/webflow/wigs-live/wig-lifestyle-family.webp')" aria-hidden="true"></div>
 
   <!-- ==================== WIG OPTIONS ==================== -->
   <section class="section section--dark">
@@ -635,7 +641,7 @@
   </section>
 
   <!-- ==================== WHAT MAKES OUR WIGS DIFFERENT ==================== -->
-  <section class="section">
+  <section class="section wig-photo-bg" style="background-image:url('/images/webflow/wigs-live/wig-bg-difference.webp')">
     <div class="section-inner section-narrow">
       <div class="text-center" style="margin-bottom:8px" data-animate>
         <p class="eyebrow">The Difference</p>
@@ -677,8 +683,7 @@
   </section>
 
   <!-- ==================== WHY WOMEN CHOOSE STUDIO ONE ==================== -->
-  <section class="section section--bg">
-    <div class="section-bg-media" aria-hidden="true"><img src="/images/webflow/wigs-live/wig-lifestyle-active.webp" alt="" loading="lazy" decoding="async" width="1600" height="1439"></div>
+  <section class="section wig-photo-bg" style="background-image:url('/images/webflow/wigs-live/wig-bg-why.webp')">
     <div class="section-inner section-narrow">
       <div class="text-center" style="margin-bottom:8px" data-animate>
         <p class="eyebrow">Why Studio One</p>
@@ -699,7 +704,7 @@
   </section>
 
   <!-- ==================== PRICING ==================== -->
-  <section class="section section--dark">
+  <section class="section section--dark wig-photo-bg" style="background-image:url('/images/webflow/wigs-live/wig-bg-price.webp')">
     <div class="section-inner section-narrow">
       <div class="text-center" style="margin-bottom:8px" data-animate>
         <p class="eyebrow">Investment</p>
@@ -804,7 +809,7 @@
   </section>
 
   <!-- ==================== MAINTENANCE & LONGEVITY ==================== -->
-  <section class="section">
+  <section class="section wig-photo-bg" style="background-image:url('/images/webflow/wigs-live/wig-bg-care.webp')">
     <div class="section-inner">
       <div class="text-center" style="margin-bottom:56px" data-animate>
         <p class="eyebrow">Care</p>
@@ -851,6 +856,8 @@
     </div>
   </section>
 
+  <div class="wig-divider" style="background-image:url('/images/webflow/wigs-live/wig-divider-2.webp')" aria-hidden="true"></div>
+
   <!-- ==================== FAQ ==================== -->
   <section class="section">
     <div class="section-inner">
@@ -893,8 +900,7 @@
   </section>
 
   <!-- ==================== IS THIS RIGHT FOR YOU ==================== -->
-  <section class="section section--dark section--bg">
-    <div class="section-bg-media" aria-hidden="true"><img src="/images/webflow/wigs-live/wig-lifestyle-family.webp" alt="" loading="lazy" decoding="async" width="1600" height="1439"></div>
+  <section class="section section--dark wig-photo-bg" style="background-image:url('/images/webflow/wigs-live/wig-lifestyle-active.webp')">
     <div class="section-inner section-narrow">
       <div class="text-center" style="margin-bottom:8px" data-animate>
         <p class="eyebrow">Is This You?</p>
@@ -919,7 +925,7 @@
   <!-- ==================== CLOSING CTA ==================== -->
   <section class="closing-cta" id="book">
     <div class="closing-cta-bg" aria-hidden="true">
-      <img src="/images/webflow/wigs-live/wig-lifestyle-night.webp" alt="" width="1600" height="1439" loading="lazy" decoding="async">
+      <img src="/images/optimized/cta-bg.webp" alt="" width="1440" height="2159" loading="lazy" decoding="async">
     </div>
     <div class="closing-cta-inner" data-animate>
       <p class="eyebrow">Get Started</p>
