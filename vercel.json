@@ -3,7 +3,8 @@
   "trailingSlash": false,
   "redirects": [
     { "source": "/checkout", "destination": "/cart", "permanent": true },
-    { "source": "/paypal-checkout", "destination": "/cart", "permanent": true }
+    { "source": "/paypal-checkout", "destination": "/cart", "permanent": true },
+    { "source": "/product/level-:slug*", "destination": "/wholesale-login", "permanent": true }
   ],
   "headers": [
     {

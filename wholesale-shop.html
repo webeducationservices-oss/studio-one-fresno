@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wholesale Shop | Studio One Hair Design</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://www.studioonefresno.com/wholesale-shop">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preconnect" href="https://use.typekit.net" crossorigin>
+  <link href="https://use.typekit.net/epq0gor.css" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://use.typekit.net/epq0gor.css" rel="stylesheet"></noscript>
+  <style>
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    :root{--olive:#4c5223;--olive-light:#6b7332;--black:#000;--dark:#0a0a0a;--white:#fff;--off-white:#f5f5f5;--light-gray:#d9d9d9;--body-font:Arial,sans-serif;--heading-font:'freight-big-pro',Georgia,serif}
+    html{-webkit-font-smoothing:antialiased}
+    body{font-family:var(--body-font);background:var(--black);color:var(--light-gray);font-size:16px;line-height:1.6}
+    a{color:inherit;text-decoration:none}
+    button{cursor:pointer;font-family:inherit}
+    .ws-header{position:sticky;top:0;z-index:50;display:flex;justify-content:space-between;align-items:center;padding:18px 32px;background:rgba(0,0,0,.92);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,.08)}
+    .ws-header .logo{height:26px}
+    .ws-header nav{display:flex;align-items:center;gap:22px}
+    .ws-header a,.ws-header button{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--off-white);font-weight:500;background:none;border:none}
+    .ws-header .cartlink{color:var(--olive-light);font-weight:600}
+    .ws-hero{text-align:center;padding:64px 32px 28px}
+    .ws-hero .eyebrow{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--olive-light);font-weight:600;margin-bottom:12px}
+    .ws-hero h1{font-family:var(--heading-font);font-size:46px;font-weight:400;color:var(--white);line-height:1.1;margin-bottom:12px}
+    .ws-hero p{font-size:15px;color:var(--light-gray);font-weight:300;max-width:620px;margin:0 auto}
+    .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;max-width:1280px;margin:32px auto 0;padding:0 32px 80px}
+    .card{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.07);border-radius:6px;overflow:hidden;display:flex;flex-direction:column;transition:border-color .3s}
+    .card:hover{border-color:rgba(76,82,35,.5)}
+    .card-img{aspect-ratio:1/1;background:#1a1a1a;overflow:hidden}
+    .card-img img{width:100%;height:100%;object-fit:cover}
+    .card-body{padding:18px 18px 20px;display:flex;flex-direction:column;flex:1}
+    .card-body h3{font-family:var(--heading-font);font-size:18px;color:var(--white);font-weight:400;line-height:1.25;margin-bottom:10px}
+    .card-body select{width:100%;padding:9px 10px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:4px;color:var(--white);font-size:13px;font-family:inherit;margin-bottom:10px}
+    .card-price{font-size:18px;color:var(--off-white);font-weight:600;margin-bottom:12px}
+    .card-row{display:flex;gap:8px;margin-top:auto}
+    .qty{width:56px;padding:9px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:4px;color:var(--white);text-align:center;font-family:inherit}
+    .add{flex:1;padding:10px;background:var(--olive);color:var(--white);font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;border:none;border-radius:4px;transition:background .3s}
+    .add:hover{background:var(--olive-light)}
+    .add.added{background:#3a4019}
+    .state{text-align:center;padding:80px 20px;color:var(--light-gray)}
+    /* order drawer */
+    .drawer{position:fixed;top:0;right:0;height:100%;width:380px;max-width:92vw;background:#0d0d0d;border-left:1px solid rgba(255,255,255,.1);transform:translateX(100%);transition:transform .35s cubic-bezier(.16,1,.3,1);z-index:60;display:flex;flex-direction:column}
+    .drawer.open{transform:none}
+    .drawer-head{display:flex;justify-content:space-between;align-items:center;padding:20px 24px;border-bottom:1px solid rgba(255,255,255,.08)}
+    .drawer-head h2{font-family:var(--heading-font);font-size:22px;color:var(--white);font-weight:400}
+    .drawer-head button{font-size:22px;color:var(--light-gray);background:none;border:none}
+    .drawer-body{flex:1;overflow-y:auto;padding:16px 24px}
+    .oitem{display:flex;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.06);font-size:14px}
+    .oitem .x{color:#c98;background:none;border:none;font-size:13px}
+    .oitem .nm{color:var(--white)}
+    .oitem .vr{font-size:12px;color:var(--light-gray)}
+    .drawer-foot{padding:20px 24px;border-top:1px solid rgba(255,255,255,.08)}
+    .drawer-foot textarea{width:100%;min-height:62px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:4px;color:var(--white);padding:10px;font-family:inherit;font-size:13px;margin-bottom:12px}
+    .sumline{display:flex;justify-content:space-between;color:var(--off-white);font-weight:600;margin-bottom:14px}
+    .submit{width:100%;padding:15px;background:var(--olive);color:var(--white);font-size:12px;font-weight:600;letter-spacing:3px;text-transform:uppercase;border:none;border-radius:4px}
+    .submit:hover{background:var(--olive-light)}
+    .submit:disabled{opacity:.6}
+    .empty{color:#888;text-align:center;padding:40px 0;font-size:14px}
+    .priced-note{max-width:1280px;margin:0 auto;padding:0 32px;font-size:12px;color:#8a8a6a;text-align:center}
+    @media(max-width:1024px){.grid{grid-template-columns:repeat(3,1fr)}}
+    @media(max-width:680px){.grid{grid-template-columns:repeat(2,1fr);gap:14px;padding:0 16px 60px}.ws-hero h1{font-size:34px}.ws-header{padding:14px 18px}}
+  </style>
+</head>
+<body>
+  <header class="ws-header">
+    <a href="/"><img src="/images/optimized/logo.avif" alt="Studio One" class="logo" width="180" height="34"></a>
+    <nav>
+      <a href="/shop">Retail Shop</a>
+      <button id="openCart" class="cartlink">Order (<span id="cartCount">0</span>)</button>
+      <button id="signout">Sign Out</button>
+    </nav>
+  </header>
+
+  <section class="ws-hero">
+    <p class="eyebrow">Stylist &amp; Salon Wholesale</p>
+    <h1>Wholesale Hair</h1>
+    <p>Premium hand-tied wefts and color-matched hair, available at stylist pricing for approved Studio One wholesale partners.</p>
+  </section>
+
+  <div id="grid" class="grid"><div class="state">Loading your wholesale catalog…</div></div>
+
+  <!-- Order drawer -->
+  <aside class="drawer" id="drawer" aria-label="Your order">
+    <div class="drawer-head"><h2>Your Order</h2><button id="closeCart" aria-label="Close">&times;</button></div>
+    <div class="drawer-body" id="orderItems"><p class="empty">No items yet. Add hair to build your order.</p></div>
+    <div class="drawer-foot">
+      <textarea id="orderNote" placeholder="Notes for Studio One (optional)…"></textarea>
+      <div class="sumline"><span>Estimated total</span><span id="orderTotal">$0</span></div>
+      <button class="submit" id="submitOrder" disabled>Submit Order Request</button>
+    </div>
+  </aside>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.0/dist/umd/supabase.min.js"></script>
+  <script>
+  (async function(){
+    const SB = window.supabase.createClient(
+      'https://dujhqimohplbnjfgfups.supabase.co',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR1amhxaW1vaHBsYm5qZmdmdXBzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk2MzU1MzksImV4cCI6MjA5NTIxMTUzOX0.un0zmJXXN2TUNm5QJMhIO6F6jbUuLJXekV62N2-sD5g'
+    );
+    // ---- gate ----
+    const { data:{ session } } = await SB.auth.getSession();
+    if(!session){ location.replace('/wholesale-login'); return; }
+    document.getElementById('signout').addEventListener('click', async ()=>{ await SB.auth.signOut(); location.replace('/wholesale-login'); });
+
+    const fmt = c => '$' + (c/100).toFixed(2).replace(/\.00$/,'');
+    let cart = JSON.parse(localStorage.getItem('ws_cart')||'[]');
+    const grid = document.getElementById('grid');
+
+    // ---- load products ----
+    const { data:products, error } = await SB.from('wholesale_products').select('*').eq('active',true).order('sort');
+    if(error){ grid.innerHTML='<div class="state">Couldn’t load the catalog. Please refresh or sign in again.</div>'; return; }
+    if(!products.length){ grid.innerHTML='<div class="state">No wholesale products are available yet.</div>'; return; }
+
+    grid.innerHTML = products.map((p,idx)=>{
+      const vs = Array.isArray(p.variants)? p.variants : [];
+      const opts = vs.length
+        ? vs.map((v,i)=>`<option value="${i}" data-c="${v.price_cents||p.wholesale_price_cents}">${(v.name||('Option '+(i+1)))} — ${fmt(v.price_cents||p.wholesale_price_cents)}</option>`).join('')
+        : `<option value="-1" data-c="${p.wholesale_price_cents}">Standard — ${fmt(p.wholesale_price_cents)}</option>`;
+      const first = vs.length ? (vs[0].price_cents||p.wholesale_price_cents) : p.wholesale_price_cents;
+      return `<div class="card" data-idx="${idx}">
+        <div class="card-img"><img src="${p.image_url||'/images/og-image.jpg'}" alt="${(p.name||'').replace(/"/g,'')}" loading="lazy"></div>
+        <div class="card-body">
+          <h3>${p.name}</h3>
+          <select class="vsel">${opts}</select>
+          <div class="card-price">${fmt(first)}</div>
+          <div class="card-row">
+            <input class="qty" type="number" min="1" max="99" value="1">
+            <button class="add">Add</button>
+          </div>
+        </div></div>`;
+    }).join('');
+
+    // price updates with variant
+    grid.querySelectorAll('.card').forEach(card=>{
+      const sel=card.querySelector('.vsel'), price=card.querySelector('.card-price');
+      sel.addEventListener('change',()=>{ price.textContent=fmt(+sel.selectedOptions[0].dataset.c); });
+      card.querySelector('.add').addEventListener('click',()=>{
+        const p=products[+card.dataset.idx];
+        const o=sel.selectedOptions[0];
+        cart.push({ slug:p.slug, name:p.name, variant:(o.textContent.split(' — ')[0]), price_cents:+o.dataset.c, qty:Math.max(1,parseInt(card.querySelector('.qty').value)||1) });
+        saveCart(); const b=card.querySelector('.add'); b.textContent='Added ✓'; b.classList.add('added'); setTimeout(()=>{b.textContent='Add';b.classList.remove('added');},1400);
+        openDrawer();
+      });
+    });
+
+    // ---- cart / drawer ----
+    const drawer=document.getElementById('drawer'), items=document.getElementById('orderItems'),
+          totalEl=document.getElementById('orderTotal'), countEl=document.getElementById('cartCount'),
+          submitBtn=document.getElementById('submitOrder');
+    function openDrawer(){ drawer.classList.add('open'); }
+    document.getElementById('openCart').addEventListener('click',openDrawer);
+    document.getElementById('closeCart').addEventListener('click',()=>drawer.classList.remove('open'));
+    function saveCart(){ localStorage.setItem('ws_cart',JSON.stringify(cart)); renderCart(); }
+    function renderCart(){
+      countEl.textContent=cart.reduce((s,i)=>s+i.qty,0);
+      if(!cart.length){ items.innerHTML='<p class="empty">No items yet. Add hair to build your order.</p>'; }
+      else items.innerHTML=cart.map((i,ix)=>`<div class="oitem"><div><div class="nm">${i.name}</div><div class="vr">${i.variant} &middot; Qty ${i.qty}</div></div><div style="text-align:right"><div>${fmt(i.price_cents*i.qty)}</div><button class="x" data-ix="${ix}">remove</button></div></div>`).join('');
+      const total=cart.reduce((s,i)=>s+i.price_cents*i.qty,0);
+      totalEl.textContent=fmt(total); submitBtn.disabled=!cart.length;
+      items.querySelectorAll('.x').forEach(b=>b.addEventListener('click',()=>{ cart.splice(+b.dataset.ix,1); saveCart(); }));
+    }
+    renderCart();
+
+    submitBtn.addEventListener('click', async ()=>{
+      submitBtn.disabled=true; submitBtn.textContent='Submitting…';
+      const subtotal=cart.reduce((s,i)=>s+i.price_cents*i.qty,0);
+      const { error } = await SB.from('wholesale_orders').insert({ items:cart, subtotal_cents:subtotal, note:document.getElementById('orderNote').value.trim()||null });
+      if(error){ submitBtn.textContent='Submit Order Request'; submitBtn.disabled=false; alert('Could not submit: '+error.message); return; }
+      cart=[]; saveCart();
+      items.innerHTML='<p class="empty" style="color:#cfe0a8">Order request submitted! Studio One will follow up with you to confirm pricing and arrange fulfillment.</p>';
+      totalEl.textContent='$0'; submitBtn.textContent='Order Submitted ✓';
+    });
+  })();
+  </script>
+</body>
+</html>

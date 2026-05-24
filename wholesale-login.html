@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wholesale Login | Studio One Hair Design</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://www.studioonefresno.com/wholesale-login">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="preconnect" href="https://use.typekit.net" crossorigin>
+  <style>
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    :root{--olive:#4c5223;--olive-light:#6b7332;--black:#000;--dark:#0a0a0a;--white:#fff;--off-white:#f5f5f5;--light-gray:#d9d9d9;--body-font:Arial,sans-serif;--heading-font:'freight-big-pro',Georgia,serif}
+    html{-webkit-font-smoothing:antialiased}
+    body{font-family:var(--body-font);background:var(--black);color:var(--light-gray);min-height:100vh;display:flex;align-items:center;justify-content:center;padding:40px 20px}
+    a{color:var(--olive-light);text-decoration:none}
+    .card{width:100%;max-width:420px;text-align:center}
+    .card .logo{height:34px;margin:0 auto 40px;display:block}
+    .eyebrow{font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--olive-light);margin-bottom:14px}
+    h1{font-family:var(--heading-font);font-size:36px;font-weight:400;color:var(--white);line-height:1.15;margin-bottom:10px}
+    .intro{font-size:14px;color:var(--light-gray);font-weight:300;line-height:1.7;margin-bottom:32px}
+    form{display:flex;flex-direction:column;gap:14px;text-align:left}
+    label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--off-white);font-weight:600;margin-bottom:6px;display:block}
+    input{width:100%;padding:14px 16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.14);border-radius:4px;color:var(--white);font-size:15px;font-family:inherit}
+    input:focus{outline:none;border-color:var(--olive-light);background:rgba(76,82,35,.08)}
+    .btn{margin-top:8px;width:100%;padding:16px;background:var(--olive);color:var(--white);font-size:12px;font-weight:600;letter-spacing:3px;text-transform:uppercase;border:none;border-radius:4px;cursor:pointer;transition:background .3s}
+    .btn:hover{background:var(--olive-light)}
+    .btn:disabled{opacity:.6;cursor:not-allowed}
+    .msg{margin-top:16px;font-size:13.5px;line-height:1.6;padding:12px 14px;border-radius:4px;display:none}
+    .msg.err{display:block;background:rgba(190,60,60,.14);border:1px solid rgba(190,60,60,.4);color:#ffb3b3}
+    .msg.ok{display:block;background:rgba(76,82,35,.14);border:1px solid rgba(76,82,35,.5);color:#cfe0a8}
+    .links{margin-top:22px;font-size:13px;color:var(--light-gray)}
+    .links a{display:inline-block;margin-top:6px}
+    .foot-note{margin-top:30px;font-size:12px;color:#7a7a7a;line-height:1.6}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <a href="/"><img src="/images/optimized/logo.avif" alt="Studio One Hair Design" class="logo" width="180" height="34"></a>
+    <p class="eyebrow">Pro / Stylist Access</p>
+    <h1>Wholesale Login</h1>
+    <p class="intro">Sign in with your approved wholesale account to view stylist pricing and order hair.</p>
+    <form id="loginForm" autocomplete="on">
+      <div>
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required autocomplete="email">
+      </div>
+      <div>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required autocomplete="current-password">
+      </div>
+      <button type="submit" class="btn" id="submitBtn">Sign In</button>
+    </form>
+    <div class="msg" id="msg"></div>
+    <div class="links">
+      <a href="#" id="forgot">Forgot your password?</a><br>
+      <a href="/wholesale">Not a wholesale partner yet? Apply &rarr;</a>
+    </div>
+    <p class="foot-note">Wholesale access is for licensed stylists and salons approved by Studio One. Accounts are created by Studio One &mdash; there is no public sign-up.</p>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.0/dist/umd/supabase.min.js"></script>
+  <script>
+    const SB = window.supabase.createClient(
+      'https://dujhqimohplbnjfgfups.supabase.co',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImR1amhxaW1vaHBsYm5qZmdmdXBzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk2MzU1MzksImV4cCI6MjA5NTIxMTUzOX0.un0zmJXXN2TUNm5QJMhIO6F6jbUuLJXekV62N2-sD5g'
+    );
+    const msg = document.getElementById('msg');
+    const show = (t, ok) => { msg.textContent = t; msg.className = 'msg ' + (ok ? 'ok' : 'err'); };
+
+    // Already signed in? go straight to the shop
+    SB.auth.getSession().then(({ data }) => { if (data.session) location.replace('/wholesale-shop'); });
+
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('submitBtn');
+      btn.disabled = true; btn.textContent = 'Signing in…'; msg.className = 'msg';
+      const { error } = await SB.auth.signInWithPassword({
+        email: document.getElementById('email').value.trim(),
+        password: document.getElementById('password').value
+      });
+      if (error) { show(error.message || 'Sign-in failed. Check your email and password.', false); btn.disabled = false; btn.textContent = 'Sign In'; return; }
+      location.replace('/wholesale-shop');
+    });
+
+    document.getElementById('forgot').addEventListener('click', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value.trim();
+      if (!email) { show('Enter your email above first, then tap “Forgot your password?”', false); return; }
+      const { error } = await SB.auth.resetPasswordForEmail(email, { redirectTo: 'https://www.studioonefresno.com/wholesale-reset' });
+      show(error ? (error.message || 'Could not send reset email.') : 'Password reset email sent. Check your inbox.', !error);
+    });
+  </script>
+</body>
+</html>

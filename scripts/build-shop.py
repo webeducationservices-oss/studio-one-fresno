@@ -21,6 +21,14 @@ IMG_OUT.mkdir(parents=True, exist_ok=True)
 products = json.load(open(PRODUCTS_JSON))
 print(f"Loaded {len(products)} products")
 
+# Wholesale-only products (hair extensions priced for licensed stylists) live in
+# the gated /wholesale-shop, NOT the public retail shop. Drop them here so no
+# rebuild can ever re-emit them into shop.html, the sitemap, or /product/*.
+_wholesale = [p for p in products if p.get("wholesale_only")]
+products = [p for p in products if not p.get("wholesale_only")]
+if _wholesale:
+    print(f"Excluded {len(_wholesale)} wholesale-only products from the public shop")
+
 # ---------------------------------------------------------------------------
 # Download & optimize product images
 # ---------------------------------------------------------------------------
@@ -203,6 +211,9 @@ SHOP_STYLE = """
 .shop-hero{min-height:40vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:140px 40px 40px;background:var(--black)}
 .shop-hero h1{font-family:var(--heading-font);font-size:56px;font-weight:400;color:var(--white);line-height:1.1;margin-bottom:16px}
 .shop-hero p{font-size:16px;color:var(--light-gray);max-width:560px;margin:0 auto 24px;font-weight:300}
+.shop-wholesale-link{margin:0 auto;font-size:13px;letter-spacing:1px}
+.shop-wholesale-link a{color:var(--olive-light);text-transform:uppercase;font-weight:600;border-bottom:1px solid transparent;transition:border-color .3s}
+.shop-wholesale-link a:hover{border-bottom-color:var(--olive-light)}
 .shop-filters{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;padding:0 40px 48px;background:var(--black)}
 .shop-filter-group{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
 .shop-filter-label{font-size:10px;letter-spacing:2px;color:var(--olive-light);text-transform:uppercase;font-weight:600;margin-right:8px}
@@ -254,7 +265,7 @@ def shop_page():
 
     content = head_block(
         title="Shop | Studio One Hair Design Fresno",
-        desc=f"Shop {len(products)} premium hair care products curated by Studio One — Oribe, Davines, and more. Shampoo, conditioner, treatment, styling.",
+        desc="Shop premium hair care products curated by Studio One — Oribe, Davines, and more. Shampoo, conditioner, treatment, styling.",
         path="/shop",
     )
     content += SHOP_STYLE + BODY_OPEN + f'''
@@ -262,7 +273,8 @@ def shop_page():
     <div data-animate>
       <p class="eyebrow">Studio One Shop</p>
       <h1>Salon-quality products, delivered.</h1>
-      <p>{len(products)} curated products from Oribe, Davines, and specialty brands. Everything we use in the chair, ready for your shelf at home.</p>
+      <p>Curated products from Oribe, Davines, and specialty brands. Everything we use in the chair, ready for your shelf at home.</p>
+      <p class="shop-wholesale-link"><a href="/wholesale-login">Licensed stylist? Sign in for wholesale &rarr;</a></p>
     </div>
   </section>
 
