@@ -260,6 +260,7 @@
 
     /* Condition chips (Is This Right for You?) */
     .condition-chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:48px auto 0;max-width:780px}
+    .condition-chips--left{justify-content:flex-start;margin:28px 0 0;max-width:none}
     .condition-chips span{padding:11px 22px;background:rgba(76,82,35,.08);border:1px solid rgba(76,82,35,.4);border-radius:32px;font-size:13.5px;color:var(--off-white);font-weight:500;letter-spacing:.4px;transition:background .3s,transform .25s}
     .condition-chips span:hover{background:var(--olive);color:var(--white);transform:translateY(-2px)}
 
@@ -641,7 +642,7 @@
   </section>
 
   <!-- ==================== WHAT MAKES OUR WIGS DIFFERENT ==================== -->
-  <section class="section wig-photo-bg" style="background-image:url('/images/webflow/wigs-live/wig-bg-difference.webp')">
+  <section class="section">
     <div class="section-inner section-narrow">
       <div class="text-center" style="margin-bottom:8px" data-animate>
         <p class="eyebrow">The Difference</p>
@@ -683,7 +684,7 @@
   </section>
 
   <!-- ==================== WHY WOMEN CHOOSE STUDIO ONE ==================== -->
-  <section class="section wig-photo-bg" style="background-image:url('/images/webflow/wigs-live/wig-bg-why.webp')">
+  <section class="section">
     <div class="section-inner section-narrow">
       <div class="text-center" style="margin-bottom:8px" data-animate>
         <p class="eyebrow">Why Studio One</p>
@@ -704,7 +705,7 @@
   </section>
 
   <!-- ==================== PRICING ==================== -->
-  <section class="section section--dark wig-photo-bg" style="background-image:url('/images/webflow/wigs-live/wig-bg-price.webp')">
+  <section class="section section--dark">
     <div class="section-inner section-narrow">
       <div class="text-center" style="margin-bottom:8px" data-animate>
         <p class="eyebrow">Investment</p>
@@ -809,7 +810,7 @@
   </section>
 
   <!-- ==================== MAINTENANCE & LONGEVITY ==================== -->
-  <section class="section wig-photo-bg" style="background-image:url('/images/webflow/wigs-live/wig-bg-care.webp')">
+  <section class="section">
     <div class="section-inner">
       <div class="text-center" style="margin-bottom:56px" data-animate>
         <p class="eyebrow">Care</p>
@@ -900,25 +901,30 @@
   </section>
 
   <!-- ==================== IS THIS RIGHT FOR YOU ==================== -->
-  <section class="section section--dark wig-photo-bg" style="background-image:url('/images/webflow/wigs-live/wig-lifestyle-active.webp')">
-    <div class="section-inner section-narrow">
-      <div class="text-center" style="margin-bottom:8px" data-animate>
-        <p class="eyebrow">Is This You?</p>
-        <span class="divider"></span>
-        <h2 class="section-heading">Is This Right for You?</h2>
-        <p class="lead">This service is perfect if you&rsquo;re experiencing:</p>
+  <section class="section section--dark">
+    <div class="section-inner">
+      <div class="consult-feature">
+        <div class="consult-img" data-animate="fade-right">
+          <img src="/images/webflow/wigs-live/wig-lifestyle-active.webp" alt="A confident, active woman with natural-looking hair" loading="lazy" decoding="async" width="1600" height="1439">
+        </div>
+        <div data-animate="fade-left">
+          <p class="eyebrow">Is This You?</p>
+          <span class="divider"></span>
+          <h2 class="section-heading">Is This Right for You?</h2>
+          <p class="lead">This service is perfect if you&rsquo;re experiencing:</p>
+          <div class="condition-chips condition-chips--left">
+            <span>Medical hair loss</span>
+            <span>Natural thinning</span>
+            <span>Hormonal changes</span>
+            <span>Postpartum shedding</span>
+            <span>Alopecia</span>
+            <span>Confidence loss</span>
+            <span>Fuller, natural-looking hair</span>
+            <span>Secure, reliable solutions</span>
+          </div>
+          <p class="lead" style="margin-top:32px;font-style:italic;color:var(--off-white);font-size:20px;font-family:var(--heading-font)">You deserve hair that feels like you.</p>
+        </div>
       </div>
-      <div class="condition-chips" data-animate>
-        <span>Medical hair loss</span>
-        <span>Natural thinning</span>
-        <span>Hormonal changes</span>
-        <span>Postpartum shedding</span>
-        <span>Alopecia</span>
-        <span>Confidence loss</span>
-        <span>Fuller, natural-looking hair</span>
-        <span>Secure, reliable solutions</span>
-      </div>
-      <p class="lead text-center" style="margin-top:44px;font-style:italic;color:var(--off-white);font-size:20px;font-family:var(--heading-font)" data-animate>You deserve hair that feels like you.</p>
     </div>
   </section>
 
