@@ -584,7 +584,6 @@ button { cursor: pointer; background: none; border: none; color: inherit; font-f
 .section-testimonials {
   padding: 100px 40px;
   background: var(--dark);
-  overflow: hidden;
 }
 .testimonials-inner {
   max-width: 900px;
