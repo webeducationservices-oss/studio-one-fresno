@@ -56,6 +56,7 @@
   const toggle = document.getElementById('menuToggle');
   const overlay = document.getElementById('navOverlay');
   const close = document.getElementById('navClose');
+  if (!toggle || !overlay) return;
 
   toggle.addEventListener('click', () => {
     overlay.classList.add('is-open');
@@ -174,6 +175,7 @@
 (function () {
   const modal = document.getElementById('galleryModal');
   const modalImg = document.getElementById('modalImage');
+  if (!modal || !modalImg) return; // page has no gallery modal (e.g. /testimonials)
   const closeBtn = modal.querySelector('.modal-close');
   const expandBtns = document.querySelectorAll('.gallery-expand');
   const galleryItems = document.querySelectorAll('.gallery-item');
@@ -209,6 +211,7 @@
   const toggle = document.getElementById('phoneToggle');
   const actions = document.getElementById('phoneActions');
   const widget = document.getElementById('phoneWidget');
+  if (!toggle || !widget) return;
   const phoneIcon = toggle.querySelector('.phone-icon');
   const closeIcon = toggle.querySelector('.close-icon');
   let isOpen = false;
