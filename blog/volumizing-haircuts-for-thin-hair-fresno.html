@@ -113,8 +113,13 @@
 .post-cta{padding:80px 40px;text-align:center;background:var(--black)}
 .post-cta h2{font-family:var(--heading-font);font-size:36px;font-weight:400;color:var(--white);margin-bottom:20px;max-width:680px;margin-left:auto;margin-right:auto}
 .post-cta p{font-size:15px;color:var(--light-gray);margin-bottom:32px;max-width:520px;margin-left:auto;margin-right:auto;font-weight:300}
+.haircut-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin:32px 0}
+.haircut-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:8px;padding:28px;transition:transform .3s,border-color .3s,background-color .3s}
+.haircut-card:hover{transform:translateY(-2px);border-color:var(--olive);background:rgba(255,255,255,.05)}
+.haircut-card h4{font-size:18px;font-weight:600;color:var(--white);margin-bottom:16px;letter-spacing:0.5px}
+.haircut-card p{font-size:15px;line-height:1.7;color:var(--light-gray);font-weight:300;margin:0}
 @media (max-width:1024px){.related-grid{grid-template-columns:repeat(2,1fr)}}
-@media (max-width:768px){.post-hero h1{font-size:32px}.post-hero{padding:110px 24px 50px;min-height:50vh}.post-meta{flex-direction:column;gap:8px}.post-body{padding:60px 24px}.post-body p{font-size:15px}.post-body h2{font-size:26px}.related-grid{grid-template-columns:1fr}.related-posts{padding:60px 24px}}
+@media (max-width:768px){.post-hero h1{font-size:32px}.post-hero{padding:110px 24px 50px;min-height:50vh}.post-meta{flex-direction:column;gap:8px}.post-body{padding:60px 24px}.post-body p{font-size:15px}.post-body h2{font-size:26px}.related-grid{grid-template-columns:1fr}.related-posts{padding:60px 24px}.haircut-cards{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
