@@ -159,6 +159,7 @@ BODY_OPEN = """</head>
         <a href="/blog">Blog</a>
         <a href="/booking">Book Appointment</a>
         <a href="/nically-hair">Nically Hair</a>
+        <a href="/wholesale-login">Shop Nically Hair</a>
         <a href="/careers">Careers</a>
         <a href="/shadowing-program">Shadowing Program</a>
       </div>

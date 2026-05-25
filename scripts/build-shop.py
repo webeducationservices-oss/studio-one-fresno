@@ -177,6 +177,7 @@ BODY_OPEN = """</head>
             <a href="/services">Classic Services</a>
             <a href="/wigs">Wigs</a>
             <a href="/nically-hair">Nically Hair</a>
+            <a href="/wholesale-login">Shop Nically Hair</a>
           </div>
         </div>
         <div class="nav-col">
