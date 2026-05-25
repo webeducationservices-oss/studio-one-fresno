@@ -487,7 +487,7 @@ CAT_STYLE = """
 .cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 .cat-card{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:4px;overflow:hidden;display:flex;flex-direction:column;transition:transform .3s,border-color .3s}
 .cat-card:hover{transform:translateY(-4px);border-color:var(--olive)}
-.cat-card-img{aspect-ratio:16/10;overflow:hidden;background:#1a1a1a}
+.cat-card-img{aspect-ratio:1/1;overflow:hidden;background:#1a1a1a}
 .cat-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
 .cat-card:hover img{transform:scale(1.05)}
 .cat-card-body{padding:24px;flex:1;display:flex;flex-direction:column}
