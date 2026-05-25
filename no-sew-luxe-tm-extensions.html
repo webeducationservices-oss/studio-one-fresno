@@ -42,6 +42,8 @@
   function T(){L();clearTimeout(tm);E.forEach(function(x){removeEventListener(x,T)});}
   E.forEach(function(x){addEventListener(x,T,{passive:true})});tm=setTimeout(L,5000);})();
   </script>
+  <!-- reCAPTCHA v3 (application form) -->
+  <script src="https://www.google.com/recaptcha/api.js?render=6Lck8aQsAAAAALMA-T6nwfkSf7bv4K-mOhkszeKh"></script>
 <style>
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
     :root{--olive:#4c5223;--olive-light:#6b7332;--black:#000;--dark:#0a0a0a;--white:#fff;--off-white:#f5f5f5;--light-gray:#d9d9d9;--body-font:Arial, sans-serif;--heading-font:'freight-big-pro',Georgia,serif}
@@ -106,12 +108,72 @@
       .two-col .img-frame{order:-1}
       .option-grid{grid-template-columns:1fr;gap:48px}
     }
+    /* ===== Application form ===== */
+    .grecaptcha-badge{visibility:hidden!important}
+    .apply-section{padding:90px 40px 110px;background:var(--dark);border-top:1px solid rgba(255,255,255,.05)}
+    .apply-head{text-align:center;max-width:640px;margin:0 auto 40px}
+    .apply-head h2{font-family:var(--heading-font);font-size:42px;font-weight:400;color:var(--white);line-height:1.2;margin-bottom:14px}
+    .apply-head p{font-size:16px;color:var(--light-gray);font-weight:300;line-height:1.7}
+    .apply-card{max-width:640px;margin:0 auto;background:var(--black);border:1px solid rgba(108,115,50,.35);border-radius:8px;padding:40px}
+    .apply-progress{margin-bottom:28px}
+    .apply-progress-bar{height:4px;background:rgba(255,255,255,.08);border-radius:4px;overflow:hidden}
+    .apply-progress-fill{height:100%;background:var(--olive-light);border-radius:4px;width:25%;transition:width .4s cubic-bezier(.16,1,.3,1)}
+    .apply-progress-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--olive-light);font-weight:600;margin-top:10px}
+    .apply-step{display:none}
+    .apply-step.active{display:block;animation:applyFade .4s ease}
+    @keyframes applyFade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+    .apply-step h3{font-family:var(--heading-font);font-size:25px;font-weight:400;color:var(--white);line-height:1.3;margin-bottom:8px}
+    .apply-step .step-help{font-size:13px;color:var(--light-gray);font-weight:300;margin-bottom:22px;line-height:1.6}
+    .apply-field{margin-bottom:20px}
+    .apply-field>label{display:block;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--off-white);font-weight:600;margin-bottom:8px}
+    .apply-field input,.apply-field select,.apply-field textarea{width:100%;padding:13px 14px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.14);border-radius:5px;color:var(--white);font-family:inherit;font-size:15px;transition:border-color .25s,background .25s}
+    .apply-field textarea{resize:vertical;min-height:120px;line-height:1.6}
+    .apply-field input:focus,.apply-field select:focus,.apply-field textarea:focus{outline:none;border-color:var(--olive);background:rgba(76,82,35,.1)}
+    .apply-field input::placeholder,.apply-field textarea::placeholder{color:rgba(255,255,255,.4)}
+    .apply-field select{appearance:none;-webkit-appearance:none;cursor:pointer;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%23999999' stroke-width='2'><path d='M6 9l6 6 6-6'/></svg>");background-repeat:no-repeat;background-position:right 14px center;padding-right:38px}
+    .apply-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .apply-options{display:flex;flex-direction:column;gap:10px}
+    .apply-option{display:flex;align-items:center;gap:12px;padding:14px 16px;border:1px solid rgba(255,255,255,.14);border-radius:6px;cursor:pointer;transition:border-color .2s,background .2s}
+    .apply-option:hover{border-color:var(--olive-light)}
+    .apply-option input{width:auto!important;margin:0;accent-color:var(--olive-light)}
+    .apply-option.checked{border-color:var(--olive);background:rgba(76,82,35,.14)}
+    .apply-option span{font-size:15px;color:var(--light-gray)}
+    .photo-drop{display:block;border:1.5px dashed rgba(255,255,255,.2);border-radius:8px;padding:26px 20px;text-align:center;cursor:pointer;transition:border-color .2s,background .2s}
+    .photo-drop:hover{border-color:var(--olive-light);background:rgba(76,82,35,.06)}
+    .photo-drop svg{color:var(--olive-light);margin-bottom:8px}
+    .photo-drop p{font-size:13px;color:var(--light-gray);font-weight:300;line-height:1.5}
+    .photo-drop input{display:none}
+    .photo-preview{margin-top:14px;display:none}
+    .photo-preview img{max-width:100%;max-height:240px;border-radius:6px;margin:0 auto;display:block}
+    .photo-preview .photo-meta{font-size:12px;color:var(--light-gray);margin-top:8px;text-align:center}
+    .photo-remove{display:inline-block;margin-top:6px;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--olive-light);cursor:pointer;border-bottom:1px solid var(--olive)}
+    .optional-tag{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:#9d9d8c;font-weight:600;margin-left:6px}
+    .apply-err{color:#d98b8b;font-size:13px;margin-top:6px;display:none}
+    .apply-err.show{display:block}
+    .apply-nav{display:flex;justify-content:space-between;gap:12px;margin-top:30px}
+    .apply-back{background:none;border:1px solid rgba(255,255,255,.2);color:var(--light-gray);padding:14px 26px;border-radius:5px;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:600;cursor:pointer;transition:border-color .2s,color .2s}
+    .apply-back:hover{border-color:var(--off-white);color:var(--white)}
+    .apply-back[hidden]{visibility:hidden}
+    .apply-next,.apply-submit{background:var(--olive);border:none;color:var(--white);padding:14px 30px;border-radius:5px;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-weight:600;cursor:pointer;transition:background .3s;margin-left:auto}
+    .apply-next:hover,.apply-submit:hover{background:var(--olive-light)}
+    .apply-next:disabled,.apply-submit:disabled{opacity:.6;cursor:default}
+    .apply-legal{font-size:11px;color:#888;margin-top:18px;text-align:center}
+    .apply-legal a{color:#aaa;border-bottom:1px solid #555}
+    .apply-success{text-align:center;padding:16px 0;display:none}
+    .apply-success.show{display:block}
+    .apply-success .success-icon{width:64px;height:64px;border-radius:50%;background:rgba(76,82,35,.18);border:1px solid var(--olive);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;color:var(--olive-light)}
+    .apply-success h3{font-family:var(--heading-font);font-size:30px;color:var(--white);font-weight:400;margin-bottom:12px}
+    .apply-success p{font-size:15px;color:var(--light-gray);font-weight:300;line-height:1.7;max-width:440px;margin:0 auto 22px}
     @media (max-width:768px){
       .page-hero h1{font-size:36px}
       .page-hero{padding:120px 24px 60px;min-height:64vh}
       .section{padding:64px 24px}
       .section-heading{font-size:30px}
       .header{padding:16px 20px}
+      .apply-section{padding:64px 20px 80px}
+      .apply-card{padding:28px 20px}
+      .apply-row{grid-template-columns:1fr}
+      .apply-head h2{font-size:30px}
     }
   </style>
 
@@ -199,7 +261,7 @@
       <p class="eyebrow">Nically Hair &middot; 15-Minute Method&trade;</p>
       <h1>No&nbsp;Sew&nbsp;Luxe&trade; Extensions</h1>
       <p>Featherlight, invisible extensions installed in minutes &mdash; no braiding, no sewing, no commitment overwhelm.</p>
-      <a href="/booking" class="olive-button">book your consultation</a>
+      <a href="#apply" class="olive-button">Start Your Application</a>
     </div>
   </section>
 
@@ -220,7 +282,7 @@
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Guests who want lighter wear or lower commitment</li>
           <li><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Special occasions or flexible extension routines</li>
         </ul>
-        <a href="/booking" class="primary-button">Book Your Consultation</a>
+        <a href="#apply" class="primary-button">Start Your Application</a>
       </div>
       <div class="img-frame" data-animate="fade-left">
         <img class="reveal-img" src="/images/webflow/no-sew/no-sew-about.webp" alt="Cat at Studio One with the Nically Hair extension collection" loading="lazy" decoding="async" width="1217" height="1400">
@@ -271,13 +333,134 @@
     </div>
   </section>
 
-  <!-- BOOK CTA -->
-  <section class="section section--dark text-center" id="book">
-    <div class="section-inner" data-animate>
+  <!-- APPLICATION -->
+  <section class="apply-section" id="apply">
+    <div class="apply-head" data-animate>
       <p class="eyebrow">Ready?</p>
-      <h2 class="section-heading" style="max-width:640px;margin:0 auto 20px">Book Your Consultation</h2>
-      <p style="font-size:16px;color:var(--light-gray);max-width:620px;margin:0 auto 32px;font-weight:300">Not sure if No Sew Luxe&trade; is the right fit? Let's talk it through. Book a consultation and we'll map out the best extension plan for your hair, your lifestyle, and your goals.</p>
-      <a href="/booking" class="olive-button">book your consultation</a>
+      <h2>Start Your Application</h2>
+      <p>Answer a few quick questions so we can prep for your visit and match you with the right stylist. It takes about a minute.</p>
+    </div>
+    <div class="apply-card">
+      <form id="applyForm" novalidate>
+        <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none">
+        <div class="apply-progress">
+          <div class="apply-progress-bar"><div class="apply-progress-fill" id="applyFill"></div></div>
+          <div class="apply-progress-label" id="applyLabel">Step 1 of 4</div>
+        </div>
+
+        <!-- Step 1 -->
+        <div class="apply-step active" data-step="1">
+          <h3>What hair extension methods have you had?</h3>
+          <p class="step-help">Tell us what you&rsquo;ve tried &mdash; tape-ins, sew-ins, hand-tied, NBR, clip-ins, fusion &mdash; and how it went. Or let us know if this is your first time.</p>
+          <div class="apply-field">
+            <label for="ap-exp">Your extension experience</label>
+            <textarea id="ap-exp" name="extension_experience" required placeholder="e.g. I had tape-ins a couple years ago — they slipped and felt heavy. This would be my first time with a no-sew / hand-tied method."></textarea>
+            <p class="apply-err" data-err="ap-exp">Please share a little about your experience.</p>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="apply-step" data-step="2">
+          <h3>What are your color goals?</h3>
+          <p class="step-help">Are you looking to change your hair color completely, or stay close to what you have today?</p>
+          <div class="apply-field">
+            <div class="apply-options">
+              <label class="apply-option"><input type="radio" name="color_goal" value="Change it completely" required><span>Change it completely</span></label>
+              <label class="apply-option"><input type="radio" name="color_goal" value="Stay close to what I have today"><span>Stay close to what I have today</span></label>
+              <label class="apply-option"><input type="radio" name="color_goal" value="Open to my stylist's suggestions"><span>I&rsquo;m open to my stylist&rsquo;s suggestions</span></label>
+            </div>
+            <p class="apply-err" data-err="color_goal">Please choose one.</p>
+          </div>
+          <div class="apply-field">
+            <label for="ap-color-notes">Anything specific?<span class="optional-tag">Optional</span></label>
+            <input type="text" id="ap-color-notes" name="color_notes" placeholder="e.g. dimensional blonde, cover grays, go darker for fall">
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="apply-step" data-step="3">
+          <h3>A couple more details</h3>
+          <p class="step-help">Almost there &mdash; these help us prepare for your visit.</p>
+          <div class="apply-field">
+            <label for="ap-stylist">Do you have a preferred stylist?</label>
+            <select id="ap-stylist" name="preferred_stylist">
+              <option value="No preference / first available">No preference / first available</option>
+              <option value="Cat Barco">Cat Barco</option>
+              <option value="Carina Lopez">Carina Lopez</option>
+              <option value="Hope Sanchez">Hope Sanchez</option>
+              <option value="Makayla Davila">Makayla Davila</option>
+            </select>
+          </div>
+          <div class="apply-field">
+            <label>Add a photo of your hair<span class="optional-tag">Optional</span></label>
+            <label class="photo-drop" for="ap-photo">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+              <p><strong>Upload or take a photo</strong><br>Helps your stylist plan color &amp; placement</p>
+              <input type="file" id="ap-photo" name="photo_file" accept="image/*" capture="environment">
+            </label>
+            <div class="photo-preview" id="ap-photo-preview"></div>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="apply-step" data-step="4">
+          <h3>Where can we reach you?</h3>
+          <p class="step-help">We&rsquo;ll follow up to confirm your consultation.</p>
+          <div class="apply-row">
+            <div class="apply-field">
+              <label for="ap-first">First Name</label>
+              <input type="text" id="ap-first" name="first_name" autocomplete="given-name" required>
+              <p class="apply-err" data-err="ap-first">Required.</p>
+            </div>
+            <div class="apply-field">
+              <label for="ap-last">Last Name</label>
+              <input type="text" id="ap-last" name="last_name" autocomplete="family-name" required>
+              <p class="apply-err" data-err="ap-last">Required.</p>
+            </div>
+          </div>
+          <div class="apply-row">
+            <div class="apply-field">
+              <label for="ap-email">Email</label>
+              <input type="email" id="ap-email" name="email" autocomplete="email" required>
+              <p class="apply-err" data-err="ap-email">Enter a valid email.</p>
+            </div>
+            <div class="apply-field">
+              <label for="ap-phone">Phone</label>
+              <input type="tel" id="ap-phone" name="phone" autocomplete="tel" required>
+              <p class="apply-err" data-err="ap-phone">Required.</p>
+            </div>
+          </div>
+          <div class="apply-field">
+            <label for="ap-heard">How did you hear about us?</label>
+            <select id="ap-heard" name="how_heard">
+              <option value="">Choose one&hellip;</option>
+              <option value="Instagram">Instagram</option>
+              <option value="Facebook">Facebook</option>
+              <option value="Google search">Google search</option>
+              <option value="Referred by a friend">Referred by a friend</option>
+              <option value="Referred by a stylist">Referred by a stylist</option>
+              <option value="TikTok">TikTok</option>
+              <option value="Drove / walked by">Drove / walked by</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <p class="apply-legal">Protected by reCAPTCHA. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy</a> &middot; <a href="https://policies.google.com/terms" target="_blank" rel="noopener">Terms</a></p>
+        </div>
+
+        <!-- Success -->
+        <div class="apply-success" id="applySuccess">
+          <div class="success-icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <h3>Application Received!</h3>
+          <p>Thank you &mdash; we&rsquo;ve got your details and we&rsquo;ll reach out shortly to set up your No Sew Luxe&trade; consultation. Need us sooner?</p>
+          <a href="tel:5597959724" class="olive-button">Call or Text 559-795-9724</a>
+        </div>
+
+        <div class="apply-nav" id="applyNav">
+          <button type="button" class="apply-back" id="applyBack" hidden>Back</button>
+          <button type="button" class="apply-next" id="applyNext">Next</button>
+          <button type="submit" class="apply-submit" id="applySubmit" style="display:none">Submit Application</button>
+        </div>
+      </form>
     </div>
   </section>
 
@@ -363,6 +546,159 @@
         });
       }, { threshold: 0.2, rootMargin: '0px 0px -8% 0px' });
       imgs.forEach(function(i){ io.observe(i); });
+    })();
+  </script>
+  <script>
+    // Multi-step application form: navigation, validation, optional photo, submit
+    (function(){
+      var form = document.getElementById('applyForm');
+      if (!form) return;
+      var steps = [].slice.call(form.querySelectorAll('.apply-step'));
+      var total = steps.length;
+      var cur = 0;
+      var fill = document.getElementById('applyFill');
+      var label = document.getElementById('applyLabel');
+      var backBtn = document.getElementById('applyBack');
+      var nextBtn = document.getElementById('applyNext');
+      var submitBtn = document.getElementById('applySubmit');
+      var nav = document.getElementById('applyNav');
+      var success = document.getElementById('applySuccess');
+      var RECAPTCHA_KEY = '6Lck8aQsAAAAALMA-T6nwfkSf7bv4K-mOhkszeKh';
+      var selectedFile = null;
+
+      function showStep(i){
+        cur = i;
+        steps.forEach(function(s, idx){ s.classList.toggle('active', idx === i); });
+        fill.style.width = ((i + 1) / total * 100) + '%';
+        label.textContent = 'Step ' + (i + 1) + ' of ' + total;
+        backBtn.hidden = i === 0;
+        var last = i === total - 1;
+        nextBtn.style.display = last ? 'none' : '';
+        submitBtn.style.display = last ? '' : 'none';
+      }
+
+      function clearErr(step){ step.querySelectorAll('.apply-err').forEach(function(e){ e.classList.remove('show'); }); }
+      function showErr(step, key){ var e = step.querySelector('[data-err="' + key + '"]'); if (e) e.classList.add('show'); }
+
+      function validate(i){
+        var step = steps[i]; clearErr(step); var ok = true; var firstBad = null;
+        step.querySelectorAll('[required]').forEach(function(el){
+          if (el.type === 'radio'){
+            var checked = step.querySelector('input[name="' + el.name + '"]:checked');
+            if (!checked){ ok = false; showErr(step, el.name); }
+            return;
+          }
+          var v = (el.value || '').trim();
+          var bad = !v;
+          if (el.type === 'email' && v){ bad = !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v); }
+          if (bad){ ok = false; showErr(step, el.id || el.name); if (!firstBad) firstBad = el; }
+        });
+        if (firstBad) firstBad.focus();
+        return ok;
+      }
+
+      nextBtn.addEventListener('click', function(){ if (validate(cur)) showStep(Math.min(cur + 1, total - 1)); });
+      backBtn.addEventListener('click', function(){ showStep(Math.max(cur - 1, 0)); });
+
+      // Radio card highlight
+      form.querySelectorAll('.apply-option input[type="radio"]').forEach(function(r){
+        r.addEventListener('change', function(){
+          form.querySelectorAll('input[name="' + r.name + '"]').forEach(function(x){
+            x.closest('.apply-option').classList.toggle('checked', x.checked);
+          });
+        });
+      });
+
+      // Photo preview + remove
+      var photoInput = document.getElementById('ap-photo');
+      var photoPreview = document.getElementById('ap-photo-preview');
+      photoInput.addEventListener('change', function(){
+        var f = photoInput.files && photoInput.files[0];
+        if (!f){ selectedFile = null; photoPreview.style.display = 'none'; photoPreview.innerHTML = ''; return; }
+        selectedFile = f;
+        var url = URL.createObjectURL(f);
+        photoPreview.innerHTML = '<img src="' + url + '" alt="Your photo preview"><div class="photo-meta">' +
+          f.name + ' · ' + Math.round(f.size / 1024) + ' KB</div><span class="photo-remove" id="apPhotoRemove">Remove photo</span>';
+        photoPreview.style.display = 'block';
+        document.getElementById('apPhotoRemove').addEventListener('click', function(){
+          photoInput.value = ''; selectedFile = null; photoPreview.style.display = 'none'; photoPreview.innerHTML = '';
+        });
+      });
+
+      function downscale(file){
+        return new Promise(function(resolve){
+          var img = new Image(); var url = URL.createObjectURL(file);
+          img.onload = function(){
+            var max = 1400, w = img.width, h = img.height;
+            var s = Math.min(1, max / Math.max(w, h));
+            var cw = Math.round(w * s), ch = Math.round(h * s);
+            var c = document.createElement('canvas'); c.width = cw; c.height = ch;
+            c.getContext('2d').drawImage(img, 0, 0, cw, ch);
+            URL.revokeObjectURL(url);
+            try { resolve(c.toDataURL('image/jpeg', 0.82)); } catch (e) { resolve(''); }
+          };
+          img.onerror = function(){ URL.revokeObjectURL(url); resolve(''); };
+          img.src = url;
+        });
+      }
+
+      function val(n){ var el = form.querySelector('[name="' + n + '"]'); return el ? el.value : ''; }
+      function radioVal(n){ var el = form.querySelector('input[name="' + n + '"]:checked'); return el ? el.value : ''; }
+
+      form.addEventListener('submit', async function(e){
+        e.preventDefault();
+        if (form.querySelector('[name="_honey"]').value) return; // bot
+        if (!validate(cur)) return;
+        submitBtn.disabled = true; submitBtn.textContent = 'Submitting…';
+
+        var photoDataUrl = '';
+        if (selectedFile){ try { photoDataUrl = await downscale(selectedFile); } catch (err) {} }
+
+        var token = '';
+        try {
+          if (typeof grecaptcha !== 'undefined'){
+            await new Promise(function(r){ grecaptcha.ready(r); });
+            token = await grecaptcha.execute(RECAPTCHA_KEY, { action: 'no_sew_application' });
+          }
+        } catch (err) { console.warn('reCAPTCHA error:', err); }
+
+        var payload = {
+          site_slug: 'studio-one',
+          form_type: 'no-sew-luxe-application',
+          extension_experience: val('extension_experience'),
+          color_goal: radioVal('color_goal'),
+          color_notes: val('color_notes'),
+          preferred_stylist: val('preferred_stylist'),
+          first_name: val('first_name'),
+          last_name: val('last_name'),
+          email: val('email'),
+          phone: val('phone'),
+          how_heard: val('how_heard'),
+          photo_uploaded: selectedFile ? 'yes' : 'no',
+          photo_filename: selectedFile ? selectedFile.name : '',
+          photo_size: selectedFile ? (Math.round(selectedFile.size / 1024) + ' KB') : '',
+          photo_data_url: photoDataUrl,
+          recaptcha_token: token,
+          _honey: ''
+        };
+
+        try {
+          await fetch('https://myaieditor.com/api/form-notify', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+        } catch (err) { console.error('Form submit error:', err); }
+
+        steps.forEach(function(s){ s.classList.remove('active'); });
+        var prog = form.querySelector('.apply-progress'); if (prog) prog.style.display = 'none';
+        nav.style.display = 'none';
+        success.classList.add('show');
+        if (typeof gtag !== 'undefined') gtag('event', 'form_submit', { form_type: 'no-sew-luxe-application' });
+        if (typeof fbq !== 'undefined') fbq('track', 'Lead');
+      });
+
+      showStep(0);
     })();
   </script>
 </body>
