@@ -151,6 +151,7 @@ BODY_OPEN = """</head>
         <a href="/meet-the-team">Meet the Team</a>
         <a href="/services">Classic Services</a>
         <a href="/nbr-extensions">NBR Extensions</a>
+        <a href="/no-sew-luxe-tm-extensions">No Sew Luxe&trade;</a>
         <a href="/wigs">Wigs</a>
         <a href="/shop">Shop</a>
         <a href="/hair-gallery">Hair Gallery</a>

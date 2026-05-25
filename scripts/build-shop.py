@@ -173,6 +173,7 @@ BODY_OPEN = """</head>
           <div class="nav-label">SERVICES</div>
           <div class="nav-links">
             <a href="/nbr-extensions">NBR Extensions</a>
+            <a href="/no-sew-luxe-tm-extensions">No Sew Luxe&trade;</a>
             <a href="/services">Classic Services</a>
             <a href="/wigs">Wigs</a>
             <a href="/nically-hair">Nically Hair</a>
