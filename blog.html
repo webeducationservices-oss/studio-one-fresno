@@ -65,6 +65,16 @@
     .cat-filter-btn:hover{color:var(--white);border-color:var(--olive-light)}
     .cat-filter-btn.is-active{background:var(--olive);border-color:var(--olive);color:var(--white)}
     .cat-card[hidden]{display:none}
+    .blog-search{display:flex;justify-content:center;margin-bottom:28px}
+    .blog-search-inner{position:relative;width:100%;max-width:560px}
+    .blog-search-icon{position:absolute;top:50%;left:18px;transform:translateY(-50%);color:var(--light-gray);pointer-events:none;opacity:.7}
+    #blogSearch{width:100%;padding:14px 44px 14px 50px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:32px;color:var(--white);font-family:inherit;font-size:14px;transition:border-color .25s,background .25s}
+    #blogSearch::placeholder{color:rgba(255,255,255,.45)}
+    #blogSearch:focus{outline:none;border-color:var(--olive);background:rgba(76,82,35,.08)}
+    .blog-search-clear{position:absolute;top:50%;right:14px;transform:translateY(-50%);width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:22px;line-height:1;color:var(--light-gray);background:rgba(255,255,255,.06);border:none;border-radius:50%;cursor:pointer;transition:background .25s,color .25s}
+    .blog-search-clear:hover{background:var(--olive);color:var(--white)}
+    .blog-search-clear[hidden]{display:none}
+    .cat-noresults{display:none;text-align:center;color:var(--light-gray);font-weight:300;padding:40px 0 10px}
   </style>
   <link rel="stylesheet" href="/styles.css" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="/styles.css"></noscript>
@@ -197,47 +207,6 @@
     </div>
   </nav>
 
-  <!-- Featured posts -->
-  <section class="featured-section">
-    <div class="featured-inner">
-      <div class="featured-heading">
-        <div>
-          <span class="eyebrow">From the Chair</span>
-          <h2>Featured Reads</h2>
-        </div>
-      </div>
-      <div class="featured-grid">
-        <a href="/blog/the-truth-about-nbr-extensions-at-studio-one" class="featured-card featured-card--lead">
-          <div class="featured-card-img"><img src="/images/blog/the-truth-about-nbr-extensions-at-studio-one.webp" alt="The truth about NBR Extensions at Studio One" loading="lazy" decoding="async" width="816" height="1456"></div>
-          <div class="featured-card-body">
-            <span class="featured-card-cat">Extensions</span>
-            <h3>The truth about NBR Extensions at Studio One</h3>
-            <p>What separates a Natural Beaded Row install from every other extension method &mdash; from custom blending and color matching to the daily-wear difference clients feel from day one.</p>
-            <span class="read-more">Read More &rarr;</span>
-          </div>
-        </a>
-        <a href="/blog/best-hair-color-for-gray-hair-a-guide-to-radiant-ageless-style" class="featured-card">
-          <div class="featured-card-img"><img src="/images/blog/best-hair-color-for-gray-hair-a-guide-to-radiant-ageless-style.webp" alt="Best Hair Color for Gray Hair" loading="lazy" decoding="async" width="1200" height="675"></div>
-          <div class="featured-card-body">
-            <span class="featured-card-cat">Color</span>
-            <h3>Best Hair Color for Gray Hair</h3>
-            <p>A guide to radiant, ageless tones &mdash; the colors and dimensional techniques that flatter gray and silver naturally.</p>
-            <span class="read-more">Read More &rarr;</span>
-          </div>
-        </a>
-        <a href="/blog/how-much-do-hair-extensions-cost" class="featured-card">
-          <div class="featured-card-img"><img src="/images/blog/how-much-do-hair-extensions-cost.webp" alt="How Much Do Hair Extensions Cost" loading="lazy" decoding="async" width="1200" height="675"></div>
-          <div class="featured-card-body">
-            <span class="featured-card-cat">Extensions</span>
-            <h3>How Much Do Hair Extensions Cost?</h3>
-            <p>From clip-ins to luxury beaded rows &mdash; what really drives extension pricing, plus what to expect with maintenance over time.</p>
-            <span class="read-more">Read More &rarr;</span>
-          </div>
-        </a>
-      </div>
-    </div>
-  </section>
-
   <section class="cat-hero">
     <div data-animate>
       <p class="eyebrow">Studio One Blog</p>
@@ -248,6 +217,15 @@
 
   <section class="cat-wrap">
     <div class="cat-inner">
+      <div class="blog-search" data-animate>
+        <div class="blog-search-inner">
+          <svg class="blog-search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="7"/><path d="M21 21l-4.5-4.5"/>
+          </svg>
+          <input type="search" id="blogSearch" placeholder="Search the blog by title or keyword…" aria-label="Search blog posts" autocomplete="off">
+          <button type="button" id="blogSearchClear" class="blog-search-clear" aria-label="Clear search" hidden>&times;</button>
+        </div>
+      </div>
       <nav class="cat-nav" data-animate>
         <button type="button" class="cat-filter-btn is-active" data-filter="all">All Posts</button>
         <button type="button" class="cat-filter-btn" data-filter="behind-the-scenes">Behind the Scenes</button>
@@ -742,6 +720,7 @@
           </div>
         </a>
       </div>
+      <p class="cat-noresults" id="blogNoResults">No posts match your search. Try a different keyword or category.</p>
     </div>
   </section>
 
@@ -816,14 +795,45 @@
   <script src="/script.js" defer></script>
   <script>
     (function(){
-      const btns = document.querySelectorAll('.cat-filter-btn');
-      const cards = document.querySelectorAll('.cat-card');
+      const search   = document.getElementById('blogSearch');
+      const clearBtn = document.getElementById('blogSearchClear');
+      const noResults= document.getElementById('blogNoResults');
+      const btns  = Array.from(document.querySelectorAll('.cat-filter-btn'));
+      const cards = Array.from(document.querySelectorAll('.cat-card'));
+      const grids = Array.from(document.querySelectorAll('.cat-wrap .cat-grid'));
+      let activeCat = 'all';
+      cards.forEach(c => { c._text = (c.textContent || '').toLowerCase(); });
+
+      function apply(){
+        const q = (search ? search.value : '').trim().toLowerCase();
+        let anyVisible = false;
+        cards.forEach(c => {
+          const catOk  = activeCat === 'all' || c.dataset.cat === activeCat;
+          const textOk = !q || c._text.includes(q);
+          const vis = catOk && textOk;
+          c.hidden = !vis;
+          if (vis) anyVisible = true;
+        });
+        // Hide an empty grid and its preceding "Featured"/"All Posts" eyebrow
+        grids.forEach(g => {
+          const has = Array.from(g.querySelectorAll('.cat-card')).some(c => !c.hidden);
+          g.style.display = has ? '' : 'none';
+          const eb = g.previousElementSibling;
+          if (eb && eb.classList.contains('eyebrow')) eb.style.display = has ? '' : 'none';
+        });
+        if (noResults) noResults.style.display = anyVisible ? 'none' : 'block';
+        if (clearBtn)  clearBtn.hidden = !q;
+      }
+
       btns.forEach(b => b.addEventListener('click', () => {
         btns.forEach(x => x.classList.remove('is-active'));
         b.classList.add('is-active');
-        const f = b.dataset.filter;
-        cards.forEach(c => { c.hidden = (f !== 'all' && c.dataset.cat !== f); });
+        activeCat = b.dataset.filter;
+        apply();
       }));
+      if (search)   search.addEventListener('input', apply);
+      if (clearBtn) clearBtn.addEventListener('click', () => { search.value=''; apply(); search.focus(); });
+      apply();
     })();
   </script>
 </body>

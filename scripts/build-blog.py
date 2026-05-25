@@ -470,6 +470,20 @@ CAT_STYLE = """
 .cat-card p{font-size:13px;color:var(--light-gray);font-weight:300;line-height:1.6;margin-bottom:14px}
 .cat-card-read{font-size:11px;letter-spacing:2px;color:var(--olive-light);text-transform:uppercase;font-weight:500;padding-bottom:2px;border-bottom:1px solid var(--olive);align-self:flex-start}
 .cat-empty{text-align:center;padding:60px;color:var(--light-gray);font-weight:300}
+.cat-filter-btn{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;padding:10px 18px;border:1px solid rgba(255,255,255,.15);border-radius:24px;color:var(--light-gray);transition:all .3s;cursor:pointer;font-family:inherit;background:none}
+.cat-filter-btn:hover{color:var(--white);border-color:var(--olive-light)}
+.cat-filter-btn.is-active{background:var(--olive);border-color:var(--olive);color:var(--white)}
+.cat-card[hidden]{display:none}
+.blog-search{display:flex;justify-content:center;margin-bottom:28px}
+.blog-search-inner{position:relative;width:100%;max-width:560px}
+.blog-search-icon{position:absolute;top:50%;left:18px;transform:translateY(-50%);color:var(--light-gray);pointer-events:none;opacity:.7}
+#blogSearch{width:100%;padding:14px 44px 14px 50px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:32px;color:var(--white);font-family:inherit;font-size:14px;transition:border-color .25s,background .25s}
+#blogSearch::placeholder{color:rgba(255,255,255,.45)}
+#blogSearch:focus{outline:none;border-color:var(--olive);background:rgba(76,82,35,.08)}
+.blog-search-clear{position:absolute;top:50%;right:14px;transform:translateY(-50%);width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:22px;line-height:1;color:var(--light-gray);background:rgba(255,255,255,.06);border:none;border-radius:50%;cursor:pointer;transition:background .25s,color .25s}
+.blog-search-clear:hover{background:var(--olive);color:var(--white)}
+.blog-search-clear[hidden]{display:none}
+.cat-noresults{display:none;text-align:center;color:var(--light-gray);font-weight:300;padding:40px 0 10px}
 @media(max-width:1024px){.cat-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:768px){.cat-grid{grid-template-columns:1fr}.cat-hero h1{font-size:40px}.cat-wrap{padding:40px 20px}}
 </style>
@@ -532,6 +546,52 @@ def render_category(cat_slug):
 # ---------------------------------------------------------------------------
 # Blog landing page
 # ---------------------------------------------------------------------------
+# Client-side category + search filter for the single-page landing. Kept as a
+# plain (non-f) string so the JS braces stay literal.
+LANDING_FILTER_JS = """
+  <script>
+    (function(){
+      const search   = document.getElementById('blogSearch');
+      const clearBtn = document.getElementById('blogSearchClear');
+      const noResults= document.getElementById('blogNoResults');
+      const btns  = Array.from(document.querySelectorAll('.cat-filter-btn'));
+      const cards = Array.from(document.querySelectorAll('.cat-card'));
+      const grids = Array.from(document.querySelectorAll('.cat-wrap .cat-grid'));
+      let activeCat = 'all';
+      cards.forEach(c => { c._text = (c.textContent || '').toLowerCase(); });
+
+      function apply(){
+        const q = (search ? search.value : '').trim().toLowerCase();
+        let anyVisible = false;
+        cards.forEach(c => {
+          const catOk  = activeCat === 'all' || c.dataset.cat === activeCat;
+          const textOk = !q || c._text.includes(q);
+          const vis = catOk && textOk;
+          c.hidden = !vis;
+          if (vis) anyVisible = true;
+        });
+        grids.forEach(g => {
+          const has = Array.from(g.querySelectorAll('.cat-card')).some(c => !c.hidden);
+          g.style.display = has ? '' : 'none';
+          const eb = g.previousElementSibling;
+          if (eb && eb.classList.contains('eyebrow')) eb.style.display = has ? '' : 'none';
+        });
+        if (noResults) noResults.style.display = anyVisible ? 'none' : 'block';
+        if (clearBtn)  clearBtn.hidden = !q;
+      }
+
+      btns.forEach(b => b.addEventListener('click', () => {
+        btns.forEach(x => x.classList.remove('is-active'));
+        b.classList.add('is-active');
+        activeCat = b.dataset.filter;
+        apply();
+      }));
+      if (search)   search.addEventListener('input', apply);
+      if (clearBtn) clearBtn.addEventListener('click', () => { search.value=''; apply(); search.focus(); });
+      apply();
+    })();
+  </script>"""
+
 def render_landing():
     desc = "Tips, guides, and client transformations from Studio One Hair Design in Fresno. NBR extensions, color, keratin, and hair care."
 
@@ -539,7 +599,7 @@ def render_landing():
     featured = all_posts_sorted[:3]
     rest = all_posts_sorted[3:]
 
-    featured_html = "\n        ".join(f'''<a href="/blog/{p["slug"]}" class="cat-card">
+    featured_html = "\n        ".join(f'''<a href="/blog/{p["slug"]}" class="cat-card" data-cat="{p["mapped_cat"]}">
           <div class="cat-card-img"><img src="{p["local_hero"]}" alt="{html.escape(p["title"])[:80]}" loading="lazy" decoding="async"></div>
           <div class="cat-card-body">
             <p class="cat-card-cat">{p["cat_label"]}</p>
@@ -549,7 +609,7 @@ def render_landing():
           </div>
         </a>''' for p in featured)
 
-    rest_html = "\n        ".join(f'''<a href="/blog/{p["slug"]}" class="cat-card">
+    rest_html = "\n        ".join(f'''<a href="/blog/{p["slug"]}" class="cat-card" data-cat="{p["mapped_cat"]}">
           <div class="cat-card-img"><img src="{p["local_hero"]}" alt="{html.escape(p["title"])[:80]}" loading="lazy" decoding="async"></div>
           <div class="cat-card-body">
             <p class="cat-card-cat">{p["cat_label"]}</p>
@@ -564,6 +624,13 @@ def render_landing():
         desc=desc,
         path="/blog",
     )
+    # Button-style category filters (client-side) matching the live page.
+    filter_btns = '<button type="button" class="cat-filter-btn is-active" data-filter="all">All Posts</button>'
+    filter_btns += "".join(
+        f'\n        <button type="button" class="cat-filter-btn" data-filter="{slug}">{label}</button>'
+        for slug, label in CATEGORIES.items()
+    )
+
     content += CAT_STYLE + BODY_OPEN
     content += f'''
   <section class="cat-hero">
@@ -576,8 +643,17 @@ def render_landing():
 
   <section class="cat-wrap">
     <div class="cat-inner">
+      <div class="blog-search" data-animate>
+        <div class="blog-search-inner">
+          <svg class="blog-search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="11" cy="11" r="7"/><path d="M21 21l-4.5-4.5"/>
+          </svg>
+          <input type="search" id="blogSearch" placeholder="Search the blog by title or keyword…" aria-label="Search blog posts" autocomplete="off">
+          <button type="button" id="blogSearchClear" class="blog-search-clear" aria-label="Clear search" hidden>&times;</button>
+        </div>
+      </div>
       <nav class="cat-nav" data-animate>
-        {cat_nav_html(active=None)}
+        {filter_btns}
       </nav>
       <p class="eyebrow" data-animate style="text-align:center">Featured</p>
       <div class="cat-grid" style="margin-bottom:64px">
@@ -587,9 +663,11 @@ def render_landing():
       <div class="cat-grid">
         {rest_html}
       </div>
+      <p class="cat-noresults" id="blogNoResults">No posts match your search. Try a different keyword or category.</p>
     </div>
   </section>
 '''
+    content += LANDING_FILTER_JS
     content += FOOT
     return content
 

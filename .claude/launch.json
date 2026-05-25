@@ -3,8 +3,8 @@
   "configurations": [
     {
       "name": "studio-one",
-      "runtimeExecutable": "npx",
-      "runtimeArgs": ["http-server", "/Users/justinbabcock/Projects/studio-one-staging", "-p", "8080", "-c-1"],
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "8080"],
       "port": 8080
     }
   ]
