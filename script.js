@@ -22,7 +22,10 @@
       }
     });
   }, {
-    threshold: 0.15,
+    // threshold:0 so elements taller than the viewport (e.g. a long blog
+    // article body) still reveal — a ratio-based threshold can never be met
+    // when the element is several screens tall, leaving it stuck at opacity:0.
+    threshold: 0,
     rootMargin: '0px 0px -50px 0px'
   });
 
