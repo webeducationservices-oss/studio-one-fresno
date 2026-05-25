@@ -605,11 +605,8 @@ LANDING_FILTER_JS = """
 def render_landing():
     desc = "Tips, guides, and client transformations from Studio One Hair Design in Fresno. NBR extensions, color, keratin, and hair care."
 
-    # Featured: 3 most recent overall
-    featured = all_posts_sorted[:3]
-    rest = all_posts_sorted[3:]
-
-    featured_html = "\n        ".join(f'''<a href="/blog/{p["slug"]}" class="cat-card" data-cat="{p["mapped_cat"]}">
+    # Single newest-to-oldest list (no separate "Featured" section).
+    all_html = "\n        ".join(f'''<a href="/blog/{p["slug"]}" class="cat-card" data-cat="{p["mapped_cat"]}">
           <div class="cat-card-img"><img src="{p["local_hero"]}" alt="{html.escape(p["title"])[:80]}" loading="lazy" decoding="async"></div>
           <div class="cat-card-body">
             <p class="cat-card-cat">{p["cat_label"]}</p>
@@ -617,17 +614,7 @@ def render_landing():
             <p>{html.escape(p["excerpt"])}</p>
             <span class="cat-card-read">Read More</span>
           </div>
-        </a>''' for p in featured)
-
-    rest_html = "\n        ".join(f'''<a href="/blog/{p["slug"]}" class="cat-card" data-cat="{p["mapped_cat"]}">
-          <div class="cat-card-img"><img src="{p["local_hero"]}" alt="{html.escape(p["title"])[:80]}" loading="lazy" decoding="async"></div>
-          <div class="cat-card-body">
-            <p class="cat-card-cat">{p["cat_label"]}</p>
-            <h3>{html.escape(p["title"])}</h3>
-            <p>{html.escape(p["excerpt"])}</p>
-            <span class="cat-card-read">Read More</span>
-          </div>
-        </a>''' for p in rest)
+        </a>''' for p in all_posts_sorted)
 
     content = head_block(
         title="Blog | Studio One Hair Design Fresno",
@@ -665,13 +652,9 @@ def render_landing():
       <nav class="cat-nav" data-animate>
         {filter_btns}
       </nav>
-      <p class="eyebrow" data-animate style="text-align:center">Featured</p>
-      <div class="cat-grid" style="margin-bottom:64px">
-        {featured_html}
-      </div>
       <p class="eyebrow" data-animate style="text-align:center">All Posts</p>
       <div class="cat-grid">
-        {rest_html}
+        {all_html}
       </div>
       <p class="cat-noresults" id="blogNoResults">No posts match your search. Try a different keyword or category.</p>
     </div>
