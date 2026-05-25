@@ -90,6 +90,7 @@ POST_CAT_MAP = {
     "what-is-pretty-hair-discover-the-secret-at-studio-one": "behind-the-scenes",
     "what-most-people-get-wrong-about-hair-extensions": "extensions",
     "why-indulge-in-a-brazilian-keratin-treatment": "hair-care",
+    "volumizing-haircuts-for-thin-hair-fresno": "extensions",
 }
 
 DEFAULT_HERO = "/images/optimized/services-bg.webp"
@@ -116,6 +117,12 @@ print(f"Loaded {len(posts)} posts")
 # ---------------------------------------------------------------------------
 print("Downloading hero images...")
 for p in posts:
+    # Prefer an existing optimized local hero (preserves hand-fixed images;
+    # avoids re-downloading/clobbering on every rebuild).
+    local = IMG_OUT / f"{p['slug']}.webp"
+    if local.exists():
+        p["local_hero"] = f"/images/blog/{p['slug']}.webp"
+        continue
     url = p.get("hero_image_url")
     if not url:
         continue
@@ -324,6 +331,8 @@ POST_PAGE_STYLE = """
 .post-body ul{margin:0 0 24px;padding-left:22px;list-style:none}
 .post-body li{position:relative;font-size:17px;line-height:1.8;color:var(--light-gray);font-weight:300;margin-bottom:12px;padding-left:8px}
 .post-body li::before{content:"";position:absolute;left:-14px;top:13px;width:5px;height:5px;border-radius:50%;background:var(--olive-light)}
+.post-figure{margin:40px 0}
+.post-figure img{width:100%;border-radius:4px;display:block}
 .related-posts{background:var(--dark);padding:80px 40px}
 .related-inner{max-width:1200px;margin:0 auto}
 .related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:32px}
@@ -354,6 +363,11 @@ def render_body_blocks(blocks):
     out, i = [], 0
     while i < len(blocks):
         tag = blocks[i]["tag"]
+        if tag == "img":
+            b = blocks[i]
+            out.append(f'<figure class="post-figure"><img src="{html.escape(b.get("src",""))}" alt="{html.escape(b.get("alt",""))}" loading="lazy" decoding="async"></figure>')
+            i += 1
+            continue
         if tag == "li":
             items = []
             while i < len(blocks) and blocks[i]["tag"] == "li":
@@ -405,9 +419,10 @@ def render_post(p):
     meta_desc = p.get("meta_description") or p["excerpt"]
     author = p.get("author") or "Studio One Team"
     date_display = p.get("published_date") or ""
+    seo_title = p.get("meta_title") or p["title"]
 
     content = head_block(
-        title=f'{p["title"]} | Studio One Blog',
+        title=f'{seo_title} | Studio One Blog',
         desc=meta_desc,
         path=f'/blog/{p["slug"]}',
         hero=p["local_hero"],
@@ -667,21 +682,22 @@ def render_landing():
 # ---------------------------------------------------------------------------
 # Build
 # ---------------------------------------------------------------------------
-print("\nBuilding post pages...")
-for p in posts:
-    out = BLOG_OUT / f"{p['slug']}.html"
-    out.write_text(render_post(p))
-print(f"  ✓ {len(posts)} posts written to /blog/")
+if __name__ == "__main__":
+    print("\nBuilding post pages...")
+    for p in posts:
+        out = BLOG_OUT / f"{p['slug']}.html"
+        out.write_text(render_post(p))
+    print(f"  ✓ {len(posts)} posts written to /blog/")
 
-print("\nBuilding category pages...")
-for slug in CATEGORIES:
-    out = CAT_OUT / f"{slug}.html"
-    out.write_text(render_category(slug))
-    count = len(posts_by_cat[slug])
-    print(f"  ✓ {slug}.html ({count} posts)")
+    print("\nBuilding category pages...")
+    for slug in CATEGORIES:
+        out = CAT_OUT / f"{slug}.html"
+        out.write_text(render_category(slug))
+        count = len(posts_by_cat[slug])
+        print(f"  ✓ {slug}.html ({count} posts)")
 
-print("\nBuilding blog landing...")
-(ROOT / "blog.html").write_text(render_landing())
-print("  ✓ blog.html")
+    print("\nBuilding blog landing...")
+    (ROOT / "blog.html").write_text(render_landing())
+    print("  ✓ blog.html")
 
-print(f"\nTotal: {len(posts)} posts + {len(CATEGORIES)} categories + 1 landing = {len(posts)+len(CATEGORIES)+1} pages")
+    print(f"\nTotal: {len(posts)} posts + {len(CATEGORIES)} categories + 1 landing = {len(posts)+len(CATEGORIES)+1} pages")
