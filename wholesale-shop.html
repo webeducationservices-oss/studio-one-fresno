@@ -28,6 +28,8 @@
     .ws-hero h1{font-family:var(--heading-font);font-size:46px;font-weight:400;color:var(--white);line-height:1.1;margin-bottom:12px}
     .ws-hero p{font-size:15px;color:var(--light-gray);font-weight:300;max-width:620px;margin:0 auto}
     .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;max-width:1280px;margin:32px auto 0;padding:0 32px 80px}
+    .cat-head{grid-column:1/-1;font-family:var(--heading-font);font-size:27px;color:var(--white);font-weight:400;margin:26px 0 2px;padding-bottom:12px;border-bottom:1px solid rgba(255,255,255,.12)}
+    .cat-head:first-child{margin-top:0}
     .card{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.07);border-radius:6px;overflow:hidden;display:flex;flex-direction:column;transition:border-color .3s}
     .card:hover{border-color:rgba(76,82,35,.5)}
     .card-img{aspect-ratio:1/1;background:#1a1a1a;overflow:hidden}
@@ -117,13 +119,16 @@
     if(error){ grid.innerHTML='<div class="state">Couldn’t load the catalog. Please refresh or sign in again.</div>'; return; }
     if(!products.length){ grid.innerHTML='<div class="state">No wholesale products are available yet.</div>'; return; }
 
+    let lastCat = null;
     grid.innerHTML = products.map((p,idx)=>{
       const vs = Array.isArray(p.variants)? p.variants : [];
       const opts = vs.length
         ? vs.map((v,i)=>`<option value="${i}" data-c="${v.price_cents||p.wholesale_price_cents}">${(v.name||('Option '+(i+1)))} — ${fmt(v.price_cents||p.wholesale_price_cents)}</option>`).join('')
         : `<option value="-1" data-c="${p.wholesale_price_cents}">Standard — ${fmt(p.wholesale_price_cents)}</option>`;
       const first = vs.length ? (vs[0].price_cents||p.wholesale_price_cents) : p.wholesale_price_cents;
-      return `<div class="card" data-idx="${idx}">
+      let head = '';
+      if(p.category && p.category !== lastCat){ head = `<h2 class="cat-head">${p.category}</h2>`; lastCat = p.category; }
+      return head + `<div class="card" data-idx="${idx}">
         <div class="card-img"><img src="${p.image_url||'/images/og-image.jpg'}" alt="${(p.name||'').replace(/"/g,'')}" loading="lazy"></div>
         <div class="card-body">
           <h3>${p.name}</h3>
