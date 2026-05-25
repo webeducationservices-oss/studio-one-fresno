@@ -140,9 +140,19 @@ for p in posts:
 posts_by_cat = {cat: [] for cat in CATEGORIES}
 for p in posts:
     posts_by_cat[p["mapped_cat"]].append(p)
-# Sort each category newest-first (best effort — dates are free-form)
+# Sort newest-first. published_date is free-form ("September 2, 2024",
+# "May 4 2026", "2024-09-02", …) so parse it to a real date — a plain string
+# sort would order alphabetically by month name, not chronologically.
+_DATE_FMTS = ('%B %d, %Y', '%b %d, %Y', '%B %d %Y', '%b %d %Y',
+              '%B %Y', '%b %Y', '%Y-%m-%d', '%m/%d/%Y')
 def sort_key(p):
-    return p.get("published_date", "") or ""
+    ds = (p.get("published_date", "") or "").strip()
+    for f in _DATE_FMTS:
+        try:
+            return datetime.datetime.strptime(ds, f)
+        except ValueError:
+            pass
+    return datetime.datetime.min
 for cat in posts_by_cat:
     posts_by_cat[cat].sort(key=sort_key, reverse=True)
 
