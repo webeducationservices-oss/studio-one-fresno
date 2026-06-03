@@ -175,6 +175,33 @@
     .apply-success .success-icon{width:64px;height:64px;border-radius:50%;background:rgba(76,82,35,.18);border:1px solid var(--olive);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;color:var(--olive-light)}
     .apply-success h3{font-family:var(--heading-font);font-size:30px;color:var(--white);font-weight:400;margin-bottom:12px}
     .apply-success p{font-size:15px;color:var(--light-gray);font-weight:300;line-height:1.7;max-width:440px;margin:0 auto 22px}
+    /* Is this right for you? */
+    .fit-block{max-width:760px;margin:0 auto 40px;background:rgba(76,82,35,.06);border:1px solid rgba(108,115,50,.25);border-radius:8px;padding:28px 30px}
+    .fit-heading{font-family:var(--heading-font);font-size:24px;font-weight:400;color:var(--white);text-align:center;margin-bottom:20px}
+    .fit-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+    .fit-label{font-size:11px;letter-spacing:2px;text-transform:uppercase;font-weight:600;margin-bottom:12px}
+    .fit-col--yes .fit-label{color:var(--olive-light)}
+    .fit-col--no .fit-label{color:#c9a78a}
+    .fit-col ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:8px}
+    .fit-col li{font-size:14px;color:var(--light-gray);font-weight:300;line-height:1.55;padding-left:16px;position:relative}
+    .fit-col li::before{content:"";position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:50%}
+    .fit-col--yes li::before{background:var(--olive-light)}
+    .fit-col--no li::before{background:#c9a78a}
+    .fit-link{display:inline-block;margin-top:14px;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:#d6b8a0;border-bottom:1px solid #6e574a;padding-bottom:2px;font-weight:600}
+    .fit-link:hover{color:#e7cdb7;border-color:#9a7d6a}
+    @media (max-width:640px){.fit-block{padding:22px 20px;margin-bottom:32px}.fit-grid{grid-template-columns:1fr;gap:22px}}
+
+    /* Chip group (multi-select) */
+    .chip-group{display:flex;flex-wrap:wrap;gap:10px}
+    .chip{position:relative;display:inline-flex;align-items:center;padding:11px 18px;border:1px solid rgba(255,255,255,.16);border-radius:24px;background:rgba(255,255,255,.03);cursor:pointer;transition:border-color .2s,background .2s,color .2s}
+    .chip:hover{border-color:var(--olive-light)}
+    .chip input{position:absolute;inset:0;opacity:0;cursor:pointer}
+    .chip span{font-size:14px;color:var(--light-gray);font-weight:500}
+    .chip.checked{background:rgba(76,82,35,.22);border-color:var(--olive)}
+    .chip.checked span{color:var(--white)}
+
+    /* Sub-question label (for grouped questions in one step) */
+    .apply-field-label{display:block;font-size:13px;color:var(--off-white);font-weight:600;margin-bottom:10px;letter-spacing:.2px}
     @media (max-width:768px){
       .page-hero h1{font-size:36px}
       .page-hero{padding:120px 24px 60px;min-height:64vh}
@@ -349,56 +376,107 @@
     <div class="apply-head" data-animate>
       <p class="eyebrow">Ready?</p>
       <h2>Start Your Application</h2>
-      <p>Answer a few quick questions so we can prep for your visit and match you with the right stylist. It takes about a minute.</p>
+      <p>Apply to come in for a No Sew Luxe install &mdash; we&rsquo;ll color-match, you&rsquo;ll purchase the hair like a retail item, and any of our stylists can install it.</p>
     </div>
+
+    <!-- Is this right for you? -->
+    <div class="fit-block" data-animate>
+      <h3 class="fit-heading">Is No Sew Luxe right for you?</h3>
+      <div class="fit-grid">
+        <div class="fit-col fit-col--yes">
+          <p class="fit-label">Great for</p>
+          <ul>
+            <li>First-time extension wearers</li>
+            <li>Adding volume or length without a big commitment</li>
+            <li>Pops of color you can switch up</li>
+            <li>Helping your everyday style hold</li>
+          </ul>
+        </div>
+        <div class="fit-col fit-col--no">
+          <p class="fit-label">Not quite right for</p>
+          <ul>
+            <li>Very thick hair chasing major length &mdash; for that, we&rsquo;d point you toward our NBR Extensions instead.</li>
+          </ul>
+          <a href="/nbr-extensions" class="fit-link">Explore NBR Extensions &rarr;</a>
+        </div>
+      </div>
+    </div>
+
     <div class="apply-card">
       <form id="applyForm" novalidate>
         <input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none">
         <div class="apply-progress">
           <div class="apply-progress-bar"><div class="apply-progress-fill" id="applyFill"></div></div>
-          <div class="apply-progress-label" id="applyLabel">Step 1 of 4</div>
+          <div class="apply-progress-label" id="applyLabel">Step 1 of 5</div>
         </div>
 
-        <!-- Step 1 -->
+        <!-- Step 1: What's drawing you in -->
         <div class="apply-step active" data-step="1">
-          <h3>What hair extension methods have you had?</h3>
-          <p class="step-help">Tell us what you&rsquo;ve tried &mdash; tape-ins, sew-ins, hand-tied, NBR, clip-ins, fusion &mdash; and how it went. Or let us know if this is your first time.</p>
+          <h3>What&rsquo;s drawing you to No Sew Luxe?</h3>
+          <p class="step-help">Pick any that fit &mdash; you can choose more than one.</p>
           <div class="apply-field">
-            <label for="ap-exp">Your extension experience</label>
-            <textarea id="ap-exp" name="extension_experience" required placeholder="e.g. I had tape-ins a couple years ago — they slipped and felt heavy. This would be my first time with a no-sew / hand-tied method."></textarea>
-            <p class="apply-err" data-err="ap-exp">Please share a little about your experience.</p>
-          </div>
-        </div>
-
-        <!-- Step 2 -->
-        <div class="apply-step" data-step="2">
-          <h3>What are your color goals?</h3>
-          <p class="step-help">Are you looking to change your hair color completely, or stay close to what you have today?</p>
-          <div class="apply-field">
-            <div class="apply-options">
-              <label class="apply-option"><input type="radio" name="color_goal" value="Change it completely" required><span>Change it completely</span></label>
-              <label class="apply-option"><input type="radio" name="color_goal" value="Stay close to what I have today"><span>Stay close to what I have today</span></label>
-              <label class="apply-option"><input type="radio" name="color_goal" value="Open to my stylist's suggestions"><span>I&rsquo;m open to my stylist&rsquo;s suggestions</span></label>
+            <div class="chip-group">
+              <label class="chip"><input type="checkbox" name="interest_in" value="Volume"><span>Volume</span></label>
+              <label class="chip"><input type="checkbox" name="interest_in" value="Length"><span>Length</span></label>
+              <label class="chip"><input type="checkbox" name="interest_in" value="Pops of color"><span>Pops of color</span></label>
+              <label class="chip"><input type="checkbox" name="interest_in" value="Help my style hold"><span>Help my everyday style hold</span></label>
+              <label class="chip"><input type="checkbox" name="interest_in" value="First time / just trying it"><span>First time / just trying it</span></label>
+              <label class="chip"><input type="checkbox" name="interest_in" value="Other" id="apInterestOther"><span>Other</span></label>
             </div>
-            <p class="apply-err" data-err="color_goal">Please choose one.</p>
+            <p class="apply-err" data-err="interest_in">Pick at least one so we know what you&rsquo;re after.</p>
           </div>
-          <div class="apply-field">
-            <label for="ap-color-notes">Anything specific?<span class="optional-tag">Optional</span></label>
-            <input type="text" id="ap-color-notes" name="color_notes" placeholder="e.g. dimensional blonde, cover grays, go darker for fall">
+          <div class="apply-field" id="apInterestOtherWrap" hidden>
+            <label for="ap-interest-other-text">Tell us a little more<span class="optional-tag">Optional</span></label>
+            <input type="text" id="ap-interest-other-text" name="interest_other" placeholder="What are you hoping to get out of it?">
           </div>
         </div>
 
-        <!-- Step 3 -->
+        <!-- Step 2: Extension experience (optional) -->
+        <div class="apply-step" data-step="2">
+          <h3>Any extension experience to share?</h3>
+          <p class="step-help">Tape-ins, sew-ins, hand-tied, NBR, clip-ins, fusion &mdash; or tell us this is your first time. Totally optional.</p>
+          <div class="apply-field">
+            <label for="ap-exp">Your extension experience<span class="optional-tag">Optional</span></label>
+            <textarea id="ap-exp" name="extension_experience" placeholder="e.g. I had tape-ins a couple years ago — they slipped and felt heavy. This would be my first time with a no-sew / hand-tied method."></textarea>
+          </div>
+        </div>
+
+        <!-- Step 3: Color matching -->
         <div class="apply-step" data-step="3">
+          <h3>Your hair color</h3>
+          <p class="step-help">We&rsquo;ll color-match the extensions to your hair when you come in. A couple quick questions so we know what to plan for.</p>
+          <div class="apply-field">
+            <p class="apply-field-label">Is your hair currently color-treated?</p>
+            <div class="apply-options">
+              <label class="apply-option"><input type="radio" name="color_treated" value="Yes" required><span>Yes</span></label>
+              <label class="apply-option"><input type="radio" name="color_treated" value="No (natural)"><span>No (natural)</span></label>
+            </div>
+            <p class="apply-err" data-err="color_treated">Please choose one.</p>
+          </div>
+          <div class="apply-field">
+            <p class="apply-field-label">Would you like to add a color service when you come in?</p>
+            <div class="apply-options">
+              <label class="apply-option"><input type="radio" name="color_service_at_install" value="No — just match my hair" required><span>No &mdash; just match my hair</span></label>
+              <label class="apply-option"><input type="radio" name="color_service_at_install" value="Yes — let's add color"><span>Yes &mdash; let&rsquo;s add color</span></label>
+              <label class="apply-option"><input type="radio" name="color_service_at_install" value="Maybe — let's talk"><span>Maybe &mdash; let&rsquo;s talk</span></label>
+            </div>
+            <p class="apply-err" data-err="color_service_at_install">Please choose one.</p>
+          </div>
+          <div class="apply-field">
+            <label for="ap-color-notes">Anything else about your color we should know?<span class="optional-tag">Optional</span></label>
+            <input type="text" id="ap-color-notes" name="color_notes" placeholder="e.g. dimensional blonde, cover grays, going darker for fall">
+          </div>
+        </div>
+
+        <!-- Step 4: Stylist + photo -->
+        <div class="apply-step" data-step="4">
           <h3>A couple more details</h3>
-          <p class="step-help">Almost there &mdash; these help us prepare for your visit.</p>
+          <p class="step-help">Almost there &mdash; these help us prep for your visit.</p>
           <div class="apply-field">
             <label for="ap-stylist">Do you have a preferred stylist?</label>
             <select id="ap-stylist" name="preferred_stylist">
               <option value="No preference / first available">No preference / first available</option>
               <option value="Cat Barco">Cat Barco</option>
-              <option value="Carina Lopez">Carina Lopez</option>
-              <option value="Hope Sanchez">Hope Sanchez</option>
               <option value="Makayla Davila">Makayla Davila</option>
             </select>
           </div>
@@ -429,10 +507,10 @@
           </div>
         </div>
 
-        <!-- Step 4 -->
-        <div class="apply-step" data-step="4">
+        <!-- Step 5: Contact -->
+        <div class="apply-step" data-step="5">
           <h3>Where can we reach you?</h3>
-          <p class="step-help">We&rsquo;ll follow up to confirm your consultation.</p>
+          <p class="step-help">We&rsquo;ll follow up to confirm your visit.</p>
           <div class="apply-row">
             <div class="apply-field">
               <label for="ap-first">First Name</label>
@@ -478,7 +556,7 @@
         <div class="apply-success" id="applySuccess">
           <div class="success-icon"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
           <h3>Application Received!</h3>
-          <p>Thank you &mdash; we&rsquo;ve got your details and we&rsquo;ll reach out shortly to set up your No Sew Luxe&trade; consultation. Need us sooner?</p>
+          <p>Thank you &mdash; we&rsquo;ve got your details and we&rsquo;ll reach out shortly to set up your No Sew Luxe&trade; visit. Need us sooner?</p>
           <a href="tel:5597959724" class="olive-button">Call or Text 559-795-9724</a>
         </div>
 
@@ -609,6 +687,13 @@
 
       function validate(i){
         var step = steps[i]; clearErr(step); var ok = true; var firstBad = null;
+
+        // Step 1 needs at least one interest chip
+        if (step.getAttribute('data-step') === '1'){
+          var any = !!step.querySelector('input[name="interest_in"]:checked');
+          if (!any){ ok = false; showErr(step, 'interest_in'); }
+        }
+
         step.querySelectorAll('[required]').forEach(function(el){
           if (el.type === 'radio'){
             var checked = step.querySelector('input[name="' + el.name + '"]:checked');
@@ -627,7 +712,23 @@
       nextBtn.addEventListener('click', function(){ if (validate(cur)) showStep(Math.min(cur + 1, total - 1)); });
       backBtn.addEventListener('click', function(){ showStep(Math.max(cur - 1, 0)); });
 
-      // Radio card highlight
+      // Chip multi-select highlight
+      form.querySelectorAll('.chip input[type="checkbox"]').forEach(function(c){
+        c.addEventListener('change', function(){
+          c.closest('.chip').classList.toggle('checked', c.checked);
+        });
+      });
+
+      // "Other" chip expands a text field
+      var otherChip = document.getElementById('apInterestOther');
+      var otherWrap = document.getElementById('apInterestOtherWrap');
+      if (otherChip && otherWrap){
+        otherChip.addEventListener('change', function(){
+          otherWrap.hidden = !otherChip.checked;
+        });
+      }
+
+      // Radio card highlight (color step)
       form.querySelectorAll('.apply-option input[type="radio"]').forEach(function(r){
         r.addEventListener('change', function(){
           form.querySelectorAll('input[name="' + r.name + '"]').forEach(function(x){
@@ -637,8 +738,8 @@
       });
 
       // Photo: upload from device OR take a photo in-form (live camera)
-      var photoInput = document.getElementById('ap-photo');           // upload from device
-      var photoCapture = document.getElementById('ap-photo-capture');  // native-camera fallback
+      var photoInput = document.getElementById('ap-photo');
+      var photoCapture = document.getElementById('ap-photo-capture');
       var photoPreview = document.getElementById('ap-photo-preview');
       var camBox = document.getElementById('apCamera');
       var video = document.getElementById('apVideo');
@@ -671,7 +772,6 @@
       if (photoCapture) photoCapture.addEventListener('change', function(){ var f = photoCapture.files && photoCapture.files[0]; if (f) renderPhoto(f); });
 
       document.getElementById('apTakePhoto').addEventListener('click', async function(){
-        // No camera API (old browsers) -> use the native file/camera picker
         if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia){
           if (photoCapture) photoCapture.click();
           return;
@@ -683,7 +783,6 @@
           video.play().catch(function(){});
           camBox.scrollIntoView({ block: 'nearest' });
         } catch (err) {
-          // Permission denied or no camera -> fall back to the native picker
           if (photoCapture) photoCapture.click();
         }
       });
@@ -718,10 +817,14 @@
 
       function val(n){ var el = form.querySelector('[name="' + n + '"]'); return el ? el.value : ''; }
       function radioVal(n){ var el = form.querySelector('input[name="' + n + '"]:checked'); return el ? el.value : ''; }
+      function checkboxVals(n){
+        var checked = form.querySelectorAll('input[name="' + n + '"]:checked');
+        return [].map.call(checked, function(c){ return c.value; }).join(', ');
+      }
 
       form.addEventListener('submit', async function(e){
         e.preventDefault();
-        if (form.querySelector('[name="_honey"]').value) return; // bot
+        if (form.querySelector('[name="_honey"]').value) return;
         if (!validate(cur)) return;
         submitBtn.disabled = true; submitBtn.textContent = 'Submitting…';
 
@@ -739,8 +842,11 @@
         var payload = {
           site_slug: 'studio-one',
           form_type: 'no-sew-luxe-application',
+          interest_in: checkboxVals('interest_in'),
+          interest_other: val('interest_other'),
           extension_experience: val('extension_experience'),
-          color_goal: radioVal('color_goal'),
+          color_treated: radioVal('color_treated'),
+          color_service_at_install: radioVal('color_service_at_install'),
           color_notes: val('color_notes'),
           preferred_stylist: val('preferred_stylist'),
           first_name: val('first_name'),
