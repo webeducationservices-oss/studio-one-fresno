@@ -875,6 +875,7 @@
         nav.style.display = 'none';
         success.classList.add('show');
         if (typeof gtag !== 'undefined') gtag('event', 'form_submit', { form_type: 'no-sew-luxe-application' });
+        if (typeof gtag !== 'undefined') gtag('event', 'Jot_Form_Click', { form_type: 'no-sew-luxe-application' });
         if (typeof fbq !== 'undefined') fbq('track', 'Lead');
       });
 

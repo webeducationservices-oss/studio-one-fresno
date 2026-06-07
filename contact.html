@@ -452,6 +452,7 @@
         // Fire GA conversion event
         if (typeof gtag !== 'undefined') {
           gtag('event', 'form_submit', { form_type: 'contact' });
+          gtag('event', 'Jot_Form_Click', { form_type: 'contact' });
         }
         if (typeof fbq !== 'undefined') {
           fbq('track', 'Lead');

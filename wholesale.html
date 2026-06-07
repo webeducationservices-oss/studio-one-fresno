@@ -423,6 +423,7 @@
         form.querySelector('.form-fields').style.display = 'none';
         form.querySelector('.form-success').classList.add('show');
         if (typeof gtag !== 'undefined') gtag('event', 'form_submit', { form_type: 'wholesale_application' });
+        if (typeof gtag !== 'undefined') gtag('event', 'Jot_Form_Click', { form_type: 'wholesale_application' });
         if (typeof fbq !== 'undefined') fbq('track', 'Lead');
         window.scrollTo({ top: form.offsetTop - 80, behavior: 'smooth' });
       });
