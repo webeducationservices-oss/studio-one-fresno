@@ -282,6 +282,9 @@
         <input type="hidden" name="site_slug" value="studio-one">
         <input type="hidden" name="form_type" value="nbr-application">
         <input type="hidden" name="recaptcha_token" id="recaptcha_token">
+        <!-- auto-reply to the applicant (template lives server-side in form-notify) -->
+        <input type="hidden" name="send_visitor_copy" value="true">
+        <input type="hidden" name="visitor_email_subject" value="Thank you for reaching out — Studio One Hair Design">
         <input type="text" name="_honey" style="position:absolute;left:-9999px;top:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
 
         <!-- Step 1: Name -->
