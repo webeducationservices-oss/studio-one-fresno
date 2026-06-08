@@ -628,16 +628,19 @@
     }
 
     /* ---- Step navigation ---- */
-    function showStep(i){
+    function showStep(i, doScroll){
       steps.forEach((s, idx) => s.classList.toggle('active', idx === i));
       const pct = Math.round(((i+1)/steps.length) * 100);
       fill.style.width = pct + '%';
       lbl.textContent = `Step ${i+1} of ${steps.length}`;
       personalize();
-      // Smooth scroll the card into view (helps on mobile)
-      const card = document.querySelector('.apply-card');
-      if(card) card.scrollIntoView({behavior:'smooth', block:'start'});
-      // Focus the first input in the new step
+      // Only scroll the card into view when advancing/going back — never on the
+      // initial load, so the page opens at the top (hero) like a normal page.
+      if(doScroll){
+        const card = document.querySelector('.apply-card');
+        if(card) card.scrollIntoView({behavior:'smooth', block:'start'});
+      }
+      // Focus the first input in the new step (preventScroll keeps the page put)
       setTimeout(() => {
         const focusable = steps[i].querySelector('input:not([type=hidden]):not([type=radio]),textarea');
         if(focusable) focusable.focus({preventScroll:true});
@@ -677,11 +680,11 @@
       save();
       if(current < steps.length - 1){
         current++;
-        showStep(current);
+        showStep(current, true);
       }
     }
     function prev(){
-      if(current > 0){ current--; showStep(current); }
+      if(current > 0){ current--; showStep(current, true); }
     }
 
     /* ---- Submit ---- */
