@@ -120,23 +120,59 @@
     .welcome-card p{margin-bottom:14px}
     .welcome-card strong{color:var(--white);font-weight:500}
 
-    /* Thank you */
-    .apply-thanks{display:none;text-align:center;padding:8px 0}
-    .apply-thanks.show{display:block}
-    .apply-thanks .check{width:64px;height:64px;border-radius:50%;background:var(--olive);display:flex;align-items:center;justify-content:center;margin:0 auto 22px}
-    .apply-thanks h2{font-family:var(--heading-font);font-size:34px;color:var(--white);font-weight:400;margin-bottom:12px;line-height:1.2}
-    .apply-thanks p{font-size:15px;color:var(--light-gray);font-weight:300;line-height:1.7;margin:0 auto 22px;max-width:440px}
-    .apply-thanks .thanks-actions{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:18px}
-    .apply-thanks .olive-button{display:inline-block;padding:14px 26px;background:var(--olive);color:var(--white);font-size:12px;font-weight:600;letter-spacing:3px;text-transform:uppercase;border-radius:4px;transition:background .25s}
-    .apply-thanks .olive-button:hover{background:var(--olive-light)}
-    .apply-thanks .ghost-button{display:inline-block;padding:14px 26px;color:var(--light-gray);font-size:12px;font-weight:600;letter-spacing:3px;text-transform:uppercase;border:1px solid rgba(255,255,255,.18);border-radius:4px;transition:border-color .25s,color .25s}
-    .apply-thanks .ghost-button:hover{border-color:var(--olive-light);color:var(--white)}
+    /* Shared buttons (match /thank-you) */
+    .primary-button{display:inline-block;padding:16px 32px;border:1px solid var(--olive);color:var(--light-gray);font-size:12px;font-weight:500;letter-spacing:3px;text-transform:uppercase;transition:background .3s,color .3s}
+    .primary-button:hover{background:var(--olive);color:var(--white)}
+    .olive-button{display:inline-block;padding:16px 32px;background:var(--olive);color:var(--white);font-size:12px;font-weight:600;letter-spacing:3px;text-transform:uppercase;transition:background .3s;border:none;cursor:pointer;font-family:inherit}
+    .olive-button:hover{background:var(--olive-light)}
+
+    /* ===== Thank You (mirrors /thank-you) ===== */
+    #appThanks[hidden]{display:none}
+    .ty-hero{min-height:auto;display:flex;align-items:center;justify-content:center;text-align:center;padding:150px 40px 50px;background:var(--black)}
+    .ty-hero-inner{max-width:640px;margin:0 auto}
+    .ty-icon{width:84px;height:84px;border-radius:50%;background:rgba(76,82,35,.18);border:1px solid var(--olive);display:flex;align-items:center;justify-content:center;margin:0 auto 28px;color:var(--olive-light)}
+    .ty-hero h1{font-family:var(--heading-font);font-size:64px;font-weight:400;color:var(--white);line-height:1.05;margin-bottom:18px;letter-spacing:-0.01em}
+    .ty-sub{font-size:18px;color:var(--off-white);font-weight:300;line-height:1.6;margin-bottom:36px;max-width:520px;margin-left:auto;margin-right:auto}
+    .ty-actions{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+    .ty-phone-line{margin-top:30px;font-size:13px;color:var(--light-gray);font-weight:300}
+    .ty-phone-line a{font-family:var(--heading-font);font-size:22px;color:var(--white);border-bottom:1px solid var(--olive);padding-bottom:2px;margin-left:6px;transition:color .3s,border-color .3s}
+    .ty-phone-line a:hover{color:var(--olive-light);border-color:var(--olive-light)}
+
+    /* ===== Video from Cat ===== */
+    .ty-video{padding:20px 40px 30px;background:var(--black)}
+    .ty-video-inner{max-width:840px;margin:0 auto;text-align:center}
+    .ty-video-head{margin-bottom:26px}
+    .ty-video-head h2{font-family:var(--heading-font);font-size:36px;font-weight:400;color:var(--white);line-height:1.2;margin-bottom:8px}
+    .ty-video-head p{font-size:15px;color:var(--light-gray);font-weight:300}
+    .ty-video-frame{position:relative;width:100%;aspect-ratio:16/9;border-radius:8px;overflow:hidden;border:1px solid rgba(108,115,50,.35);background:#111}
+    .ty-video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+    /* ===== While you wait ===== */
+    .ty-explore{padding:40px 40px 110px;background:var(--black)}
+    .ty-explore-inner{max-width:1200px;margin:0 auto}
+    .ty-explore-head{text-align:center;margin-bottom:48px}
+    .ty-explore-head h2{font-family:var(--heading-font);font-size:36px;font-weight:400;color:var(--white);line-height:1.2}
+    .ty-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+    .ty-card{display:flex;flex-direction:column;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:4px;overflow:hidden;transition:transform .4s ease,border-color .3s ease}
+    .ty-card:hover{transform:translateY(-4px);border-color:rgba(76,82,35,.5)}
+    .ty-card-img{aspect-ratio:16/10;overflow:hidden;background:#1a1a1a}
+    .ty-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .8s ease}
+    .ty-card:hover .ty-card-img img{transform:scale(1.05)}
+    .ty-card-body{padding:24px 26px 28px;display:flex;flex-direction:column;flex:1}
+    .ty-card-cat{font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--olive-light);margin-bottom:10px}
+    .ty-card h3{font-family:var(--heading-font);font-size:22px;font-weight:400;color:var(--white);line-height:1.3;margin-bottom:10px}
+    .ty-card p{font-size:14px;color:var(--light-gray);font-weight:300;line-height:1.65;margin-bottom:14px;flex:1}
+    .ty-card .ty-read{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--olive-light);font-weight:500;border-bottom:1px solid var(--olive);padding-bottom:2px;align-self:flex-start}
 
     /* Hide reCAPTCHA badge — attribution noted in form legal */
     .grecaptcha-badge{visibility:hidden!important}
     .apply-legal{font-size:11px;color:rgba(255,255,255,.4);margin-top:18px;line-height:1.6;text-align:center}
     .apply-legal a{color:var(--olive-light);text-decoration:underline}
 
+    @media (max-width:1024px){
+      .ty-hero h1{font-size:52px}
+      .ty-grid{grid-template-columns:1fr 1fr}
+    }
     @media (max-width:640px){
       .apply-hero{padding:110px 20px 22px}
       .apply-hero h1{font-size:34px}
@@ -145,6 +181,16 @@
       .apply-step h2{font-size:24px}
       .apply-controls{flex-direction:row;gap:10px}
       .apply-btn{padding:14px 18px;font-size:11px;letter-spacing:2px}
+      .ty-hero{padding:120px 24px 40px}
+      .ty-hero h1{font-size:40px}
+      .ty-sub{font-size:16px}
+      .ty-actions{flex-direction:column;align-items:stretch}
+      .ty-actions a{text-align:center}
+      .ty-video{padding:8px 20px 24px}
+      .ty-video-head h2{font-size:26px}
+      .ty-explore{padding:24px 20px 80px}
+      .ty-explore-head h2{font-size:28px}
+      .ty-grid{grid-template-columns:1fr;gap:18px}
     }
   </style>
 
@@ -213,7 +259,7 @@
 
   <!-- ==================== HERO ==================== -->
   <main>
-  <section class="apply-hero">
+  <section class="apply-hero" id="applyHero">
     <div data-animate>
       <p class="eyebrow">NBR® Extensions Application</p>
       <h1>Tell us about your hair.</h1>
@@ -222,7 +268,7 @@
   </section>
 
   <!-- ==================== FORM ==================== -->
-  <section class="apply-section" aria-label="NBR application form">
+  <section class="apply-section" id="applySection" aria-label="NBR application form">
     <div class="apply-card">
       <div class="apply-progress" id="appProgress">
         <div class="apply-progress-bar"><div class="apply-progress-fill" id="appProgressFill"></div></div>
@@ -387,20 +433,79 @@
         </div>
       </form>
 
-      <!-- Thank you state -->
-      <div class="apply-thanks" id="appThanks" aria-live="polite">
-        <div class="check"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <h2>Thanks, <span class="fname-token">there</span> &mdash; we got it.</h2>
-        <p>Cat will review your application and someone from Studio One will be in touch within one business day to schedule your NBR<sup>&reg;</sup> consultation. Prefer to talk now? Text or call <strong style="color:var(--off-white)">559-795-9724</strong>.</p>
-        <div class="thanks-actions">
-          <a href="/booking" class="olive-button">Book a Consultation</a>
-          <a href="/" class="ghost-button">Back to Home</a>
-        </div>
-      </div>
-
       <p class="apply-legal">Protected by reCAPTCHA &mdash; Google&rsquo;s <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy Policy</a> and <a href="https://policies.google.com/terms" target="_blank" rel="noopener">Terms</a> apply.</p>
     </div>
   </section>
+
+  <!-- ==================== THANK YOU (revealed after submit) ==================== -->
+  <div id="appThanks" hidden aria-live="polite">
+    <section class="ty-hero">
+      <div class="ty-hero-inner">
+        <div class="ty-icon" aria-hidden="true">
+          <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <p class="eyebrow">Application Received</p>
+        <h1>Thank you, <span class="fname-token">there</span>.</h1>
+        <p class="ty-sub">We&rsquo;ve got your application. Cat will review it and someone from Studio One will be in touch within one business day to schedule your NBR<sup>&reg;</sup> consultation.</p>
+        <div class="ty-actions">
+          <a href="/booking" class="olive-button">Book a Consultation</a>
+          <a href="/" class="primary-button">Back to Home</a>
+        </div>
+        <p class="ty-phone-line">Prefer to talk now? Call or text <a href="tel:5597959724">559-795-9724</a></p>
+      </div>
+    </section>
+
+    <!-- A message from Cat -->
+    <section class="ty-video" aria-label="A message from Cat Barco">
+      <div class="ty-video-inner">
+        <div class="ty-video-head">
+          <h2>A message from Cat</h2>
+          <p>Take a moment to hear from Cat Barco while we review your application.</p>
+        </div>
+        <div class="ty-video-frame">
+          <iframe id="catThankYouVideo" src="about:blank" data-src="https://www.youtube-nocookie.com/embed/AESzOnnCHcs?rel=0&modestbranding=1" title="Thank You Message from Cat Barco" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- While you wait -->
+    <section class="ty-explore">
+      <div class="ty-explore-inner">
+        <div class="ty-explore-head">
+          <h2>While you wait&hellip;</h2>
+        </div>
+        <div class="ty-grid">
+          <a href="/hair-gallery" class="ty-card">
+            <div class="ty-card-img"><img src="/images/optimized/gallery-1.webp" alt="Studio One hair transformation" loading="lazy" decoding="async" width="800" height="800"></div>
+            <div class="ty-card-body">
+              <p class="ty-card-cat">Our Work</p>
+              <h3>See recent transformations</h3>
+              <p>Real before-and-afters from our hair gallery &mdash; NBR extensions, color, and more.</p>
+              <span class="ty-read">Open the Gallery &rarr;</span>
+            </div>
+          </a>
+          <a href="/testimonials" class="ty-card">
+            <div class="ty-card-img"><img src="/images/testimonials/whitney.webp" alt="Studio One guest success story" loading="lazy" decoding="async" width="800" height="800"></div>
+            <div class="ty-card-body">
+              <p class="ty-card-cat">Success Stories</p>
+              <h3>Read guest stories</h3>
+              <p>Hear from real Studio One guests about their hair, their stylists, and what changed.</p>
+              <span class="ty-read">Read Stories &rarr;</span>
+            </div>
+          </a>
+          <a href="/blog" class="ty-card">
+            <div class="ty-card-img"><img src="/images/optimized/gallery-4.webp" alt="Studio One blog" loading="lazy" decoding="async" width="800" height="800"></div>
+            <div class="ty-card-body">
+              <p class="ty-card-cat">From the Chair</p>
+              <h3>Tips, guides &amp; transformations</h3>
+              <p>Hair care, color, extensions &mdash; everything we&rsquo;ve been writing about lately.</p>
+              <span class="ty-read">Read the Blog &rarr;</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
   </main>
 
   <!-- ==================== FOOTER ==================== -->
@@ -481,6 +586,8 @@
     const lbl   = document.getElementById('appProgressLabel');
     const progress = document.getElementById('appProgress');
     const thanks   = document.getElementById('appThanks');
+    const applyHero = document.getElementById('applyHero');
+    const applySection = document.getElementById('applySection');
     let current = 0;
 
     /* ---- Phone formatting ---- */
@@ -603,13 +710,16 @@
         });
       }catch(err){ console.error('Form submit error:', err); }
 
-      // Show thank-you (success regardless — data captured client-side, email/sheet sent)
+      // Reveal full-page thank-you (success regardless — data captured client-side, email/sheet sent)
       try{ localStorage.removeItem(LS_KEY); }catch(e){}
       personalize();
-      form.style.display = 'none';
-      progress.style.display = 'none';
-      thanks.classList.add('show');
-      thanks.scrollIntoView({behavior:'smooth', block:'center'});
+      applyHero.style.display = 'none';
+      applySection.style.display = 'none';
+      thanks.hidden = false;
+      // Lazy-load Cat's video only now (kept off the initial page load for speed)
+      const vid = document.getElementById('catThankYouVideo');
+      if(vid && vid.dataset.src) vid.src = vid.dataset.src;
+      window.scrollTo({top:0, behavior:'smooth'});
 
       // Analytics
       if(typeof gtag !== 'undefined'){ gtag('event','form_submit',{form_type:'nbr-application'}); gtag('event','generate_lead',{form_type:'nbr-application'}); }
