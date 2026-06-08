@@ -86,6 +86,8 @@
     .apply-step .help{font-size:13.5px;color:var(--light-gray);font-weight:300;margin-bottom:24px;line-height:1.7}
 
     .apply-field{margin-bottom:8px}
+    .apply-field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    @media (max-width:520px){.apply-field-row{grid-template-columns:1fr;gap:0}}
     .apply-field label{display:block;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--off-white);font-weight:600;margin-bottom:10px}
     .apply-field input,.apply-field textarea{width:100%;padding:14px 16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.14);border-radius:5px;color:var(--white);font-family:inherit;font-size:16px;transition:border-color .25s,background .25s;font-weight:300}
     .apply-field textarea{min-height:140px;resize:vertical;line-height:1.6}
@@ -272,7 +274,7 @@
     <div class="apply-card">
       <div class="apply-progress" id="appProgress">
         <div class="apply-progress-bar"><div class="apply-progress-fill" id="appProgressFill"></div></div>
-        <div class="apply-progress-label" id="appProgressLabel">Step 1 of 10</div>
+        <div class="apply-progress-label" id="appProgressLabel">Step 1 of 9</div>
       </div>
 
       <form id="appForm" autocomplete="on" novalidate>
@@ -282,12 +284,18 @@
         <input type="hidden" name="recaptcha_token" id="recaptcha_token">
         <input type="text" name="_honey" style="position:absolute;left:-9999px;top:-9999px" tabindex="-1" autocomplete="off" aria-hidden="true">
 
-        <!-- Step 1: First name -->
+        <!-- Step 1: Name -->
         <div class="apply-step active" data-step="1">
-          <h2>What&rsquo;s your first name?</h2>
-          <div class="apply-field">
-            <label for="fname">First name</label>
-            <input type="text" id="fname" name="fname" autocomplete="given-name" required maxlength="60">
+          <h2>What&rsquo;s your name?</h2>
+          <div class="apply-field-row">
+            <div class="apply-field">
+              <label for="fname">First name</label>
+              <input type="text" id="fname" name="fname" autocomplete="given-name" required maxlength="60">
+            </div>
+            <div class="apply-field">
+              <label for="lname">Last name</label>
+              <input type="text" id="lname" name="lname" autocomplete="family-name" required maxlength="60">
+            </div>
           </div>
           <div class="apply-error" data-error></div>
           <div class="apply-controls">
@@ -296,22 +304,8 @@
           </div>
         </div>
 
-        <!-- Step 2: Last name -->
+        <!-- Step 2: Email -->
         <div class="apply-step" data-step="2">
-          <h2>And your last name?</h2>
-          <div class="apply-field">
-            <label for="lname">Last name</label>
-            <input type="text" id="lname" name="lname" autocomplete="family-name" required maxlength="60">
-          </div>
-          <div class="apply-error" data-error></div>
-          <div class="apply-controls">
-            <button type="button" class="apply-btn apply-prev">&larr; Back</button>
-            <button type="button" class="apply-btn apply-next" data-next>Next &rarr;</button>
-          </div>
-        </div>
-
-        <!-- Step 3: Email -->
-        <div class="apply-step" data-step="3">
           <h2>What&rsquo;s your email address?</h2>
           <p class="help">We&rsquo;ll reply here within one business day to schedule your consultation.</p>
           <div class="apply-field">
@@ -325,8 +319,8 @@
           </div>
         </div>
 
-        <!-- Step 4: Phone -->
-        <div class="apply-step" data-step="4">
+        <!-- Step 3: Phone -->
+        <div class="apply-step" data-step="3">
           <h2>What&rsquo;s the best number to reach you?</h2>
           <p class="help">A mobile number is best &mdash; we may text to confirm your appointment.</p>
           <div class="apply-field">
@@ -340,8 +334,8 @@
           </div>
         </div>
 
-        <!-- Step 5: Welcome message from Cat -->
-        <div class="apply-step" data-step="5">
+        <!-- Step 4: Welcome message from Cat -->
+        <div class="apply-step" data-step="4">
           <h2>Nice to meet you, <span class="fname-token">there</span>!</h2>
           <div class="welcome-card">
             <p>I&rsquo;m <strong>Cat Barco</strong>, and I&rsquo;m super excited to hear about <strong>your</strong> specific hair goals &mdash; and <em>why</em> you want to experience Natural Beaded Rows<sup>&reg;</sup>.</p>
@@ -354,8 +348,8 @@
           </div>
         </div>
 
-        <!-- Step 6: Prior extension methods -->
-        <div class="apply-step" data-step="6">
+        <!-- Step 5: Prior extension methods -->
+        <div class="apply-step" data-step="5">
           <h2>What hair extension methods have you had?</h2>
           <p class="help">Include what worked, what didn&rsquo;t, and how the experience felt overall. If this is your first time, just write &ldquo;first time.&rdquo;</p>
           <div class="apply-field">
@@ -369,8 +363,8 @@
           </div>
         </div>
 
-        <!-- Step 7: Color change preference -->
-        <div class="apply-step" data-step="7">
+        <!-- Step 6: Color change preference -->
+        <div class="apply-step" data-step="6">
           <h2>Are you looking to change your hair color?</h2>
           <p class="help">This helps us understand the level of color work involved (if any) at your visit.</p>
           <div class="apply-options" data-required="color_change">
@@ -384,8 +378,8 @@
           </div>
         </div>
 
-        <!-- Step 8: Why NBR -->
-        <div class="apply-step" data-step="8">
+        <!-- Step 7: Why NBR -->
+        <div class="apply-step" data-step="7">
           <h2><span class="fname-token">Friend</span>, what is it about NBR<sup>&reg;</sup> that has you ready &mdash; and why now?</h2>
           <p class="help">Take a moment to share the &ldquo;why&rdquo; behind your desire to sit in Cat&rsquo;s chair.</p>
           <div class="apply-field">
@@ -399,8 +393,8 @@
           </div>
         </div>
 
-        <!-- Step 9: Preferred stylist -->
-        <div class="apply-step" data-step="9">
+        <!-- Step 8: Preferred stylist -->
+        <div class="apply-step" data-step="8">
           <h2>Do you have a preferred stylist?</h2>
           <div class="apply-options" data-required="preferred_stylist">
             <label class="apply-option"><input type="radio" name="preferred_stylist" value="Cat"><span class="dot"></span><span class="opt-text">Cat</span></label>
@@ -415,8 +409,8 @@
           </div>
         </div>
 
-        <!-- Step 10: How did you hear -->
-        <div class="apply-step" data-step="10">
+        <!-- Step 9: How did you hear -->
+        <div class="apply-step" data-step="9">
           <h2>How did you hear about us?</h2>
           <div class="apply-options" data-required="source">
             <label class="apply-option"><input type="radio" name="source" value="Friend"><span class="dot"></span><span class="opt-text">Friend</span></label>
