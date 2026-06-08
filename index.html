@@ -190,6 +190,22 @@
     .section-gallery .gallery-empty .eyebrow{font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--olive-light);margin-bottom:16px;display:block}
     .section-gallery .gallery-empty h3{font-family:var(--heading-font);font-size:28px;color:var(--white);font-weight:400;line-height:1.25;margin-bottom:14px}
     .section-gallery .gallery-empty p{font-size:14px;color:var(--light-gray);font-weight:300;line-height:1.7}
+    /* Meet Cat / video teaser */
+    .section-meet-cat{background:var(--dark);padding:110px 40px}
+    .meet-cat-inner{max-width:1000px;margin:0 auto;text-align:center}
+    .meet-cat-inner .eyebrow{font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--olive-light);margin-bottom:16px;display:block}
+    .meet-cat-inner h2{font-family:var(--heading-font);font-size:48px;font-weight:400;color:var(--white);line-height:1.15;margin-bottom:18px;letter-spacing:-0.01em}
+    .meet-cat-inner > p{font-size:17px;color:var(--light-gray);font-weight:300;line-height:1.7;max-width:620px;margin:0 auto 40px}
+    .video-wrap{position:relative;max-width:880px;margin:0 auto 36px;aspect-ratio:16/9;border-radius:6px;overflow:hidden;background:#000;cursor:pointer}
+    .video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+    .video-wrap .video-thumb{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease}
+    .video-wrap:hover .video-thumb{transform:scale(1.02)}
+    .video-wrap .video-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:88px;height:88px;border-radius:50%;background:rgba(76,82,35,.92);color:var(--white);display:flex;align-items:center;justify-content:center;border:none;cursor:pointer;transition:background .3s ease,transform .3s ease;box-shadow:0 8px 32px rgba(0,0,0,.5);z-index:2}
+    .video-wrap:hover .video-play{background:var(--olive-light);transform:translate(-50%,-50%) scale(1.06)}
+    .video-wrap .video-play svg{width:30px;height:30px;margin-left:4px;color:var(--white)}
+    .video-wrap::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.15) 0%,rgba(0,0,0,.45) 100%);pointer-events:none;z-index:1}
+    .video-wrap.is-active::before,.video-wrap.is-active .video-thumb,.video-wrap.is-active .video-play{display:none}
+    @media (max-width:768px){.section-meet-cat{padding:72px 22px}.meet-cat-inner h2{font-size:34px}.meet-cat-inner > p{font-size:15px}.video-wrap .video-play{width:68px;height:68px}}
   </style>
 
   <!-- Defer full stylesheet -->
@@ -596,6 +612,22 @@
     </div>
   </section>
 
+  <!-- Meet Cat / Video Section -->
+  <section class="section-meet-cat" aria-label="Get to know Cat">
+    <div class="meet-cat-inner" data-animate="fade-up">
+      <span class="eyebrow">Meet Your Stylist</span>
+      <h2>Get to know Cat</h2>
+      <p>Behind every Studio One transformation is Cat Barco &mdash; founder, master stylist, and the heart of the salon. Take a few minutes to hear her story, her approach to hair, and what makes the Studio One experience different.</p>
+      <div class="video-wrap" data-yt="VSxmNUtevAw" role="button" tabindex="0" aria-label="Play video: Get to know Cat">
+        <img class="video-thumb" src="images/optimized/cat-video-poster.webp" alt="Cat Barco, founder of Studio One Hair Design" width="1280" height="720" loading="lazy" decoding="async">
+        <button class="video-play" type="button" aria-label="Play video">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+        </button>
+      </div>
+      <a href="/meet-the-team" class="primary-button">Meet the Team</a>
+    </div>
+  </section>
+
   <!-- CTA Section -->
   <section class="section-cta">
     <div class="cta-bg-image">
@@ -702,6 +734,26 @@
     </div>
   </footer>
 
+  <script>
+    // Lite YouTube facade — defer iframe until clicked
+    document.querySelectorAll('.video-wrap[data-yt]').forEach(function(wrap){
+      function activate(){
+        if (wrap.classList.contains('is-active')) return;
+        var id = wrap.dataset.yt;
+        var iframe = document.createElement('iframe');
+        iframe.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0';
+        iframe.title = wrap.getAttribute('aria-label') || 'YouTube video';
+        iframe.setAttribute('frameborder', '0');
+        iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen');
+        iframe.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+        iframe.allowFullscreen = true;
+        wrap.classList.add('is-active');
+        wrap.appendChild(iframe);
+      }
+      wrap.addEventListener('click', activate);
+      wrap.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activate(); } });
+    });
+  </script>
   <script src="script.js" defer></script>
 </body>
 </html>
