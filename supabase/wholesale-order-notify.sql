@@ -10,7 +10,7 @@
 --   select vault.create_secret('<RESEND_KEY>', 'resend_api_key', 'Resend API key for wholesale order emails');
 --
 -- Recipients are hardcoded below: to = hairbycatb@gmail.com + studioone.lp@gmail.com,
--- bcc = justin@webeducationservices.com, reply_to = the ordering stylist.
+-- cc = justin@webeducationservices.com, reply_to = the ordering stylist.
 -- Sender: noreply@studioonefresno.com (studioonefresno.com is a Resend-verified domain).
 
 create extension if not exists pg_net;
@@ -94,7 +94,7 @@ begin
     body := jsonb_build_object(
       'from','Studio One Wholesale <noreply@studioonefresno.com>',
       'to',  jsonb_build_array('hairbycatb@gmail.com','studioone.lp@gmail.com'),
-      'bcc', jsonb_build_array('justin@webeducationservices.com'),
+      'cc',  jsonb_build_array('justin@webeducationservices.com'),
       'reply_to', jsonb_build_array(v_email),
       'subject', 'New wholesale order — '||v_name||' ($'||v_total||')',
       'html', v_html
