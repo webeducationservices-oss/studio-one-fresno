@@ -79,12 +79,17 @@ begin
           '<tfoot><tr><td colspan="3" style="padding:12px;text-align:right;font-weight:600">Total</td>'||
             '<td style="padding:12px;text-align:right;font-weight:700;font-size:16px">$'||v_total||'</td></tr></tfoot>'||
         '</table>'||
-        '<div style="margin-top:18px;padding:14px 16px;background:#f6f6ef;border-left:3px solid #4c5223;border-radius:3px">'||
+        '<div style="margin-top:18px;padding:14px 16px;background:#fff4e5;border:1px solid #f0c890;border-radius:3px">'||
+          '<p style="margin:0;font-size:12px;color:#a06a00;text-transform:uppercase;letter-spacing:1px;font-weight:700">Payment status</p>'||
+          '<p style="margin:6px 0 0;font-size:15px;color:#7a5200"><strong>Not paid &mdash; no money was collected.</strong> '||
+          'This was placed as an order <em>request</em> on the wholesale site; <strong>no PayPal payment or card charge was processed.</strong> '||
+          'Please collect payment from the stylist directly when you arrange fulfillment.</p>'||
+        '</div>'||
+        '<div style="margin-top:14px;padding:14px 16px;background:#f6f6ef;border-left:3px solid #4c5223;border-radius:3px">'||
           '<p style="margin:0;font-size:12px;color:#888;text-transform:uppercase;letter-spacing:1px">Note from stylist</p>'||
           '<p style="margin:6px 0 0;font-size:15px">'||v_note||'</p>'||
         '</div>'||
-        '<p style="margin:22px 0 0;font-size:13px;color:#666">Reply to this email to reach '||public.esc(v_name)||' directly. '||
-        'This is an order <em>request</em> &mdash; no payment was collected; arrange pricing &amp; fulfillment with the stylist.</p>'||
+        '<p style="margin:22px 0 0;font-size:13px;color:#666">Reply to this email to reach '||public.esc(v_name)||' directly.</p>'||
       '</div>'||
     '</div>';
 
