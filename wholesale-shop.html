@@ -11,6 +11,8 @@
   <link rel="preconnect" href="https://use.typekit.net" crossorigin>
   <link href="https://use.typekit.net/epq0gor.css" rel="stylesheet" media="print" onload="this.media='all'">
   <noscript><link href="https://use.typekit.net/epq0gor.css" rel="stylesheet"></noscript>
+  <!-- reCAPTCHA v3 (shared WES key) — used to notify the admin dashboard on order submit -->
+  <script src="https://www.google.com/recaptcha/api.js?render=6Lck8aQsAAAAALMA-T6nwfkSf7bv4K-mOhkszeKh"></script>
   <style>
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
     :root{--olive:#4c5223;--olive-light:#6b7332;--black:#000;--dark:#0a0a0a;--white:#fff;--off-white:#f5f5f5;--light-gray:#d9d9d9;--body-font:Arial,sans-serif;--heading-font:'freight-big-pro',Georgia,serif}
@@ -175,12 +177,47 @@
     submitBtn.addEventListener('click', async ()=>{
       submitBtn.disabled=true; submitBtn.textContent='Submitting…';
       const subtotal=cart.reduce((s,i)=>s+i.price_cents*i.qty,0);
-      const { error } = await SB.from('wholesale_orders').insert({ items:cart, subtotal_cents:subtotal, note:document.getElementById('orderNote').value.trim()||null });
+      const note=document.getElementById('orderNote').value.trim()||null;
+      const orderItems=cart.slice();   // snapshot for the dashboard notify (cart is cleared below)
+      const { error } = await SB.from('wholesale_orders').insert({ items:cart, subtotal_cents:subtotal, note });
       if(error){ submitBtn.textContent='Submit Order Request'; submitBtn.disabled=false; alert('Could not submit: '+error.message); return; }
+      notifyDashboard(orderItems, subtotal, note);   // additive, fire-and-forget — never blocks the stylist
       cart=[]; saveCart();
       items.innerHTML='<p class="empty" style="color:#cfe0a8">Order request submitted! Studio One will follow up with you to confirm pricing and arrange fulfillment.</p>';
       totalEl.textContent='$0'; submitBtn.textContent='Order Submitted ✓';
     });
+
+    // Mirror the order into the WES admin dashboard (shared leads table,
+    // form_type='wholesale_order') so it shows up under Orders automatically.
+    // Best-effort: any failure here is swallowed and never affects the
+    // stylist's confirmation or the saved wholesale_orders row.
+    async function notifyDashboard(orderItems, subtotal, note){
+      try {
+        const { data:{ user } } = await SB.auth.getUser();
+        const fullName=(user?.user_metadata?.full_name || user?.user_metadata?.name || '').trim();
+        const parts=fullName?fullName.split(/\s+/):[];
+        const RC_KEY='6Lck8aQsAAAAALMA-T6nwfkSf7bv4K-mOhkszeKh';
+        const token=await new Promise((resolve,reject)=>{
+          if(!window.grecaptcha){ reject(new Error('recaptcha not loaded')); return; }
+          grecaptcha.ready(()=>grecaptcha.execute(RC_KEY,{action:'wholesale_order'}).then(resolve,reject));
+        });
+        await fetch('https://myaieditor.com/api/form-notify',{
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({
+            site_slug:'studio-one',
+            form_type:'wholesale_order',
+            recaptcha_token:token,
+            first_name:parts[0]||'',
+            last_name:parts.slice(1).join(' '),
+            email:user?.email||'',
+            items:JSON.stringify(orderItems),   // send as a string so form-notify keeps it (it drops non-string fields)
+            subtotal_cents:String(subtotal),     // numeric string; the admin reads it with Number()
+            note:note||''
+          })
+        });
+      } catch(e){ console.warn('dashboard notify failed (order still saved):', e); }
+    }
   })();
   </script>
 </body>
