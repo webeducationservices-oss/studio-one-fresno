@@ -438,6 +438,7 @@
 
         try {
           const data = Object.fromEntries(new FormData(form).entries());
+          if (window.soAttribution) Object.assign(data, window.soAttribution());
           await fetch('https://myaieditor.com/api/form-notify', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -452,8 +453,8 @@
         // Fire GA conversion event
         if (typeof gtag !== 'undefined') {
           gtag('event', 'form_submit', { form_type: 'contact' });
-          gtag('event', 'Jot_Form_Click', { form_type: 'contact' });
         }
+        if (window.soTrackLead) window.soTrackLead('so_lead_contact', 'contact');
         if (typeof fbq !== 'undefined') {
           fbq('track', 'Lead');
         }

@@ -414,6 +414,7 @@
         } catch (err) { console.warn('reCAPTCHA error:', err); }
         try {
           const data = Object.fromEntries(new FormData(form).entries());
+          if (window.soAttribution) Object.assign(data, window.soAttribution());
           await fetch('https://myaieditor.com/api/form-notify', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -423,7 +424,7 @@
         form.querySelector('.form-fields').style.display = 'none';
         form.querySelector('.form-success').classList.add('show');
         if (typeof gtag !== 'undefined') gtag('event', 'form_submit', { form_type: 'wholesale_application' });
-        if (typeof gtag !== 'undefined') gtag('event', 'Jot_Form_Click', { form_type: 'wholesale_application' });
+        if (window.soTrackLead) window.soTrackLead('so_lead_wholesale', 'wholesale_application');
         if (typeof fbq !== 'undefined') fbq('track', 'Lead');
         window.scrollTo({ top: form.offsetTop - 80, behavior: 'smooth' });
       });

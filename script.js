@@ -265,3 +265,81 @@
 
   updateParallax();
 })();
+
+
+/* ===== Source attribution + Google Ads lead tracking (WES) =====
+ * Captures click IDs (gclid/gbraid/wbraid/fbclid/msclkid) + UTMs on first
+ * touch, caches first-touch in sessionStorage, and exposes:
+ *   window.soAttribution()            -> object to spread into form payloads
+ *                                        (lands in the lead's raw_data so the
+ *                                        admin portal can attribute leads to ads)
+ *   window.soTrackLead(evt, formType) -> dataLayer push that fires the
+ *                                        form-specific Google Ads conversion
+ *                                        tag in GTM (container GTM-WQGCMZ9Q).
+ */
+(function () {
+  var CACHE = 'so_first_touch';
+  var UTM   = ['utm_source','utm_medium','utm_campaign','utm_term','utm_content'];
+  var CLICK = ['gclid','gbraid','wbraid','fbclid','msclkid'];
+
+  function classify(p, ref) {
+    var s = (p.utm_source || '').toLowerCase(), m = (p.utm_medium || '').toLowerCase();
+    if (p.gclid || p.gbraid || p.wbraid) return (m.indexOf('display') !== -1) ? 'OTHER_CAMPAIGNS' : 'PAID_SEARCH';
+    if (p.msclkid) return 'PAID_SEARCH';
+    if (p.fbclid)  return 'PAID_SOCIAL';
+    if (m === 'cpc' || m === 'ppc' || m === 'paidsearch' || m === 'paid_search') return 'PAID_SEARCH';
+    if (m === 'paid-social' || m === 'paid_social' || m === 'paidsocial') return 'PAID_SOCIAL';
+    if (m === 'email' || s === 'email' || s === 'newsletter') return 'EMAIL_MARKETING';
+    if (m === 'social' || ['facebook','instagram','twitter','linkedin','tiktok','youtube','pinterest','x'].indexOf(s) !== -1) return 'SOCIAL_MEDIA';
+    if (m === 'organic' || ['google','bing','yahoo','duckduckgo'].indexOf(s) !== -1) return 'ORGANIC_SEARCH';
+    if (m === 'referral') return 'REFERRALS';
+    if (p.utm_campaign || p.utm_source || p.utm_medium) return 'OTHER_CAMPAIGNS';
+    if (ref) {
+      var h = ''; try { h = new URL(ref).hostname.toLowerCase(); } catch (e) {}
+      if (!h || h.indexOf(location.hostname) !== -1) return 'DIRECT_TRAFFIC';
+      if (/google\.|bing\.|yahoo\.|duckduckgo\./.test(h)) return 'ORGANIC_SEARCH';
+      if (/facebook\.|instagram\.|twitter\.|t\.co|linkedin\.|tiktok\.|youtube\.|pinterest\./.test(h)) return 'SOCIAL_MEDIA';
+      return 'REFERRALS';
+    }
+    return 'DIRECT_TRAFFIC';
+  }
+
+  function compute() {
+    var qs = null; try { qs = new URLSearchParams(location.search); } catch (e) {}
+    var url = {}, found = false;
+    if (qs) UTM.concat(CLICK).forEach(function (k) { var v = qs.get(k); if (v) { url[k] = v; found = true; } });
+    var cached = null; try { cached = JSON.parse(sessionStorage.getItem(CACHE) || 'null'); } catch (e) {}
+    var ref = document.referrer || '';
+    if (found) {
+      var a = {
+        utm_source: url.utm_source || '', utm_medium: url.utm_medium || '', utm_campaign: url.utm_campaign || '',
+        utm_term: url.utm_term || '', utm_content: url.utm_content || '',
+        gclid: url.gclid || '', gbraid: url.gbraid || '', wbraid: url.wbraid || '',
+        fbclid: url.fbclid || '', msclkid: url.msclkid || '',
+        analytics_source: classify(url, ref),
+        analytics_source_data_1: (url.utm_source || '').toLowerCase() || (url.gclid ? 'google' : (url.fbclid ? 'facebook' : (url.msclkid ? 'bing' : ''))),
+        analytics_source_data_2: url.utm_campaign || url.utm_term || url.gclid || url.fbclid || url.msclkid || '',
+        first_referrer: (cached && cached.first_referrer) || ref,
+        first_url: (cached && cached.first_url) || location.href
+      };
+      try { sessionStorage.setItem(CACHE, JSON.stringify(a)); } catch (e) {}
+      return a;
+    }
+    if (cached) return cached;
+    var a0 = {
+      utm_source: '', utm_medium: '', utm_campaign: '', utm_term: '', utm_content: '',
+      gclid: '', gbraid: '', wbraid: '', fbclid: '', msclkid: '',
+      analytics_source: classify({}, ref), analytics_source_data_1: '', analytics_source_data_2: '',
+      first_referrer: ref, first_url: location.href
+    };
+    try { sessionStorage.setItem(CACHE, JSON.stringify(a0)); } catch (e) {}
+    return a0;
+  }
+
+  var current = compute();
+  window.soAttribution = function () { return Object.assign({}, current); };
+  window.soTrackLead = function (eventName, formType) {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: eventName, form_type: formType || '' });
+  };
+})();

@@ -433,6 +433,7 @@
           });
           const data = Object.fromEntries(fd.entries());
           data.interests = interests.join(', ') || 'none specified';
+          if (window.soAttribution) Object.assign(data, window.soAttribution());
           await fetch('https://myaieditor.com/api/form-notify', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -442,7 +443,7 @@
         form.querySelector('.form-fields').style.display = 'none';
         form.querySelector('.form-success').classList.add('show');
         if (typeof gtag !== 'undefined') gtag('event', 'sign_up', { method: 'newsletter' });
-        if (typeof gtag !== 'undefined') gtag('event', 'Jot_Form_Click', { form_type: 'newsletter_signup' });
+        if (window.soTrackLead) window.soTrackLead('so_lead_newsletter', 'newsletter_signup');
         if (typeof fbq !== 'undefined') fbq('track', 'Lead');
         window.scrollTo({ top: form.getBoundingClientRect().top + window.scrollY - 80, behavior: 'smooth' });
       });

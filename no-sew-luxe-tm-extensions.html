@@ -861,6 +861,7 @@
           recaptcha_token: token,
           _honey: ''
         };
+        if (window.soAttribution) Object.assign(payload, window.soAttribution());
 
         try {
           await fetch('https://myaieditor.com/api/form-notify', {
@@ -875,7 +876,7 @@
         nav.style.display = 'none';
         success.classList.add('show');
         if (typeof gtag !== 'undefined') gtag('event', 'form_submit', { form_type: 'no-sew-luxe-application' });
-        if (typeof gtag !== 'undefined') gtag('event', 'Jot_Form_Click', { form_type: 'no-sew-luxe-application' });
+        if (window.soTrackLead) window.soTrackLead('so_lead_no_sew_luxe', 'no-sew-luxe-application');
         if (typeof fbq !== 'undefined') fbq('track', 'Lead');
       });
 
