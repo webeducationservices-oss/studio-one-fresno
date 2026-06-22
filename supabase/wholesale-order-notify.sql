@@ -12,6 +12,13 @@
 -- Recipients are hardcoded below: to = hairbycatb@gmail.com + studioone.lp@gmail.com,
 -- cc = justin@webeducationservices.com, reply_to = the ordering stylist.
 -- Sender: noreply@studioonefresno.com (studioonefresno.com is a Resend-verified domain).
+--
+-- TAX STATUS: each wholesale account carries a `tax_exempt` flag (+ optional
+-- `resale_license`) in auth.users.raw_user_meta_data. A stylist who has sent a
+-- valid resale/wholesale license is tax-exempt; otherwise sales tax applies.
+-- The email shows this so Cat knows whether to charge tax. Set it with:
+--   select public.set_wholesale_tax_exempt('stylist@email.com', true, 'RESALE-LICENSE-#');
+--   select public.set_wholesale_tax_exempt('stylist@email.com', false);  -- charge tax
 
 create extension if not exists pg_net;
 
@@ -33,6 +40,7 @@ declare
   v_key text; v_order public.wholesale_orders%rowtype;
   v_email text; v_name text; v_rows text := ''; it jsonb;
   v_total text; v_placed text; v_note text; v_html text;
+  v_tax_exempt boolean; v_license text; v_tax_html text;
 begin
   select * into v_order from public.wholesale_orders where id = p_order_id;
   if not found then return; end if;
@@ -40,9 +48,13 @@ begin
   select decrypted_secret into v_key from vault.decrypted_secrets where name='resend_api_key' limit 1;
   if v_key is null then raise exception 'resend_api_key missing from vault'; end if;
 
-  select email, coalesce(nullif(raw_user_meta_data->>'full_name',''), email)
-    into v_email, v_name from auth.users where id = v_order.user_id;
+  select email,
+         coalesce(nullif(raw_user_meta_data->>'full_name',''), email),
+         coalesce((raw_user_meta_data->>'tax_exempt')::boolean, false),
+         nullif(raw_user_meta_data->>'resale_license','')
+    into v_email, v_name, v_tax_exempt, v_license from auth.users where id = v_order.user_id;
   v_email := coalesce(v_email,'unknown'); v_name := coalesce(v_name,'Unknown stylist');
+  v_tax_exempt := coalesce(v_tax_exempt, false);
 
   for it in select * from jsonb_array_elements(v_order.items) loop
     v_rows := v_rows ||
@@ -58,6 +70,23 @@ begin
   v_total  := to_char(coalesce(v_order.subtotal_cents,0)/100.0,'FM999990.00');
   v_placed := to_char(v_order.created_at at time zone 'America/Los_Angeles','FMMon FMDD, YYYY "at" HH12:MI AM');
   v_note   := public.esc(coalesce(nullif(v_order.note,''),'(none)'));
+
+  if v_tax_exempt then
+    v_tax_html :=
+      '<div style="margin-top:14px;padding:14px 16px;background:#eef7e6;border:1px solid #b6d49a;border-radius:3px">'||
+        '<p style="margin:0;font-size:12px;color:#3d5a1e;text-transform:uppercase;letter-spacing:1px;font-weight:700">Tax status</p>'||
+        '<p style="margin:6px 0 0;font-size:15px;color:#3d5a1e"><strong>Tax-exempt &mdash; resale license on file.</strong>'||
+          coalesce(' Resale license: '||public.esc(v_license)||'.','')||
+          ' Do not charge sales tax on this order.</p>'||
+      '</div>';
+  else
+    v_tax_html :=
+      '<div style="margin-top:14px;padding:14px 16px;background:#fdecea;border:1px solid #f5b7b1;border-radius:3px">'||
+        '<p style="margin:0;font-size:12px;color:#922b21;text-transform:uppercase;letter-spacing:1px;font-weight:700">Tax status</p>'||
+        '<p style="margin:6px 0 0;font-size:15px;color:#922b21"><strong>No resale license on file &mdash; apply sales tax.</strong> '||
+          'If this stylist has sent their wholesale/resale license, mark their account tax-exempt and this will update automatically.</p>'||
+      '</div>';
+  end if;
 
   v_html :=
     '<div style="font-family:Arial,Helvetica,sans-serif;max-width:600px;margin:0 auto;color:#222">'||
@@ -85,6 +114,7 @@ begin
           'This was placed as an order <em>request</em> on the wholesale site; <strong>no PayPal payment or card charge was processed.</strong> '||
           'Please collect payment from the stylist directly when you arrange fulfillment.</p>'||
         '</div>'||
+        v_tax_html ||
         '<div style="margin-top:14px;padding:14px 16px;background:#f6f6ef;border-left:3px solid #4c5223;border-radius:3px">'||
           '<p style="margin:0;font-size:12px;color:#888;text-transform:uppercase;letter-spacing:1px">Note from stylist</p>'||
           '<p style="margin:6px 0 0;font-size:15px">'||v_note||'</p>'||
@@ -121,7 +151,26 @@ create trigger trg_notify_wholesale_order
 after insert on public.wholesale_orders
 for each row execute function public.notify_wholesale_order();
 
+-- Admin helper: mark a wholesale account tax-exempt (resale license on file) or not.
+-- Stored on the account so it shows on every future order email automatically.
+--   select public.set_wholesale_tax_exempt('stylist@email.com', true, 'RESALE-#');
+--   select public.set_wholesale_tax_exempt('stylist@email.com', false);
+create or replace function public.set_wholesale_tax_exempt(p_email text, p_exempt boolean, p_license text default null)
+returns text language plpgsql security definer set search_path = public, auth as $s$
+declare v_id uuid; v_meta jsonb;
+begin
+  select id, coalesce(raw_user_meta_data,'{}'::jsonb) into v_id, v_meta
+    from auth.users where lower(email)=lower(p_email);
+  if v_id is null then return 'No wholesale account for '||p_email; end if;
+  v_meta := v_meta || jsonb_build_object('tax_exempt', p_exempt);
+  if p_license is not null then v_meta := v_meta || jsonb_build_object('resale_license', p_license); end if;
+  update auth.users set raw_user_meta_data = v_meta where id = v_id;
+  return p_email||' → tax_exempt='||p_exempt||coalesce(', resale_license='||p_license,'');
+end;
+$s$;
+
 -- These run with definer privilege from the trigger; deny direct calls by clients
 revoke execute on function public.send_wholesale_order_email(uuid) from public, anon, authenticated;
 revoke execute on function public.notify_wholesale_order() from public, anon, authenticated;
 revoke execute on function public.esc(text) from public, anon, authenticated;
+revoke execute on function public.set_wholesale_tax_exempt(text,boolean,text) from public, anon, authenticated;
