@@ -112,7 +112,8 @@
     if(!session){ location.replace('/wholesale-login'); return; }
     document.getElementById('signout').addEventListener('click', async ()=>{ await SB.auth.signOut(); location.replace('/wholesale-login'); });
 
-    const fmt = c => '$' + (c/100).toFixed(2).replace(/\.00$/,'');
+    const fmt = c => '$' + ((Number(c)||0)/100).toFixed(2).replace(/\.00$/,'');
+    const esc = s => String(s==null?'':s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
     let cart = JSON.parse(localStorage.getItem('ws_cart')||'[]');
     const grid = document.getElementById('grid');
 
@@ -124,18 +125,22 @@
     let lastCat = null;
     grid.innerHTML = products.map((p,idx)=>{
       const vs = Array.isArray(p.variants)? p.variants : [];
+      const oosOf = (v)=>{ const r=(v.inventory==null?'':String(v.inventory)).trim(); return r!=='' && (parseInt(r,10)||0) <= 0; };
+      const priceOf = (v)=>{ const c=Number(v&&v.price_cents); return Number.isFinite(c)?c:(Number(p.wholesale_price_cents)||0); };
       const opts = vs.length
-        ? vs.map((v,i)=>`<option value="${i}" data-c="${v.price_cents||p.wholesale_price_cents}">${(v.name||('Option '+(i+1)))} — ${fmt(v.price_cents||p.wholesale_price_cents)}</option>`).join('')
-        : `<option value="-1" data-c="${p.wholesale_price_cents}">Standard — ${fmt(p.wholesale_price_cents)}</option>`;
-      const first = vs.length ? (vs[0].price_cents||p.wholesale_price_cents) : p.wholesale_price_cents;
+        ? vs.map((v,i)=>{ const c=priceOf(v); const oos=oosOf(v); const nm=(v.name||('Option '+(i+1)));
+            return `<option value="${i}" data-c="${c}" data-name="${esc(nm)}" data-oos="${oos?1:0}">${esc(nm)} — ${fmt(c)}${oos?' — Out of stock':''}</option>`; }).join('')
+        : `<option value="-1" data-c="${Number(p.wholesale_price_cents)||0}" data-name="Standard" data-oos="0">Standard — ${fmt(Number(p.wholesale_price_cents)||0)}</option>`;
+      const first = vs.length ? priceOf(vs[0]) : (Number(p.wholesale_price_cents)||0);
       let head = '';
-      if(p.category && p.category !== lastCat){ head = `<h2 class="cat-head">${p.category}</h2>`; lastCat = p.category; }
+      if(p.category && p.category !== lastCat){ head = `<h2 class="cat-head">${esc(p.category)}</h2>`; lastCat = p.category; }
       return head + `<div class="card" data-idx="${idx}">
-        <div class="card-img"><img src="${p.image_url||'/images/og-image.jpg'}" alt="${(p.name||'').replace(/"/g,'')}" loading="lazy"></div>
+        <div class="card-img"><img src="${esc(p.image_url||'/images/og-image.jpg')}" alt="${esc(p.name||'')}" loading="lazy"></div>
         <div class="card-body">
-          <h3>${p.name}</h3>
+          <h3>${esc(p.name)}</h3>
           <select class="vsel">${opts}</select>
           <div class="card-price">${fmt(first)}</div>
+          <div class="oos-note" style="font-size:12px;color:#d9b34a;margin-top:4px;line-height:1.4"></div>
           <div class="card-row">
             <input class="qty" type="number" min="1" max="99" value="1">
             <button class="add">Add</button>
@@ -145,12 +150,14 @@
 
     // price updates with variant
     grid.querySelectorAll('.card').forEach(card=>{
-      const sel=card.querySelector('.vsel'), price=card.querySelector('.card-price');
-      sel.addEventListener('change',()=>{ price.textContent=fmt(+sel.selectedOptions[0].dataset.c); });
+      const sel=card.querySelector('.vsel'), price=card.querySelector('.card-price'), oosNote=card.querySelector('.oos-note');
+      function refreshOos(){ const o=sel.selectedOptions[0]; oosNote.textContent=(o&&o.dataset.oos==='1')?'Out of stock — you can still request it and we’ll confirm availability.':''; }
+      sel.addEventListener('change',()=>{ price.textContent=fmt(+sel.selectedOptions[0].dataset.c); refreshOos(); });
+      refreshOos();
       card.querySelector('.add').addEventListener('click',()=>{
         const p=products[+card.dataset.idx];
         const o=sel.selectedOptions[0];
-        cart.push({ slug:p.slug, name:p.name, variant:(o.textContent.split(' — ')[0]), price_cents:+o.dataset.c, qty:Math.max(1,parseInt(card.querySelector('.qty').value)||1) });
+        cart.push({ slug:p.slug, name:p.name, variant:(o.dataset.name || o.textContent.split(' — ')[0]), price_cents:+o.dataset.c, qty:Math.max(1,parseInt(card.querySelector('.qty').value)||1) });
         saveCart(); const b=card.querySelector('.add'); b.textContent='Added ✓'; b.classList.add('added'); setTimeout(()=>{b.textContent='Add';b.classList.remove('added');},1400);
         openDrawer();
       });
