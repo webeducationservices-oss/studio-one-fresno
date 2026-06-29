@@ -343,6 +343,21 @@
     .work-gallery-item:hover img{transform:scale(1.05)}
     .work-gallery-item::after{content:'';position:absolute;inset:0;border:1px solid rgba(255,255,255,.05);border-radius:6px;pointer-events:none}
 
+    /* Custom Wig Journey — numbered steps */
+    .wig-journey{max-width:880px;margin:48px auto 0;display:flex;flex-direction:column}
+    .wj-step{display:flex;gap:22px;align-items:flex-start;padding:30px 0;border-top:1px solid rgba(255,255,255,.08)}
+    .wj-step:first-child{border-top:none;padding-top:8px}
+    .wj-num{flex:none;width:52px;height:52px;border-radius:50%;border:1px solid var(--olive);color:var(--olive-light);display:flex;align-items:center;justify-content:center;font-family:var(--heading-font);font-size:22px;font-weight:400}
+    .wj-content{flex:1;min-width:0}
+    .wj-eyebrow{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--olive-light);margin-bottom:6px}
+    .wj-content h3{font-family:var(--heading-font);font-size:24px;font-weight:400;color:var(--white);line-height:1.3;margin-bottom:10px}
+    .wj-content p{font-size:15.5px;color:var(--light-gray);font-weight:300;line-height:1.8;margin-bottom:12px}
+    .wj-content ul.list-clean{margin:6px 0 14px}
+    .wj-note{background:rgba(76,82,35,.10);border:1px solid rgba(76,82,35,.4);border-radius:8px;padding:18px 22px;margin-top:6px}
+    .wj-note p{margin-bottom:10px}.wj-note p:last-child{margin-bottom:0}
+    .wj-closing{max-width:760px;margin:52px auto 0;text-align:center}
+    @media (max-width:640px){.wj-step{gap:14px;padding:24px 0}.wj-num{width:42px;height:42px;font-size:18px}.wj-content h3{font-size:20px}}
+
     /* FAQ — refined card style (matches services.html) */
     .faq-list{max-width:880px;margin:64px auto 0;display:flex;flex-direction:column;gap:14px}
     .faq-item{background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.06);border-radius:6px;overflow:hidden;transition:border-color .3s ease,background .3s ease}
@@ -502,50 +517,103 @@
     </div>
   </section>
 
-  <!-- ==================== YOUR JOURNEY / CONSULTATION (image + bullets) ==================== -->
-  <section class="section section--dark">
+  <!-- ==================== YOUR CUSTOM WIG JOURNEY ==================== -->
+  <section class="section section--dark" id="wig-journey">
     <div class="section-inner">
-      <div class="consult-feature">
-        <div class="consult-img" data-animate="fade-right">
-          <img src="/images/webflow/wigs-live/wig-lifestyle-consult.webp" alt="One-on-one wig consultation at Studio One Hair Design in Fresno" loading="lazy" decoding="async" width="1600" height="785">
+      <div class="text-center" style="margin-bottom:8px" data-animate>
+        <p class="eyebrow">Your Custom Wig Journey</p>
+        <span class="divider"></span>
+        <h2 class="section-heading" style="max-width:820px;margin:0 auto 20px">A Simple, Supportive, Transparent Process</h2>
+        <p class="lead">We understand that choosing a custom wig is a deeply personal decision. Our goal is to make the process simple, supportive, and transparent from start to finish.</p>
+      </div>
+
+      <div class="consult-img" style="max-width:880px;margin:40px auto 0;border-radius:10px;overflow:hidden" data-animate>
+        <img src="/images/webflow/wigs-live/wig-lifestyle-consult.webp" alt="One-on-one wig consultation at Studio One Hair Design in Fresno" loading="lazy" decoding="async" width="1600" height="785">
+      </div>
+
+      <div class="wig-journey" data-animate>
+        <div class="wj-step">
+          <div class="wj-num">1</div>
+          <div class="wj-content">
+            <p class="wj-eyebrow">Step 1</p>
+            <h3>Request a Consultation</h3>
+            <p>Complete our <a href="/wig-consultation" style="color:var(--olive-light);border-bottom:1px solid var(--olive)">Wig Consultation Form</a> and tell us a little about your hair journey, goals, and what you&rsquo;re hoping to achieve.</p>
+          </div>
         </div>
-        <div data-animate="fade-left">
-          <p class="eyebrow">Your First Appointment</p>
-          <h2 class="section-heading">Your journey begins with a one-on-one appointment designed to be relaxed, informative, and empowering.</h2>
-          <p class="section-sub" style="margin-top:8px">In our private fitting space, you&rsquo;ll receive:</p>
-          <div class="consult-items">
-            <div class="consult-item">
-              <h3>A warm welcome and an open conversation</h3>
-              <p>We&rsquo;ll talk through your challenges, goals, and lifestyle so we can guide you toward the most natural and confidence-building solution.</p>
-            </div>
-            <div class="consult-item">
-              <h3>A gentle scalp &amp; density evaluation</h3>
-              <p>This helps us determine whether a luxury or medical-grade wig is best for you, or if you may actually get a better, more seamless result with extensions or a topper.</p>
-            </div>
-            <div class="consult-item">
-              <h3>Cap sizing and precise measurements</h3>
-              <p>For wig candidates, we take detailed measurements to ensure comfort and security.</p>
-            </div>
-            <div class="consult-item">
-              <h3>Length, density &amp; style recommendations</h3>
-              <p>We design a look that feels natural, effortless, and true to you.</p>
-            </div>
-            <div class="consult-item">
-              <h3>Overview of medical-grade options</h3>
-              <p>Especially for women experiencing hair loss.</p>
-            </div>
-            <div class="consult-item">
-              <h3>Insurance guidance</h3>
-              <p>Many medical wigs can be covered with proper documentation through Maven Mane &amp; Co.</p>
-            </div>
-            <div class="consult-item">
-              <h3>Transparent next steps + timelines</h3>
-              <p>So you always know exactly what to expect.</p>
+
+        <div class="wj-step">
+          <div class="wj-num">2</div>
+          <div class="wj-content">
+            <p class="wj-eyebrow">Step 2</p>
+            <h3>Complimentary Phone Consultation</h3>
+            <p>We&rsquo;ll schedule a phone consultation to get to know you, discuss your concerns, answer your initial questions, and determine whether a custom wig is the right solution for your needs.</p>
+            <p style="margin-bottom:6px">During this conversation we&rsquo;ll discuss:</p>
+            <ul class="list-clean">
+              <li>Your hair goals and lifestyle</li>
+              <li>The custom wig process</li>
+              <li>Estimated pricing and timeline</li>
+              <li>Insurance questions, if applicable</li>
+              <li>Whether a custom wig is the best option for you</li>
+            </ul>
+            <p>If we feel we&rsquo;re a great fit, we&rsquo;ll schedule your Custom Wig Design Appointment.</p>
+          </div>
+        </div>
+
+        <div class="wj-step">
+          <div class="wj-num">3</div>
+          <div class="wj-content">
+            <p class="wj-eyebrow">Step 3</p>
+            <h3>Custom Wig Design Appointment</h3>
+            <p>This is where your custom wig truly begins.</p>
+            <p style="margin-bottom:6px">During your appointment we will:</p>
+            <ul class="list-clean">
+              <li>Review your personalized wig design</li>
+              <li>Discuss realistic fit and styling expectations</li>
+              <li>Take precise measurements</li>
+              <li>Select your color, density, length, and texture</li>
+              <li>Review any manufacturer recommendations specific to your custom piece</li>
+              <li>Answer any remaining questions before placing your order</li>
+            </ul>
+            <p>Once you&rsquo;re confident moving forward, your custom wig order will be finalized.</p>
+            <div class="wj-note">
+              <p>Because every wig is custom-made specifically for you, <strong style="color:var(--off-white);font-weight:500">full payment is required before your order is submitted to the manufacturer</strong>. All custom wig orders are non-refundable once production begins.</p>
+              <p>We understand this is a significant investment. <strong style="color:var(--off-white);font-weight:500">Financing and payment plan options are available for qualified guests.</strong> We&rsquo;d be happy to discuss those options during your appointment.</p>
             </div>
           </div>
-          <div style="margin-top:36px">
-            <a href="/wig-consultation" class="olive-button">Start Your Consultation</a>
+        </div>
+
+        <div class="wj-step">
+          <div class="wj-num">4</div>
+          <div class="wj-content">
+            <p class="wj-eyebrow">Step 4</p>
+            <h3>Your Custom Wig Is Crafted</h3>
+            <p>Once your order has been placed, your wig is handcrafted specifically for you. Production times vary depending on the level of customization, and we&rsquo;ll keep you updated throughout the process.</p>
           </div>
+        </div>
+
+        <div class="wj-step">
+          <div class="wj-num">5</div>
+          <div class="wj-content">
+            <p class="wj-eyebrow">Step 5</p>
+            <h3>Delivery &amp; Personal Fitting</h3>
+            <p>When your custom wig arrives, we&rsquo;ll schedule your fitting appointment.</p>
+            <p style="margin-bottom:6px">During this visit we&rsquo;ll:</p>
+            <ul class="list-clean">
+              <li>Ensure your wig fits comfortably and securely</li>
+              <li>Make any necessary adjustments</li>
+              <li>Teach you how to wear and care for your wig</li>
+              <li>Review styling techniques and maintenance</li>
+              <li>Answer any final questions so you leave feeling confident</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="wj-closing" data-animate>
+        <h2 class="section-heading" style="font-size:30px;margin-bottom:16px">We&rsquo;re With You Every Step of the Way</h2>
+        <p class="lead">Hair loss is a personal journey, and you don&rsquo;t have to navigate it alone. Our goal is to create a custom solution that looks natural, feels comfortable, and helps you feel like yourself again. From your first phone call through your final fitting, we&rsquo;re here to guide and support you every step of the way.</p>
+        <div style="margin-top:32px">
+          <a href="/wig-consultation" class="olive-button">Start Your Consultation</a>
         </div>
       </div>
     </div>
