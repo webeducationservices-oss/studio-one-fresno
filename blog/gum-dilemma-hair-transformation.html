@@ -30,19 +30,20 @@
     .blog-content strong{font-weight:600;color:var(--white)}
     .blog-content a{color:var(--olive-light);text-decoration:underline}
     .blog-content img{max-width:100%;height:auto;margin:40px 0;border-radius:4px}
-    .related-posts{margin-top:80px;padding-top:40px;border-top:1px solid rgba(255,255,255,.1)}
-    .related-posts h3{font-family:var(--heading-font);font-size:28px;font-weight:400;color:var(--white);margin-bottom:30px}
-    .related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-    .related-card{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:4px;overflow:hidden;display:flex;flex-direction:column;transition:transform .3s,border-color .3s}
+    .related-posts{background:var(--dark);padding:80px 40px}
+    .related-inner{max-width:1200px;margin:0 auto}
+    .related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:32px}
+    .related-card{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06);border-radius:4px;overflow:hidden;transition:transform .3s,border-color .3s;display:flex;flex-direction:column}
     .related-card:hover{transform:translateY(-4px);border-color:var(--olive)}
     .related-card-img{aspect-ratio:16/10;overflow:hidden;background:#1a1a1a}
     .related-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
     .related-card:hover .related-card-img img{transform:scale(1.05)}
-    .related-card-body{padding:20px;flex:1;display:flex;flex-direction:column}
-    .related-card h4{font-family:var(--heading-font);font-size:18px;font-weight:400;color:var(--white);line-height:1.3;margin-bottom:10px}
-    .related-card p{font-size:13px;color:var(--light-gray);font-weight:300;line-height:1.5;flex:1;margin-bottom:10px}
-    .related-card-link{font-size:11px;letter-spacing:2px;color:var(--olive-light);text-transform:uppercase;font-weight:500;border-bottom:1px solid var(--olive);padding-bottom:2px;align-self:flex-start}
+    .related-card-body{padding:24px;flex:1;display:flex;flex-direction:column}
+    .related-card-cat{font-size:10px;letter-spacing:2px;color:var(--olive-light);text-transform:uppercase;font-weight:600;margin-bottom:8px}
+    .related-card h3{font-family:var(--heading-font);font-size:20px;color:var(--white);line-height:1.25;font-weight:400;margin-bottom:12px;flex:1}
+    .related-card p{font-size:13px;color:var(--light-gray);font-weight:300;line-height:1.6}
     @media(max-width:1024px){.related-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:768px){.related-posts{padding:60px 24px}.related-grid{grid-template-columns:1fr}}
     @media(max-width:768px){
       .blog-hero h1{font-size:36px}
       .blog-hero p{font-size:16px}
@@ -213,36 +214,40 @@
 
     <p><strong>Ready to explore the possibilities?</strong> Fill out our extension or wig questionnaire today! We can't wait to welcome you to Studio One Hair Design and help you fall in love with your hair all over again. Visit our website to learn more and book your consultation.</p>
 
-    <div class="related-posts">
-      <h3>More on Extensions & Hair Transformations</h3>
+  </main>
+
+  <section class="related-posts">
+    <div class="related-inner">
+      <p style="font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--olive-light);margin-bottom:12px">More from the blog</p>
+      <h2 style="font-family:var(--heading-font);font-size:32px;color:var(--white);font-weight:400">Keep reading</h2>
       <div class="related-grid">
         <a href="/blog/how-hair-extensions-work-volume-length-confidence" class="related-card">
-          <div class="related-card-img"><img src="/images/blog/how-hair-extensions-work-volume-length-confidence.webp" alt="How Hair Extensions Work" loading="lazy" decoding="async" width="1200" height="750"></div>
+          <div class="related-card-img"><img src="/images/blog/how-hair-extensions-work-volume-length-confidence.webp" alt="How Hair Extensions Work: Volume, Length &amp; Confidence" loading="lazy" decoding="async" width="1200" height="750"></div>
           <div class="related-card-body">
-            <h4>How Hair Extensions Work: Volume, Length & Confidence</h4>
+            <p class="related-card-cat">Extensions</p>
+            <h3>How Hair Extensions Work: Volume, Length &amp; Confidence</h3>
             <p>Discover how extensions can transform your look and boost your confidence.</p>
-            <a href="/blog/how-hair-extensions-work-volume-length-confidence" class="related-card-link">Read More</a>
           </div>
         </a>
         <a href="/blog/what-most-people-get-wrong-about-hair-extensions" class="related-card">
-          <div class="related-card-img"><img src="/images/blog/what-most-people-get-wrong-about-hair-extensions.webp" alt="What Most People Get Wrong" loading="lazy" decoding="async" width="1200" height="750"></div>
+          <div class="related-card-img"><img src="/images/blog/what-most-people-get-wrong-about-hair-extensions.webp" alt="What Most People Get Wrong About Hair Extensions" loading="lazy" decoding="async" width="1200" height="750"></div>
           <div class="related-card-body">
-            <h4>What Most People Get Wrong About Hair Extensions</h4>
+            <p class="related-card-cat">Extensions</p>
+            <h3>What Most People Get Wrong About Hair Extensions</h3>
             <p>Common myths and misconceptions about extension care and maintenance.</p>
-            <a href="/blog/what-most-people-get-wrong-about-hair-extensions" class="related-card-link">Read More</a>
           </div>
         </a>
         <a href="/blog/the-truth-about-nbr-extensions-at-studio-one" class="related-card">
-          <div class="related-card-img"><img src="/images/blog/the-truth-about-nbr-extensions-at-studio-one.webp" alt="The Truth About NBR Extensions" loading="lazy" decoding="async" width="1200" height="750"></div>
+          <div class="related-card-img"><img src="/images/blog/the-truth-about-nbr-extensions-at-studio-one.webp" alt="The Truth About NBR Extensions at Studio One" loading="lazy" decoding="async" width="1200" height="750"></div>
           <div class="related-card-body">
-            <h4>The Truth About NBR Extensions at Studio One</h4>
+            <p class="related-card-cat">Extensions</p>
+            <h3>The Truth About NBR Extensions at Studio One</h3>
             <p>Everything you need to know about Natural Beaded Rows extensions.</p>
-            <a href="/blog/the-truth-about-nbr-extensions-at-studio-one" class="related-card-link">Read More</a>
           </div>
         </a>
       </div>
     </div>
-  </main>
+  </section>
 
   <footer class="footer">
     <div class="footer-inner">
