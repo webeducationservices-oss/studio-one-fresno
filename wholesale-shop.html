@@ -59,7 +59,9 @@
     .oitem .vr{font-size:12px;color:var(--light-gray)}
     .drawer-foot{padding:20px 24px;border-top:1px solid rgba(255,255,255,.08)}
     .drawer-foot textarea{width:100%;min-height:62px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:4px;color:var(--white);padding:10px;font-family:inherit;font-size:13px;margin-bottom:12px}
-    .sumline{display:flex;justify-content:space-between;color:var(--off-white);font-weight:600;margin-bottom:14px}
+    .sumline{display:flex;justify-content:space-between;color:var(--off-white);font-weight:600;margin-bottom:12px}
+    .sumline.taxline{font-weight:400;font-size:14px;color:var(--light-gray)}
+    .sumline.total{font-size:17px;color:var(--white);border-top:1px solid rgba(255,255,255,.12);padding-top:12px;margin-top:2px;margin-bottom:14px}
     .submit{width:100%;padding:15px;background:var(--olive);color:var(--white);font-size:12px;font-weight:600;letter-spacing:3px;text-transform:uppercase;border:none;border-radius:4px}
     .submit:hover{background:var(--olive-light)}
     .submit:disabled{opacity:.6}
@@ -95,12 +97,19 @@
     <div class="drawer-body" id="orderItems"><p class="empty">No items yet. Add hair to build your order.</p></div>
     <div class="drawer-foot">
       <textarea id="orderNote" placeholder="Notes for Studio One (optional)…"></textarea>
-      <div class="sumline"><span>Estimated total</span><span id="orderTotal">$0</span></div>
-      <button class="submit" id="submitOrder" disabled>Submit Order Request</button>
+      <div class="sumline"><span>Subtotal</span><span id="orderSubtotal">$0</span></div>
+      <div class="sumline taxline" id="taxLine" style="display:none"><span>Sales tax</span><span id="orderTax">$0</span></div>
+      <div class="sumline total"><span>Total</span><span id="orderTotal">$0</span></div>
+      <p class="empty" id="ppEmpty" style="padding:8px 0">Add hair to your order to check out.</p>
+      <div id="paypal-button-container"></div>
+      <p id="ppError" style="display:none;color:#ffb3b3;font-size:13px;margin-top:10px;line-height:1.5"></p>
+      <p style="font-size:11px;color:#7a7a6a;text-align:center;margin-top:10px;line-height:1.5">Secure checkout by PayPal &mdash; pay with PayPal, Venmo, or any card.</p>
     </div>
   </aside>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.0/dist/umd/supabase.min.js"></script>
+  <!-- PayPal SDK — Smart Payment Buttons + card guest checkout + Venmo (same live client-id as the retail cart) -->
+  <script src="https://www.paypal.com/sdk/js?client-id=AW4HfPBgoAi0ej4WYNWCyFbvm8eKoO3tKuvUrL5YVbD5MZu-nOsaInJxJDLiOfRErgnjtieDEC73lhux&currency=USD&intent=capture&enable-funding=venmo&components=buttons" data-sdk-integration-source="wholesale"></script>
   <script>
   (async function(){
     const SB = window.supabase.createClient(
@@ -164,41 +173,106 @@
     });
 
     // ---- cart / drawer ----
+    // Wholesale REQUIRES payment: PayPal is the only way to submit. The order row is
+    // written ONLY after PayPal captures (paid=true + txn id). Taxable accounts (no
+    // resale license on file) pay CA sales tax; exempt accounts pay the subtotal.
+    const TAX_RATE = 0.0835;   // Fresno, CA combined sales-tax rate — change here if it changes
     const drawer=document.getElementById('drawer'), items=document.getElementById('orderItems'),
-          totalEl=document.getElementById('orderTotal'), countEl=document.getElementById('cartCount'),
-          submitBtn=document.getElementById('submitOrder');
+          subtotalEl=document.getElementById('orderSubtotal'), taxLine=document.getElementById('taxLine'),
+          taxEl=document.getElementById('orderTax'), totalEl=document.getElementById('orderTotal'),
+          countEl=document.getElementById('cartCount'), ppEmpty=document.getElementById('ppEmpty'),
+          ppError=document.getElementById('ppError');
+    let taxExempt=false, ppActions=null;
     function openDrawer(){ drawer.classList.add('open'); }
     document.getElementById('openCart').addEventListener('click',openDrawer);
     document.getElementById('closeCart').addEventListener('click',()=>drawer.classList.remove('open'));
     function saveCart(){ localStorage.setItem('ws_cart',JSON.stringify(cart)); renderCart(); }
+    function amounts(){
+      const subtotal=cart.reduce((s,i)=>s+(Number(i.price_cents)||0)*(Number(i.qty)||0),0);
+      const tax=taxExempt?0:Math.round(subtotal*TAX_RATE);
+      return { subtotal, tax, total:subtotal+tax };
+    }
+    function updatePPState(){ if(ppActions){ if(cart.length) ppActions.enable(); else ppActions.disable(); } }
+    function showPPError(msg){ ppError.textContent=msg; ppError.style.display='block'; }
     function renderCart(){
       countEl.textContent=cart.reduce((s,i)=>s+i.qty,0);
       if(!cart.length){ items.innerHTML='<p class="empty">No items yet. Add hair to build your order.</p>'; }
-      else items.innerHTML=cart.map((i,ix)=>`<div class="oitem"><div><div class="nm">${i.name}</div><div class="vr">${i.variant} &middot; Qty ${i.qty}</div></div><div style="text-align:right"><div>${fmt(i.price_cents*i.qty)}</div><button class="x" data-ix="${ix}">remove</button></div></div>`).join('');
-      const total=cart.reduce((s,i)=>s+i.price_cents*i.qty,0);
-      totalEl.textContent=fmt(total); submitBtn.disabled=!cart.length;
+      else items.innerHTML=cart.map((i,ix)=>`<div class="oitem"><div><div class="nm">${esc(i.name)}</div><div class="vr">${esc(i.variant)} &middot; Qty ${i.qty}</div></div><div style="text-align:right"><div>${fmt(i.price_cents*i.qty)}</div><button class="x" data-ix="${ix}">remove</button></div></div>`).join('');
+      const a=amounts();
+      subtotalEl.textContent=fmt(a.subtotal);
+      taxEl.textContent=fmt(a.tax);
+      taxLine.style.display=(a.tax>0)?'flex':'none';
+      totalEl.textContent=fmt(a.total);
+      ppEmpty.style.display=cart.length?'none':'block';
+      updatePPState();
       items.querySelectorAll('.x').forEach(b=>b.addEventListener('click',()=>{ cart.splice(+b.dataset.ix,1); saveCart(); }));
     }
-    renderCart();
 
-    submitBtn.addEventListener('click', async ()=>{
-      submitBtn.disabled=true; submitBtn.textContent='Submitting…';
-      const subtotal=cart.reduce((s,i)=>s+i.price_cents*i.qty,0);
-      const note=document.getElementById('orderNote').value.trim()||null;
-      const orderItems=cart.slice();   // snapshot for the dashboard notify (cart is cleared below)
-      const { error } = await SB.from('wholesale_orders').insert({ items:cart, subtotal_cents:subtotal, note });
-      if(error){ submitBtn.textContent='Submit Order Request'; submitBtn.disabled=false; alert('Could not submit: '+error.message); return; }
-      notifyDashboard(orderItems, subtotal, note);   // additive, fire-and-forget — never blocks the stylist
-      cart=[]; saveCart();
-      items.innerHTML='<p class="empty" style="color:#cfe0a8">Order request submitted! Studio One will follow up with you to confirm pricing and arrange fulfillment.</p>';
-      totalEl.textContent='$0'; submitBtn.textContent='Order Submitted ✓';
-    });
+    // Read the stylist's tax-exempt status (resale license on file), paint the cart, mount PayPal
+    (async()=>{
+      try{ const { data:{ user } } = await SB.auth.getUser(); taxExempt=!!(user&&user.user_metadata&&user.user_metadata.tax_exempt); }catch(e){}
+      renderCart();
+      mountPayPal();
+    })();
+
+    function mountPayPal(){
+      if(!window.paypal){ showPPError('Payment couldn’t load — please refresh the page, or text 559-795-9724.'); return; }
+      paypal.Buttons({
+        style:{ layout:'vertical', color:'gold', shape:'rect', label:'paypal' },
+        onInit:function(data,actions){ ppActions=actions; updatePPState(); },
+        onClick:function(){ if(!cart.length){ showPPError('Add hair to your order first.'); return false; } ppError.style.display='none'; },
+        createOrder:function(data,actions){
+          const a=amounts();
+          const ppItems=cart.map(i=>({
+            name:String(i.name||'Hair').slice(0,127),
+            description:(String(i.variant||'').slice(0,127))||undefined,
+            unit_amount:{ currency_code:'USD', value:((Number(i.price_cents)||0)/100).toFixed(2) },
+            quantity:String(i.qty),
+            category:'PHYSICAL_GOODS',
+          }));
+          return actions.order.create({
+            purchase_units:[{
+              description:`Studio One Wholesale — ${cart.length} item${cart.length===1?'':'s'}`,
+              amount:{ currency_code:'USD', value:(a.total/100).toFixed(2), breakdown:{
+                item_total:{ currency_code:'USD', value:(a.subtotal/100).toFixed(2) },
+                tax_total:{ currency_code:'USD', value:(a.tax/100).toFixed(2) },
+              }},
+              items:ppItems,
+              custom_id:'ws_'+Date.now(),
+            }],
+            application_context:{ shipping_preference:'NO_SHIPPING', user_action:'PAY_NOW', brand_name:'Studio One Hair Design' },
+          });
+        },
+        onApprove:function(data,actions){
+          return actions.order.capture().then(async function(details){
+            const a=amounts();
+            const note=document.getElementById('orderNote').value.trim()||null;
+            const orderItems=cart.slice();
+            const { error } = await SB.from('wholesale_orders').insert({
+              items:cart, subtotal_cents:a.subtotal, tax_cents:a.tax, total_cents:a.total,
+              paid:true, paypal_order_id:details.id, note
+            });
+            if(error){
+              // Payment WAS captured — make sure the stylist keeps the reference.
+              showPPError('Your payment went through (PayPal '+details.id+'), but we hit a snag saving the order. Please screenshot this and text 559-795-9724 so we can confirm it.');
+              return;
+            }
+            notifyDashboard(orderItems, a.subtotal, a.tax, a.total, details.id, note);
+            cart=[]; saveCart();
+            drawer.classList.add('open');
+            items.innerHTML='<p class="empty" style="color:#cfe0a8">Payment received — thank you! Your order is confirmed and Studio One will arrange fulfillment.<br><br>PayPal confirmation: '+esc(details.id)+'</p>';
+          });
+        },
+        onError:function(err){ console.error('PayPal error:',err); showPPError('Checkout failed. Please refresh and try again, or text 559-795-9724.'); },
+        onCancel:function(){},
+      }).render('#paypal-button-container');
+    }
 
     // Mirror the order into the WES admin dashboard (shared leads table,
     // form_type='wholesale_order') so it shows up under Orders automatically.
     // Best-effort: any failure here is swallowed and never affects the
     // stylist's confirmation or the saved wholesale_orders row.
-    async function notifyDashboard(orderItems, subtotal, note){
+    async function notifyDashboard(orderItems, subtotal, tax, total, paypalId, note){
       try {
         const { data:{ user } } = await SB.auth.getUser();
         const fullName=(user?.user_metadata?.full_name || user?.user_metadata?.name || '').trim();
@@ -220,6 +294,10 @@
             email:user?.email||'',
             items:JSON.stringify(orderItems),   // send as a string so form-notify keeps it (it drops non-string fields)
             subtotal_cents:String(subtotal),     // numeric string; the admin reads it with Number()
+            tax_cents:String(tax),
+            total_cents:String(total),
+            paid:'true',                         // wholesale now requires PayPal — orders arrive paid
+            paypal_order_id:paypalId||'',
             note:note||''
           })
         });

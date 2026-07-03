@@ -1,9 +1,11 @@
 -- Wholesale order email notifications  (StudioOne-CA Supabase project: ddeqyxmvrnqudbsdxxox)
 -- ---------------------------------------------------------------------------------------
 -- Fires SERVER-SIDE on every INSERT into public.wholesale_orders and emails Cat (+ Justin)
--- via Resend, using pg_net. This is independent of the browser, so an order can never be
--- placed "silently" again. The wholesale shop is a REQUEST/QUOTE flow — no payment is
--- collected; Cat arranges pricing & fulfillment with the stylist directly.
+-- via Resend, using pg_net. Independent of the browser, so an order can never be placed
+-- "silently". Orders now REQUIRE PayPal payment at checkout (2026-07-03): the row carries
+-- paid/paypal_order_id/tax_cents/total_cents, and the email's Payment-status banner shows
+-- PAID (green, with the PayPal txn) vs the legacy "not paid" (amber) for older request-only
+-- rows. Taxable accounts (no resale license) get CA sales tax added; exempt accounts don't.
 --
 -- The Resend API key is stored in Supabase Vault under the name 'resend_api_key'
 -- (NOT in this file, NOT in the repo). To (re)store it:
@@ -39,8 +41,8 @@ as $fn$
 declare
   v_key text; v_order public.wholesale_orders%rowtype;
   v_email text; v_name text; v_rows text := ''; it jsonb;
-  v_total text; v_placed text; v_note text; v_html text;
-  v_tax_exempt boolean; v_license text; v_tax_html text;
+  v_subtotal text; v_tax text; v_grand text; v_placed text; v_note text; v_html text;
+  v_tax_exempt boolean; v_license text; v_tax_html text; v_pay_html text;
 begin
   select * into v_order from public.wholesale_orders where id = p_order_id;
   if not found then return; end if;
@@ -67,7 +69,9 @@ begin
       '</tr>';
   end loop;
 
-  v_total  := to_char(coalesce(v_order.subtotal_cents,0)/100.0,'FM999990.00');
+  v_subtotal := to_char(coalesce(v_order.subtotal_cents,0)/100.0,'FM999990.00');
+  v_tax      := to_char(coalesce(v_order.tax_cents,0)/100.0,'FM999990.00');
+  v_grand    := to_char(coalesce(v_order.total_cents, coalesce(v_order.subtotal_cents,0)+coalesce(v_order.tax_cents,0))/100.0,'FM999990.00');
   v_placed := to_char(v_order.created_at at time zone 'America/Los_Angeles','FMMon FMDD, YYYY "at" HH12:MI AM');
   v_note   := public.esc(coalesce(nullif(v_order.note,''),'(none)'));
 
@@ -88,6 +92,22 @@ begin
       '</div>';
   end if;
 
+  if v_order.paid then
+    v_pay_html :=
+      '<div style="margin-top:18px;padding:14px 16px;background:#eef7e6;border:1px solid #b6d49a;border-radius:3px">'||
+        '<p style="margin:0;font-size:12px;color:#3d5a1e;text-transform:uppercase;letter-spacing:1px;font-weight:700">Payment status</p>'||
+        '<p style="margin:6px 0 0;font-size:15px;color:#3d5a1e"><strong>PAID IN FULL via PayPal &mdash; $'||v_grand||' captured.</strong>'||
+          coalesce(' PayPal transaction: '||public.esc(v_order.paypal_order_id)||'.','')||'</p>'||
+      '</div>';
+  else
+    v_pay_html :=
+      '<div style="margin-top:18px;padding:14px 16px;background:#fff4e5;border:1px solid #f0c890;border-radius:3px">'||
+        '<p style="margin:0;font-size:12px;color:#a06a00;text-transform:uppercase;letter-spacing:1px;font-weight:700">Payment status</p>'||
+        '<p style="margin:6px 0 0;font-size:15px;color:#7a5200"><strong>Not paid &mdash; no money was collected.</strong> '||
+        'Collect payment from the stylist directly when you arrange fulfillment.</p>'||
+      '</div>';
+  end if;
+
   v_html :=
     '<div style="font-family:Arial,Helvetica,sans-serif;max-width:600px;margin:0 auto;color:#222">'||
       '<div style="background:#4c5223;padding:20px 24px">'||
@@ -105,15 +125,18 @@ begin
             '<th style="padding:8px 12px;border-bottom:2px solid #4c5223;text-align:center">Qty</th>'||
             '<th style="padding:8px 12px;border-bottom:2px solid #4c5223;text-align:right">Subtotal</th>'||
           '</tr></thead><tbody>'|| v_rows ||'</tbody>'||
-          '<tfoot><tr><td colspan="3" style="padding:12px;text-align:right;font-weight:600">Total</td>'||
-            '<td style="padding:12px;text-align:right;font-weight:700;font-size:16px">$'||v_total||'</td></tr></tfoot>'||
+          '<tfoot>'||
+            '<tr><td colspan="3" style="padding:8px 12px;text-align:right;color:#555">Subtotal</td>'||
+              '<td style="padding:8px 12px;text-align:right">$'||v_subtotal||'</td></tr>'||
+            case when coalesce(v_order.tax_cents,0) > 0 then
+              '<tr><td colspan="3" style="padding:8px 12px;text-align:right;color:#555">Sales tax</td>'||
+                '<td style="padding:8px 12px;text-align:right">$'||v_tax||'</td></tr>'
+            else '' end ||
+            '<tr><td colspan="3" style="padding:12px;text-align:right;font-weight:700">Total</td>'||
+              '<td style="padding:12px;text-align:right;font-weight:700;font-size:16px">$'||v_grand||'</td></tr>'||
+          '</tfoot>'||
         '</table>'||
-        '<div style="margin-top:18px;padding:14px 16px;background:#fff4e5;border:1px solid #f0c890;border-radius:3px">'||
-          '<p style="margin:0;font-size:12px;color:#a06a00;text-transform:uppercase;letter-spacing:1px;font-weight:700">Payment status</p>'||
-          '<p style="margin:6px 0 0;font-size:15px;color:#7a5200"><strong>Not paid &mdash; no money was collected.</strong> '||
-          'This was placed as an order <em>request</em> on the wholesale site; <strong>no PayPal payment or card charge was processed.</strong> '||
-          'Please collect payment from the stylist directly when you arrange fulfillment.</p>'||
-        '</div>'||
+        v_pay_html ||
         v_tax_html ||
         '<div style="margin-top:14px;padding:14px 16px;background:#f6f6ef;border-left:3px solid #4c5223;border-radius:3px">'||
           '<p style="margin:0;font-size:12px;color:#888;text-transform:uppercase;letter-spacing:1px">Note from stylist</p>'||
@@ -131,7 +154,7 @@ begin
       'to',  jsonb_build_array('hairbycatb@gmail.com','studioone.lp@gmail.com'),
       'cc',  jsonb_build_array('justin@webeducationservices.com'),
       'reply_to', jsonb_build_array(v_email),
-      'subject', 'New wholesale order — '||v_name||' ($'||v_total||')',
+      'subject', (case when v_order.paid then 'New PAID wholesale order — ' else 'New wholesale order — ' end)||v_name||' ($'||v_grand||')',
       'html', v_html
     )
   );
