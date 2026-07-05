@@ -107,6 +107,19 @@
       }catch(e){}
     }
 
+    function markOrderPaid(details){
+      // Auto-flip the matching order to Paid in the admin portal. Admin-generated links
+      // carry ref = the order's id; manual links without a ref just skip this (still paid in PayPal).
+      var UUID=/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+      if(!UUID.test(ref)){ return; }
+      try{
+        fetch('https://admin.studioonefresno.com/api/pay-confirm',{
+          method:'POST',headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({ lead_id:ref, paypal_order_id:(details&&details.id)||'', amount_cents:Math.round(amount*100) })
+        }).catch(function(){});
+      }catch(e){}
+    }
+
     if(!window.paypal){ show('Payment couldn’t load — please refresh the page, or text 559-795-9724.', false); return; }
 
     paypal.Buttons({
@@ -125,6 +138,7 @@
       onApprove:function(data,actions){
         return actions.order.capture().then(function(details){
           notifyStudioOne(details);
+          markOrderPaid(details);
           document.getElementById('amountBox').style.display='none';
           document.getElementById('paypal-button-container').style.display='none';
           showHTML('<strong>Payment received — thank you!</strong><br>Your $'+value+' payment to Studio One Hair Design is complete.<br><br>PayPal confirmation: '+String(details.id||'').replace(/[<>&]/g,'')+'', true);
