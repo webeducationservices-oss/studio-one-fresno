@@ -85,8 +85,8 @@
     },
     "geo": {
       "@type": "GeoCoordinates",
-      "latitude": 36.85,
-      "longitude": -119.74
+      "latitude": 36.8536978,
+      "longitude": -119.731387
     },
     "openingHoursSpecification": [
       {
@@ -117,10 +117,25 @@
       "https://www.instagram.com/studioonefresno/",
       "https://www.facebook.com/studio.one.fresno"
     ],
-    "areaServed": {
-      "@type": "City",
-      "name": "Fresno"
-    },
+    "areaServed": [
+    {"@type": "City", "name": "Fresno"},
+    {"@type": "City", "name": "Clovis"},
+    {"@type": "City", "name": "Madera"},
+    {"@type": "Place", "name": "Northeast Fresno"}
+  ],
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Hair Salon Services",
+    "itemListElement": [
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Hair Color"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Balayage & Highlights"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Gray Coverage & Blending"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Color Correction"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "NBR Hand-Tied Hair Extensions"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Keratin Smoothing"}},
+      {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Wigs & Toppers"}}
+    ]
+  },
     "hasMap": "https://www.google.com/maps/dir//2950+E+Nees+Ave+%23103,+Fresno,+CA+93720",
     "aggregateRating": {
       "@type": "AggregateRating",
