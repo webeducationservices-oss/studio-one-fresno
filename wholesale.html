@@ -44,6 +44,7 @@
   </script>
 <!-- reCAPTCHA v3 -->
   <script src="https://www.google.com/recaptcha/api.js?render=6Lck8aQsAAAAALMA-T6nwfkSf7bv4K-mOhkszeKh"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.0/dist/umd/supabase.min.js"></script>
 
   <style>
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -180,8 +181,8 @@
         </div>
         <div class="how-step">
           <div class="how-step-num">2</div>
-          <h3>Email your license</h3>
-          <p>After you submit, send a copy of your cosmetology, esthetician, or wholesale license (PDF or photo) to <strong>hairbycatb@gmail.com</strong>. We verify within 1&ndash;2 business days.</p>
+          <h3>Upload your license</h3>
+          <p>Attach a photo or PDF of your cosmetology, esthetician, barber, or resale license right on the form &mdash; that&rsquo;s how we verify you for tax-exempt ordering. We review within 1&ndash;2 business days.</p>
         </div>
         <div class="how-step">
           <div class="how-step-num">3</div>
@@ -272,6 +273,13 @@
           </div>
 
           <div class="form-group">
+            <label for="ws-license-file">Upload Your License *</label>
+            <input type="file" id="ws-license-file" accept="image/*,application/pdf,.pdf,.heic,.heif">
+            <p style="font-size:12px;color:#8a8a6a;margin-top:6px;line-height:1.5">A clear photo or PDF of your active license (cosmetology, esthetician, barber, or resale). Max 9&nbsp;MB. This is how we verify you for tax-exempt ordering &mdash; no need to email it separately.</p>
+            <p id="ws-license-error" style="display:none;color:#c0564b;font-size:13px;margin-top:6px;line-height:1.5"></p>
+          </div>
+
+          <div class="form-group">
             <label for="ws-products">Products of Interest</label>
             <textarea id="ws-products" name="products_of_interest" placeholder="e.g., Nically Hair extensions, Davines color line, Oribe styling products..."></textarea>
           </div>
@@ -293,10 +301,6 @@
             <textarea id="ws-notes" name="notes" placeholder="Optional"></textarea>
           </div>
 
-          <div class="license-callout">
-            <strong>Last step:</strong> After submitting, please email a copy of your active license to <a href="mailto:hairbycatb@gmail.com" style="color:var(--olive-light);text-decoration:underline">hairbycatb@gmail.com</a> with your business name in the subject line. We can&rsquo;t process tax-exempt orders without it.
-          </div>
-
           <button type="submit" class="olive-button form-submit-btn">Submit Application</button>
           <p class="form-legal">Protected by reCAPTCHA. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Privacy</a> &middot; <a href="https://policies.google.com/terms" target="_blank" rel="noopener">Terms</a></p>
         </div>
@@ -308,7 +312,7 @@
           <h3>Application received!</h3>
           <p>Thanks for applying for a wholesale account with Studio One.</p>
           <div class="next-step">
-            <strong>One more step:</strong> Please email a copy of your <strong>active cosmetology, esthetician, or wholesale license</strong> (PDF or photo) to <a href="mailto:hairbycatb@gmail.com">hairbycatb@gmail.com</a> with your business name in the subject. We&rsquo;ll verify and email you back with your tax-exempt account details within 1&ndash;2 business days.
+            We&rsquo;ve got your application and license on file. We&rsquo;ll verify your credentials and email you your wholesale login &amp; tax-exempt account details within 1&ndash;2 business days.
           </div>
           <p>Questions? Call us at <a href="tel:5597959724">559-795-9724</a>.</p>
         </div>
@@ -395,6 +399,34 @@
       }
     })();
 
+    // Wholesale license upload → private Supabase Storage via a one-time signed upload URL
+    const WS_SB = window.supabase && window.supabase.createClient(
+      'https://ddeqyxmvrnqudbsdxxox.supabase.co',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRkZXF5eG12cm5xdWRic2R4eG94Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk2NDE5NjcsImV4cCI6MjA5NTIxNzk2N30.iWBTtUZI8BuZxA0xUXCpT9u3naaBIm4sa44Z7x4tmj4'
+    );
+    async function uploadLicense(form) {
+      const input = form.querySelector('#ws-license-file');
+      if (!input) return { ok: true };
+      const errEl = form.querySelector('#ws-license-error');
+      const showErr = (m) => { if (errEl) { errEl.textContent = m; errEl.style.display = 'block'; } };
+      if (errEl) errEl.style.display = 'none';
+      const file = input.files && input.files[0];
+      if (!file) { showErr('Please attach a photo or PDF of your license.'); input.focus(); return { ok: false }; }
+      if (file.size > 9 * 1024 * 1024) { showErr('That file is too large (max 9 MB). Please upload a smaller photo or PDF.'); return { ok: false }; }
+      const okType = /^image\//.test(file.type) || file.type === 'application/pdf' || /\.(jpe?g|png|webp|heic|heif|pdf)$/i.test(file.name);
+      if (!okType) { showErr('Please upload an image (JPG, PNG, HEIC) or a PDF.'); return { ok: false }; }
+      if (!WS_SB) { showErr('Upload isn’t available right now — please try again in a moment.'); return { ok: false }; }
+      try {
+        const ext = (file.name.split('.').pop() || '').toLowerCase();
+        const r = await fetch('/api/wholesale-license-url', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ ext }) });
+        if (!r.ok) throw new Error('prep failed');
+        const { path, token } = await r.json();
+        const { error } = await WS_SB.storage.from('wholesale-licenses').uploadToSignedUrl(path, token, file, { contentType: file.type || 'application/octet-stream' });
+        if (error) throw error;
+        return { ok: true, path: path, filename: file.name };
+      } catch (e) { console.error('license upload failed', e); showErr('We couldn’t upload your license. Please try again, or try a different file.'); return { ok: false }; }
+    }
+
     // Form submit
     document.querySelectorAll('form[data-ajax]').forEach(form => {
       form.addEventListener('submit', async (e) => {
@@ -404,6 +436,9 @@
         const original = btn.textContent;
         btn.disabled = true;
         btn.textContent = 'Submitting…';
+        // License must upload successfully before we accept the application
+        const lic = await uploadLicense(form);
+        if (!lic.ok) { btn.disabled = false; btn.textContent = original; return; }
         try {
           if (typeof grecaptcha !== 'undefined') {
             await new Promise(r => grecaptcha.ready(r));
@@ -414,6 +449,7 @@
         } catch (err) { console.warn('reCAPTCHA error:', err); }
         try {
           const data = Object.fromEntries(new FormData(form).entries());
+          if (lic.path) { data.license_path = lic.path; data.license_filename = lic.filename || ''; }
           if (window.soAttribution) Object.assign(data, window.soAttribution());
           await fetch('https://myaieditor.com/api/form-notify', {
             method: 'POST',
