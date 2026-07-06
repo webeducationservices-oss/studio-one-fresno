@@ -108,14 +108,16 @@
     }
 
     function markOrderPaid(details){
-      // Auto-flip the matching order to Paid in the admin portal. Admin-generated links
-      // carry ref = the order's id; manual links without a ref just skip this (still paid in PayPal).
+      // Ask our own server to VERIFY the payment with PayPal and then mark the order Paid.
+      // Admin-generated links carry ref = the order's id; manual links without a ref skip
+      // this (still paid in PayPal, just no auto-flip). Server-side verification means the
+      // browser can't mark anything paid on its own.
       var UUID=/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
       if(!UUID.test(ref)){ return; }
       try{
-        fetch('https://admin.studioonefresno.com/api/pay-confirm',{
+        fetch('/api/verify-payment',{
           method:'POST',headers:{'Content-Type':'application/json'},
-          body:JSON.stringify({ lead_id:ref, paypal_order_id:(details&&details.id)||'', amount_cents:Math.round(amount*100) })
+          body:JSON.stringify({ lead_id:ref, paypal_order_id:(details&&details.id)||'' })
         }).catch(function(){});
       }catch(e){}
     }

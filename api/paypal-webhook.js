@@ -33,6 +33,8 @@
 export const config = { api: { bodyParser: false } };  // need raw body for signature verify
 
 const FORM_NOTIFY_URL = 'https://myaieditor.com/api/form-notify';
+const ADMIN_CONFIRM_URL = 'https://admin.studioonefresno.com/api/pay-confirm';
+const UUID_RE = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
 // Read raw body without bodyParser (so signature verifies against bytes PayPal sent)
 async function readRawBody(req) {
@@ -219,6 +221,26 @@ export default async function handler(req, res) {
   } catch (e) {
     console.error('form-notify dispatch failed:', e?.message || e);
     // Don't fail the webhook — we already verified, will be in Vercel logs
+  }
+
+  // Backstop: when a wholesale payment-link capture completes, auto-mark that order Paid.
+  // (The pay page's /api/verify-payment normally does this synchronously; this covers the
+  // case where the buyer's browser closed before that call.) custom_id = the order's lead id.
+  if (event.event_type === 'PAYMENT.CAPTURE.COMPLETED') {
+    const r = event.resource || {};
+    const custom = r.custom_id || '';
+    if (UUID_RE.test(custom)) {
+      try {
+        const amountCents = Math.round(parseFloat(r.amount?.value || '0') * 100) || 0;
+        await fetch(ADMIN_CONFIRM_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'x-pay-secret': process.env.PAY_CONFIRM_SECRET || '' },
+          body: JSON.stringify({ lead_id: custom, paypal_order_id: r.id || '', amount_cents: amountCents }),
+        });
+      } catch (e) {
+        console.error('pay-confirm (webhook backstop) failed:', e?.message || e);
+      }
+    }
   }
 
   // Always 200 quickly (< 10s) so PayPal doesn't retry
