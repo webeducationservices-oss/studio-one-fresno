@@ -94,9 +94,18 @@
 .post-body p{font-size:17px;line-height:1.85;color:var(--light-gray);font-weight:300;margin-bottom:24px}
 .post-body h2{font-family:var(--heading-font);font-size:34px;font-weight:400;color:var(--white);margin:48px 0 16px;line-height:1.2}
 .post-body h3{font-size:16px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--off-white);margin:32px 0 12px}
-.post-body ul{margin:0 0 24px;padding-left:22px;list-style:none}
-.post-body li{position:relative;font-size:17px;line-height:1.8;color:var(--light-gray);font-weight:300;margin-bottom:12px;padding-left:8px}
-.post-body li::before{content:"";position:absolute;left:-14px;top:13px;width:5px;height:5px;border-radius:50%;background:var(--olive-light)}
+.post-body ul,.post-body ol{margin:0 0 32px;padding-left:0;list-style:none;display:grid;grid-template-columns:1fr;gap:12px}
+.post-body li{position:relative;font-size:16px;line-height:1.75;color:var(--light-gray);font-weight:300;margin-bottom:0;padding:18px 22px 18px 58px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-left:3px solid var(--olive);border-radius:4px;transition:background .25s,border-left-color .25s}
+.post-body li:hover{background:rgba(255,255,255,.07);border-left-color:var(--olive-light)}
+/* UL cards — decorative leaf/star badge */
+.post-body ul{counter-reset:none}
+.post-body ul li::before{content:"✦";position:absolute;left:0;top:0;bottom:0;width:44px;display:flex;align-items:center;justify-content:center;font-size:11px;color:#fff;background:var(--olive);border-radius:3px 0 0 3px}
+/* OL cards — numbered badge */
+.post-body ol{counter-reset:ol-counter}
+.post-body ol li{counter-increment:ol-counter}
+.post-body ol li::before{content:counter(ol-counter);position:absolute;left:0;top:0;bottom:0;width:44px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;background:var(--olive);border-radius:3px 0 0 3px}
+/* 2-col grid for longer lists on wider screens */
+@media (min-width:640px){.post-body ul:has(li:nth-child(4)),.post-body ol:has(li:nth-child(4)){grid-template-columns:1fr 1fr}}
 .related-posts{background:var(--dark);padding:80px 40px}
 .related-inner{max-width:1200px;margin:0 auto}
 .related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:32px}
@@ -224,7 +233,7 @@
 
 <p>Before any on-scalp bleach service, a thorough consultation is essential. Your stylist will assess your hair's history, current condition, and your scalp's health. They will discuss realistic expectations for your desired blonde shade and create a personalized plan to achieve it safely. This might include patch testing for allergies or recommending pre-treatment scalp protectants.</p>
 
-<div style="text-align: center; margin: 25px 0;"><img src="/images/blog/on-scalp-bleach-safety-results-hair-health.webp" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" alt="Contextual Blog Image 1" /></div>
+<div style="text-align: center; margin: 25px 0;"><img src="/images/blog/on-scalp-bleach-safety-results-hair-health-body-1.webp" style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);" alt="Contextual Blog Image 1" /></div>
 
 <h2>Long-Term Scalp Health: Can Bleach Cause Future Hair Loss? What We Do to Our Scalp</h2>
 
