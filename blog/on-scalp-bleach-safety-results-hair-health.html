@@ -94,9 +94,13 @@
 .post-body p{font-size:17px;line-height:1.85;color:var(--light-gray);font-weight:300;margin-bottom:24px}
 .post-body h2{font-family:var(--heading-font);font-size:34px;font-weight:400;color:var(--white);margin:48px 0 16px;line-height:1.2}
 .post-body h3{font-size:16px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--off-white);margin:32px 0 12px}
-.post-body ul{margin:0 0 24px;padding-left:22px;list-style:none}
-.post-body li{position:relative;font-size:17px;line-height:1.8;color:var(--light-gray);font-weight:300;margin-bottom:12px;padding-left:8px}
-.post-body li::before{content:"";position:absolute;left:-14px;top:13px;width:5px;height:5px;border-radius:50%;background:var(--olive-light)}
+.post-body ul{margin:0 0 32px;padding-left:0;list-style:none;display:grid;grid-template-columns:1fr;gap:14px}
+.post-body li{position:relative;font-size:16px;line-height:1.75;color:var(--light-gray);font-weight:300;margin-bottom:0;padding:18px 22px 18px 56px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-left:3px solid var(--olive);border-radius:4px;transition:background .25s,border-color .25s}
+.post-body li:hover{background:rgba(255,255,255,.07);border-left-color:var(--olive-light)}
+.post-body li::before{content:counter(li-counter);counter-increment:li-counter;position:absolute;left:18px;top:50%;transform:translateY(-50%);width:24px;height:24px;border-radius:50%;background:var(--olive);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;line-height:1}
+.post-body ul{counter-reset:li-counter}
+/* Use a dot icon for unordered (non-numbered) cards */
+.post-body ul.icon-list li::before{content:"✦";font-size:10px;background:var(--olive);color:#fff}
 .related-posts{background:var(--dark);padding:80px 40px}
 .related-inner{max-width:1200px;margin:0 auto}
 .related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:32px}
