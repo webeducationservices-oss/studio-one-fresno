@@ -104,6 +104,8 @@
 .post-body ol{counter-reset:ol-counter}
 .post-body ol li{counter-increment:ol-counter}
 .post-body ol li::before{content:counter(ol-counter);position:absolute;left:0;top:0;bottom:0;width:44px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;background:var(--olive);border-radius:3px 0 0 3px}
+/* 2-col grid for longer lists on wider screens */
+@media (min-width:640px){.post-body ul:has(li:nth-child(4)),.post-body ol:has(li:nth-child(4)){grid-template-columns:1fr 1fr}}
 .related-posts{background:var(--dark);padding:80px 40px}
 .related-inner{max-width:1200px;margin:0 auto}
 .related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:32px}
