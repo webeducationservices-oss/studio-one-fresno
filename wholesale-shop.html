@@ -12,7 +12,7 @@
   <link href="https://use.typekit.net/epq0gor.css" rel="stylesheet" media="print" onload="this.media='all'">
   <noscript><link href="https://use.typekit.net/epq0gor.css" rel="stylesheet"></noscript>
   <!-- reCAPTCHA v3 (shared WES key) — used to notify the admin dashboard on order submit -->
-  <script src="https://www.google.com/recaptcha/api.js?render=6Lck8aQsAAAAALMA-T6nwfkSf7bv4K-mOhkszeKh"></script>
+  <script src="https://www.google.com/recaptcha/api.js?render=6Lck8aQsAAAAALMA-T6nwfkSf7bv4K-mOhkszeKh" async defer></script>
   <style>
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
     :root{--olive:#4c5223;--olive-light:#6b7332;--black:#000;--dark:#0a0a0a;--white:#fff;--off-white:#f5f5f5;--light-gray:#d9d9d9;--body-font:Arial,sans-serif;--heading-font:'freight-big-pro',Georgia,serif}
@@ -74,6 +74,7 @@
   <script src="/mae-edit-loader.js" async></script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to main content</a>
   <header class="ws-header">
     <a href="/"><img src="/images/optimized/logo.avif" alt="Studio One" class="logo" width="180" height="34"></a>
     <nav>
@@ -82,6 +83,7 @@
       <button id="signout">Sign Out</button>
     </nav>
   </header>
+  <main id="main">
 
   <section class="ws-hero">
     <p class="eyebrow">Stylist &amp; Salon Wholesale</p>
@@ -108,7 +110,8 @@
   </aside>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.0/dist/umd/supabase.min.js"></script>
-  <!-- PayPal SDK — Smart Payment Buttons + card guest checkout + Venmo (same live client-id as the retail cart) -->
+  <!-- PayPal SDK — Smart Payment Buttons + card guest checkout + Venmo (same live client-id as the retail cart) --></main>
+
   <script src="https://www.paypal.com/sdk/js?client-id=AW4HfPBgoAi0ej4WYNWCyFbvm8eKoO3tKuvUrL5YVbD5MZu-nOsaInJxJDLiOfRErgnjtieDEC73lhux&currency=USD&intent=capture&enable-funding=venmo&components=buttons" data-sdk-integration-source="wholesale"></script>
   <script>
   (async function(){

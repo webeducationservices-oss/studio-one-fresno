@@ -173,67 +173,81 @@
   </script>
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "Hair Salon Services in Fresno",
-    "description": "Color, cuts, keratin smoothing treatments, and hand-tied NBR hair extensions at Studio One Hair Design in Fresno, California.",
-    "provider": {
-      "@type": "HairSalon",
-      "name": "Studio One Hair Design",
-      "telephone": "+1-559-795-9724",
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.9",
-        "reviewCount": "37",
-        "bestRating": "5"
-      },
-      "review": [
-        {
-          "@type": "Review",
-          "reviewRating": {
-            "@type": "Rating",
-            "ratingValue": "5",
-            "bestRating": "5"
-          },
-          "author": {
-            "@type": "Person",
-            "name": "Maria"
-          },
-          "reviewBody": "I've been going to Cat at Studio One for some time now. I'm always pleased with my cut, color & highlights. Her assistant Carina gives the best head massages. Everyone at Studio One is very friendly and attentive. I highly recommend Studio One!",
-          "datePublished": "2026-01-22"
-        }
-      ]
-    },
-    "areaServed": {
-      "@type": "City",
-      "name": "Fresno"
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "reviewCount": "37",
-      "bestRating": "5"
-    },
-    "review": [
-      {
-        "@type": "Review",
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": "5",
-          "bestRating": "5"
-        },
-        "author": {
-          "@type": "Person",
-          "name": "Maria"
-        },
-        "reviewBody": "I've been going to Cat at Studio One for some time now. I'm always pleased with my cut, color & highlights. Her assistant Carina gives the best head massages. Everyone at Studio One is very friendly and attentive. I highly recommend Studio One!",
-        "datePublished": "2026-01-22"
-      }
-    ]
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Hair Salon Services in Fresno",
+  "description": "Color, cuts, keratin smoothing treatments, and hand-tied NBR hair extensions at Studio One Hair Design in Fresno, California.",
+  "provider": {
+    "@type": "HairSalon",
+    "name": "Studio One Hair Design",
+    "telephone": "+1-559-795-9724"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Fresno"
   }
+}
   </script>
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What form of payment do you take?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We are happy to take cash, debit cards, Apple Pay, Visa, and MasterCard for service and retail purchases."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is it okay to have products in my hair?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Light products are okay. For optimum grey coverage, please avoid using any temporary root concealers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long do I have to cancel or reschedule my appointment?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If you must cancel or reschedule an appointment, we ask that you kindly provide a 48-hour notice."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I bring my children?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It is our goal that the environment in the salon allows for an opportunity to relax from the stresses of daily life. With that in mind, we ask that children only be present when services are provided for them. Children must be supervised in and around the salon and surrounding areas at all times."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if I miss my appointment or don't cancel with a 48-hour notice?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You would be billed a 50% service charge per service booked. These fees will be expected to be paid prior to any future appointments."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do you do kids' cuts?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, we work with all ages. However, we do not have different rates per age or gender."
+      }
+    }
+  ]
+}
+  </script>
+
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to main content</a>
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WQGCMZ9Q" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <div class="floating-phone-widget" id="phoneWidget">
@@ -248,12 +262,12 @@
   <header class="header">
     <div class="header-inner">
       <a href="/" class="logo-link"><img src="/images/optimized/logo.avif" alt="Studio One" class="logo" width="429" height="99"></a>
-      <button class="menu-toggle" id="menuToggle"><span class="menu-text">MENU</span></button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu"><span class="menu-text">MENU</span></button>
     </div>
   </header>
 
   <nav class="nav-overlay" id="navOverlay">
-    <button class="nav-close" id="navClose"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="#f5f5f5" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+    <button class="nav-close" id="navClose" aria-label="Close menu"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="#f5f5f5" stroke-width="1.5" stroke-linecap="round"/></svg></button>
     <div class="nav-inner">
       <a href="/" class="nav-logo" aria-label="Studio One — back to home">
         <img src="/images/optimized/logo.avif" alt="Studio One Hair Design" width="180" height="34">
@@ -297,6 +311,7 @@
       </div>
     </div>
   </nav>
+  <main id="main">
 
   <section class="page-hero">
     <div class="page-hero-bg"><img src="/images/webflow/gallery/3d5fc523-00ce-47cb-a239-d042abdbca71.webp" alt="" loading="eager" width="1100" height="1100"></div>
@@ -440,6 +455,8 @@
   </section>
 
     <!-- Universal Footer -->
+  </main>
+
   <footer class="footer">
     <div class="footer-inner">
       <div class="footer-left">

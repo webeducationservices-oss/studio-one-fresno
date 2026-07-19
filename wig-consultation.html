@@ -43,7 +43,7 @@
   E.forEach(function(x){addEventListener(x,T,{passive:true})});tm=setTimeout(L,5000);})();
   </script>
   <!-- reCAPTCHA v3 (invisible) -->
-  <script src="https://www.google.com/recaptcha/api.js?render=6Lck8aQsAAAAALMA-T6nwfkSf7bv4K-mOhkszeKh"></script>
+  <script src="https://www.google.com/recaptcha/api.js?render=6Lck8aQsAAAAALMA-T6nwfkSf7bv4K-mOhkszeKh" async defer></script>
 
   <style>
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -67,8 +67,7 @@
     @media (max-width:768px){.header{padding:16px 20px}}
 
     /* ===== Page ===== */
-    .apply-hero{padding:140px 40px 30px;background:var(--black);text-align:center}
-    .apply-hero h1{font-family:var(--heading-font);font-size:48px;font-weight:400;color:var(--white);line-height:1.1;margin-bottom:14px}
+    .apply-hero{padding:140px 40px 30px;background:var(--black);text-align:center}.apply-hero h1, .apply-hero h2{font-family:var(--heading-font);font-size:48px;font-weight:400;color:var(--white);line-height:1.1;margin-bottom:14px}
     .apply-hero p{font-size:16px;color:var(--light-gray);max-width:620px;margin:0 auto;font-weight:300;line-height:1.7}
 
     .apply-section{padding:30px 40px 110px;background:var(--black)}
@@ -134,8 +133,7 @@
     #appThanks[hidden]{display:none}
     .ty-hero{min-height:auto;display:flex;align-items:center;justify-content:center;text-align:center;padding:150px 40px 50px;background:var(--black)}
     .ty-hero-inner{max-width:640px;margin:0 auto}
-    .ty-icon{width:84px;height:84px;border-radius:50%;background:rgba(76,82,35,.18);border:1px solid var(--olive);display:flex;align-items:center;justify-content:center;margin:0 auto 28px;color:var(--olive-light)}
-    .ty-hero h1{font-family:var(--heading-font);font-size:64px;font-weight:400;color:var(--white);line-height:1.05;margin-bottom:18px;letter-spacing:-0.01em}
+    .ty-icon{width:84px;height:84px;border-radius:50%;background:rgba(76,82,35,.18);border:1px solid var(--olive);display:flex;align-items:center;justify-content:center;margin:0 auto 28px;color:var(--olive-light)}.ty-hero h1, .ty-hero h2{font-family:var(--heading-font);font-size:64px;font-weight:400;color:var(--white);line-height:1.05;margin-bottom:18px;letter-spacing:-0.01em}
     .ty-sub{font-size:18px;color:var(--off-white);font-weight:300;line-height:1.6;margin-bottom:36px;max-width:540px;margin-left:auto;margin-right:auto}
     .ty-actions{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
     .ty-phone-line{margin-top:30px;font-size:13px;color:var(--light-gray);font-weight:300}
@@ -173,20 +171,17 @@
     .apply-legal{font-size:11px;color:rgba(255,255,255,.4);margin-top:18px;line-height:1.6;text-align:center}
     .apply-legal a{color:var(--olive-light);text-decoration:underline}
 
-    @media (max-width:1024px){
-      .ty-hero h1{font-size:52px}
+    @media (max-width:1024px){.ty-hero h1, .ty-hero h2{font-size:52px}
       .ty-grid{grid-template-columns:1fr 1fr}
     }
     @media (max-width:640px){
-      .apply-hero{padding:110px 20px 22px}
-      .apply-hero h1{font-size:34px}
+      .apply-hero{padding:110px 20px 22px}.apply-hero h1, .apply-hero h2{font-size:34px}
       .apply-section{padding:18px 16px 60px}
       .apply-card{padding:28px 22px}
       .apply-step h2{font-size:24px}
       .apply-controls{flex-direction:row;gap:10px}
       .apply-btn{padding:14px 18px;font-size:11px;letter-spacing:2px}
-      .ty-hero{padding:120px 24px 40px}
-      .ty-hero h1{font-size:40px}
+      .ty-hero{padding:120px 24px 40px}.ty-hero h1, .ty-hero h2{font-size:40px}
       .ty-sub{font-size:16px}
       .ty-actions{flex-direction:column;align-items:stretch}
       .ty-actions a{text-align:center}
@@ -206,17 +201,18 @@
   <script src="/mae-edit-loader.js" async></script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to main content</a>
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WQGCMZ9Q" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <header class="header">
     <div class="header-inner">
       <a href="/" class="logo-link"><img src="/images/optimized/logo.avif" alt="Studio One" class="logo" width="429" height="99"></a>
-      <button class="menu-toggle" id="menuToggle"><span class="menu-text">MENU</span></button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu"><span class="menu-text">MENU</span></button>
     </div>
   </header>
 
   <nav class="nav-overlay" id="navOverlay">
-    <button class="nav-close" id="navClose"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="#f5f5f5" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+    <button class="nav-close" id="navClose" aria-label="Close menu"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="#f5f5f5" stroke-width="1.5" stroke-linecap="round"/></svg></button>
     <div class="nav-inner">
       <a href="/" class="nav-logo" aria-label="Studio One — back to home">
         <img src="/images/optimized/logo.avif" alt="Studio One Hair Design" width="180" height="34">
@@ -262,7 +258,7 @@
   </nav>
 
   <!-- ==================== HERO ==================== -->
-  <main>
+  <main id="main">
   <section class="apply-hero" id="applyHero">
     <div data-animate>
       <p class="eyebrow">Studio One Wig Consultation</p>
@@ -733,7 +729,7 @@
           <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
         </div>
         <p class="eyebrow">Consultation Request Received</p>
-        <h1>Thank you, <span class="fname-token">there</span>.</h1>
+        <h2>Thank you, <span class="fname-token">there</span>.</h2>
         <p class="ty-sub">Thank you for trusting me with this part of your story. I&rsquo;ll personally review your answers and reach out with the next steps. You&rsquo;re not alone in this &mdash; we&rsquo;ll take this journey together.</p>
         <div class="ty-actions">
           <a href="/wigs" class="olive-button">Explore Wigs &amp; Solutions</a>

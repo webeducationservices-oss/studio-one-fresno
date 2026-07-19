@@ -81,8 +81,7 @@
 .cart-items{border-top:1px solid rgba(255,255,255,.08)}
 .cart-item{display:grid;grid-template-columns:80px 1fr 120px 120px 40px;gap:20px;padding:20px 0;border-bottom:1px solid rgba(255,255,255,.08);align-items:center}
 .cart-item-img{background:rgba(255,255,255,.04);border-radius:4px;padding:8px;aspect-ratio:1;display:flex;align-items:center;justify-content:center}
-.cart-item-img img{max-width:100%;max-height:100%;object-fit:contain}
-.cart-item-info h3{font-size:15px;color:var(--white);margin-bottom:4px;font-weight:500}
+.cart-item-img img{max-width:100%;max-height:100%;object-fit:contain}.cart-item-info h3, .cart-item-info h2{font-size:15px;color:var(--white);margin-bottom:4px;font-weight:500}
 .cart-item-info .variant{font-size:12px;color:var(--light-gray);font-weight:300}
 .cart-item-info .brand{font-size:10px;letter-spacing:2px;color:var(--olive-light);text-transform:uppercase;font-weight:600;margin-bottom:4px}
 .cart-qty{display:flex;align-items:center}
@@ -113,8 +112,7 @@
 .wholesale-cta-note{font-size:13px;color:var(--light-gray);font-weight:300;margin-top:24px;text-align:center;padding-top:24px;border-top:1px solid rgba(255,255,255,.06)}
 .wholesale-cta-note a{color:var(--olive-light);border-bottom:1px solid var(--olive);padding-bottom:1px}
 .wholesale-cta-note a:hover{color:var(--white)}
-.paypal-placeholder{margin-top:24px;padding:24px;background:rgba(76,82,35,.1);border:1px dashed rgba(76,82,35,.4);border-radius:4px;text-align:center}
-.paypal-placeholder h3{font-size:14px;color:var(--off-white);letter-spacing:1px;margin-bottom:8px;font-weight:600}
+.paypal-placeholder{margin-top:24px;padding:24px;background:rgba(76,82,35,.1);border:1px dashed rgba(76,82,35,.4);border-radius:4px;text-align:center}.paypal-placeholder h3, .paypal-placeholder h2{font-size:14px;color:var(--off-white);letter-spacing:1px;margin-bottom:8px;font-weight:600}
 .paypal-placeholder p{font-size:13px;color:var(--light-gray);font-weight:300;line-height:1.7;margin-bottom:16px}
 @media(max-width:768px){
   .cart-item{grid-template-columns:60px 1fr;grid-template-rows:auto auto;gap:12px 16px}
@@ -130,6 +128,7 @@
   <script src="/mae-edit-loader.js" async></script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to main content</a>
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WQGCMZ9Q" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <div class="floating-phone-widget" id="phoneWidget">
@@ -146,13 +145,13 @@
       <a href="/" class="logo-link"><img src="/images/optimized/logo.avif" alt="Studio One" class="logo" width="429" height="99"></a>
       <div style="display:flex;align-items:center">
         <a href="/cart" class="cart-icon" aria-label="Cart"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M3 3h2l2 14h12l2-10H6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9" cy="20" r="1.5" fill="currentColor"/><circle cx="17" cy="20" r="1.5" fill="currentColor"/></svg><span class="cart-count is-empty" id="cartCount">0</span></a>
-        <button class="menu-toggle" id="menuToggle"><span class="menu-text">MENU</span></button>
+        <button class="menu-toggle" id="menuToggle" aria-label="Open menu"><span class="menu-text">MENU</span></button>
       </div>
     </div>
   </header>
 
   <nav class="nav-overlay" id="navOverlay">
-    <button class="nav-close" id="navClose"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="#f5f5f5" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+    <button class="nav-close" id="navClose" aria-label="Close menu"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="#f5f5f5" stroke-width="1.5" stroke-linecap="round"/></svg></button>
     <div class="nav-inner">
       <a href="/" class="nav-logo" aria-label="Studio One — back to home">
         <img src="/images/optimized/logo.avif" alt="Studio One Hair Design" width="180" height="34">
@@ -196,6 +195,7 @@
       </div>
     </div>
   </nav>
+  <main id="main">
 
   <section class="cart-section">
     <div class="cart-inner">
@@ -214,7 +214,7 @@
         <div class="cart-items" id="cartItems"></div>
 
         <div class="checkout-options">
-          <h3 class="checkout-options-title">How would you like to receive your order?</h3>
+          <h2 class="checkout-options-title">How would you like to receive your order?</h2>
           <div class="ship-options">
             <label class="ship-opt">
               <input type="radio" name="shipMethod" value="pickup" checked>
@@ -269,6 +269,8 @@
   <script src="https://www.paypal.com/sdk/js?client-id=AW4HfPBgoAi0ej4WYNWCyFbvm8eKoO3tKuvUrL5YVbD5MZu-nOsaInJxJDLiOfRErgnjtieDEC73lhux&currency=USD&intent=capture&enable-funding=venmo,paylater&components=buttons" data-sdk-integration-source="cart"></script>
 
   <!-- Universal Footer -->
+  </main>
+
   <footer class="footer">
     <div class="footer-inner">
       <div class="footer-left">

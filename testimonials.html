@@ -235,6 +235,7 @@
   </script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to main content</a>
 
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WQGCMZ9Q" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -267,15 +268,16 @@
       <a href="/" class="logo-link">
         <img src="images/optimized/logo.avif" alt="Studio One" class="logo" width="429" height="99">
       </a>
-      <button class="menu-toggle" id="menuToggle">
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
         <span class="menu-text">MENU</span>
       </button>
     </div>
   </header>
+  <main id="main">
 
   <!-- Nav Overlay -->
   <nav class="nav-overlay" id="navOverlay">
-    <button class="nav-close" id="navClose">
+    <button class="nav-close" id="navClose" aria-label="Close menu">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="#f5f5f5" stroke-width="1.5" stroke-linecap="round"/></svg>
     </button>
     <div class="nav-inner">
@@ -415,6 +417,8 @@
       <a href="/booking" class="olive-button">book now</a>
     </div>
   </section>
+
+  </main>
 
   <footer class="footer">
     <div class="footer-inner">

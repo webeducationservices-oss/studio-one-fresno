@@ -82,8 +82,7 @@
 .cat-card-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
 .cat-card:hover img{transform:scale(1.05)}
 .cat-card-body{padding:24px;flex:1;display:flex;flex-direction:column}
-.cat-card-cat{font-size:10px;letter-spacing:2px;color:var(--olive-light);text-transform:uppercase;font-weight:600;margin-bottom:10px}
-.cat-card h3{font-family:var(--heading-font);font-size:22px;color:var(--white);line-height:1.25;font-weight:400;margin-bottom:12px;flex:1}
+.cat-card-cat{font-size:10px;letter-spacing:2px;color:var(--olive-light);text-transform:uppercase;font-weight:600;margin-bottom:10px}.cat-card h3, .cat-card h2{font-family:var(--heading-font);font-size:22px;color:var(--white);line-height:1.25;font-weight:400;margin-bottom:12px;flex:1}
 .cat-card p{font-size:13px;color:var(--light-gray);font-weight:300;line-height:1.6;margin-bottom:14px}
 .cat-card-read{font-size:11px;letter-spacing:2px;color:var(--olive-light);text-transform:uppercase;font-weight:500;padding-bottom:2px;border-bottom:1px solid var(--olive);align-self:flex-start}
 .cat-empty{text-align:center;padding:60px;color:var(--light-gray);font-weight:300}
@@ -97,6 +96,7 @@
   <script src="/mae-edit-loader.js" async></script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to main content</a>
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WQGCMZ9Q" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <div class="floating-phone-widget" id="phoneWidget">
@@ -111,12 +111,12 @@
   <header class="header">
     <div class="header-inner">
       <a href="/" class="logo-link"><img src="/images/optimized/logo.avif" alt="Studio One" class="logo" width="429" height="99"></a>
-      <button class="menu-toggle" id="menuToggle"><span class="menu-text">MENU</span></button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu"><span class="menu-text">MENU</span></button>
     </div>
   </header>
 
   <nav class="nav-overlay" id="navOverlay">
-    <button class="nav-close" id="navClose"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="#f5f5f5" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+    <button class="nav-close" id="navClose" aria-label="Close menu"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="#f5f5f5" stroke-width="1.5" stroke-linecap="round"/></svg></button>
     <div class="nav-inner">
       <a href="/" class="nav-logo" aria-label="Studio One — back to home">
         <img src="/images/optimized/logo.avif" alt="Studio One Hair Design" width="180" height="34">
@@ -160,6 +160,7 @@
       </div>
     </div>
   </nav>
+  <main id="main">
 
   <section class="cat-hero">
     <div data-animate>
@@ -187,7 +188,7 @@
           <div class="cat-card-img"><img src="/images/blog/best-products-for-hair-growth-thickness.webp" alt="Best Products for Hair Growth &amp; Thickness" loading="lazy" decoding="async" width="1200" height="675"></div>
           <div class="cat-card-body">
             <p class="cat-card-cat">Hair Products</p>
-            <h3>Best Products for Hair Growth &amp; Thickness</h3>
+            <h2>Best Products for Hair Growth &amp; Thickness</h2>
             <p>Can Thinning Hair Be Reversed? If your once-thick ponytail now feels smaller or you&#x27;ve noticed more scalp visibility, you&#x27;re not alone. Thinning hair is one of the most…</p>
             <span class="cat-card-read">Read More</span>
           </div>
@@ -197,6 +198,8 @@
   </section>
 
     <!-- Universal Footer -->
+  </main>
+
   <footer class="footer">
     <div class="footer-inner">
       <div class="footer-left">

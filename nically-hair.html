@@ -189,67 +189,89 @@
   </script>
   <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    "name": "Nically Hair Extensions",
-    "description": "Premium hand-tied Active Genius Weft hair extensions installed by certified stylists at Studio One Hair Design in Fresno, California.",
-    "provider": {
-      "@type": "HairSalon",
-      "name": "Studio One Hair Design",
-      "telephone": "+1-559-795-9724",
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.9",
-        "reviewCount": "37",
-        "bestRating": "5"
-      },
-      "review": [
-        {
-          "@type": "Review",
-          "reviewRating": {
-            "@type": "Rating",
-            "ratingValue": "5",
-            "bestRating": "5"
-          },
-          "author": {
-            "@type": "Person",
-            "name": "Maria"
-          },
-          "reviewBody": "I've been going to Cat at Studio One for some time now. I'm always pleased with my cut, color & highlights. Her assistant Carina gives the best head massages. Everyone at Studio One is very friendly and attentive. I highly recommend Studio One!",
-          "datePublished": "2026-01-22"
-        }
-      ]
-    },
-    "areaServed": {
-      "@type": "City",
-      "name": "Fresno"
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "reviewCount": "37",
-      "bestRating": "5"
-    },
-    "review": [
-      {
-        "@type": "Review",
-        "reviewRating": {
-          "@type": "Rating",
-          "ratingValue": "5",
-          "bestRating": "5"
-        },
-        "author": {
-          "@type": "Person",
-          "name": "Maria"
-        },
-        "reviewBody": "I've been going to Cat at Studio One for some time now. I'm always pleased with my cut, color & highlights. Her assistant Carina gives the best head massages. Everyone at Studio One is very friendly and attentive. I highly recommend Studio One!",
-        "datePublished": "2026-01-22"
-      }
-    ]
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Nically Hair Extensions",
+  "description": "Premium hand-tied Active Genius Weft hair extensions installed by certified stylists at Studio One Hair Design in Fresno, California.",
+  "provider": {
+    "@type": "HairSalon",
+    "name": "Studio One Hair Design",
+    "telephone": "+1-559-795-9724"
+  },
+  "areaServed": {
+    "@type": "City",
+    "name": "Fresno"
   }
+}
   </script>
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is “genius with no shed” hair?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Our Genius Weft uses a proprietary binding technology that locks each strand in place. The result: minimal shedding through daily washing, styling, and wear — so your install keeps its density from day one through the final move-up."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can Nically Hair be customized?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Absolutely. Nically Hair can be cut, colored, and styled without compromising the integrity of the weft. Treat it like your guest's own hair — it was built to behave that way."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does “no mustache” mean?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "“Mustache” refers to the short filler hairs found near the weft in most extensions — they add weight and cost without adding wearable length. We remove them, so every inch you pay for is full-length, usable hair."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does the weight of Nically Hair compare?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nically Hair is noticeably lighter than competitors at the same length. A 10-inch weft comes in at roughly 12.5 grams while delivering full, even coverage — so installs feel comfortable without sacrificing density."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Nically Hair ethically sourced?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Every strand comes from donors who are fairly and transparently compensated. Ethical sourcing isn't a marketing line for us — it's a non-negotiable part of how the product is made."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is Nically Hair made of?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A+ grade, double-drawn, cuticle-intact Remy human hair. Double-drawn means the hair is uniform in length from top to bottom, and cuticle-intact means all cuticles run in the same direction — preventing matting and delivering a natural shine."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many wefts per row are recommended?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Most installs use four to six wefts per row depending on your method, your guest's density, and the length you're installing. Your Nically education materials walk through recommended mapping for each technique."
+      }
+    }
+  ]
+}
+  </script>
+
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to main content</a>
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WQGCMZ9Q" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <div class="floating-phone-widget" id="phoneWidget">
@@ -264,12 +286,12 @@
   <header class="header">
     <div class="header-inner">
       <a href="/" class="logo-link"><img src="/images/optimized/logo.avif" alt="Studio One" class="logo" width="429" height="99"></a>
-      <button class="menu-toggle" id="menuToggle"><span class="menu-text">MENU</span></button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu"><span class="menu-text">MENU</span></button>
     </div>
   </header>
 
   <nav class="nav-overlay" id="navOverlay">
-    <button class="nav-close" id="navClose"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="#f5f5f5" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+    <button class="nav-close" id="navClose" aria-label="Close menu"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="#f5f5f5" stroke-width="1.5" stroke-linecap="round"/></svg></button>
     <div class="nav-inner">
       <a href="/" class="nav-logo" aria-label="Studio One — back to home">
         <img src="/images/optimized/logo.avif" alt="Studio One Hair Design" width="180" height="34">
@@ -313,6 +335,7 @@
       </div>
     </div>
   </nav>
+  <main id="main">
 
   <!-- SECTION 1: BRAND STORY HERO -->
   <section class="page-hero">
@@ -571,6 +594,8 @@
   </script>
 
     <!-- Universal Footer -->
+  </main>
+
   <footer class="footer">
     <div class="footer-inner">
       <div class="footer-left">

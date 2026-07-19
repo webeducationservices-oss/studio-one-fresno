@@ -49,40 +49,18 @@
   </script>
 <script type="application/ld+json">
   {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Amber Kehoe",
-    "jobTitle": "Hair Designer",
-    "worksFor": {
-      "@type": "HairSalon",
-      "name": "Studio One Hair Design",
-      "url": "https://www.studioonefresno.com/",
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.9",
-        "reviewCount": "37",
-        "bestRating": "5"
-      },
-      "review": [
-        {
-          "@type": "Review",
-          "reviewRating": {
-            "@type": "Rating",
-            "ratingValue": "5",
-            "bestRating": "5"
-          },
-          "author": {
-            "@type": "Person",
-            "name": "Maria"
-          },
-          "reviewBody": "I've been going to Cat at Studio One for some time now. I'm always pleased with my cut, color & highlights. Her assistant Carina gives the best head massages. Everyone at Studio One is very friendly and attentive. I highly recommend Studio One!",
-          "datePublished": "2026-01-22"
-        }
-      ]
-    },
-    "image": "https://www.studioonefresno.com/../images/team/amber.webp",
-    "url": "https://www.studioonefresno.com/team-members/amber"
-  }
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Amber Kehoe",
+  "jobTitle": "Hair Designer",
+  "worksFor": {
+    "@type": "HairSalon",
+    "name": "Studio One Hair Design",
+    "url": "https://www.studioonefresno.com/"
+  },
+  "image": "https://www.studioonefresno.com/../images/team/amber.webp",
+  "url": "https://www.studioonefresno.com/team-members/amber"
+}
   </script>
 
   <style>
@@ -120,8 +98,7 @@
     .bio-content h1{font-family:var(--heading-font);font-size:64px;font-weight:400;line-height:1.05;color:var(--white);margin-bottom:8px}
     .bio-content .role{font-size:14px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--light-gray);margin-bottom:32px}
     .bio-body p{font-size:15px;line-height:1.8;color:var(--light-gray);font-weight:300;margin-bottom:20px}
-    .bio-specialties{margin-top:32px;padding-top:32px;border-top:1px solid rgba(255,255,255,.08)}
-    .bio-specialties h3{font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--off-white);margin-bottom:16px}
+    .bio-specialties{margin-top:32px;padding-top:32px;border-top:1px solid rgba(255,255,255,.08)}.bio-specialties h3, .bio-specialties h2{font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--off-white);margin-bottom:16px}
     .bio-specialties ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px 12px}
     .bio-specialties li{font-size:12px;color:var(--off-white);padding:6px 14px;border:1px solid rgba(76,82,35,.8);border-radius:999px;font-weight:400}
     .bio-actions{margin-top:40px;display:flex;gap:16px;flex-wrap:wrap}
@@ -165,6 +142,7 @@
   <script src="/mae-edit-loader.js" async></script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to main content</a>
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WQGCMZ9Q" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
   <!-- Floating Phone Widget -->
@@ -181,13 +159,14 @@
   <header class="header">
     <div class="header-inner">
       <a href="/" class="logo-link"><img src="../images/optimized/logo.avif" alt="Studio One" class="logo"></a>
-      <button class="menu-toggle" id="menuToggle"><span class="menu-text">MENU</span></button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu"><span class="menu-text">MENU</span></button>
     </div>
   </header>
+  <main id="main">
 
   <!-- Nav Overlay -->
   <nav class="nav-overlay" id="navOverlay">
-    <button class="nav-close" id="navClose"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="#f5f5f5" stroke-width="1.5" stroke-linecap="round"/></svg></button>
+    <button class="nav-close" id="navClose" aria-label="Close menu"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="#f5f5f5" stroke-width="1.5" stroke-linecap="round"/></svg></button>
     <div class="nav-inner">
       <a href="/" class="nav-logo" aria-label="Studio One — back to home">
         <img src="/images/optimized/logo.avif" alt="Studio One Hair Design" width="180" height="34">
@@ -245,7 +224,7 @@
         <div class="bio-body"><p>Over 20 years of experience in hair design with Vidal Sassoon training foundation. Focuses on precision technique and creating styles that fit clients&#x27; personalities and lifestyles.</p>
           <p>Proud mother of five (three biological children plus two bonus children). Active lifestyle enthusiast. Recently relocated to Fresno to begin a new chapter and bring professional expertise to the Central Valley.</p></div>
         <div class="bio-specialties">
-          <h3>Specialties</h3>
+          <h2>Specialties</h2>
           <ul>
             <li>Hair styling</li>
             <li>Precision cutting</li>
@@ -292,6 +271,8 @@
   </section>
 
     <!-- Universal Footer -->
+  </main>
+
   <footer class="footer">
     <div class="footer-inner">
       <div class="footer-left">
