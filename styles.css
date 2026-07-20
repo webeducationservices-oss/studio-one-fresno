@@ -1020,3 +1020,13 @@ button { cursor: pointer; background: none; border: none; color: inherit; font-f
   left: 8px;
   top: 8px;
 }
+
+/* Social + cart icon hit areas (WCAG 2.5.5 target size) */
+.fb-icon,
+.cart-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+}

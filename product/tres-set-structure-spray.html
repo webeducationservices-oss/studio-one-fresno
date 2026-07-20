@@ -60,7 +60,7 @@
     .header-inner{display:flex;justify-content:space-between;align-items:center;max-width:1400px;margin:0 auto}
     .logo{height:28px;width:auto}
     .menu-toggle{font-size:14px;font-weight:500;letter-spacing:2px;color:var(--off-white);text-transform:uppercase}
-    .cart-icon{position:relative;margin-right:24px;color:var(--off-white)}
+    .cart-icon{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;position:relative;margin-right:24px;color:var(--off-white)}
     .cart-count{position:absolute;top:-6px;right:-8px;background:var(--olive);color:var(--white);font-size:10px;min-width:16px;height:16px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:600;padding:0 4px}
     .cart-count.is-empty{display:none}
     .floating-phone-widget{position:fixed;bottom:32px;left:32px;z-index:100}
@@ -99,7 +99,7 @@
 .product-info .price{font-family:var(--heading-font);font-size:32px;color:var(--off-white);margin-bottom:32px}
 .variant-selector{margin-bottom:32px}
 .variant-selector label{display:block;font-size:11px;letter-spacing:2px;color:var(--off-white);text-transform:uppercase;font-weight:600;margin-bottom:10px}
-.variant-selector select{width:100%;padding:14px 16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);color:var(--white);font-family:inherit;font-size:14px;border-radius:4px;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%23d9d9d9' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center}
+.variant-selector select{width:100%;padding:14px 16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);color:var(--white);font-family:inherit;font-size:16px;border-radius:4px;-webkit-appearance:none;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1L6 6L11 1' stroke='%23d9d9d9' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 16px center}
 .qty-selector{display:flex;align-items:center;gap:0;margin-bottom:24px}
 .qty-selector label{font-size:11px;letter-spacing:2px;color:var(--off-white);text-transform:uppercase;font-weight:600;margin-right:16px}
 .qty-btn{width:36px;height:36px;border:1px solid rgba(255,255,255,.12);color:var(--white);background:rgba(255,255,255,.04);font-size:16px}
@@ -230,13 +230,13 @@
         <p class="price" id="priceDisplay">$48</p>
         
         <div class="qty-selector">
-          <label>Qty</label>
+          <label for="qtyVal">Qty</label>
           <button class="qty-btn" id="qtyDec" type="button">−</button>
           <input class="qty-val" id="qtyVal" type="number" value="1" min="1" max="99">
           <button class="qty-btn" id="qtyInc" type="button">+</button>
         </div>
         <button class="add-to-cart" id="addToCart" data-slug="tres-set-structure-spray" data-name="Très Set Structure Spray" data-brand="Oribe" data-image="/images/products/tres-set-structure-spray-1.webp">Add to Cart</button>
-          <a href="/wholesale?product=tres-set-structure-spray" class="wholesale-link">Licensed stylist or salon? <span>Request a wholesale quote &rarr;</span></a>
+          <a href="/wholesale?item=tres-set-structure-spray" class="wholesale-link">Licensed stylist or salon? <span>Request a wholesale quote &rarr;</span></a>
         <div class="cart-confirm" id="cartConfirm" hidden>
           <p class="cart-confirm-msg">Added to your cart &#10003;</p>
           <div class="cart-confirm-actions">

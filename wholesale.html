@@ -394,7 +394,7 @@
   <script>
     // Pre-fill products of interest from ?product= URL param
     (function(){
-      var p = new URLSearchParams(location.search).get('product');
+      var p = new URLSearchParams(location.search).get('item') || new URLSearchParams(location.search).get('product');
       if (p) {
         var ta = document.getElementById('ws-products');
         if (ta) ta.value = 'Interested in: ' + p.replace(/-/g, ' ');

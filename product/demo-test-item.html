@@ -50,7 +50,7 @@
     .header-inner{display:flex;justify-content:space-between;align-items:center;max-width:1400px;margin:0 auto}
     .logo{height:28px;width:auto}
     .menu-toggle{font-size:14px;font-weight:500;letter-spacing:2px;color:var(--off-white);text-transform:uppercase}
-    .cart-icon{position:relative;margin-right:24px;color:var(--off-white)}
+    .cart-icon{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;position:relative;margin-right:24px;color:var(--off-white)}
     .cart-count{position:absolute;top:-6px;right:-8px;background:var(--olive);color:var(--white);font-size:10px;min-width:16px;height:16px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:600;padding:0 4px}
     .cart-count.is-empty{display:none}
     .floating-phone-widget{position:fixed;bottom:32px;left:32px;z-index:100}
@@ -73,7 +73,7 @@
     .qty-stepper{display:flex;align-items:center;border:1px solid rgba(255,255,255,.15);border-radius:4px;overflow:hidden}
     .qty-stepper button{width:36px;height:36px;background:rgba(255,255,255,.04);color:var(--white);font-size:18px;transition:background .2s}
     .qty-stepper button:hover{background:rgba(76,82,35,.4)}
-    .qty-stepper input{width:48px;height:36px;background:transparent;color:var(--white);text-align:center;border:none;border-left:1px solid rgba(255,255,255,.15);border-right:1px solid rgba(255,255,255,.15);font-size:14px;font-family:inherit}
+    .qty-stepper input{width:48px;height:36px;background:transparent;color:var(--white);text-align:center;border:none;border-left:1px solid rgba(255,255,255,.15);border-right:1px solid rgba(255,255,255,.15);font-size:16px;font-family:inherit}
     .add-to-cart{width:100%;padding:18px;background:var(--olive);color:var(--white);font-size:12px;font-weight:600;letter-spacing:3px;text-transform:uppercase;border:none;cursor:pointer;transition:background .3s;margin-bottom:16px}
     .add-to-cart:hover{background:var(--olive-light)}
     .add-to-cart.is-added{background:#3a4019}
@@ -162,7 +162,7 @@
             <a href="/shop" class="cart-confirm-keep">Keep Shopping</a>
           </div>
         </div>
-        <a href="/wholesale?product=demo-test-item" class="wholesale-link">Licensed stylist or salon? <span>Request a wholesale quote &rarr;</span></a>
+        <a href="/wholesale?item=demo-test-item" class="wholesale-link">Licensed stylist or salon? <span>Request a wholesale quote &rarr;</span></a>
 
         <p style="font-size:12px;color:rgba(255,255,255,.45);margin-top:24px;font-weight:300;line-height:1.7">
           Internal use only. After testing, refund the order at <a href="https://www.paypal.com/businessmanage/account/" target="_blank" rel="noopener" style="color:var(--olive-light);text-decoration:underline">paypal.com merchant dashboard</a>.
