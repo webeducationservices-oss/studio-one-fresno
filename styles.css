@@ -746,7 +746,7 @@ button { cursor: pointer; background: none; border: none; color: inherit; font-f
   font-size: 13px;
   outline: none;
 }
-.newsletter-input::placeholder { color: rgba(255,255,255,0.4); }
+.newsletter-input::placeholder { color: rgba(255,255,255,0.62); }
 .newsletter-input:focus { border-color: var(--olive); }
 .newsletter-submit {
   padding: 14px 24px;
@@ -900,11 +900,11 @@ button { cursor: pointer; background: none; border: none; color: inherit; font-f
   justify-content: space-between;
   align-items: center;
   font-size: 11px;
-  color: rgba(255,255,255,0.4);
+  color: rgba(255,255,255,0.62);
   letter-spacing: 1px;
 }
 .footer-bottom a {
-  color: rgba(255,255,255,0.4);
+  color: rgba(255,255,255,0.62);
   transition: color 0.3s;
 }
 .footer-bottom a:hover { color: var(--off-white); }
