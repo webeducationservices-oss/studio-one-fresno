@@ -12,7 +12,7 @@
   <link href="https://use.typekit.net/epq0gor.css" rel="stylesheet" media="print" onload="this.media='all'">
   <noscript><link href="https://use.typekit.net/epq0gor.css" rel="stylesheet"></noscript>
   <!-- reCAPTCHA v3 (shared WES key) — used only to notify Studio One that a link was paid -->
-  <script src="https://www.google.com/recaptcha/api.js?render=6Lck8aQsAAAAALMA-T6nwfkSf7bv4K-mOhkszeKh"></script>
+  <script src="https://www.google.com/recaptcha/api.js?render=6Lck8aQsAAAAALMA-T6nwfkSf7bv4K-mOhkszeKh" async defer></script>
   <!-- PayPal SDK — same live client-id as the shop; PayPal / Venmo / any card -->
   <script src="https://www.paypal.com/sdk/js?client-id=AW4HfPBgoAi0ej4WYNWCyFbvm8eKoO3tKuvUrL5YVbD5MZu-nOsaInJxJDLiOfRErgnjtieDEC73lhux&currency=USD&intent=capture&enable-funding=venmo&components=buttons" data-sdk-integration-source="pay"></script>
   <style>
@@ -37,6 +37,8 @@
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <main id="main">
   <div class="card">
     <a href="/"><img src="/images/optimized/logo.avif" alt="Studio One Hair Design" class="logo" width="180" height="34"></a>
     <p class="eyebrow">Secure Payment</p>
@@ -49,7 +51,8 @@
     <div id="paypal-button-container"></div>
     <div class="msg" id="msg"></div>
     <p class="foot-note">Secure checkout by PayPal &mdash; pay with PayPal, Venmo, or any credit/debit card. Questions? Text <a href="sms:5597959724">559-795-9724</a>.</p>
-  </div>
+  </div></main>
+
 
   <script>
   (function(){

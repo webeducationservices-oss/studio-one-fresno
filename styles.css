@@ -3,7 +3,7 @@
 
 :root {
   --olive: #4c5223;
-  --olive-light: #6b7332;
+  --olive-light: #727a35;
   --black: #000000;
   --dark: #0a0a0a;
   --white: #ffffff;
@@ -140,6 +140,11 @@ button { cursor: pointer; background: none; border: none; color: inherit; font-f
   width: auto;
 }
 .menu-toggle {
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   font-family: var(--body-font);
   font-size: 14px;
   font-weight: 500;
@@ -169,6 +174,11 @@ button { cursor: pointer; background: none; border: none; color: inherit; font-f
   pointer-events: all;
 }
 .nav-close {
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
   top: 28px;
   right: 40px;
@@ -736,7 +746,7 @@ button { cursor: pointer; background: none; border: none; color: inherit; font-f
   font-size: 13px;
   outline: none;
 }
-.newsletter-input::placeholder { color: rgba(255,255,255,0.4); }
+.newsletter-input::placeholder { color: rgba(255,255,255,0.62); }
 .newsletter-input:focus { border-color: var(--olive); }
 .newsletter-submit {
   padding: 14px 24px;
@@ -890,11 +900,11 @@ button { cursor: pointer; background: none; border: none; color: inherit; font-f
   justify-content: space-between;
   align-items: center;
   font-size: 11px;
-  color: rgba(255,255,255,0.4);
+  color: rgba(255,255,255,0.62);
   letter-spacing: 1px;
 }
 .footer-bottom a {
-  color: rgba(255,255,255,0.4);
+  color: rgba(255,255,255,0.62);
   transition: color 0.3s;
 }
 .footer-bottom a:hover { color: var(--off-white); }
@@ -991,4 +1001,32 @@ button { cursor: pointer; background: none; border: none; color: inherit; font-f
 .wholesale-link:hover span {
   color: var(--white);
   border-color: var(--white);
+}
+
+/* Skip navigation (a11y) */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 1000;
+  padding: 12px 20px;
+  background: var(--white);
+  color: #000;
+  font-family: var(--body-font);
+  font-size: 14px;
+  text-decoration: none;
+}
+.skip-link:focus {
+  left: 8px;
+  top: 8px;
+}
+
+/* Social + cart icon hit areas (WCAG 2.5.5 target size) */
+.fb-icon,
+.cart-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
 }

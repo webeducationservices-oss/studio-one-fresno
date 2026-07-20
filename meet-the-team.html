@@ -218,6 +218,7 @@
   </script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to main content</a>
 
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WQGCMZ9Q" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -233,7 +234,7 @@
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" stroke="#f5f5f5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <span>Text</span>
       </a>
-      <a href="tel:5597959724" class="phone-action-btn" aria-label="Call Studio One">
+      <a href="tel:+15597959724" class="phone-action-btn" aria-label="Call Studio One">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z" stroke="#f5f5f5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <span>Call</span>
       </a>
@@ -250,15 +251,16 @@
       <a href="/" class="logo-link">
         <img src="images/optimized/logo.avif" alt="Studio One" class="logo" width="429" height="99">
       </a>
-      <button class="menu-toggle" id="menuToggle">
+      <button class="menu-toggle" id="menuToggle" aria-label="Open menu">
         <span class="menu-text">MENU</span>
       </button>
     </div>
   </header>
+  <main id="main">
 
   <!-- Nav Overlay -->
   <nav class="nav-overlay" id="navOverlay">
-    <button class="nav-close" id="navClose">
+    <button class="nav-close" id="navClose" aria-label="Close menu">
       <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="#f5f5f5" stroke-width="1.5" stroke-linecap="round"/></svg>
     </button>
     <div class="nav-inner">
@@ -307,7 +309,7 @@
 
   <!-- ==================== PAGE HERO ==================== -->
   <section class="page-hero">
-      <div class="page-hero-bg"><img src="/images/pages/meet-the-team-hero.webp" alt="The Studio One team" fetchpriority="high" width="3266" height="2194"></div>
+      <div class="page-hero-bg"><img src="/images/pages/meet-the-team-hero.webp" alt="The Studio One team" fetchpriority="high" width="1600" height="1075"></div>
       <div class="page-hero-overlay"></div>
 
     <div class="page-hero-content" data-animate>
@@ -345,7 +347,7 @@
 
         <a href="/team-members/makayla-davila" class="team-card" data-animate data-delay="0">
           <div class="team-photo-wrap">
-            <img src="/images/webflow/team-group/makayla-headshot.webp" alt="Makayla Davila, Hair Designer at Studio One" width="260" height="260" loading="lazy" decoding="async">
+            <img src="/images/webflow/team-group/makayla-headshot.webp" alt="Makayla Davila, Hair Designer at Studio One" width="400" height="600" loading="lazy" decoding="async">
           </div>
           <h2 class="team-name">Makayla Davila</h2>
           <p class="team-title">Hair Designer</p>
@@ -524,6 +526,8 @@
   </section>
 
     <!-- Universal Footer -->
+  </main>
+
   <footer class="footer">
     <div class="footer-inner">
       <div class="footer-left">
@@ -531,7 +535,7 @@
           <div class="footer-location">
             <h3 class="footer-section-title">LOCATION</h3>
             <p>2950 E Nees Ave., #103<br>Fresno, CA 93720</p>
-            <a href="tel:5597959724" class="footer-phone">559-795-9724</a>
+            <a href="tel:+15597959724" class="footer-phone">559-795-9724</a>
             <a href="sms:5597959724" class="footer-phone">559-795-9724 (text)</a>
           </div>
           <div class="footer-hours">

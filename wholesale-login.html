@@ -22,7 +22,7 @@
     .intro{font-size:14px;color:var(--light-gray);font-weight:300;line-height:1.7;margin-bottom:32px}
     form{display:flex;flex-direction:column;gap:14px;text-align:left}
     label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--off-white);font-weight:600;margin-bottom:6px;display:block}
-    input{width:100%;padding:14px 16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.14);border-radius:4px;color:var(--white);font-size:15px;font-family:inherit}
+    input{width:100%;padding:14px 16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.14);border-radius:4px;color:var(--white);font-size:16px;font-family:inherit}
     input:focus{outline:none;border-color:var(--olive-light);background:rgba(76,82,35,.08)}
     .btn{margin-top:8px;width:100%;padding:16px;background:var(--olive);color:var(--white);font-size:12px;font-weight:600;letter-spacing:3px;text-transform:uppercase;border:none;border-radius:4px;cursor:pointer;transition:background .3s}
     .btn:hover{background:var(--olive-light)}
@@ -38,6 +38,8 @@
   <script src="/mae-edit-loader.js" async></script>
 </head>
 <body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <main id="main">
   <div class="card">
     <a href="/"><img src="/images/optimized/logo.avif" alt="Studio One Hair Design" class="logo" width="180" height="34"></a>
     <p class="eyebrow">Pro / Stylist Access</p>
@@ -60,7 +62,8 @@
       <a href="/wholesale">Not a wholesale partner yet? Apply &rarr;</a>
     </div>
     <p class="foot-note">Wholesale access is for licensed stylists and salons approved by Studio One. Accounts are created by Studio One &mdash; there is no public sign-up.</p>
-  </div>
+  </div></main>
+
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.0/dist/umd/supabase.min.js"></script>
   <script>
