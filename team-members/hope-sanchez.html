@@ -116,6 +116,14 @@
     .portfolio-header h2{font-family:var(--heading-font);font-size:42px;font-weight:400;color:var(--white)}
     .portfolio-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
     .portfolio-grid img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:2px}
+    .guest-quote-section{padding:100px 40px;background:var(--black);border-top:1px solid rgba(255,255,255,.06)}
+    .guest-quote-inner{max-width:860px;margin:0 auto;text-align:center}
+    .guest-quote-eyebrow{font-size:11px;font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--olive-light);margin-bottom:20px}
+    .guest-quote-inner blockquote{font-family:var(--heading-font);font-size:34px;font-weight:400;line-height:1.3;color:var(--white);margin-bottom:28px}
+    .guest-quote-body p{font-size:15px;line-height:1.8;color:var(--light-gray);font-weight:300;margin-bottom:18px}
+    .guest-quote-name{font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--off-white);margin-top:28px}
+    .guest-quote-more{display:inline-block;margin-top:20px;font-size:13px;letter-spacing:1px;color:var(--olive-light);border-bottom:1px solid rgba(114,122,53,.5);padding-bottom:2px;transition:color .3s,border-color .3s}
+    .guest-quote-more:hover{color:var(--off-white);border-color:var(--off-white)}
     .closing{padding:120px 40px;text-align:center;background:var(--black)}
     .closing h2{font-family:var(--heading-font);font-size:40px;font-weight:400;color:var(--white);max-width:720px;margin:0 auto 24px;line-height:1.2}
     .closing p{font-size:15px;color:var(--light-gray);max-width:560px;margin:0 auto 32px;font-weight:300}
@@ -131,6 +139,8 @@
       .bio-actions{flex-direction:column;align-items:stretch}
       .olive-button,.ghost-button{text-align:center}
       .portfolio-section{padding:60px 20px}
+      .guest-quote-section{padding:64px 24px}
+      .guest-quote-inner blockquote{font-size:25px}
       .closing{padding:72px 24px}
       .closing h2{font-size:32px}
     }
@@ -261,6 +271,22 @@
         <img src="../images/team/hope-sanchez/portfolio-3.webp" alt="Hope transformation #3" loading="lazy" decoding="async" width="450" height="600">
         <img src="../images/team/hope-sanchez/portfolio-4.webp" alt="Hope transformation #4" loading="lazy" decoding="async" width="450" height="600">
       </div>
+    </div>
+  </section>
+
+  <!-- Guest testimonial. Excerpt only; the full story lives on /testimonials
+       so the two pages don't duplicate the same 285-word block. -->
+  <section class="guest-quote-section" aria-label="Guest testimonial">
+    <div class="guest-quote-inner" data-animate>
+      <p class="guest-quote-eyebrow">In Her Guests&rsquo; Words</p>
+      <blockquote>&ldquo;I&rsquo;ve been seeing Hope since I was 15 years old, and I truly can&rsquo;t imagine trusting anyone else with my hair.&rdquo;</blockquote>
+      <div class="guest-quote-body">
+        <p>She knows my hair so well, and I trust her completely. One of my favorite things is that we&rsquo;re always changing up my look. I&rsquo;ll bring my ideas, she&rsquo;ll share her professional recommendations, and together we always create something beautiful.</p>
+        <p>Beyond giving me hair I love, Hope has taught me how to properly style and care for it between appointments. Thanks to her guidance, my hair has become so much healthier, and I&rsquo;ve experienced amazing regrowth.</p>
+        <p>I recommend Hope without hesitation. Her ability to work with different hair types, including curly hair, is invaluable, and her talent, knowledge, and genuine care set her apart.</p>
+      </div>
+      <p class="guest-quote-name">A Longtime Guest of Hope</p>
+      <a class="guest-quote-more" href="/testimonials">Read the full story</a>
     </div>
   </section>
 

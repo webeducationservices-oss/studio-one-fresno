@@ -203,24 +203,44 @@ export default async function handler(req, res) {
   const summary = summarize(event);
   const formType = shortFormType(event.event_type);
 
-  // Hand off to existing form-notify infrastructure (email + Google Sheet)
+  // Hand off to existing form-notify infrastructure (email + Google Sheet).
+  //
+  // Trust: the x-internal-secret header is the ONLY bypass form-notify honors
+  // for server-to-server calls. A fake recaptcha_token does NOT work: it gets
+  // verified against Google and fails, and form-notify then rejects the
+  // submission with { accepted:false } while still returning HTTP 200. That
+  // exact combination silently dropped every retail order until 2026-07-21.
+  //
+  // Failure policy: if the order did not land, return 502 so PayPal retries
+  // (it backs off and retries for up to ~3 days). A signature-verified
+  // payment event must never be swallowed.
+  let orderRecorded = false;
   try {
-    await fetch(FORM_NOTIFY_URL, {
+    const notifyRes = await fetch(FORM_NOTIFY_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'x-internal-secret': process.env.INTERNAL_FORM_SECRET || '',
+      },
       body: JSON.stringify({
         site_slug: 'studio-one',
         form_type: formType,
-        // Hidden honeypot must be blank to pass form-notify spam filter
-        _honey: '',
-        // Skip reCAPTCHA — internal server-to-server call
-        recaptcha_token: 'server-to-server',
         ...summary,
       }),
     });
+    const notifyBody = await notifyRes.json().catch(() => ({}));
+    orderRecorded = notifyRes.ok && notifyBody.accepted === true;
+    if (!orderRecorded) {
+      console.error('form-notify REJECTED paypal event:', JSON.stringify({
+        status: notifyRes.status,
+        body: notifyBody,
+        event_type: summary.event_type,
+        event_id: summary.event_id,
+        secret_present: !!process.env.INTERNAL_FORM_SECRET,
+      }));
+    }
   } catch (e) {
     console.error('form-notify dispatch failed:', e?.message || e);
-    // Don't fail the webhook — we already verified, will be in Vercel logs
   }
 
   // Backstop: when a wholesale payment-link capture completes, auto-mark that order Paid.
@@ -243,6 +263,11 @@ export default async function handler(req, res) {
     }
   }
 
-  // Always 200 quickly (< 10s) so PayPal doesn't retry
+  // 200 only when the order actually landed. Otherwise 502 so PayPal retries:
+  // a dropped-but-acknowledged payment event is unrecoverable, a retried one
+  // survives an outage or a config mistake on our side.
+  if (!orderRecorded) {
+    return res.status(502).json({ ok: false, retry: true, event_id: summary.event_id, event_type: summary.event_type });
+  }
   return res.status(200).json({ ok: true, event_id: summary.event_id, event_type: summary.event_type });
 }
