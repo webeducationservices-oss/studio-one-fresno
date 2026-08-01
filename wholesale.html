@@ -429,6 +429,35 @@
       } catch (e) { console.error('license upload failed', e); showErr('We couldn’t upload your license. Please try again, or try a different file.'); return { ok: false }; }
     }
 
+    // reCAPTCHA is non-fatal: a blocked script times out after 8s and we post
+    // without a token (form-notify keeps it as missing_recaptcha_token) instead
+    // of hanging the applicant on a dead button.
+    const SO_RECAPTCHA_KEY = '6Lck8aQsAAAAALMA-T6nwfkSf7bv4K-mOhkszeKh';
+
+    function soGetToken(action) {
+      return Promise.race([
+        (async () => {
+          if (typeof grecaptcha === 'undefined') return '';
+          await new Promise(r => grecaptcha.ready(r));
+          return await grecaptcha.execute(SO_RECAPTCHA_KEY, { action });
+        })(),
+        new Promise(r => setTimeout(() => r(''), 8000))
+      ]).catch(err => { console.warn('reCAPTCHA error:', err); return ''; });
+    }
+
+    function soShowFormError(form) {
+      let box = form.querySelector('.form-send-error');
+      if (!box) {
+        box = document.createElement('p');
+        box.className = 'form-send-error';
+        box.setAttribute('role', 'alert');
+        box.setAttribute('style', 'margin-top:16px;padding:14px 16px;border-radius:4px;background:rgba(190,60,60,.14);border:1px solid rgba(190,60,60,.4);color:#ffb3b3;font-size:14px;line-height:1.6');
+        (form.querySelector('.form-fields') || form).appendChild(box);
+      }
+      box.innerHTML = 'We couldn’t send your application just now. Please call or text us at <a href="tel:+15597959724" style="color:inherit;text-decoration:underline">559-795-9724</a> so we don’t miss you.';
+      box.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    }
+
     // Form submit
     document.querySelectorAll('form[data-ajax]').forEach(form => {
       form.addEventListener('submit', async (e) => {
@@ -438,27 +467,38 @@
         const original = btn.textContent;
         btn.disabled = true;
         btn.textContent = 'Submitting…';
+        const prevError = form.querySelector('.form-send-error');
+        if (prevError) prevError.remove();
         // License must upload successfully before we accept the application
         const lic = await uploadLicense(form);
         if (!lic.ok) { btn.disabled = false; btn.textContent = original; return; }
-        try {
-          if (typeof grecaptcha !== 'undefined') {
-            await new Promise(r => grecaptcha.ready(r));
-            const token = await grecaptcha.execute('6Lck8aQsAAAAALMA-T6nwfkSf7bv4K-mOhkszeKh', { action: 'wholesale_apply' });
-            const f = form.querySelector('[name="recaptcha_token"]');
-            if (f) f.value = token;
-          }
-        } catch (err) { console.warn('reCAPTCHA error:', err); }
+
+        const tokenField = form.querySelector('[name="recaptcha_token"]');
+        const token = await soGetToken('wholesale_apply');
+        if (tokenField) tokenField.value = token || '';
+
+        let ok = false;
         try {
           const data = Object.fromEntries(new FormData(form).entries());
           if (lic.path) { data.license_path = lic.path; data.license_filename = lic.filename || ''; }
           if (window.soAttribution) Object.assign(data, window.soAttribution());
-          await fetch('https://myaieditor.com/api/form-notify', {
+          const res = await fetch('https://myaieditor.com/api/form-notify', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data),
           });
+          const j = await res.json().catch(() => ({}));
+          ok = res.ok && j.accepted !== false;
         } catch (err) { console.error('Submit error:', err); }
+
+        // Only show the confirmation once the server actually took the application.
+        if (!ok) {
+          btn.disabled = false;
+          btn.textContent = original;
+          soShowFormError(form);
+          return;
+        }
+
         form.querySelector('.form-fields').style.display = 'none';
         form.querySelector('.form-success').classList.add('show');
         if (typeof gtag !== 'undefined') gtag('event', 'form_submit', { form_type: 'wholesale_application' });

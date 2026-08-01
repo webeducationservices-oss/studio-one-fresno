@@ -681,32 +681,56 @@
     }
 
     /* ---- Submit ---- */
+    // reCAPTCHA is non-fatal: a blocked or slow script times out after 8s and we
+    // post without a token (form-notify keeps it as missing_recaptcha_token, so
+    // the application is still recoverable) instead of hanging on a dead button.
+    function getToken(){
+      return Promise.race([
+        (async () => {
+          if(typeof grecaptcha === 'undefined') return '';
+          await new Promise(r => grecaptcha.ready(r));
+          return await grecaptcha.execute(RECAPTCHA_KEY, { action: 'nbr_application_submit' });
+        })(),
+        new Promise(r => setTimeout(() => r(''), 8000))
+      ]).catch(err => { console.warn('reCAPTCHA error:', err); return ''; });
+    }
+
     async function submit(){
       if(!validate(current)) return;
       if(form.querySelector('[name="_honey"]').value) return; // bot
       const btn = form.querySelector('.apply-submit');
+      const originalText = btn.textContent;
       btn.disabled = true; btn.textContent = 'Sending…';
 
       // reCAPTCHA token
-      try{
-        if(typeof grecaptcha !== 'undefined'){
-          await new Promise(r => grecaptcha.ready(r));
-          const token = await grecaptcha.execute(RECAPTCHA_KEY, { action: 'nbr_application_submit' });
-          form.querySelector('[name="recaptcha_token"]').value = token;
-        }
-      }catch(err){ console.warn('reCAPTCHA error:', err); }
+      form.querySelector('[name="recaptcha_token"]').value = (await getToken()) || '';
 
       // Build payload
       const data = Object.fromEntries(new FormData(form).entries());
+      let ok = false;
       try{
-        await fetch('https://myaieditor.com/api/form-notify', {
+        const res = await fetch('https://myaieditor.com/api/form-notify', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data)
         });
+        const j = await res.json().catch(() => ({}));
+        ok = res.ok && j.accepted !== false;
       }catch(err){ console.error('Form submit error:', err); }
 
-      // Reveal full-page thank-you (success regardless — data captured client-side, email/sheet sent)
+      // Never fake a thank-you: if the server didn't take it, say so and give
+      // the applicant a real way to reach us (their answers stay in the form).
+      if(!ok){
+        btn.disabled = false; btn.textContent = originalText;
+        const errEl = steps[current].querySelector('[data-error]');
+        if(errEl){
+          errEl.innerHTML = 'We couldn’t send your application just now. Please call or text us at <a href="tel:+15597959724" style="color:inherit;text-decoration:underline">559-795-9724</a> so we don’t miss you.';
+          errEl.scrollIntoView({behavior:'smooth', block:'center'});
+        }
+        return;
+      }
+
+      // Reveal full-page thank-you (server accepted the application)
       try{ localStorage.removeItem(LS_KEY); }catch(e){}
       personalize();
       applyHero.style.display = 'none';

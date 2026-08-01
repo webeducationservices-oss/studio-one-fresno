@@ -827,22 +827,46 @@
         return [].map.call(checked, function(c){ return c.value; }).join(', ');
       }
 
+      // reCAPTCHA is non-fatal: a blocked or slow script times out after 8s and
+      // we post without a token (form-notify keeps it as missing_recaptcha_token,
+      // so the application is still recoverable) instead of hanging forever.
+      function getToken(){
+        return Promise.race([
+          (async function(){
+            if (typeof grecaptcha === 'undefined') return '';
+            await new Promise(function(r){ grecaptcha.ready(r); });
+            return await grecaptcha.execute(RECAPTCHA_KEY, { action: 'no_sew_application' });
+          })(),
+          new Promise(function(r){ setTimeout(function(){ r(''); }, 8000); })
+        ]).catch(function(err){ console.warn('reCAPTCHA error:', err); return ''; });
+      }
+
+      var sendErr = null;
+      function showSendError(){
+        if (!sendErr){
+          sendErr = document.createElement('p');
+          sendErr.className = 'apply-err show';
+          sendErr.setAttribute('role', 'alert');
+          sendErr.setAttribute('style', 'margin-top:14px;line-height:1.6');
+          nav.parentNode.insertBefore(sendErr, nav);
+        }
+        sendErr.className = 'apply-err show';
+        sendErr.innerHTML = 'We couldn’t send your application just now. Please call or text us at <a href="tel:+15597959724" style="color:inherit;text-decoration:underline">559-795-9724</a> so we don’t miss you.';
+        sendErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+
       form.addEventListener('submit', async function(e){
         e.preventDefault();
         if (form.querySelector('[name="_honey"]').value) return;
         if (!validate(cur)) return;
+        var originalText = submitBtn.textContent;
         submitBtn.disabled = true; submitBtn.textContent = 'Submitting…';
+        if (sendErr) sendErr.className = 'apply-err';
 
         var photoDataUrl = '';
         if (selectedFile){ try { photoDataUrl = await downscale(selectedFile); } catch (err) {} }
 
-        var token = '';
-        try {
-          if (typeof grecaptcha !== 'undefined'){
-            await new Promise(function(r){ grecaptcha.ready(r); });
-            token = await grecaptcha.execute(RECAPTCHA_KEY, { action: 'no_sew_application' });
-          }
-        } catch (err) { console.warn('reCAPTCHA error:', err); }
+        var token = (await getToken()) || '';
 
         var payload = {
           site_slug: 'studio-one',
@@ -868,13 +892,23 @@
         };
         if (window.soAttribution) Object.assign(payload, window.soAttribution());
 
+        var ok = false;
         try {
-          await fetch('https://myaieditor.com/api/form-notify', {
+          var res = await fetch('https://myaieditor.com/api/form-notify', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)
           });
+          var j = await res.json().catch(function(){ return {}; });
+          ok = res.ok && j.accepted !== false;
         } catch (err) { console.error('Form submit error:', err); }
+
+        // Only show "Application Received!" once the server actually took it.
+        if (!ok){
+          submitBtn.disabled = false; submitBtn.textContent = originalText;
+          showSendError();
+          return;
+        }
 
         steps.forEach(function(s){ s.classList.remove('active'); });
         var prog = form.querySelector('.apply-progress'); if (prog) prog.style.display = 'none';

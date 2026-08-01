@@ -693,10 +693,15 @@
     <div class="newsletter-inner" data-animate="fade-up">
       <h2 class="newsletter-heading">Welcome to the, <em>pretty hair club.</em></h2>
       <p class="newsletter-label">GET STUDIO UPDATES STRAIGHT TO YOUR INBOX:</p>
-      <form class="newsletter-form" onsubmit="event.preventDefault();">
-        <input type="email" aria-label="Email address" placeholder="Email address" class="newsletter-input" required>
+      <form class="newsletter-form" id="newsletterForm">
+        <input type="hidden" name="site_slug" value="studio-one">
+        <input type="hidden" name="form_type" value="newsletter_signup">
+        <input type="hidden" name="recaptcha_token" id="newsletter_recaptcha_token">
+        <input type="text" name="_honey" value="" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;height:0;overflow:hidden">
+        <input type="email" name="email" aria-label="Email address" placeholder="Email address" class="newsletter-input" required>
         <button type="submit" class="newsletter-submit">SUBSCRIBE</button>
       </form>
+      <p class="newsletter-success" id="newsletterSuccess" style="display:none;margin-top:16px;font-size:14px;letter-spacing:1px;color:var(--off-white)">You&rsquo;re in! Welcome to the pretty hair club.</p>
     </div>
   </section>
 
@@ -803,5 +808,100 @@
     });
   </script>
   <script src="script.js" defer></script>
+  <style>.grecaptcha-badge{visibility:hidden!important}</style>
+  <script>
+    // Newsletter -> form-notify (form_type newsletter_signup).
+    // reCAPTCHA loads lazily on first interaction with the form, not at page
+    // load: this is the LCP-critical page and ~everyone who sees it never
+    // touches the signup box.
+    (function () {
+      var KEY = '6Lck8aQsAAAAALMA-T6nwfkSf7bv4K-mOhkszeKh';
+      var form = document.getElementById('newsletterForm');
+      if (!form) return;
+      var loading = null;
+
+      function loadRecaptcha() {
+        if (loading) return loading;
+        loading = new Promise(function (resolve) {
+          var s = document.createElement('script');
+          s.src = 'https://www.google.com/recaptcha/api.js?render=' + KEY;
+          s.async = true;
+          s.onload = resolve;
+          s.onerror = resolve; // proceed without a token; form-notify quarantines it to the Spam tab rather than losing it
+          document.head.appendChild(s);
+        });
+        return loading;
+      }
+      form.addEventListener('focusin', loadRecaptcha, { once: true });
+      form.addEventListener('pointerover', loadRecaptcha, { once: true });
+
+      // Never let a blocked/slow reCAPTCHA hang the visitor on a dead button:
+      // time out at 8s and post without a token (form-notify records it as
+      // missing_recaptcha_token, so the signup is still recoverable).
+      function getToken() {
+        return Promise.race([
+          (async function () {
+            await loadRecaptcha();
+            if (typeof grecaptcha === 'undefined') return '';
+            await new Promise(function (r) { grecaptcha.ready(r); });
+            return await grecaptcha.execute(KEY, { action: 'newsletter_signup' });
+          })(),
+          new Promise(function (r) { setTimeout(function () { r(''); }, 8000); })
+        ]).catch(function (err) { console.warn('reCAPTCHA error:', err); return ''; });
+      }
+
+      var errEl = null;
+      function showError() {
+        if (!errEl) {
+          errEl = document.createElement('p');
+          errEl.className = 'newsletter-error';
+          errEl.setAttribute('role', 'alert');
+          errEl.setAttribute('style', 'margin-top:16px;font-size:14px;letter-spacing:1px;line-height:1.6;color:#ffb3b3');
+          form.parentNode.insertBefore(errEl, form.nextSibling);
+        }
+        errEl.innerHTML = 'We couldn’t sign you up just now. Please call or text us at <a href="tel:+15597959724" style="color:inherit;text-decoration:underline">559-795-9724</a> and we’ll add you.';
+      }
+
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        if (form.querySelector('[name="_honey"]').value) return; // bot caught
+
+        var btn = form.querySelector('[type="submit"]');
+        var originalText = btn.textContent;
+        btn.disabled = true;
+        btn.textContent = 'JOINING…';
+        if (errEl) errEl.innerHTML = '';
+
+        document.getElementById('newsletter_recaptcha_token').value = (await getToken()) || '';
+
+        var ok = false;
+        try {
+          var data = Object.fromEntries(new FormData(form).entries());
+          if (window.soAttribution) Object.assign(data, window.soAttribution());
+          var res = await fetch('https://myaieditor.com/api/form-notify', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+          });
+          var j = await res.json().catch(function () { return {}; });
+          ok = res.ok && j.accepted !== false;
+        } catch (err) { console.error('Newsletter submit error:', err); }
+
+        // Only claim success once the server actually accepted the signup.
+        if (!ok) {
+          btn.disabled = false;
+          btn.textContent = originalText;
+          showError();
+          return;
+        }
+
+        form.style.display = 'none';
+        document.getElementById('newsletterSuccess').style.display = 'block';
+
+        if (typeof gtag !== 'undefined') gtag('event', 'form_submit', { form_type: 'newsletter_signup' });
+        if (window.soTrackLead) window.soTrackLead('so_lead_newsletter', 'newsletter_signup');
+      });
+    })();
+  </script>
 </body>
 </html>
