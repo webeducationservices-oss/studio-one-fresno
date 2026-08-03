@@ -1020,6 +1020,7 @@
         return;
       }
 
+      if (window.soTrackLead) window.soTrackLead('so_lead_wig', 'wig-consultation');
       // Reveal full-page thank-you (server accepted the request)
       try{ localStorage.removeItem(LS_KEY); }catch(e){}
       personalize();

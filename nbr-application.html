@@ -730,6 +730,7 @@
         return;
       }
 
+      if (window.soTrackLead) window.soTrackLead('so_lead_nbr', 'nbr-application');
       // Reveal full-page thank-you (server accepted the application)
       try{ localStorage.removeItem(LS_KEY); }catch(e){}
       personalize();
