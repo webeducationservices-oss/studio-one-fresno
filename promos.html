@@ -412,6 +412,36 @@
 
   <script>
     // Newsletter signup — form-notify + reCAPTCHA + inline thank-you
+    // reCAPTCHA is non-fatal (8s timeout → post without a token, which
+    // form-notify keeps as missing_recaptcha_token) and the thank-you state is
+    // shown ONLY after the server accepts the signup; otherwise the visitor
+    // gets the salon's phone number instead of a lie.
+    const SO_RECAPTCHA_KEY = '6Lck8aQsAAAAALMA-T6nwfkSf7bv4K-mOhkszeKh';
+
+    function soGetToken(action) {
+      return Promise.race([
+        (async () => {
+          if (typeof grecaptcha === 'undefined') return '';
+          await new Promise(r => grecaptcha.ready(r));
+          return await grecaptcha.execute(SO_RECAPTCHA_KEY, { action });
+        })(),
+        new Promise(r => setTimeout(() => r(''), 8000))
+      ]).catch(err => { console.warn('reCAPTCHA error:', err); return ''; });
+    }
+
+    function soShowFormError(form) {
+      let box = form.querySelector('.form-send-error');
+      if (!box) {
+        box = document.createElement('p');
+        box.className = 'form-send-error';
+        box.setAttribute('role', 'alert');
+        box.setAttribute('style', 'margin-top:16px;padding:14px 16px;border-radius:4px;background:rgba(190,60,60,.14);border:1px solid rgba(190,60,60,.4);color:#ffb3b3;font-size:14px;line-height:1.6');
+        (form.querySelector('.form-fields') || form).appendChild(box);
+      }
+      box.innerHTML = 'We couldn’t sign you up just now. Please call or text us at <a href="tel:+15597959724" style="color:inherit;text-decoration:underline">559-795-9724</a> and we’ll add you.';
+      box.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    }
+
     document.querySelectorAll('form[data-ajax]').forEach(form => {
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -420,14 +450,14 @@
         const original = btn.textContent;
         btn.disabled = true;
         btn.textContent = 'Signing you up…';
-        try {
-          if (typeof grecaptcha !== 'undefined') {
-            await new Promise(r => grecaptcha.ready(r));
-            const token = await grecaptcha.execute('6Lck8aQsAAAAALMA-T6nwfkSf7bv4K-mOhkszeKh', { action: 'newsletter_signup' });
-            const f = form.querySelector('[name="recaptcha_token"]');
-            if (f) f.value = token;
-          }
-        } catch (err) { console.warn('reCAPTCHA error:', err); }
+        const prevError = form.querySelector('.form-send-error');
+        if (prevError) prevError.remove();
+
+        const tokenField = form.querySelector('[name="recaptcha_token"]');
+        const token = await soGetToken('newsletter_signup');
+        if (tokenField) tokenField.value = token || '';
+
+        let ok = false;
         try {
           const fd = new FormData(form);
           // Collect interests as comma-separated list for the email body
@@ -438,12 +468,22 @@
           const data = Object.fromEntries(fd.entries());
           data.interests = interests.join(', ') || 'none specified';
           if (window.soAttribution) Object.assign(data, window.soAttribution());
-          await fetch('https://myaieditor.com/api/form-notify', {
+          const res = await fetch('https://myaieditor.com/api/form-notify', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data),
           });
+          const j = await res.json().catch(() => ({}));
+          ok = res.ok && j.accepted !== false;
         } catch (err) { console.error('Submit error:', err); }
+
+        if (!ok) {
+          btn.disabled = false;
+          btn.textContent = original;
+          soShowFormError(form);
+          return;
+        }
+
         form.querySelector('.form-fields').style.display = 'none';
         form.querySelector('.form-success').classList.add('show');
         if (typeof gtag !== 'undefined') gtag('event', 'sign_up', { method: 'newsletter' });

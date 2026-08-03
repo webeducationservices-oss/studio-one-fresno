@@ -281,11 +281,17 @@
         const fullName=(user?.user_metadata?.full_name || user?.user_metadata?.name || '').trim();
         const parts=fullName?fullName.split(/\s+/):[];
         const RC_KEY='6Lck8aQsAAAAALMA-T6nwfkSf7bv4K-mOhkszeKh';
-        const token=await new Promise((resolve,reject)=>{
-          if(!window.grecaptcha){ reject(new Error('recaptcha not loaded')); return; }
-          grecaptcha.ready(()=>grecaptcha.execute(RC_KEY,{action:'wholesale_order'}).then(resolve,reject));
-        });
-        await fetch('https://myaieditor.com/api/form-notify',{
+        // A blocked reCAPTCHA must NOT kill the mirror — mirror it with an empty
+        // token instead (form-notify parks it as missing_recaptcha_token, which
+        // is recoverable from the admin Spam tab) and never hang here.
+        const token=await Promise.race([
+          new Promise((resolve)=>{
+            if(!window.grecaptcha){ resolve(''); return; }
+            grecaptcha.ready(()=>grecaptcha.execute(RC_KEY,{action:'wholesale_order'}).then(resolve,()=>resolve('')));
+          }),
+          new Promise((resolve)=>setTimeout(()=>resolve(''),8000))
+        ]).catch(()=>'');
+        const res=await fetch('https://myaieditor.com/api/form-notify',{
           method:'POST',
           headers:{'Content-Type':'application/json'},
           body:JSON.stringify({
@@ -304,6 +310,10 @@
             note:note||''
           })
         });
+        const j=await res.json().catch(()=>({}));
+        if(!res.ok || j.accepted===false){
+          console.warn('dashboard notify rejected (order still saved):', res.status, j.reason||'');
+        }
       } catch(e){ console.warn('dashboard notify failed (order still saved):', e); }
     }
   })();
