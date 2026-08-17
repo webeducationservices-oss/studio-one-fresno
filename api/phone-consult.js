@@ -194,7 +194,9 @@ export default async function handler(req, res) {
   // ---- Validate
   const first = String(b.first_name || '').trim().slice(0, 60);
   const last = String(b.last_name || '').trim().slice(0, 60);
-  const phoneDigits = String(b.phone || '').replace(/\D/g, '');
+  let phoneDigits = String(b.phone || '').replace(/\D/g, '');
+  // Autofill often prepends the +1 country code; accept it and keep the real 10 digits
+  if (phoneDigits.length === 11 && phoneDigits.startsWith('1')) phoneDigits = phoneDigits.slice(1);
   const email = String(b.email || '').trim().slice(0, 120);
   const interest = String(b.interest || '').trim().slice(0, 80);
   const notes = String(b.notes || '').trim().slice(0, 1000);
