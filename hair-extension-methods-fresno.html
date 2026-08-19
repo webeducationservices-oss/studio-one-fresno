@@ -27,6 +27,14 @@
 <link href="https://use.typekit.net/epq0gor.css" rel="stylesheet" media="print" onload="this.media='all'">
   <noscript><link href="https://use.typekit.net/epq0gor.css" rel="stylesheet"></noscript>
 
+  <!-- Shared site stylesheet. Loaded BEFORE the page's inline block on purpose:
+       this page's inline CSS intentionally runs a larger hero/nav than the shared
+       defaults, so it must win the cascade. Without this link the full footer
+       (.footer-inner, .ig-grid, .hours-table…) and the nav overlay grid render
+       completely unstyled — those classes live only in styles.css. -->
+  <link rel="stylesheet" href="/styles.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="/styles.css"></noscript>
+
   <style>
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
     :root{
