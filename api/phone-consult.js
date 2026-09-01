@@ -236,6 +236,15 @@ export default async function handler(req, res) {
       headers: {
         'Content-Type': 'application/json',
         'x-internal-secret': process.env.INTERNAL_FORM_SECRET || '',
+        // This route is a PUBLIC booking form, not an authenticated webhook, and it
+        // has no reCAPTCHA of its own. The internal secret exists so form-notify
+        // does not demand a token a server cannot mint, but form-notify also reads
+        // it as "already authenticated" and skips its content spam filters. Opt
+        // back into them, or a bot can book real slots on Cat's calendar and get a
+        // confirmation email sent to any address it likes.
+        // Safe to run before the booking: this call happens first, and leadOk
+        // false returns early, so a rejected submission never consumes a slot.
+        'x-internal-content-check': '1',
       },
       body: JSON.stringify({
         site_slug: 'studio-one',
