@@ -36,6 +36,10 @@
   <noscript><link rel="stylesheet" href="/styles.css"></noscript>
 
   <style>
+    /* Critical: styles.css loads async; without this the skip link renders
+       as a visible block and pushes the page down until it lands. */
+    .skip-link{position:absolute;left:-9999px;top:0;z-index:1000;padding:12px 20px;background:#fff;color:#000;font-size:14px;text-decoration:none}
+    .skip-link:focus{left:8px;top:8px}
     *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
     :root{
       --olive:#4c5223;
