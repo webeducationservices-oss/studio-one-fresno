@@ -2,25 +2,73 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
-    { "source": "/checkout", "destination": "/cart", "permanent": true },
-    { "source": "/paypal-checkout", "destination": "/cart", "permanent": true },
-    { "source": "/product/level-:slug*", "destination": "/wholesale-login", "permanent": true },
-    { "source": "/wholesale", "has": [{ "type": "query", "key": "product", "value": "(?<slug>.+)" }], "destination": "/product/:slug", "permanent": true }
+    {
+      "source": "/checkout",
+      "destination": "/cart",
+      "permanent": true
+    },
+    {
+      "source": "/paypal-checkout",
+      "destination": "/cart",
+      "permanent": true
+    },
+    {
+      "source": "/product/level-:slug*",
+      "destination": "/wholesale-login",
+      "permanent": true
+    },
+    {
+      "source": "/wholesale",
+      "has": [
+        {
+          "type": "query",
+          "key": "product",
+          "value": "(?<slug>.+)"
+        }
+      ],
+      "destination": "/product/:slug",
+      "permanent": true
+    },
+    {
+      "source": "/blog/navigating-hair-thinning-discreet-beautiful-solutions-women-over-40",
+      "destination": "/blog/navigating-hair-thinning-solutions-women-over-40",
+      "permanent": true
+    },
+    {
+      "source": "/blog/hair-thinning-solutions-for-women-over-40-studio-one",
+      "destination": "/blog/navigating-hair-thinning-solutions-women-over-40",
+      "permanent": true
+    }
   ],
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Frame-Options", "value": "ALLOWALL" },
-        { "key": "Content-Security-Policy", "value": "frame-ancestors *" },
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+        {
+          "key": "X-Frame-Options",
+          "value": "ALLOWALL"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "frame-ancestors *"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
       ]
     },
     {
       "source": "/(.+\\.(?:jpg|jpeg|png|gif|svg|webp|avif|ico|woff2?))",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
       ]
     }
   ]
