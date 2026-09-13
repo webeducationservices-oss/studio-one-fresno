@@ -160,9 +160,7 @@
     .cw-sig-head .cw-label{margin-bottom:0}
     .cw-sig-hint{font-size:11px;letter-spacing:.3px;text-transform:none;font-weight:300;color:rgba(255,255,255,.6)}
     .cw-clear{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--olive-text);font-weight:600;padding:5px 2px;flex:none}
-    .cw-sig-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:start;margin-bottom:14px}
-    .cw-sig-grid .cw-field{margin-bottom:0}
-    @media (max-width:560px){.cw-sig-grid{grid-template-columns:1fr;gap:12px}}
+    .cw-sig-field{margin-bottom:14px}
 
     /* Policy block */
     .cw-policy-dd{margin-bottom:14px;border:1px solid rgba(255,255,255,.1);border-radius:7px;background:rgba(255,255,255,.03)}
@@ -268,6 +266,42 @@
       .cw-photos .cw-thumb span{display:none}
       .cw-photos .cw-thumb-remove{margin:2px 0 0;padding:3px 0;font-size:10px;letter-spacing:1px;white-space:nowrap}
       .ty-hero h1{font-size:34px}
+    }
+    /* Short phones: an iPhone SE with Safari's bars showing lays out against about 553px. Tighten every vertical gap so no card needs scrolling. */
+    @media (max-width:640px) and (max-height:620px){
+      .header{padding:10px 16px}
+      .logo{height:24px}
+      .cw-wrap{padding:54px 12px 8px}
+      .cw-progress{margin-bottom:7px}
+      .cw-steps{margin-top:5px;font-size:10px}
+      .cw-card{padding:12px 13px 9px}
+      .cw-step h1,.cw-step h2{font-size:19px;line-height:1.2;margin-bottom:6px}
+      .cw-help{font-size:12.5px;margin-bottom:9px;line-height:1.45}
+      .cw-welcome{font-size:13.5px;line-height:1.5}
+      .cw-welcome p{margin-bottom:7px}
+      .cw-field{margin-bottom:8px}
+      .cw-row:not(.cw-row-keep)>.cw-field{margin-bottom:8px}
+      .cw-field label,.cw-field .cw-label{margin-bottom:4px;font-size:10.5px}
+      .cw-field input,.cw-field textarea,.cw-field select{padding:8px 11px;font-size:16px}
+      .cw-field textarea,.cw-field textarea.cw-ta-short{min-height:56px;height:56px}
+      .cw-opts,.cw-opts.cw-2col{gap:6px}
+      .cw-opt,.cw-opts.cw-2col .cw-opt{padding:8px 11px}
+      .cw-opt-text{font-size:13.5px;line-height:1.3}
+      .cw-likert .cw-opt{padding:7px 11px}
+      .cw-gap{margin-bottom:9px}
+      .cw-err{margin-top:3px;min-height:14px;font-size:12px}
+      .cw-ctrl{margin-top:6px;padding-top:7px}
+      .cw-btn{padding:9px 14px;font-size:11px}
+      .cw-photos{gap:5px}
+      .cw-photos .cw-drop{padding:6px 10px}
+      .cw-photos .cw-drop p{font-size:12.5px}
+      .cw-photos .cw-thumb img{width:56px;height:44px}
+      .cw-policy-dd{margin-bottom:8px}
+      .cw-policy-dd summary{padding:8px 12px}
+      .cw-sig{height:64px}
+      .cw-sig-field{margin-bottom:8px}
+      .cw-sig-head{margin-bottom:4px}
+      .cw-legal{margin-top:6px;font-size:10px;line-height:1.4}
     }
   </style>
 
@@ -453,7 +487,7 @@
               <h2>A few quick details.</h2>
               <div class="cw-field">
                 <label for="phone">Cell phone number</label>
-                <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="(555) 555-5555" required>
+                <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="(555) 555-5555">
               </div>
               <div class="cw-field">
                 <label for="referred_by">Referred by / how did you hear about us?</label>
@@ -482,8 +516,7 @@
             <div class="cw-body">
               <p class="cw-kicker">Your hair</p>
               <h2 id="qWater">Do you have well or hard water?</h2>
-              <p class="cw-help">Mineral content changes how color deposits and fades, so this genuinely affects your formula.</p>
-              <div class="cw-opts" role="radiogroup" aria-labelledby="qWater" data-required="water">
+              <div class="cw-opts" role="radiogroup" aria-labelledby="qWater">
                 <label class="cw-opt"><input type="radio" name="water" value="Yes, but we DO have a softening system"><span class="cw-mark"></span><span class="cw-opt-text">Yes, but we <strong>do</strong> have a softening system</span></label>
                 <label class="cw-opt"><input type="radio" name="water" value="Yes, and we DO NOT have a softening system"><span class="cw-mark"></span><span class="cw-opt-text">Yes, and we <strong>do not</strong> have a softening system</span></label>
                 <label class="cw-opt"><input type="radio" name="water" value="No, I do not have well/hard water"><span class="cw-mark"></span><span class="cw-opt-text">No, I don&rsquo;t have well or hard water</span></label>
@@ -523,7 +556,7 @@
               <p class="cw-kicker">Your service</p>
               <h2 id="qService">Which service are you interested in?</h2>
               <p class="cw-help">Color services add a product charge of <strong>$10 to $60</strong>.</p>
-              <div class="cw-opts" role="radiogroup" aria-labelledby="qService" data-required="service_interest">
+              <div class="cw-opts" role="radiogroup" aria-labelledby="qService">
                 <label class="cw-opt"><input type="radio" name="service_interest" value="Touch up / Allover Color 120.00-195.00"><span class="cw-mark"></span><span class="cw-opt-text">Touch up / Allover Color<span class="cw-price">$120.00 to $195.00</span></span></label>
                 <label class="cw-opt"><input type="radio" name="service_interest" value="Partial Blonding Service 150.00-180.00"><span class="cw-mark"></span><span class="cw-opt-text">Partial Blonding Service<span class="cw-price">$150.00 to $180.00</span></span></label>
                 <label class="cw-opt"><input type="radio" name="service_interest" value="Full Blonding Service 180.00-375.00"><span class="cw-mark"></span><span class="cw-opt-text">Full Blonding Service<span class="cw-price">$180.00 to $375.00</span></span></label>
@@ -561,7 +594,7 @@
               <p class="cw-kicker">Your hair</p>
               <h2 id="qConfidence">&ldquo;Most days I think my hair looks good.&rdquo;</h2>
               <p class="cw-help">Be honest, there&rsquo;s no wrong answer.</p>
-              <div class="cw-likert" role="radiogroup" aria-labelledby="qConfidence" data-required="hair_confidence">
+              <div class="cw-likert" role="radiogroup" aria-labelledby="qConfidence">
                 <label class="cw-opt"><input type="radio" name="hair_confidence" value="Strongly Disagree"><span class="cw-mark"></span><span class="cw-opt-text">Strongly disagree</span></label>
                 <label class="cw-opt"><input type="radio" name="hair_confidence" value="Disagree"><span class="cw-mark"></span><span class="cw-opt-text">Disagree</span></label>
                 <label class="cw-opt"><input type="radio" name="hair_confidence" value="Neutral"><span class="cw-mark"></span><span class="cw-opt-text">Neutral</span></label>
@@ -598,7 +631,6 @@
             <div class="cw-body">
               <p class="cw-kicker">Color history</p>
               <h2 id="qHomeColor">In the last 2 to 3 years, have you colored your hair yourself?</h2>
-              <p class="cw-help">Box color and henna both react with professional lightener, so we have to know before we start.</p>
               <div class="cw-opts" role="radiogroup" aria-labelledby="qHomeColor" data-required="home_color">
                 <label class="cw-opt"><input type="radio" name="home_color" value="Yes, box color I purchased myself"><span class="cw-mark"></span><span class="cw-opt-text">Yes, box color I bought myself</span></label>
                 <label class="cw-opt"><input type="radio" name="home_color" value="Yes, I have used Henna"><span class="cw-mark"></span><span class="cw-opt-text">Yes, I&rsquo;ve used henna</span></label>
@@ -689,7 +721,7 @@
               <p class="cw-kicker">Your service</p>
               <h2 id="qMaintenance">How often can you realistically come back?</h2>
               <p class="cw-help">This helps us recommend something that fits your real life, not just the photo.</p>
-              <div class="cw-opts cw-gap" role="radiogroup" aria-labelledby="qMaintenance" data-required="maintenance">
+              <div class="cw-opts cw-gap" role="radiogroup" aria-labelledby="qMaintenance">
                 <label class="cw-opt"><input type="radio" name="maintenance" value="Every 1 to 2 months"><span class="cw-mark"></span><span class="cw-opt-text">Every 1 to 2 months</span></label>
                 <label class="cw-opt"><input type="radio" name="maintenance" value="Every 3 to 4 months"><span class="cw-mark"></span><span class="cw-opt-text">Every 3 to 4 months</span></label>
                 <label class="cw-opt"><input type="radio" name="maintenance" value="Every 5 to 6 months"><span class="cw-mark"></span><span class="cw-opt-text">Every 5 to 6 months</span></label>
@@ -822,23 +854,17 @@
                     <p>You and your appointment are very important to me. I hold your appointment just for you, and I ask that if you must cancel or reschedule you kindly provide <strong>48 hours&rsquo; notice</strong>. This way I can adjust my schedule and accommodate other clients.</p>
                     <p>If you miss your appointment without giving 48 hours&rsquo; notice, you will be billed a <strong>50% service charge per service booked</strong>. These fees are expected to be paid prior to any future appointments.</p>
                     <p>For your convenience I provide a confirmation call 48 to 72 hours before your appointment. Please keep me informed of any changes to your contact information.</p>
-                    <p>I strive to offer my guests the highest level of satisfaction. If you&rsquo;re having challenges with your cut, color or extensions, let me know <strong>within seven days</strong> of your visit and I&rsquo;m happy to correct the issue. Retail purchases may be exchanged at full credit within 14 days of purchase.</p>
+                    <p>I strive to offer my guests the highest level of satisfaction. If you&rsquo;re having challenges with your cut, color or extensions, let me know <strong>within seven days</strong> of your visit and I&rsquo;m happy to correct the issue with no additional charge. Should you make a retail purchase you are unsatisfied with, I accept retail exchanges at full credit for 14 days from your initial purchase.</p>
                   </div>
                 </div>
               </details>
 
-              <div class="cw-sig-grid">
-                <div class="cw-field">
-                  <div class="cw-sig-head">
-                    <p class="cw-label" id="cwSigLabel">Signature <span class="cw-sig-hint">(finger or mouse)</span></p>
-                    <button type="button" class="cw-clear" id="cwSigClear">Clear</button>
-                  </div>
-                  <canvas class="cw-sig" id="cwSig" width="600" height="96" aria-label="Sign with your finger or mouse"></canvas>
+              <div class="cw-field cw-sig-field">
+                <div class="cw-sig-head">
+                  <p class="cw-label" id="cwSigLabel">Signature <span class="cw-sig-hint">(finger or mouse)</span></p>
+                  <button type="button" class="cw-clear" id="cwSigClear" aria-label="Clear signature">Clear</button>
                 </div>
-                <div class="cw-field">
-                  <label for="typed_signature">Or type your full name</label>
-                  <input type="text" id="typed_signature" name="typed_signature" autocomplete="name" maxlength="120" data-no-autofocus placeholder="Your full name">
-                </div>
+                <canvas class="cw-sig" id="cwSig" width="600" height="96" aria-label="Sign with your finger or mouse"></canvas>
               </div>
 
               <div class="cw-opts" role="group" aria-labelledby="qPolicies" data-required-check="agree">
@@ -981,10 +1007,18 @@
     /* ---- Phone formatting: (xxx) xxx-xxxx ---- */
     function wirePhone(el){
       el.addEventListener('input', function(){
+        // Count the digits left of the caret so an edit in the middle keeps its place after reformatting.
+        var caret = el.selectionStart, digitsBefore = 0;
+        if(typeof caret === 'number') digitsBefore = el.value.slice(0, caret).replace(/\D/g, '').length;
         var d = el.value.replace(/\D/g, '');
-        if(d.length > 10 && d.charAt(0) === '1') d = d.slice(1); // autofill adds the +1 country code; keep the real 10 digits
+        if(d.length > 10 && d.charAt(0) === '1'){ d = d.slice(1); digitsBefore = Math.max(0, digitsBefore - 1); } // autofill adds the +1 country code; keep the real 10 digits
         d = d.slice(0, 10);
         el.value = d.length < 4 ? d : d.length < 7 ? '(' + d.slice(0, 3) + ') ' + d.slice(3) : '(' + d.slice(0, 3) + ') ' + d.slice(3, 6) + '-' + d.slice(6);
+        if(typeof caret === 'number' && document.activeElement === el){
+          var pos = 0, seen = 0;
+          while(pos < el.value.length && seen < digitsBefore){ if(/\d/.test(el.value.charAt(pos))) seen++; pos++; }
+          try { el.setSelectionRange(pos, pos); } catch(e){}
+        }
       });
     }
     ['#phone', '#emergency_phone'].forEach(function(sel){ var el = form.querySelector(sel); if(el) wirePhone(el); });
@@ -998,7 +1032,7 @@
     }
 
     /* ---- localStorage draft (text, radio, checkbox; never photos or signature) ---- */
-    var SKIP = { recaptcha_token: 1, site_slug: 1, form_type: 1, send_visitor_copy: 1, visitor_email_subject: 1, form_date: 1, agree: 1, typed_signature: 1 };
+    var SKIP = { recaptcha_token: 1, site_slug: 1, form_type: 1, send_visitor_copy: 1, visitor_email_subject: 1, form_date: 1, agree: 1 };
     function save(){
       var out = {};
       form.querySelectorAll('input,textarea,select').forEach(function(el){
@@ -1119,13 +1153,6 @@
         var slot = photoInputs[k].getAttribute('data-photo');
         if(pending[slot]){ setErr(step, 'Still preparing your photo, one moment.'); reveal(photoInputs[k].closest('.cw-drop')); return false; }
         if(!photos[slot]){ setErr(step, PHOTO_MSG[slot] || 'Please add all three photos to continue.'); reveal(photoInputs[k].closest('.cw-drop')); return false; }
-      }
-
-      // Signature: drawn on the pad or typed as a full name, on the card that carries the pad.
-      if(sig && step.contains(sig) && !hasSignature && !typedSignature()){
-        setErr(step, 'Please sign in the box or type your full name to continue.');
-        reveal(sig);
-        return false;
       }
 
       // Required checkbox groups (at least one checked)
@@ -1312,28 +1339,14 @@
       syncPolicyOverlay();
     });
     policyFade();
-    function typedSignature(){ var el = form.querySelector('#typed_signature'); return el ? el.value.trim() : ''; }
-    var typedEl = form.querySelector('#typed_signature');
-    if(typedEl) typedEl.addEventListener('input', function(){ if(typedEl.value.trim()) setErr(steps[current], ''); });
+    // The signature is optional (the agree box is the acknowledgment); when drawn it travels as photo 4.
     function sigDataUrl(){
-      var typed = typedSignature();
-      if(!sig || (!hasSignature && !typed)) return '';
+      if(!sig || !hasSignature) return '';
       var c = document.createElement('canvas');
-      var x;
-      if(hasSignature){
-        c.width = sig.width; c.height = sig.height;
-        x = c.getContext('2d');
-        x.fillStyle = '#fff'; x.fillRect(0, 0, c.width, c.height);
-        x.drawImage(sig, 0, 0);
-      } else {
-        // Typed signature: render the name so the stylist still gets a signature image.
-        c.width = 1200; c.height = 260;
-        x = c.getContext('2d');
-        x.fillStyle = '#fff'; x.fillRect(0, 0, c.width, c.height);
-        x.fillStyle = '#111'; x.font = 'italic 72px Georgia, "Times New Roman", serif';
-        x.textBaseline = 'middle';
-        x.fillText(typed, 40, 130, 1120);
-      }
+      c.width = sig.width; c.height = sig.height;
+      var x = c.getContext('2d');
+      x.fillStyle = '#fff'; x.fillRect(0, 0, c.width, c.height);
+      x.drawImage(sig, 0, 0);
       try { return c.toDataURL('image/jpeg', 0.82); } catch(e){ return ''; }
     }
 
@@ -1414,8 +1427,7 @@
         preferred_date: val('preferred_date'),
         alternate_date: val('alternate_date'),
         agree: checkVals('agree') ? 'Yes' : 'No',
-        typed_signature: typedSignature(),
-        signature_provided: hasSignature ? 'Yes' : (typedSignature() ? 'Yes (typed)' : 'No'),
+        signature_provided: hasSignature ? 'Yes' : 'No',
         photo_data_url: photos['1'] ? photos['1'].dataUrl : '',
         photo_data_url_2: photos['2'] ? photos['2'].dataUrl : '',
         photo_data_url_3: photos['3'] ? photos['3'].dataUrl : '',
