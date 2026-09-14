@@ -1,3 +1,25 @@
+/* ===== Metric-matched fallback for the heading font =====
+   CLS fix (2026-09-07). The Typekit kit ships font-display:auto and loads via
+   media="print" onload, so headings first render in Georgia and re-wrap when
+   freight-big-pro arrives. Measured on the live homepage: freight-big-pro sets
+   at 82.4% of Georgia's width, which collapsed the hero h1 by 57.6px — one whole
+   line. Because .hero-overlay is inset:0 inside a min-height:100vh hero, that
+   resize moved a full-viewport element and scored CLS 1.0 on mobile.
+
+   Scaling Georgia to 82.4% makes the fallback occupy the same space as the real
+   font, so the swap changes nothing in layout. The fallback renders slightly
+   smaller for the few hundred ms before the web font lands; that is the
+   deliberate trade for a stable page. */
+@font-face {
+  font-family: 'Freight Fallback';
+  src: local('Georgia'), local('Times New Roman');
+  size-adjust: 82.4%;
+  ascent-override: 92%;
+  descent-override: 22%;
+  line-gap-override: 0%;
+  font-display: swap;
+}
+
 /* ===== RESET & BASE ===== */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -10,7 +32,7 @@
   --off-white: #f5f5f5;
   --light-gray: #d9d9d9;
   --body-font: Arial, sans-serif;
-  --heading-font: 'freight-big-pro', Georgia, serif;
+  --heading-font: 'freight-big-pro', 'Freight Fallback', Georgia, serif;
 }
 
 html {

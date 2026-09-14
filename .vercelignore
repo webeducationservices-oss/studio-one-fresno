@@ -1,0 +1,22 @@
+# Keep internal working files off the public CDN.
+#
+# Found 2026-09-07 during a Search Console audit: these were all being served
+# publicly on the client's own domain, and Google had actually indexed
+# /content-export/footer-template (a raw footer fragment carrying the salon's
+# NAP) because it was listed in sitemap.xml.
+#
+# content-export/ is the dead Webflow-migration artifact. It also contains a
+# VERBATIM duplicate of every blog post under content-export/blog/ — those were
+# not indexed (nothing links to them) but they are a standing duplicate-content
+# risk against the posts that actually rank.
+#
+# Nothing in the site references any of these paths.
+
+content-export/
+
+# Internal WES docs — playbooks, client email drafts, project notes
+*.md
+.claude/
+
+# Source archive, not a web asset
+Color Gallery.zip
