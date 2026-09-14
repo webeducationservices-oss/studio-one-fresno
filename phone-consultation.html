@@ -510,6 +510,28 @@
       loadingEl.innerHTML = 'We couldn’t load the schedule just now. Please call or text <a href="tel:+15597959724" style="text-decoration:underline">559-795-9724</a> to book your phone consultation.';
     });
 
+    /* ---- reCAPTCHA v3, the site's key (already on /contact and the color
+       consultation). Loaded here rather than at page load, and minted at
+       submit. This booking form used to be the one on the site with no
+       reCAPTCHA: it posts through /api/phone-consult, which handed form-notify
+       a trust secret that skipped the check. A bot could book real slots on
+       Cat's calendar and have a confirmation sent to any address. ---- */
+    const RECAPTCHA_KEY = '6Lck8aQsAAAAALMA-T6nwfkSf7bv4K-mOhkszeKh';
+    let rcLoad = null;
+    function loadRecaptcha(){
+      if(rcLoad) return rcLoad;
+      rcLoad = new Promise((resolve, reject) => {
+        if(typeof grecaptcha !== 'undefined' && grecaptcha.execute){ return grecaptcha.ready ? grecaptcha.ready(resolve) : resolve(); }
+        const sc = document.createElement('script');
+        sc.src = 'https://www.google.com/recaptcha/api.js?render=' + RECAPTCHA_KEY; sc.async = true;
+        sc.onload = () => grecaptcha.ready(resolve);
+        sc.onerror = () => { rcLoad = null; reject(new Error('recaptcha failed to load')); };
+        document.head.appendChild(sc);
+      });
+      return rcLoad;
+    }
+    loadRecaptcha().catch(() => {});
+
     /* ---- Submit ---- */
     async function submit(){
       errEl.textContent = '';
@@ -528,6 +550,9 @@
       btn.disabled = true; btn.textContent = 'Booking…';
 
       const interestEl = form.querySelector('input[name="interest"]:checked');
+      /* no token = the server rejects it; fail closed like every other form */
+      let recaptchaToken = '';
+      try{ await loadRecaptcha(); recaptchaToken = await grecaptcha.execute(RECAPTCHA_KEY, { action: 'submit' }); }catch(e){}
       let ok = false, body = {};
       try{
         const res = await fetch(API, {
@@ -542,6 +567,7 @@
             notes: form.notes.value.trim(),
             date: selected.date,
             time: selected.time,
+            recaptcha_token: recaptchaToken,
             _honey: form.querySelector('[name="_honey"]').value
           })
         });

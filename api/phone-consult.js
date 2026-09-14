@@ -4,10 +4,11 @@
 //
 //   GET  -> upcoming Friday-morning slots (9:00 + 9:30 AM Pacific) with
 //           taken/free state, read from Cat's Vagaro calendar.
-//   POST -> books a slot: records the lead via form-notify (trusted
-//           x-internal-secret path -> emails Cat + admin inbox row) and
-//           creates a personal task on Cat's Vagaro calendar so the call
-//           shows up right on her book.
+//   POST -> books a slot: records the lead via form-notify (public path, the
+//           page mints a reCAPTCHA token and it is verified there -> emails
+//           Cat + admin inbox row) and creates a personal task on Cat's
+//           Vagaro calendar so the call shows up right on her book. A rejected
+//           submission returns before any slot is touched.
 //
 // Why personal tasks and not the Vagaro availability API: a recurring
 // "Phone Consultations (website)" personal task blocks Friday 9-10am from
@@ -20,8 +21,6 @@
 // Required Vercel env vars:
 //   VAGARO_CLIENT_ID       Vagaro API client id     (from .env.keys.cat)
 //   VAGARO_SECRET          Vagaro API client secret (from .env.keys.cat)
-//   INTERNAL_FORM_SECRET   form-notify trusted-path secret (already set for
-//                          the PayPal webhook)
 
 const VAGARO_BASE = 'https://api.vagaro.com/us02/api/v2';
 const BUSINESS_ID = 'Dm1SiNS~LVBx~J6YZaU9aA==';
@@ -198,6 +197,8 @@ export default async function handler(req, res) {
   // Autofill often prepends the +1 country code; accept it and keep the real 10 digits
   if (phoneDigits.length === 11 && phoneDigits.startsWith('1')) phoneDigits = phoneDigits.slice(1);
   const email = String(b.email || '').trim().slice(0, 120);
+  const recaptchaToken = String(b.recaptcha_token || '').slice(0, 4000);
+  const visitorIp = String(req.headers['x-forwarded-for'] || '').split(',')[0].trim();
   const interest = String(b.interest || '').trim().slice(0, 80);
   const notes = String(b.notes || '').trim().slice(0, 1000);
   const date = String(b.date || '').trim();
@@ -235,20 +236,18 @@ export default async function handler(req, res) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'x-internal-secret': process.env.INTERNAL_FORM_SECRET || '',
-        // This route is a PUBLIC booking form, not an authenticated webhook, and it
-        // has no reCAPTCHA of its own. The internal secret exists so form-notify
-        // does not demand a token a server cannot mint, but form-notify also reads
-        // it as "already authenticated" and skips its content spam filters. Opt
-        // back into them, or a bot can book real slots on Cat's calendar and get a
-        // confirmation email sent to any address it likes.
-        // Safe to run before the booking: this call happens first, and leadOk
-        // false returns early, so a rejected submission never consumes a slot.
-        'x-internal-content-check': '1',
+        // Public booking form, so NO trust secret. The page mints a reCAPTCHA
+        // token in the browser and it rides through here for form-notify to verify
+        // exactly as it does for /contact. No token means rejected, and a rejected
+        // submission returns before any slot is booked. The visitor's real IP goes
+        // first in x-forwarded-for so the per-IP rate limit counts the visitor, not
+        // this function's egress address.
+        ...(visitorIp ? { 'x-forwarded-for': visitorIp } : {}),
       },
       body: JSON.stringify({
         site_slug: 'studio-one',
         form_type: 'phone-consultation',
+        recaptcha_token: recaptchaToken,
         first_name: first,
         last_name: last,
         phone: phonePretty,
