@@ -930,6 +930,7 @@ button { cursor: pointer; background: none; border: none; color: inherit; font-f
   transition: color 0.3s;
 }
 .footer-bottom a:hover { color: var(--off-white); }
+.footer-legal { display: flex; gap: 20px; }
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1024px) {

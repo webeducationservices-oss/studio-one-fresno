@@ -343,3 +343,8 @@
     window.dataLayer.push({ event: eventName, form_type: formType || '' });
   };
 })();
+
+/* ===== Footer copyright year ===== */
+document.querySelectorAll('.copyright-year').forEach(function (el) {
+  el.textContent = new Date().getFullYear();
+});

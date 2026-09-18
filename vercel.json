@@ -3,6 +3,11 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/legal",
+      "destination": "/terms",
+      "permanent": true
+    },
+    {
       "source": "/checkout",
       "destination": "/cart",
       "permanent": true
