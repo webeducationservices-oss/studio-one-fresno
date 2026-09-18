@@ -3,11 +3,6 @@
   "trailingSlash": false,
   "redirects": [
     {
-      "source": "/team-members/carina-lopez",
-      "destination": "/meet-the-team",
-      "permanent": true
-    },
-    {
       "source": "/legal",
       "destination": "/terms",
       "permanent": true
