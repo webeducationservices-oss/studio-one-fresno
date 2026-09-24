@@ -1122,5 +1122,10 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url><loc>https://www.studioonefresno.com/blog/does-gray-blending-mean-fewer-salon-visits-the-honest-answer</loc><lastmod>2026-09-24</lastmod></url>
+  <url>
+    <loc>https://www.studioonefresno.com/blog/does-gray-blending-mean-fewer-salon-visits-the-honest-answer</loc>
+    <lastmod>2026-09-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>
