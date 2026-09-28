@@ -20,3 +20,6 @@ content-export/
 
 # Source archive, not a web asset
 Color Gallery.zip
+
+# Migration-era page generators (stale; never re-run). Were being served publicly.
+scripts/

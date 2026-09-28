@@ -213,7 +213,8 @@
             <a href="/careers">Careers</a>
             <a href="/shadowing-program">Shadowing Program</a>
             <a href="/promos">Promos</a>
-            <a href="/legal">Legal</a>
+            <a href="/privacy-policy">Privacy Policy</a>
+            <a href="/terms">Terms</a>
           </div>
         </div>
       </div>
@@ -415,14 +416,25 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; 2024-2026 Studio One Hair Design</p>
+      <p>&copy; <span class="copyright-year">2026</span> Studio One Hair Design</p>
       <p>Website by Web Education Services</p>
-      <a href="/legal">Legal</a>
+      <div class="footer-legal"><a href="/privacy-policy">Privacy Policy</a><a href="/terms">Terms</a></div>
     </div>
   </footer>
 
 
   <script>
+    // Preselect the interest when a page links here with ?interest=... (the
+    // careers and shadowing "apply" buttons do this since the JotForm was retired)
+    (function () {
+      var want = new URLSearchParams(location.search).get('interest');
+      var sel = document.getElementById('f-interest');
+      if (!want || !sel) return;
+      for (var i = 0; i < sel.options.length; i++) {
+        if (sel.options[i].value.toLowerCase() === want.toLowerCase()) { sel.selectedIndex = i; break; }
+      }
+    })();
+
     // Form handling — reCAPTCHA v3 + POST to form-notify + inline success
     // A blocked reCAPTCHA times out and we post without a token (form-notify
     // records it as missing_recaptcha_token and it stays recoverable) rather
