@@ -26,6 +26,7 @@ const VAGARO_BASE = 'https://api.vagaro.com/us02/api/v2';
 const BUSINESS_ID = 'Dm1SiNS~LVBx~J6YZaU9aA==';
 const CAT_PROVIDER_ID = 'd3lscujGMO02shBdCuMH-g==';   // Cathy Barco
 const FORM_NOTIFY_URL = 'https://myaieditor.com/api/form-notify';
+const LEAD_HOLDS_URL = 'https://myaieditor.com/api/consult-slots';
 
 const SLOT_TIMES = ['09:00', '09:30'];                 // Pacific, Fridays only
 const WEEKS_OFFERED = 4;                               // next 4 Fridays
@@ -147,9 +148,46 @@ async function takenSlots(ymd) {
   return taken;
 }
 
+// Slots already held by a recorded lead, read from the admin database.
+// SECOND source behind the calendar. A booking is written to the leads table
+// first and to Cat's calendar second (best effort), so a dropped calendar
+// write used to put a real booking back on sale. Reading both closes that.
+// Returns Map<ymd, Set<hh:mm>>.
+//
+// Best effort by design: if this read fails we fall back to the calendar
+// alone, which is exactly the behaviour that existed before it was added.
+// A lead releases its slot only when marked lost/archived or flagged spam.
+async function leadHolds(dates) {
+  const holds = new Map();
+  if (!dates.length) return holds;
+  const secret = process.env.INTERNAL_FORM_SECRET || '';
+  if (!secret) throw new Error('INTERNAL_FORM_SECRET missing');
+  const sorted = [...dates].sort();
+  const url = `${LEAD_HOLDS_URL}?site_slug=studio-one&form_type=phone-consultation`
+    + `&from=${sorted[0]}&to=${sorted[sorted.length - 1]}`;
+  const r = await fetch(url, { headers: { 'x-internal-secret': secret } });
+  const j = await r.json().catch(() => ({}));
+  if (!r.ok || !j.ok) {
+    throw new Error(`lead holds ${r.status} ${JSON.stringify(j).slice(0, 140)}`);
+  }
+  for (const h of j.holds || []) {
+    if (!holds.has(h.date)) holds.set(h.date, new Set());
+    holds.get(h.date).add(h.time);
+  }
+  return holds;
+}
+
 async function buildAvailability() {
   const fridays = upcomingFridays(WEEKS_OFFERED);
+
+  // One call covers every Friday on offer. Never fails the page: the calendar
+  // remains the primary source and this only ever ADDS holds.
+  let holdsByDate = new Map();
+  try { holdsByDate = await leadHolds(fridays); }
+  catch (e) { console.error('leadHolds failed, falling back to calendar only:', e?.message || e); }
+
   const days = await Promise.all(fridays.map(async (ymd) => {
+    const held = holdsByDate.get(ymd) || new Set();
     let taken = new Set();
     try { taken = await takenSlots(ymd); }
     catch (e) {
@@ -160,7 +198,7 @@ async function buildAvailability() {
     return {
       date: ymd,
       label: dateLabel(ymd),
-      slots: SLOT_TIMES.map((t) => ({ time: t, label: timeLabel(t), taken: taken.has(t) })),
+      slots: SLOT_TIMES.map((t) => ({ time: t, label: timeLabel(t), taken: taken.has(t) || held.has(t) })),
     };
   }));
   return days;
@@ -226,6 +264,18 @@ export default async function handler(req, res) {
   } catch (e) {
     console.error('slot re-check failed:', e?.message || e);
     return res.status(502).json({ ok: false, accepted: false, error: 'calendar unavailable' });
+  }
+
+  // Same re-check against recorded leads, so a booking whose calendar write
+  // failed still blocks this slot. Best effort: if the lookup is unavailable
+  // we keep the calendar verdict rather than refusing a legitimate booking.
+  try {
+    const held = (await leadHolds([date])).get(date) || new Set();
+    if (held.has(time)) {
+      return res.status(409).json({ ok: false, accepted: false, error: 'That time was just booked. Please pick another slot.' });
+    }
+  } catch (e) {
+    console.error('lead-hold re-check unavailable, using calendar only:', e?.message || e);
   }
 
   // ---- 1) Record the lead (email to Cat + admin portal row). This is the
