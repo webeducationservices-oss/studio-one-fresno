@@ -1134,5 +1134,10 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url><loc>https://www.studioonefresno.com/blog/brazilian-keratin-treatment-in-fresno-what-it-does-to-frizz-and-how-it-treats</loc><lastmod>2026-10-08</lastmod></url>
+  <url>
+    <loc>https://www.studioonefresno.com/blog/brazilian-keratin-treatment-in-fresno-what-it-does-to-frizz-and-how-it-treats</loc>
+    <lastmod>2026-10-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>
