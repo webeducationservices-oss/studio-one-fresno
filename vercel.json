@@ -43,6 +43,11 @@
       "source": "/blog/hair-thinning-solutions-for-women-over-40-studio-one",
       "destination": "/blog/navigating-hair-thinning-solutions-women-over-40",
       "permanent": true
+    },
+    {
+      "source": "/hair-color-fresno-preview",
+      "destination": "/hair-color-fresno",
+      "permanent": true
     }
   ],
   "headers": [
