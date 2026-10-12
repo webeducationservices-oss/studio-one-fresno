@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Appointment Booked | Studio One Hair Design Fresno</title>
-  <meta name="description" content="Your Studio One Hair Design appointment is booked. Vagaro will send your confirmation and reminders. Questions? Call or text 559-795-9724.">
+  <meta name="description" content="Your Studio One Hair Design appointment is booked. Vagaro will send your confirmation. Questions? Call or text 559-795-9724.">
   <link rel="canonical" href="https://www.studioonefresno.com/thank-you-booking">
   <meta name="robots" content="noindex">
 
   <meta property="og:title" content="Appointment Booked | Studio One Hair Design Fresno">
-  <meta property="og:description" content="Your appointment is booked. Vagaro will send your confirmation and reminders.">
+  <meta property="og:description" content="Your appointment is booked. Vagaro will send your confirmation.">
   <meta property="og:image" content="https://www.studioonefresno.com/images/og-image.jpg">
   <meta property="og:url" content="https://www.studioonefresno.com/thank-you-booking">
   <meta property="og:type" content="website">
@@ -201,7 +201,7 @@
       </div>
       <p class="eyebrow">Appointment Booked</p>
       <h1>You&rsquo;re booked.</h1>
-      <p class="ty-sub">Thank you for booking with Studio One Hair Design. Vagaro will send your confirmation and appointment reminders by email or text.</p>
+      <p class="ty-sub">Thank you for booking with Studio One Hair Design. Vagaro will send your confirmation to the email or phone you booked with.</p>
       <div class="ty-actions">
         <a href="/" class="olive-button">Back to Home</a>
         <a href="/services" class="primary-button">View Our Services</a>
@@ -215,13 +215,13 @@
     <div class="tyb-grid" data-animate>
       <div class="tyb-card">
         <p class="eyebrow">Confirmation</p>
-        <h2>Check your email or texts</h2>
-        <p>Your confirmation and reminders come from Vagaro, sent to the email address or phone number you booked with.</p>
+        <h2>Look for your confirmation</h2>
+        <p>Your confirmation comes from Vagaro, sent to the email address or phone number you booked with.</p>
       </div>
       <div class="tyb-card">
         <p class="eyebrow">Plans Change</p>
         <h2>Need to make a change?</h2>
-        <p>Call or text the salon at <a href="tel:+15597959724">559-795-9724</a> and we will help. We ask for 48 hours&rsquo; notice to cancel or reschedule.</p>
+        <p>Call the salon at <a href="tel:+15597959724">559-795-9724</a> or <a href="sms:5597959724">send us a text</a> and we will help. We ask for 48 hours&rsquo; notice to cancel or reschedule.</p>
         <a href="/terms#salon-policies" class="tyb-link">Read Our Salon Policies &rarr;</a>
       </div>
       <div class="tyb-card">
@@ -305,13 +305,18 @@
   </footer>
 
   <script>
-    // GTM's booking conversion keys off this event. A refresh must not count the
-    // booking twice; if storage is blocked, count it rather than drop it.
+    // GTM's booking conversion keys off this event. It waits for the head's load
+    // handler to queue gtm.js first, so its tags fire after the All Pages Google
+    // tag and Conversion Linker. A refresh must not count the booking twice; if
+    // storage is blocked, count it rather than drop it.
     (function(){
       var KEY = 'so_booking_confirmed';
-      try { if (sessionStorage.getItem(KEY)) return; sessionStorage.setItem(KEY, '1'); } catch (e) {}
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({ event: 'so_booking_confirmed' });
+      function push(){
+        try { if (sessionStorage.getItem(KEY)) return; sessionStorage.setItem(KEY, '1'); } catch (e) {}
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: KEY });
+      }
+      if (document.readyState === 'complete') push(); else addEventListener('load', push, { once: true });
     })();
   </script>
   <script src="/script.js" defer></script>
