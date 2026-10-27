@@ -48,6 +48,11 @@
       "source": "/hair-color-fresno-preview",
       "destination": "/hair-color-fresno",
       "permanent": true
+    },
+    {
+      "source": "/team-members/maegan-stemwedel",
+      "destination": "/meet-the-team",
+      "permanent": true
     }
   ],
   "headers": [
