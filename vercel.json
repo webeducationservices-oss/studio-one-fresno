@@ -3,6 +3,11 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/blog/does-semi-permanent-hair-dye-damage-hair-and-why-it-never-looks-like-the-salon",
+      "destination": "/blog/semi-permanent-hair-color-damage",
+      "permanent": true
+    },
+    {
       "source": "/legal",
       "destination": "/terms",
       "permanent": true
