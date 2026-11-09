@@ -515,6 +515,9 @@
       var ud = h ? { sha256_phone_number: h } : null;
       if (ud) { window.__soUserData = window.__soUserData || {}; window.__soUserData.sha256_phone_number = h; }
       track('new', ud);
+      // Fires the Google Ads "New Guest Booking Intent" tag (GTM v12), which
+      // sends the hashed phone as user-provided data.
+      window.dataLayer.push(ud ? { event: 'so_new_guest', user_data: ud } : { event: 'so_new_guest' });
     }).catch(function () { track('new', null); });
   }
 
