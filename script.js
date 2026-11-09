@@ -340,8 +340,218 @@
   window.soAttribution = function () { return Object.assign({}, current); };
   window.soTrackLead = function (eventName, formType) {
     window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({ event: eventName, form_type: formType || '' });
+    var push = { event: eventName, form_type: formType || '' };
+    // Hashed email/phone the visitor typed on this page (see below). The Google
+    // Ads form tags send it as user-provided data so a later Vagaro booking,
+    // uploaded with the same hashed phone/email, can be paired with the ad click.
+    if (window.__soUserData) push.user_data = window.__soUserData;
+    window.dataLayer.push(push);
   };
+})();
+
+/* ===== Hashed user-provided data for Google Ads enhanced conversions (WES) =====
+ * Watches email and phone fields on any form and keeps SHA-256 hashes of the
+ * normalized values in window.__soUserData, ready before the form's own submit
+ * finishes. Raw values never go to Google; only the hex hashes do.
+ */
+(function () {
+  function hex(buf) {
+    return Array.prototype.map.call(new Uint8Array(buf), function (b) { return ('0' + b.toString(16)).slice(-2); }).join('');
+  }
+  function sha256(s) {
+    if (!window.crypto || !crypto.subtle || !window.TextEncoder) return Promise.resolve('');
+    return crypto.subtle.digest('SHA-256', new TextEncoder().encode(s)).then(hex).catch(function () { return ''; });
+  }
+  function normEmail(v) {
+    v = String(v || '').trim().toLowerCase();
+    if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)) return '';
+    var at = v.split('@');
+    if (at[1] === 'gmail.com' || at[1] === 'googlemail.com') at[0] = at[0].replace(/\./g, '');
+    return at[0] + '@' + at[1];
+  }
+  function normPhone(v) {
+    var d = String(v || '').replace(/\D/g, '');
+    if (d.length === 11 && d[0] === '1') d = d.slice(1);
+    return d.length === 10 ? '+1' + d : '';
+  }
+  window.soHashPhone = function (v) { var p = normPhone(v); return p ? sha256(p) : Promise.resolve(''); };
+  function isEmail(el) { return el.type === 'email' || /e-?mail/i.test(el.name || el.id || ''); }
+  function isPhone(el) { return el.type === 'tel' || /phone|mobile|cell/i.test(el.name || el.id || ''); }
+  function capture(el) {
+    if (!el || el.tagName !== 'INPUT') return;
+    if (isEmail(el)) {
+      var e = normEmail(el.value); if (!e) return;
+      sha256(e).then(function (h) { if (h) { window.__soUserData = window.__soUserData || {}; window.__soUserData.sha256_email_address = h; } });
+    } else if (isPhone(el)) {
+      var p = normPhone(el.value); if (!p) return;
+      sha256(p).then(function (h) { if (h) { window.__soUserData = window.__soUserData || {}; window.__soUserData.sha256_phone_number = h; } });
+    }
+  }
+  ['change', 'focusout'].forEach(function (t) {
+    document.addEventListener(t, function (ev) { try { capture(ev.target); } catch (e) {} }, true);
+  });
+  document.addEventListener('submit', function (ev) {
+    try { Array.prototype.forEach.call(ev.target.querySelectorAll('input'), capture); } catch (e) {}
+  }, true);
+})();
+
+/* ===== New-or-returning step before Vagaro (WES, 2026-11-09) =====
+ * Every link to vagaro.com opens a short question first. Returning guests go
+ * straight on. New guests give a first name and phone, which we save as a lead
+ * (/api/booking-intent) and send to Google Ads as a hashed phone, so the Vagaro
+ * booking can be matched back to the visit. It must never stop anyone booking:
+ * any error, and the link simply proceeds as normal.
+ */
+(function () {
+  var DONE_KEY = 'so_booking_gate_done';
+  var overlay = null, pendingLink = null;
+
+  function done() { try { return sessionStorage.getItem(DONE_KEY) === '1'; } catch (e) { return false; } }
+  function markDone() { try { sessionStorage.setItem(DONE_KEY, '1'); } catch (e) {} }
+
+  function go(href, newTab) {
+    var w = null;
+    if (newTab) {
+      try { w = window.open(href, '_blank'); } catch (e) { w = null; }
+      if (w) { try { w.opener = null; } catch (e) {} return w; }
+    }
+    // Same-tab link, or the new tab was blocked: go in this tab.
+    location.href = href;
+    return null;
+  }
+
+  function track(guestType, userData) {
+    window.dataLayer = window.dataLayer || [];
+    var p = { event: 'so_booking_intent', guest_type: guestType };
+    if (userData) p.user_data = userData;
+    window.dataLayer.push(p);
+  }
+
+  function css() {
+    if (document.getElementById('so-gate-css')) return;
+    var s = document.createElement('style'); s.id = 'so-gate-css';
+    s.textContent = [
+      '.so-gate{position:fixed;inset:0;z-index:100000;display:flex;align-items:center;justify-content:center;padding:max(16px,env(safe-area-inset-top)) 16px;background:rgba(10,10,10,.72)}',
+      '.so-gate__box{background:#0a0a0a;color:#f5f5f5;border:1px solid #4c5223;width:100%;max-width:420px;padding:28px 24px 22px;position:relative;font-family:var(--body-font,Arial,sans-serif);box-shadow:0 20px 60px rgba(0,0,0,.5)}',
+      '.so-gate__x{position:absolute;top:8px;right:10px;background:none;border:0;color:#d9d9d9;font-size:26px;line-height:1;cursor:pointer;padding:6px}',
+      '.so-gate h2{font-family:var(--heading-font,Georgia,serif);font-weight:400;font-size:26px;line-height:1.2;margin:0 0 8px;color:#fff}',
+      '.so-gate p{margin:0 0 18px;font-size:15px;line-height:1.5;color:#d9d9d9}',
+      '.so-gate__row{display:grid;gap:10px}',
+      '.so-gate__btn{display:block;width:100%;padding:14px 16px;font-size:15px;letter-spacing:.06em;text-transform:uppercase;border:1px solid #727a35;background:#4c5223;color:#fff;cursor:pointer;font-family:inherit}',
+      '.so-gate__btn--ghost{background:transparent;color:#f5f5f5;border-color:#555}',
+      '.so-gate__btn:focus-visible,.so-gate input:focus-visible,.so-gate__skip:focus-visible{outline:2px solid #b9c26f;outline-offset:2px}',
+      '.so-gate label{display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:#a3a493;margin:0 0 6px}',
+      '.so-gate input[type=text],.so-gate input[type=tel]{display:block;width:100%;box-sizing:border-box;padding:12px;font-size:16px;background:#16170f;color:#fff;border:1px solid #444;margin:0 0 14px;font-family:inherit}',
+      '.so-gate__consent{font-size:12.5px;color:#a3a493;margin:-4px 0 16px}',
+      '.so-gate__err{color:#ef7a5f;font-size:13px;margin:-6px 0 12px;min-height:1em}',
+      '.so-gate__skip{display:inline-block;margin-top:14px;font-size:13px;color:#a3a493;background:none;border:0;padding:0;text-decoration:underline;cursor:pointer;font-family:inherit}',
+      '.so-gate__hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}'
+    ].join('');
+    document.head.appendChild(s);
+  }
+
+  function close() {
+    if (overlay) { overlay.remove(); overlay = null; }
+    document.removeEventListener('keydown', onKey, true);
+    if (pendingLink && pendingLink.el && pendingLink.el.focus) { try { pendingLink.el.focus(); } catch (e) {} }
+  }
+  function onKey(e) { if (e.key === 'Escape') close(); }
+
+  function screenAsk() {
+    return '<h2 id="so-gate-title">Have you been to Studio One before?</h2>' +
+      '<p>One quick question before we open booking.</p>' +
+      '<div class="so-gate__row">' +
+      '<button type="button" class="so-gate__btn" data-gate="new">I\'m a new guest</button>' +
+      '<button type="button" class="so-gate__btn so-gate__btn--ghost" data-gate="returning">I\'ve been here before</button>' +
+      '</div>';
+  }
+  function screenNew() {
+    return '<h2 id="so-gate-title">Welcome! Who\'s booking?</h2>' +
+      '<p>So we can look out for your booking, and help if anything goes wrong.</p>' +
+      '<form id="so-gate-form" novalidate>' +
+      '<label for="so-gate-name">First name</label><input id="so-gate-name" type="text" name="so_gate_name" autocomplete="given-name" maxlength="60" required>' +
+      '<label for="so-gate-phone">Mobile phone</label><input id="so-gate-phone" type="tel" name="so_gate_phone" autocomplete="tel" inputmode="tel" required>' +
+      '<div class="so-gate__hp" aria-hidden="true"><label for="so-gate-company">Company</label><input id="so-gate-company" type="text" name="company" tabindex="-1" autocomplete="off"></div>' +
+      '<p class="so-gate__consent">We\'ll only text you about your booking.</p>' +
+      '<div class="so-gate__err" id="so-gate-err" role="alert"></div>' +
+      '<button type="submit" class="so-gate__btn">Continue to booking</button>' +
+      '</form>' +
+      '<button type="button" class="so-gate__skip" data-gate="skip">Skip, take me to booking</button>';
+  }
+
+  function render(html) {
+    overlay.querySelector('.so-gate__body').innerHTML = html;
+    var f = overlay.querySelector('button[data-gate],input');
+    if (f) f.focus();
+  }
+
+  function proceed(guestType, userData) {
+    var l = pendingLink; markDone();
+    track(guestType, userData);
+    close();
+    if (l) go(l.href, l.newTab);
+  }
+
+  function submitNew(form) {
+    var name = form.querySelector('#so-gate-name').value.trim();
+    var phone = form.querySelector('#so-gate-phone').value;
+    var digits = phone.replace(/\D/g, ''); if (digits.length === 11 && digits[0] === '1') digits = digits.slice(1);
+    var err = form.querySelector('#so-gate-err');
+    if (!name) { err.textContent = 'Please add your first name.'; return; }
+    if (digits.length !== 10) { err.textContent = 'Please enter a 10-digit phone number.'; return; }
+    var l = pendingLink; markDone(); close();
+    // Open Vagaro first, inside the click, so pop-up blockers allow it.
+    if (l) go(l.href, l.newTab);
+    var attribution = {}; try { attribution = window.soAttribution ? window.soAttribution() : {}; } catch (e) {}
+    try {
+      fetch('/api/booking-intent', {
+        method: 'POST', keepalive: true, headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ first_name: name, phone: digits, company: form.querySelector('#so-gate-company').value,
+          page: location.pathname, vagaro_url: l ? l.href : '', attribution: attribution })
+      }).catch(function () {});
+    } catch (e) {}
+    var hp = window.soHashPhone ? window.soHashPhone(digits) : Promise.resolve('');
+    hp.then(function (h) {
+      var ud = h ? { sha256_phone_number: h } : null;
+      if (ud) { window.__soUserData = window.__soUserData || {}; window.__soUserData.sha256_phone_number = h; }
+      track('new', ud);
+    }).catch(function () { track('new', null); });
+  }
+
+  function open(link) {
+    css();
+    pendingLink = link;
+    overlay = document.createElement('div');
+    overlay.className = 'so-gate';
+    overlay.innerHTML = '<div class="so-gate__box" role="dialog" aria-modal="true" aria-labelledby="so-gate-title">' +
+      '<button type="button" class="so-gate__x" aria-label="Close">&times;</button><div class="so-gate__body"></div></div>';
+    document.body.appendChild(overlay);
+    overlay.addEventListener('click', function (e) {
+      if (e.target === overlay || e.target.closest('.so-gate__x')) { close(); return; }
+      var b = e.target.closest('[data-gate]'); if (!b) return;
+      var g = b.getAttribute('data-gate');
+      if (g === 'new') render(screenNew());
+      else if (g === 'returning') proceed('returning', null);
+      else if (g === 'skip') proceed('new_skipped', null);
+    });
+    overlay.addEventListener('submit', function (e) {
+      e.preventDefault();
+      try { submitNew(e.target); } catch (x) { var l = pendingLink; close(); if (l) go(l.href, l.newTab); }
+    });
+    document.addEventListener('keydown', onKey, true);
+    render(screenAsk());
+  }
+
+  document.addEventListener('click', function (e) {
+    try {
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      var a = e.target.closest && e.target.closest('a[href]');
+      if (!a || !/(^|\.)vagaro\.com$/i.test(a.hostname || '')) return;
+      if (done()) return;
+      e.preventDefault();
+      open({ href: a.href, newTab: (a.getAttribute('target') || '').toLowerCase() === '_blank', el: a });
+    } catch (x) { /* never block a booking */ }
+  }, false);
 })();
 
 /* ===== Footer copyright year ===== */
