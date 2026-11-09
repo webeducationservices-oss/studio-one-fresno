@@ -357,6 +357,11 @@
       .testimonial--with-photo{grid-template-columns:1fr;text-align:left;gap:20px}
       .testimonial--with-photo .testimonial-photo{width:100%;height:240px}
     }
+    /* Sticky mobile apply/call bar */
+    .sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:150;display:none;grid-template-columns:1fr 1fr}
+    .sticky-cta a{display:flex;align-items:center;justify-content:center;gap:8px;padding:16px 10px;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;background:var(--olive);color:var(--white)}
+    .sticky-cta a.call{background:#161616;color:var(--off-white);border-left:1px solid rgba(255,255,255,.12)}
+    @media (max-width:768px){.floating-phone-widget{display:none}.sticky-cta{display:grid}body{padding-bottom:54px}}
   </style>
 
   <link rel="stylesheet" href="/styles.css" media="print" onload="this.media='all'">
@@ -448,7 +453,7 @@
     <div class="page-hero-overlay"></div>
     <div class="page-hero-content" data-animate>
       <p class="eyebrow">NBR Certified Artists</p>
-      <h1>High-end hand-tied hair extensions for unparalleled quality.</h1>
+      <h1>Hand-Tied Hair Extensions in Fresno</h1>
       <p>Elevate your look and ignite your confidence with the most natural looking hand-tied hair extensions in the Central Valley.</p>
       <a href="/nbr-application" class="olive-button">start your nbr application</a>
     </div>
@@ -848,6 +853,12 @@
       <div class="footer-legal"><a href="/privacy-policy">Privacy Policy</a><a href="/terms">Terms</a></div>
     </div>
   </footer>
+
+  <!-- Sticky mobile apply/call bar -->
+  <div class="sticky-cta">
+    <a href="/nbr-application">Apply Now</a>
+    <a href="tel:+15597959724" class="call">Call Us</a>
+  </div>
 
   <script src="/script.js" defer></script>
   <script>
