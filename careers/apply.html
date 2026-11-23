@@ -365,7 +365,7 @@
               <section class="step" data-step="1" data-name="Your path">
                 <h2>Which path are you applying for?</h2>
                 <fieldset class="form-group choice-group">
-                  <legend class="sr-only">Path</legend>
+                  <legend class="sr-only">Your path</legend>
                   <label class="choice"><input type="radio" name="position" value="Employee stylist" required> <span><b>Employee stylist</b><small>Hourly to start, commission after goals, mentorship</small></span></label>
                   <label class="choice"><input type="radio" name="position" value="Booth rental: full-time chair"> <span><b>Booth rental: full-time chair</b><small>6 days a week, 24/7 access</small></span></label>
                   <label class="choice"><input type="radio" name="position" value="Booth rental: boutique flex chair"> <span><b>Booth rental: boutique flex chair</b><small>3 assigned days a week</small></span></label>
@@ -684,7 +684,8 @@
         });
         if (bad) {
           var label = bad.type === 'radio' ? (bad.closest('fieldset').querySelector('legend') || {}).textContent || 'an option' : (sec.querySelector('label[for="' + bad.id + '"]') || {}).textContent || 'this field';
-          fail('Please fill in ' + String(label).replace(/\s*\*\s*$/, '').toLowerCase() + '.');
+          var what = String(label).replace(/\s*\*\s*$/, '').replace(/\?$/, '').toLowerCase();
+          fail(bad.type === 'radio' || bad.tagName === 'SELECT' ? 'Please choose an answer for ' + what + '.' : 'Please fill in ' + what + '.');
           if (bad.focus) try { bad.focus(); } catch (e) {}
           return false;
         }
