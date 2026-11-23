@@ -469,6 +469,7 @@
       box.scrollIntoView({ block: 'center', behavior: 'smooth' });
     }
 
+    const JOB_INTERESTS = ['Booth Rent / Careers', 'Shadowing Program'];
     document.querySelectorAll('form[data-ajax]').forEach(form => {
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
@@ -486,9 +487,14 @@
         if (tokenField) tokenField.value = token || '';
 
         let ok = false;
+        let isJob = false;
         try {
           const data = Object.fromEntries(new FormData(form).entries());
           if (window.soAttribution) Object.assign(data, window.soAttribution());
+          // Booth rent, careers and shadowing go to the New Hire pipeline in the
+          // admin as job applications, not client leads.
+          if (JOB_INTERESTS.indexOf(data.service_interest) !== -1) data.form_type = 'job-application';
+          isJob = data.form_type === 'job-application';
           const res = await fetch('https://myaieditor.com/api/form-notify', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -508,6 +514,12 @@
         form.querySelector('.form-fields').style.display = 'none';
         form.querySelector('.form-success').classList.add('show');
 
+        // A job application is not a client lead: no Ads or Meta lead conversion.
+        if (isJob) {
+          window.dataLayer = window.dataLayer || [];
+          window.dataLayer.push({ event: 'so_job_application', form_type: 'job-application' });
+          return;
+        }
         // Fire GA conversion event
         if (typeof gtag !== 'undefined') {
           gtag('event', 'form_submit', { form_type: 'contact' });
